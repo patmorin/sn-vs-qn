@@ -1,0 +1,42 @@
+\documentclass[kpfonts]{patmorin}
+\usepackage{pat}
+
+\usepackage{paralist}
+
+
+\DeclareMathOperator{\sn}{sn}
+\renewcommand{\SS}{\mathcal{S}}
+
+\begin{document}
+
+A total order $<$ over the vertex set $V(G)$ of a graph $G$ is is \emph{chunkable} if there exists a partition $V_1,\ldots,V_t$ of $V(G)$ such that, 
+\begin{enumerate}
+  \item for every $i,j\in\{1,\ldots,t\}$,  $i< j$ implies that $v<w$ for every $v\in V_i$ and $w\in V_j$;
+  \item for every edge $vw\in E(G)$ there exists $i\in\{1,\ldots,{t-1}$ such that $v\in V_i$ and $w\in V_{i+1}$.
+\end{enumerate}
+We call $V_1,\ldots,V_t$ a \emph{chunking} of $G$ with respect to $<$.
+
+For a vertex order $<$, two edges $vw$ and $xy$ with $v<w$ and $x<y$ \emph{cross} with respect to $<$ if $v<x<w<y$ or $x<v<y<w$.  An $s$-stack layout $(<,\SS)$ of a graph $G$ consists of a total order $<$ over $V(G)$ and a partition $\SS$ of $E(G)$ of size $s=|\SS|$ such that, for each part $P\in \SS$ there is no pair of edges $vw,xy\in P$ such that $vw$ and $xy$ cross with respect to $<$.  Let $\sn(G)$ denote the minimum $s$ such that $G$ has an $s$-stack layout.
+
+\begin{thm}
+  If $G$ has an $s$-stack layout $(<,\SS)$ in which $<$ is chunkable, then $G\boxtimes P$ has a $(2s+2)$-stack layout, where $P$ is a path and $\boxtimes$ denotes the strong product.
+\end{thm}
+
+\begin{proof}
+  Let $p_1,\ldots,p_n$ denote the vertices of $P$ in the order they occur on $P$.  Let $V_1,\ldots,V_t$ be a chunking of $G$ with respect to $<$.  For each $i\in\{1,\ldots,t\}$, let $n_i:=|V_i|$ and let $v_{i,1}<\cdots<v_{i,n_i}$ denote the vertices of $V_i$. For each $i\in\{1,\ldots,t\}$, $j\in\{1,\ldots,n_i\}$, and $k\in\{1,\ldots,n\}$, let $v_{i,j,k}=(v_{i,j},k)$.  We wish to exhibit a $(2s+2)$-stack layout of $G\boxtimes P$.  We begin by defining an ordering $<$ on 
+  \[
+    V(G\boxtimes P) = \{v_{i,j,k} : i\in\{1,\ldots,t\},\, j\in\{1,\ldots,n_i\},\, k\in\{1,\ldots,n\} \} \enspace .
+  \]
+  To define $<$ we define $v_{i,j,k}<v_{i',j',k'}$ if and only if
+  \begin{compactenum}
+    \item $i < i'$;
+    \item $i = i'$, $k<k'$ and $i$ is even; 
+    \item $i = i'$, $k'<k$ and $i$ is odd;
+    \item $i = i'$, $k=k'$, $j < j'$ and $k$ is even; or
+    \item $i = i'$, $k=k'$, $j' < j$ and $k$ is odd.
+  \end{compactenum}
+  
+\end{proof}
+
+
+\end{document}
