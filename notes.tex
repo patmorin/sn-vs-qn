@@ -22,6 +22,76 @@ Once we have \lemref{bbs}, the rest of the proof is easy.  By David's argument, 
 
 Now let's work on proving \lemref{bbs}.  
 
+A total order $(\prec,X\times Y)$ is \emph{x-major} if there exists a a total order $(\prec,X)$ such that, for all $x,x'\in X$ and $y,y'\in Y$, $x\prec x'$ implies that $(x,y) \prec (x',y')$.  A total order $(\prec,X\times Y)$ is \emph{y-major} if there exists a a total order $(\prec,Y)$ such that, for all $x,x'\in X$ and $y,y'\in Y$, $y\prec y'$ implies that $(x,y) \prec (x',y')$. 
+
+\begin{lem}\lemlabel{major}
+  For every $r,t\in\N$ there exists $d\in\N$ such that, for every total order $(\prec, [d]\times[r])$, there is a $t$-subset $D\subset[d]$ such that at least one of the following is true:
+  \begin{compactenum}
+    \item $\prec$ is an x-major ordering of $D\times R$ for some $R\subseteq [r]$ of size at least $t$; or
+    \item $\prec$ is a y-major ordering of $D\times[r]$.
+  \end{compactenum}
+\end{lem}
+
+\lemref{major} has implications for $s$-stack layouts of stars.  For each $d\in\N$, let $S_d$ denote the $d$-leaf star with root $0$ and leaf set $[d]$.  For every $r\in\N$, let $P_r$ denote the $r$-node path $(1,2,3,\ldots,r)$.
+
+\begin{lem}\lemlabel{star}
+  For every $s,t,r\in\N$, $r>s$, there exists $d\in\N$ such that, every $s$-stack layout $(\prec,\varphi)$ of $S_d\boxtimes P_r$, there exists a $t$-subset $D\subset[d]$ of the leaves of $S_d$ such that $\prec$ is a y-major ordering of $D\times[r]$.
+\end{lem}
+
+\begin{proof}
+  By \lemref{major}, the only other alternative is that $\prec$ is an x-major ordering of $D\times R$ for some $t$-element subset $R\subseteq [r]$.  But then it is straightforward to verify that this implies that the edge set $\{(0,y)(x,y):x\in D,y\in R\}$ forms a twist of size $r > s$.  (Indeed, identifying the vertices $\{(x,y):y\in R)\}$ for each $x\in D$ does not introduce any crossing edges, but gives a layout of $K_{r,r}$.) 
+\end{proof}
+
+For each $d,h\in N$, let $T_{d,h}$ denote the complete $d$-ary tree of height $h$ (so that $T_{d,h}$ has $d^h$ leaves).
+
+Consider an $s$-stack layout $(\prec,\varphi)$ of $G:=T_{d,h}\times P_r$.  For convenience, let $T=T_{d,h}$ and $P:=P_r$.  Fix any node non-leaf node $v\in V(T)$.  By \lemref{star} there is a $t$-subset $D\subset V(T)$ consisting of children of $v$ in $T$ such that $\prec$ is a y-major ordering of $D\times[r]$.  Consider the vertices $D\times\{1,2\}$.  Since $\prec$ is y-major over $D$, we may assume without loss of generality $(x,1)\prec (x',2)$ for every $x,x'\in D$.  Since $G$ contains the edges $\{(x,1)(x,2): x\in D\}$ we can conclude, by Dilwerth's Theorem, that these edges can be partitioned into $s$ rainbows, one of which has size at least $t/s$.  That is, $D$ contains a subset $D_1$ of size at least $t/s$ such that $D_1\times\{1,2\}$ is a rainbow.
+
+By iterating the preceding argument we obtain sets $D_2\subseteq D_1\times \{2,3\}$, $D_3\subseteq D_2\times\{3,4\}$,\ldots, $D_{r-1}\subseteq D_{r-2}\times\{r-1,r\}$, where each $D_i$ has size at least $t/s^i$.
+
+The set $D':=D_{r-2}\subseteq D$ has size at least $t'=t/s^{r-2}$ and defines a total order $(\prec,D')$ such that, for every $x,x'\in D'$ and $y\in [r]$, $(x,y)\prec (x',y)$ if and only if
+\begin{compactitem} 
+  \item $x\prec x'$ and $y$ is even; or 
+  \item $x'\prec x$ and $y$ is odd.
+\end{compactitem}
+
+
+Now we focus on $D'\times\{y,y+1\}$ for some $y\in\{1,\ldots,r-1\}$.  Observe that the $s$-stack layout $(\prec,\varphi)$ contains a $t'$-rainbow consisting of edges $\{(x,y)(x,y+1): x\in D'\}$.  Without loss of generality, assume:
+\[  (x,y) \prec (x',y+1) \]
+for every every $x,x'\in D'$ and give names $x_1,\ldots,x_{t'}$ to the elements of $D'$ so that
+\[
+    (x_1,y) \prec (x_2,y) \prec \cdots (x_{t'},y) 
+    \prec (x_{t'},y+1) \prec \cdots (x_2,y+1) \prec (x_1,y+1) 
+\]
+Consider some child $z$ of some node $x\in D'$.  The graph $G$ contains the edges $(x,y)(z,y)$ and the edges $(x,y+1)(z,y)$.  We say that $z$ is \emph{$y$-well-behaved} if $(x_1,y)\prec (z,y) \prec (x_{t'},y)$ or if $(x_{t'},y+1)\prec (z,y)\prec (x_1,y+1)$.  Otherwise, $z$ is \emph{$y$-ill-behaved}.
+
+\begin{lem}\lemlabel{ill-behaved}
+  In any $s$-stack layout of $G$, for any $y\in\{1,\ldots,r-1\}$ the number of nodes $x\in D'$ such that $x$ has a $y$-ill-behaved child is at most $3s^2$.
+\end{lem}
+
+\begin{proof}
+  For each $y$-ill-behaved child $z$, $(z,y)$ falls into one of three intervals (before $(x_1,y)$, between $(x_{t'},y)$ and $(x_{t'},y+1)$ or after $(x_1,y+1)$) and, if the result is not true, then one of these intervals contains at least $s^2+1$ $y$-ill-behaved children.  Dilwerth's Theorem (or Erd\H{o}s-Szekeres) implies that these $s^2+1$ $y$-ill-behaved children form a twist of size at least $s+1$ with $(x_1,y),\ldots,(x_{t'},y)$ or with $(x_{t'},y+1),\ldots,(x_1,y+1)$. (Note, the 3 is probably unnecessary here, but I'm feeling lazy.)
+\end{proof}
+
+With the same notation as above, we say that a $y$-well-behaved child $z$ is a \emph{$y$-angel} if $(x_1,y) \prec (z,y)\prec (x_{t'},y)$.
+
+\begin{obs}
+  For any $y\in\{2,\ldots,r-1\}$ any node $z$ that is not a $y$-angel is $y$-ill-behaved or $(y-1)$-ill-behaved.
+\end{obs}
+
+This observation leads to the following corollary of \lemref{ill-behaved}
+
+\begin{cor}\corlabel{devils}
+  In any $s$-stack layout of $G$, for any $y\in\{2,\ldots,r-1\}$ the number of nodes $x\in D'$ such that $x$ has a child that is not a $y$-angel is at most $6s^2$.
+\end{cor}
+
+Now we're basically done.  Apply \lemref{star} using the star $S$ formed by the root of $T$ and its children.  This yields the set $D'$ of $t'$ depth-1 nodes in $T$ such that $\prec$ is a y-major ordering of $D'\times[r]$.  Delete every node in $D'$ that has a child $z$ that is not a $y$-angel for some $y\in\{2,\ldots,r-1\}$.   By \corref{devils}, this yields a set $D''\subseteq D$, $|D''|\ge|D'|-6rs^2\ge t/s^r - 6rs^2$.   Recall that the only conditions on $s,t,r$ and are that $r>s$ so, for any fixed $s$ we can choose $r=s+1$ and set $t$ arbitrarily large.  At this point we have found a subtree $T'$ of $T$ of height $2$ in which the root has at least $t/s^r - 6rs^2$ children, each depth-1 node has at least $d$ children and such that $\prec$ is a y-major ordering of $V(T')\times[r]$.   In particular, $T'$ contains a binary tree of height $2$ satisfying the conditions of \lemref{bbs}.
+
+Now we can proceed the same way on the depth-1 nodes of $T'$.  Note that, for each such node $v$ whose children (in $T$) are $C_v$, the set $C_v$ satisfies the conditions of the set $D$ we started with. In particular $\prec$ defines a y-major ordering of $C_v\times[r]$.  Thus, we can repeat this argument to find a height-3 subtree, a height-4 subtree, and eventually a height-$h$ subtree $T'_h$ such that $\prec$ is y-major ordering of $T'_h\times[r]$.  In particular, the tree $T'_h$ contains a complete binary tree of height $h$ that satisfies the conditions of \lemref{bbs}.
+
+\end{document}
+
+
+
 Let $V$ be any set, let $S=\{(v,b): v\in V, b\in\{0,1\}$, and let $\prec$ be a total order on $S$.  We say that $\prec$ \emph{separates} a subset $X\subseteq V$ if $(v,b) \prec (v,{1-b})$ for every $v\in X$ and some $b\in\{0,1\}$.  
 % We say that $\prec$ \emph{mixes} $X$ if $\prec$ orders $X\times\{0,1\}$ as
 % \[
