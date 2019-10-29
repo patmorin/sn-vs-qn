@@ -92,11 +92,12 @@ Now we can proceed the same way on the depth-1 nodes of $T'$.  Note that, for ea
 Unfortunately, \lemref{major} (and therefore \lemref{star}) is not quite correct.  The best we can show is the following:
 
 \begin{lem}\lemlabel{star-ii}
-  For every $s,t,r\in\N$, $r>s$, there exists $d\in\N$ such that, every $s$-stack layout $(\prec,\varphi)$ of $S_d\boxtimes P_r$, there exists a $t$-subset $D\subset[d]$ of the leaves of $S_d$ such that:
+  For every $s,t,r\in\N$, $r>s$, there exists $d\in\N$ such that, every $s$-stack layout $(\prec,\varphi)$ of $S_d\boxtimes P_r$, there exists a $t$-subset $D\subset[d]$ of the leaves of $S_d$ such that for every $y\in\{1,\ldots,r-1\}$ at least one of these holds:
   \begin{compactenum}
-    \item For every $y\in\{1,\ldots,r-1\}$, $\prec$ is a x-major ordering or a y-major ordering of $D\times\{y,y+1\}$.
-    \item For every $y\in\{1,\ldots,r-s-1\}$ there exists at least one $j\in\{0,\ldots,s\}$ such that $\prec$ is a y-major ordering of $D\times\{y+j,y+j+1\}$.
+    \item $\prec$ is a y-major ordering of $D\times\{y,y+1\}$ and $D\times\{y,y+1\}$ is a monotone rainbow
+    \item $\prec$ is a y-major ordering of $D\times\{y+j,y+j+1\}$.
   \end{compactenum}
+  Furthermore, every $y\in\{1,\ldots,r-s-1\}$, Property~1 holds for $y+j$ for at least one $j\in\{0,\ldots,s-1\}$.  Furthermore, if Property~2 holds for $y,y+1,\ldots,y_j$ then the permutation of $D$ induced by $\prec$ on $D\times\{y\}$ is the same as that induced by $\prec$ on $D\times\{y+j\}$.
 \end{lem}
 
 This is slightly more complicated to work with since it means that there are blocks of $y$ values such that $\prec$ is an x-major ordering of $D\times\{y,y+1,\ldots,y+r\}$.  This makes it trickier to control the placement of the children of $\{x\}\times\{y,y+1,\ldots,y+r\}$. What we can show, though, is that for most $x$, at least one of $(x,y),(x,y+1)\ldots,(x,y+r)$ has no child that is not an angel.  (Note to self: Look out for the possibility that $D\times\{y\}$ and $D\times\{y+2\}$ overlap/interleave even though $D\times\{y\}$ and $D\times\{y+1\}$ are disjoint.)
@@ -108,22 +109,29 @@ We can prove \lemref{star-ii} using the following lemma:
   Let $k, m\in\N$, let $X$ be an $m$-element set and let $Y$ be 2-element set.
   let $S=X\times Y$, and let $\prec$ be a total order on $S$.  Then at least one of the following is true:
   \begin{compactenum} 
-    \item There exists a $\ceil{k/2}$-element subset $D\subseteq X$ such that $\prec$ is a y-major ordering of $D\times\{0,1\}$.
-    \item There exists an $\floor{m/k}$-element subset $D\subseteq X$ such that $\prec$ is a x-major ordering of $D\times\{0,1\}$.
+    \item There exists a $\ceil{k/2}$-element subset $D\subseteq X$ such that $\prec$ is a y-major ordering of $D\times Y$.
+    \item There exists an $\floor{m/k}$-element subset $D\subseteq X$ such that $\prec$ is a x-major ordering of $D\times Y$.
   \end{compactenum}
 \end{lem}
 
 \begin{proof}
   For each $i\in\{0,\ldots,2m\}$ let $S_i$ denote the first $i$ elements of $S$ in $\prec$ order.  Suppose there exists a value $i$ and set $Z\subseteq S_i$, $|Z|=k$ such that, for every $(x,y)\in Z$, $(x,1-y)\not\in S_i$.  Then for some $b\in\{0,1\}$, the set $Z_b=\{(x,y)\in Z: y=b\}$ has size at least $k/2$.  We take $D=\{x : (x,y)\in Z_b\}$ and observe that $\prec$ is a y-major ordering of $D\times\{0,1\}$, so $D$ satisfies Property~1.
   
-  If there is no such $i$ and $Z$, then partition the first $k\floor{m/k}$ elements of $S$ into consecutive blocks $B_1,\ldots,B_{\floor{m/k}}$ each of size $2k$ (So $B_j=S_{2kj}\setminus S_{2k(j-1)}$). For each $j\in\{1,\ldots,\floor{m/k}\}$, $A_j:=B_1\cup\cdots\cup B_j$ contains $2jk$ elements and there is a set $X_j\subset X$ of size at least $\tfrac{1}{2}(2jk-(k-1))$ such that $X_j\times Y\subseteq A_j$.  Furthermore, $|X_j\times Y \cap B_j|\ge k+1$.  Since $X_{j-1}\times Y \cap A_{j-1}\ge 2k(j-1)-k+1$, this implies that there is at least one value $x_j\in[m]$ such that $(x_j,0),(x_j,1)\in B_j$. We take $D=\{x_j:j\in\{1,\ldots,\floor{m/k}\}$ and observe that $\prec$ is an x-major ordering of $D\times\{0,1\}$, so $D$ satisfies Property~2.
+  If there is no such $i$ and $Z$, then partition the first $k\floor{m/k}$ elements of $S$ into consecutive blocks $B_1,\ldots,B_{\floor{m/k}}$ each of size $2k$ (So $B_j=S_{2kj}\setminus S_{2k(j-1)}$). For each $j\in\{1,\ldots,\floor{m/k}\}$, $A_j:=B_1\cup\cdots\cup B_j$ contains $2jk$ elements and there is a set $X_j\subset X$ of size at least $\tfrac{1}{2}(2jk-(k-1))$ such that $X_j\times Y\subseteq A_j$.  Furthermore, $|X_j\times Y \cap B_j|\ge k+1$.  Since $X_{j-1}\times Y \cap A_{j-1}\ge 2k(j-1)-k+1$, this implies that there is at least one value $x_j\in[m]$ such that $(x_j,0),(x_j,1)\in B_j$. We take $D=\{x_j:j\in\{1,\ldots,\floor{m/k}\}$ and observe that $\prec$ is an x-major ordering of $D\times Y$, so $D$ satisfies Property~2.
 \end{proof}
 
 
 We can now prove \lemref{star-ii}.
 
 \begin{proof}[Proof of \lemref{star-ii}]
-  Starting with $D_0=[d]$, iteratively apply \lemref{dichotomy} to $\prec$ and the set $S=D_{i-1}\times\{i,i+1\}$ to obtain a set $D_i$ for $i=1,\ldots,r-1$. The final set $D_{r-1}$ has size at least $d^{1/2^{r-1}}$ and satisfies Property~1 of the lemma.  To see that it satisfied Property~2 argue that, otherwise, we will find a twist of size $t$.
+  Define $D_0=[d]$, the set of leaves of $S$ and define $X_1\subset D_0$ such that $X_1\times\{1\}$ is a chain or antichain in $\prec$. By Erd\H{o}s-Szekeres, $|X_1|=\Omega(\sqrt{d})$.
+
+  Apply \lemref{dichotomy-ii} iteratively.  During the $i$th iteration, we apply \lemref{dichotomy-ii} with $k=|X_{i}|^{2/3}$, $\prec$, $X=X_{i}$, and $Y=\{i,i+1\}$, yielding a set $D_i$ of size $\Omega(|X_{i}|^{1/3})$ satisfying Property~1 or Property~2.  If $D_i$ satisfies Property~1 then we say that iteration $i$ was a \emph{split} iteration.  Otherwise, iteration $i$ was an \emph{interleaving} iteration.
+  
+  If iteration $i$ was a split iteration, use Dilwerth's Theorem to find a subset $X_{i+1}\subseteq D_i$ such that $X_{i+1}\times\{i+1\}$ is a chain or antichain in $\prec$.  The fact that $X_i\times\{i\}$ was a chain or antichain in $\prec$ and that $(\prec,\varphi)$ is an $s$-stack layout implies that $|X_{i+1}| \ge |X_i|/s$.
+  
+  If iteration $i$ was an interleaving iteration, then look back to the smallest value $a$ such that iteration $i-a$ was a split iteration.  Thus, there is a sequence of disjoint intervals $\{(a_x,b_x) : x\in D_i\}$ such that, for every $x\in D_i$ and every $j\in\{i-a+1,\lots,i\}$, $a_x\preceq (x,i)\preceq b_x$ \ldots
+  
 \end{proof}
 
 
