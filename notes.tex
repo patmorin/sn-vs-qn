@@ -24,8 +24,9 @@ Now let's work on proving \lemref{bbs}.
 
 A total order $(\prec,X\times Y)$ is \emph{x-major} if there exists a a total order $(\prec,X)$ such that, for all $x,x'\in X$ and $y,y'\in Y$, $x\prec x'$ implies that $(x,y) \prec (x',y')$.  A total order $(\prec,X\times Y)$ is \emph{y-major} if there exists a a total order $(\prec,Y)$ such that, for all $x,x'\in X$ and $y,y'\in Y$, $y\prec y'$ implies that $(x,y) \prec (x',y')$. 
 
+The following Lemma is incorrect as stated, but let's pretend it's correct for now and see how easy the rest of the proof is:
 \begin{lem}\lemlabel{major}
-  For every $r,t\in\N$ there exists $d\in\N$ such that, for every total order $(\prec, [d]\times[r])$, there is a $t$-subset $D\subset[d]$ such that at least one of the following is true:
+  For every $r,t\in\N$,  $t>r$, there exists $d\in\N$ such that, for every total order $(\prec, [d]\times[r])$, there is a $t$-subset $D\subset[d]$ such that at least one of the following is true:
   \begin{compactenum}
     \item $\prec$ is an x-major ordering of $D\times R$ for some $R\subseteq [r]$ of size at least $t$; or
     \item $\prec$ is a y-major ordering of $D\times[r]$.
@@ -39,7 +40,7 @@ A total order $(\prec,X\times Y)$ is \emph{x-major} if there exists a a total or
 \end{lem}
 
 \begin{proof}
-  By \lemref{major}, the only other alternative is that $\prec$ is an x-major ordering of $D\times R$ for some $t$-element subset $R\subseteq [r]$.  But then it is straightforward to verify that this implies that the edge set $\{(0,y)(x,y):x\in D,y\in R\}$ forms a twist of size $r > s$.  (Indeed, identifying the vertices $\{(x,y):y\in R)\}$ for each $x\in D$ does not introduce any crossing edges, but gives a layout of $K_{r,r}$.) 
+  By \lemref{major}, the only other alternative is that $\prec$ is an x-major ordering of $D\times R$ for some $t$-element subset $R\subseteq [r]$.  But then it is straightforward to verify that this implies that the edge set $\{(0,y)(x,y):x\in D,y\in R\}$ forms a twist of size $t \ge r > s$.  (Indeed, identifying the vertices $\{(x,y):y\in R)\}$ for each $x\in D$ does not introduce any crossing edges, but gives a layout of $K_{t,t}$.) 
 \end{proof}
 
 For each $d,h\in N$, let $T_{d,h}$ denote the complete $d$-ary tree of height $h$ (so that $T_{d,h}$ has $d^h$ leaves).
@@ -87,6 +88,20 @@ This observation leads to the following corollary of \lemref{ill-behaved}
 Now we're basically done.  Apply \lemref{star} using the star $S$ formed by the root of $T$ and its children.  This yields the set $D'$ of $t'$ depth-1 nodes in $T$ such that $\prec$ is a y-major ordering of $D'\times[r]$.  Delete every node in $D'$ that has a child $z$ that is not a $y$-angel for some $y\in\{2,\ldots,r-1\}$.   By \corref{devils}, this yields a set $D''\subseteq D$, $|D''|\ge|D'|-6rs^2\ge t/s^r - 6rs^2$.   Recall that the only conditions on $s,t,r$ and are that $r>s$ so, for any fixed $s$ we can choose $r=s+1$ and set $t$ arbitrarily large.  At this point we have found a subtree $T'$ of $T$ of height $2$ in which the root has at least $t/s^r - 6rs^2$ children, each depth-1 node has at least $d$ children and such that $\prec$ is a y-major ordering of $V(T')\times[r]$.   In particular, $T'$ contains a binary tree of height $2$ satisfying the conditions of \lemref{bbs}.
 
 Now we can proceed the same way on the depth-1 nodes of $T'$.  Note that, for each such node $v$ whose children (in $T$) are $C_v$, the set $C_v$ satisfies the conditions of the set $D$ we started with. In particular $\prec$ defines a y-major ordering of $C_v\times[r]$.  Thus, we can repeat this argument to find a height-3 subtree, a height-4 subtree, and eventually a height-$h$ subtree $T'_h$ such that $\prec$ is y-major ordering of $T'_h\times[r]$.  In particular, the tree $T'_h$ contains a complete binary tree of height $h$ that satisfies the conditions of \lemref{bbs}.
+
+Unfortunately, \lemref{major} (and therefore \lemref{star}) is not quite correct.  The best we can show is the following:
+
+\begin{lem}\lemlabel{star-ii}
+  For every $s,t,r\in\N$, $r>s$, there exists $d\in\N$ such that, every $s$-stack layout $(\prec,\varphi)$ of $S_d\boxtimes P_r$, there exists a $t$-subset $D\subset[d]$ of the leaves of $S_d$ such that:
+  \begin{compactenum}
+    \item For every $y\in\{1,\ldots,r-1\}$, $\prec$ is a x-major ordering or a y-major ordering of $D\times\{y,y+1\}$.
+    \item For every $y\in\{1,\ldots,r-s-1\}$ there exists at least one $j\in\{0,\ldots,s\}$ such that $\prec$ is a y-major ordering of $D\times\{y+j,y+j+1\}$.
+  \end{compactenum}
+\end{lem}
+
+This is slightly more complicated to work with since it means that there are blocks of $y$ values such that $\prec$ is an x-major ordering of $D\times\{y,y+1,\ldots,y+r\}$.  This makes it trickier to control the placement of the children of $\{x\}\times\{y,y+1,\ldots,y+r\}$. What we can show, though, is that for most $x$, at least one of $(x,y),(x,y+1)\ldots,(x,y+r)$ has no child that is not an angel.  (Note to self: Look out for the possibility that $D\times\{y\}$ and $D\times\{y+2\}$ overlap/interleave even though $D\times\{y\}$ and $D\times\{y+1\}$ are disjoint.)
+
+
 
 \end{document}
 
