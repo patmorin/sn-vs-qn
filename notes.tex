@@ -102,6 +102,14 @@ Unfortunately, \lemref{major} (and therefore \lemref{star}) is not quite correct
 
 This is slightly more complicated to work with since it means that there are blocks of $y$ values such that $\prec$ is an x-major ordering of $D\times\{y,y+1,\ldots,y+r\}$.  This makes it trickier to control the placement of the children of $\{x\}\times\{y,y+1,\ldots,y+r\}$. What we can show, though, is that for most $x$, at least one of $(x,y),(x,y+1)\ldots,(x,y+r)$ has no child that is not an angel.  (Note to self: Look out for the possibility that $D\times\{y\}$ and $D\times\{y+2\}$ overlap/interleave even though $D\times\{y\}$ and $D\times\{y+1\}$ are disjoint.)
 
+This (easy) lemma will also be helpful.
+
+\begin{lem}
+  Let $G$ be any connected graph with $|V(G)|\ge 2$, let $P=(1,\ldots,r)$ be a path and let $(\prec,\varphi)$ be an $s$-stack layout of $G\boxtimes P$.  Then, for every vertex $v\in V(G)$, the path $P_v=(v,1),\ldots,(v,r)$ does not contain any rainbow of size $s^2+1$ (or twist of size $s$).
+\end{lem}
+
+The preceding lemma implies that $P_v$ has bounded bandwidth.
+
 
 We can prove \lemref{star-ii} using the following lemma:
 
