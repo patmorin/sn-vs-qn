@@ -1,0 +1,404 @@
+\documentclass[kpfonts]{patmorin}
+\usepackage{pat}
+\usepackage{paralist}
+
+\setlength{\parskip}{1ex}
+
+
+\DeclareMathOperator{\sn}{sn}
+\renewcommand{\SS}{\mathcal{S}}
+
+\begin{document}
+
+\section{The Plan}
+
+For every $d,h\in\N$, let $T_{d,h}$ denote the complete $d$-ary tree of height $h$ and let $F_{d,h}$ denote the forest containing $d$ complete $d$-ary trees of height $h$.
+
+\begin{clm}\clmlabel{one-stack-subtree}
+  For every $d,h,s\in\N$, there exists $d'=d'(d,h,s)$ such that any $s$-stack layout of $T_{d',h}$ contains a 1-stack layout of $T_{d,h}$.
+\end{clm}
+
+\begin{proof}
+  Work down from the root, repeatedly colouring a node with the edge colour that occurs the most frequently at that node and then keeping the most-frequently occurring node colour at each level\ldots.
+\end{proof}
+
+For each $n\in\N$, let $P_n$ denote the path of length $n$ whose vertices are $1,2,3,\ldots,n$ in this order.  For a graph $G=H\boxtimes P_n$, and a subgraph $H'\subseteq H$, we let $H'_i=G[(v,i):v\in V(H')]$ denote the $i$th copy of $H'$ in $G$.  
+
+Let $A$ and $B$ be two disjoint sets with $|A|=|B|$, let $X=A\cup B$, and let $\prec$ be a total order over $X$.  We say that $A$ and $B$ \emph{interleave} with respect to $\prec$ if there exists an orderings $a_1,\ldots,a_n$ and $b_1,\ldots,b_n$ of $A$ and $B$, respectively, such that $a_1\prec b_1\prec a_2\prec b_2\prec\cdots\prec a_n\prec b_n$ or $b_1\prec a_1\prec b_2\prec a_2\prec\cdots\prec b_n\prec a_n$.  We say that $A$ and $B$ are \emph{separated} with respect to $\prec$ if there exists $m\in A$ such that $a\prec m$ and $m\prec b$ for every $a\in A\setminus\{m\}$ and every $b\in B$ or if there exists $m\in B$ such that $b\prec m$ and $m\prec a$ for every $a\in A$ and every $b\in B\setminus\{m\}$.
+
+\begin{clm}\clmlabel{early-interleave}
+  For every $s,d\in\N$, there exists $d',h\in\N$ such that, for any $s$-stack layout $(\prec,\varphi)$ of $G=F\times P_2$, where $F=F_{d',h}$, $F$ contains a copy $F'$ of $F_{d,h}$ such that, for some $i\in\{0,\ldots,h\}$, the depth $i$-nodes of $F'_1$ and $F'_2$ interleave perfectly with respect to $\prec$.
+\end{clm}
+
+\begin{proof}
+  Applying (something like) \clmref{one-stack-subtree} to get $F'\subset F$ such that $F'_1$ and $F'_2$ are each 1-stack layouts.  Next, walk down from the root, doing pruning as in the proof of \clmref{one-stack-subtree}, but this time classiflying each level $i$ as interleaving or reversing (this uses Dilwerth's Theorem, and also requires pruning).  Argue that, as long as the levels are reversing, $F'_1$ and $F'_2$ are separated.  If the levels never interleave, the $F'_1$ and $F'_2$ are two $d$-ary forests of height $h$ that are separated.  But $F'$ contains  $R=\{x_iy_i:i\in\{1,\ldots,h\}\}$ of size $h$ such that $R_1$ is a rainbow and, because of cross edges in the strong product, the endpoints of $R_1$ form a twist of size $h>s$ with $R_2$.   
+\end{proof}
+
+
+\begin{clm}
+  For every $s\in\N$, there exists $d,h\in N$ such that $\sn(F_{d,h}\boxtimes P_n)> s$.
+\end{clm}
+
+The plan is to show this as follows:
+
+
+\begin{enumerate}
+  \item By \clmref{early-interleave}, $F_1$ and $F_2$ must interleave within their first $s$ levels. Suppose this happens first at level $i>0$.  What happens to $F_3$?  Suppose the depth 0 nodes of $F_1$, $F_2$, and $F_3$ are mutually separated.
+  \begin{enumerate}
+    \item If $F_3$ interleaves with $F_1$ at some level $i'$, $0<i'<i$, then we get a twist.
+    \item If $F_3$ interleaves first with $F_1$ at level $i$ then we get a twist.
+    \item If $F_3$ interleaves first with $F_2$ at level $i$, then we get a twist.
+    \item If $F_3$ does not interleave with $F_2$ before level $i$, then we get a twist.
+  \end{enumerate}
+  This only leaves two possibilities:
+  \begin{enumerate}
+    \item $F_1$ and $F_3$ interleave already at level 0.
+    \item $F_3$ interleaves with $F_2$ at some level $i'<i\le i-1$.
+  \end{enumerate}
+  In the first case, we found $F_1$ and $F_3$ interleaving at level 0, so we move on to consider $F_3$ and $F_4$.  In the second case, we've found that $F_3$ must interleave with $F_2$ by level $i-1$.  We should then be able to argue that $F_4$ must interleave with $F_3$ by level $i-2$, and this can't go on indefinitely, since $i<h<s+1$.  
+\end{enumerate}  
+
+
+\end{document}
+
+
+
+
+\begin{clm}
+  
+  
+\end{clm}
+
+
+
+
+
+
+
+
+
+
+\begin{lem}\lemlabel{bbs}
+  For every $k,s\in\N$, there exists $d,h,n\in\N$ such that the following is true.  Let $T$ be a complete $d$-ary tree of height $h$ and $P$ be a path of length $n$.  Then, for any $s$-stack layout $(\prec,\varphi)$ of $T\times P$, there exists an edge $(x,y)\in P$ and a complete binary subtree $T'$ of $T$ of height $h$ such that $(v,x) \prec (w,y)$ for every $v,w\in V(T')$.
+\end{lem}
+
+Note: Actually, we only need the $T'_x$ to be separated from the leaves of $T'_y$.
+
+Once we have \lemref{bbs}, the rest of the proof is easy.  By David's argument, the layout of $T'_x$ contains a rainbow of size $\omega_h(1)$.  Now, the fact that $T'_x$ and the leaves of $T'_y$ are separated along with some easy applications of Dilwerth's Theorem (Erd\H{o}s-Szkeres) proves that any $s$-stack layout of $T'\boxtimes (x,y)$ contains a twist of size $\omega_h(1)$.
+
+Now let's work on proving \lemref{bbs}.  
+
+A total order $(\prec,X\times Y)$ is \emph{x-major} if there exists a a total order $(\prec,X)$ such that, for all $x,x'\in X$ and $y,y'\in Y$, $x\prec x'$ implies that $(x,y) \prec (x',y')$.  A total order $(\prec,X\times Y)$ is \emph{y-major} if there exists a a total order $(\prec,Y)$ such that, for all $x,x'\in X$ and $y,y'\in Y$, $y\prec y'$ implies that $(x,y) \prec (x',y')$. 
+
+The following Lemma is incorrect as stated, but let's pretend it's correct for now and see how easy the rest of the proof is:
+\begin{lem}\lemlabel{major}
+  For every $r,t\in\N$,  $t>r$, there exists $d\in\N$ such that, for every total order $(\prec, [d]\times[r])$, there is a $t$-subset $D\subset[d]$ such that at least one of the following is true:
+  \begin{compactenum}
+    \item $\prec$ is an x-major ordering of $D\times R$ for some $R\subseteq [r]$ of size at least $t$; or
+    \item $\prec$ is a y-major ordering of $D\times[r]$.
+  \end{compactenum}
+\end{lem}
+
+\lemref{major} has implications for $s$-stack layouts of stars.  For each $d\in\N$, let $S_d$ denote the $d$-leaf star with root $0$ and leaf set $[d]$.  For every $r\in\N$, let $P_r$ denote the $r$-node path $(1,2,3,\ldots,r)$.
+
+\begin{lem}\lemlabel{star}
+  For every $s,t,r\in\N$, $r>s$, there exists $d\in\N$ such that, every $s$-stack layout $(\prec,\varphi)$ of $S_d\boxtimes P_r$, there exists a $t$-subset $D\subset[d]$ of the leaves of $S_d$ such that $\prec$ is a y-major ordering of $D\times[r]$.
+\end{lem}
+
+\begin{proof}
+  By \lemref{major}, the only other alternative is that $\prec$ is an x-major ordering of $D\times R$ for some $t$-element subset $R\subseteq [r]$.  But then it is straightforward to verify that this implies that the edge set $\{(0,y)(x,y):x\in D,y\in R\}$ forms a twist of size $t \ge r > s$.  (Indeed, identifying the vertices $\{(x,y):y\in R)\}$ for each $x\in D$ does not introduce any crossing edges, but gives a layout of $K_{t,t}$.) 
+\end{proof}
+
+For each $d,h\in N$, let $T_{d,h}$ denote the complete $d$-ary tree of height $h$ (so that $T_{d,h}$ has $d^h$ leaves).
+
+Consider an $s$-stack layout $(\prec,\varphi)$ of $G:=T_{d,h}\times P_r$.  For convenience, let $T=T_{d,h}$ and $P:=P_r$.  Fix any node non-leaf node $v\in V(T)$.  By \lemref{star} there is a $t$-subset $D\subset V(T)$ consisting of children of $v$ in $T$ such that $\prec$ is a y-major ordering of $D\times[r]$.  Consider the vertices $D\times\{1,2\}$.  Since $\prec$ is y-major over $D$, we may assume without loss of generality $(x,1)\prec (x',2)$ for every $x,x'\in D$.  Since $G$ contains the edges $\{(x,1)(x,2): x\in D\}$ we can conclude, by Dilwerth's Theorem, that these edges can be partitioned into $s$ rainbows, one of which has size at least $t/s$.  That is, $D$ contains a subset $D_1$ of size at least $t/s$ such that $D_1\times\{1,2\}$ is a rainbow.
+
+By iterating the preceding argument we obtain sets $D_2\subseteq D_1\times \{2,3\}$, $D_3\subseteq D_2\times\{3,4\}$,\ldots, $D_{r-1}\subseteq D_{r-2}\times\{r-1,r\}$, where each $D_i$ has size at least $t/s^i$.
+
+The set $D':=D_{r-2}\subseteq D$ has size at least $t'=t/s^{r-2}$ and defines a total order $(\prec,D')$ such that, for every $x,x'\in D'$ and $y\in [r]$, $(x,y)\prec (x',y)$ if and only if
+\begin{compactitem} 
+  \item $x\prec x'$ and $y$ is even; or 
+  \item $x'\prec x$ and $y$ is odd.
+\end{compactitem}
+
+
+Now we focus on $D'\times\{y,y+1\}$ for some $y\in\{1,\ldots,r-1\}$.  Observe that the $s$-stack layout $(\prec,\varphi)$ contains a $t'$-rainbow consisting of edges $\{(x,y)(x,y+1): x\in D'\}$.  Without loss of generality, assume:
+\[  (x,y) \prec (x',y+1) \]
+for every every $x,x'\in D'$ and give names $x_1,\ldots,x_{t'}$ to the elements of $D'$ so that
+\[
+    (x_1,y) \prec (x_2,y) \prec \cdots (x_{t'},y) 
+    \prec (x_{t'},y+1) \prec \cdots (x_2,y+1) \prec (x_1,y+1) 
+\]
+Consider some child $z$ of some node $x\in D'$.  The graph $G$ contains the edges $(x,y)(z,y)$ and the edges $(x,y+1)(z,y)$.  We say that $z$ is \emph{$y$-well-behaved} if $(x_1,y)\prec (z,y) \prec (x_{t'},y)$ or if $(x_{t'},y+1)\prec (z,y)\prec (x_1,y+1)$.  Otherwise, $z$ is \emph{$y$-ill-behaved}.
+
+\begin{lem}\lemlabel{ill-behaved}
+  In any $s$-stack layout of $G$, for any $y\in\{1,\ldots,r-1\}$ the number of nodes $x\in D'$ such that $x$ has a $y$-ill-behaved child is at most $3s^2$.
+\end{lem}
+
+\begin{proof}
+  For each $y$-ill-behaved child $z$, $(z,y)$ falls into one of three intervals (before $(x_1,y)$, between $(x_{t'},y)$ and $(x_{t'},y+1)$ or after $(x_1,y+1)$) and, if the result is not true, then one of these intervals contains at least $s^2+1$ $y$-ill-behaved children.  Dilwerth's Theorem (or Erd\H{o}s-Szekeres) implies that these $s^2+1$ $y$-ill-behaved children form a twist of size at least $s+1$ with $(x_1,y),\ldots,(x_{t'},y)$ or with $(x_{t'},y+1),\ldots,(x_1,y+1)$. (Note, the 3 is probably unnecessary here, but I'm feeling lazy.)
+\end{proof}
+
+With the same notation as above, we say that a $y$-well-behaved child $z$ is a \emph{$y$-angel} if $(x_1,y) \prec (z,y)\prec (x_{t'},y)$.
+
+\begin{obs}
+  For any $y\in\{2,\ldots,r-1\}$ any node $z$ that is not a $y$-angel is $y$-ill-behaved or $(y-1)$-ill-behaved.
+\end{obs}
+
+This observation leads to the following corollary of \lemref{ill-behaved}
+
+\begin{cor}\corlabel{devils}
+  In any $s$-stack layout of $G$, for any $y\in\{2,\ldots,r-1\}$ the number of nodes $x\in D'$ such that $x$ has a child that is not a $y$-angel is at most $6s^2$.
+\end{cor}
+
+Now we're basically done.  Apply \lemref{star} using the star $S$ formed by the root of $T$ and its children.  This yields the set $D'$ of $t'$ depth-1 nodes in $T$ such that $\prec$ is a y-major ordering of $D'\times[r]$.  Delete every node in $D'$ that has a child $z$ that is not a $y$-angel for some $y\in\{2,\ldots,r-1\}$.   By \corref{devils}, this yields a set $D''\subseteq D$, $|D''|\ge|D'|-6rs^2\ge t/s^r - 6rs^2$.   Recall that the only conditions on $s,t,r$ and are that $r>s$ so, for any fixed $s$ we can choose $r=s+1$ and set $t$ arbitrarily large.  At this point we have found a subtree $T'$ of $T$ of height $2$ in which the root has at least $t/s^r - 6rs^2$ children, each depth-1 node has at least $d$ children and such that $\prec$ is a y-major ordering of $V(T')\times[r]$.   In particular, $T'$ contains a binary tree of height $2$ satisfying the conditions of \lemref{bbs}.
+
+Now we can proceed the same way on the depth-1 nodes of $T'$.  Note that, for each such node $v$ whose children (in $T$) are $C_v$, the set $C_v$ satisfies the conditions of the set $D$ we started with. In particular $\prec$ defines a y-major ordering of $C_v\times[r]$.  Thus, we can repeat this argument to find a height-3 subtree, a height-4 subtree, and eventually a height-$h$ subtree $T'_h$ such that $\prec$ is y-major ordering of $T'_h\times[r]$.  In particular, the tree $T'_h$ contains a complete binary tree of height $h$ that satisfies the conditions of \lemref{bbs}.
+
+Unfortunately, \lemref{major} (and therefore \lemref{star}) is not quite correct.  The best we can show is the following:
+
+\begin{lem}\lemlabel{star-ii}
+  For every $s,t,r\in\N$, $r>s$, there exists $d\in\N$ such that, every $s$-stack layout $(\prec,\varphi)$ of $S_d\boxtimes P_r$, there exists a $t$-subset $D\subset[d]$ of the leaves of $S_d$ such that for every $y\in\{1,\ldots,r-1\}$ at least one of these holds:
+  \begin{compactenum}
+    \item $\prec$ is a y-major ordering of $D\times\{y,y+1\}$ and $D\times\{y,y+1\}$ is a monotone rainbow
+    \item $\prec$ is a y-major ordering of $D\times\{y+j,y+j+1\}$.
+  \end{compactenum}
+  Furthermore, every $y\in\{1,\ldots,r-s-1\}$, Property~1 holds for $y+j$ for at least one $j\in\{0,\ldots,s-1\}$.  Furthermore, if Property~2 holds for $y,y+1,\ldots,y_j$ then the permutation of $D$ induced by $\prec$ on $D\times\{y\}$ is the same as that induced by $\prec$ on $D\times\{y+j\}$.
+\end{lem}
+
+This is slightly more complicated to work with since it means that there are blocks of $y$ values such that $\prec$ is an x-major ordering of $D\times\{y,y+1,\ldots,y+r\}$.  This makes it trickier to control the placement of the children of $\{x\}\times\{y,y+1,\ldots,y+r\}$. What we can show, though, is that for most $x$, at least one of $(x,y),(x,y+1)\ldots,(x,y+r)$ has no child that is not an angel.  (Note to self: Look out for the possibility that $D\times\{y\}$ and $D\times\{y+2\}$ overlap/interleave even though $D\times\{y\}$ and $D\times\{y+1\}$ are disjoint.)
+
+This (easy) lemma will also be helpful.
+
+\begin{lem}
+  Let $G$ be any connected graph with $|V(G)|\ge 2$, let $P=(1,\ldots,r)$ be a path and let $(\prec,\varphi)$ be an $s$-stack layout of $G\boxtimes P$.  Then, for every vertex $v\in V(G)$, the path $P_v=(v,1),\ldots,(v,r)$ does not contain any rainbow of size $s^2+1$ (or twist of size $s$).
+\end{lem}
+
+The preceding lemma implies that $P_v$ has bounded bandwidth.
+
+
+We can prove \lemref{star-ii} using the following lemma:
+
+\begin{lem}\lemlabel{dichotomy}
+  Let $k, m\in\N$, let $X$ be an $m$-element set and let $Y$ be 2-element set.
+  let $S=X\times Y$, and let $\prec$ be a total order on $S$.  Then at least one of the following is true:
+  \begin{compactenum} 
+    \item There exists a $\ceil{k/2}$-element subset $D\subseteq X$ such that $\prec$ is a y-major ordering of $D\times Y$.
+    \item There exists an $\floor{m/k}$-element subset $D\subseteq X$ such that $\prec$ is a x-major ordering of $D\times Y$.
+  \end{compactenum}
+\end{lem}
+
+\begin{proof}
+  For each $i\in\{0,\ldots,2m\}$ let $S_i$ denote the first $i$ elements of $S$ in $\prec$ order.  Suppose there exists a value $i$ and set $Z\subseteq S_i$, $|Z|=k$ such that, for every $(x,y)\in Z$, $(x,1-y)\not\in S_i$.  Then for some $b\in\{0,1\}$, the set $Z_b=\{(x,y)\in Z: y=b\}$ has size at least $k/2$.  We take $D=\{x : (x,y)\in Z_b\}$ and observe that $\prec$ is a y-major ordering of $D\times\{0,1\}$, so $D$ satisfies Property~1.
+  
+  If there is no such $i$ and $Z$, then partition the first $k\floor{m/k}$ elements of $S$ into consecutive blocks $B_1,\ldots,B_{\floor{m/k}}$ each of size $2k$ (So $B_j=S_{2kj}\setminus S_{2k(j-1)}$). For each $j\in\{1,\ldots,\floor{m/k}\}$, $A_j:=B_1\cup\cdots\cup B_j$ contains $2jk$ elements and there is a set $X_j\subset X$ of size at least $\tfrac{1}{2}(2jk-(k-1))$ such that $X_j\times Y\subseteq A_j$.  Furthermore, $|X_j\times Y \cap B_j|\ge k+1$.  Since $X_{j-1}\times Y \cap A_{j-1}\ge 2k(j-1)-k+1$, this implies that there is at least one value $x_j\in[m]$ such that $(x_j,0),(x_j,1)\in B_j$. We take $D=\{x_j:j\in\{1,\ldots,\floor{m/k}\}$ and observe that $\prec$ is an x-major ordering of $D\times Y$, so $D$ satisfies Property~2.
+\end{proof}
+
+
+We can now prove \lemref{star-ii}.
+
+\begin{proof}[Proof of \lemref{star-ii}]
+  Define $D_0=[d]$, the set of leaves of $S$ and define $X_1\subset D_0$ such that $X_1\times\{1\}$ is a chain or antichain in $\prec$. By Erd\H{o}s-Szekeres, $|X_1|=\Omega(\sqrt{d})$.
+
+  Apply \lemref{dichotomy-ii} iteratively.  During the $i$th iteration, we apply \lemref{dichotomy-ii} with $k=|X_{i}|^{2/3}$, $\prec$, $X=X_{i}$, and $Y=\{i,i+1\}$, yielding a set $D_i$ of size $\Omega(|X_{i}|^{1/3})$ satisfying Property~1 or Property~2.  If $D_i$ satisfies Property~1 then we say that iteration $i$ was a \emph{split} iteration.  Otherwise, iteration $i$ was an \emph{interleaving} iteration.
+  
+  If iteration $i$ was a split iteration, use Dilwerth's Theorem to find a subset $X_{i+1}\subseteq D_i$ such that $X_{i+1}\times\{i+1\}$ is a chain or antichain in $\prec$.  The fact that $X_i\times\{i\}$ was a chain or antichain in $\prec$ and that $(\prec,\varphi)$ is an $s$-stack layout implies that $|X_{i+1}| \ge |X_i|/s$.
+  
+  If iteration $i$ was an interleaving iteration, then look back to the smallest value $a$ such that iteration $i-a$ was a split iteration.  Thus, there is a sequence of disjoint intervals $\{(a_x,b_x) : x\in D_i\}$ such that, for every $x\in D_i$ and every $j\in\{i-a+1,\lots,i\}$, $a_x\preceq (x,i)\preceq b_x$ \ldots
+  
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
+
+
+
+Let $V$ be any set, let $S=\{(v,b): v\in V, b\in\{0,1\}$, and let $\prec$ be a total order on $S$.  We say that $\prec$ \emph{separates} a subset $X\subseteq V$ if $(v,b) \prec (v,{1-b})$ for every $v\in X$ and some $b\in\{0,1\}$.  
+% We say that $\prec$ \emph{mixes} $X$ if $\prec$ orders $X\times\{0,1\}$ as
+% \[
+%    (x_1,b)\prec (x_2,1-b)\prec (x_{3},b)\prec \cdots \prec (x_{2|X|},1-b) \enspace .
+% \]
+
+
+
+We say that $\prec$ \emph{interleaves} $X$ if there exists an ordering $x_1,\ldots,x_{|X|}$ of $X$ and $b_1,\ldots,b_{|X|}\in\{0,1\}^{|X|}$ such that 
+\[
+  (x_1,b_1)\prec(x_1,1-b_1)\prec(x_2,b_2)\prec(x_2,1-b_2)\prec\cdots\prec (x_{|X|},b_{|X|})\prec(x_{|X|},1-b_{|X|})
+  \enspace .
+\]
+% We say that $\prec$ \emph{splits} $X$ if there exists an ordering $x_1,\ldots,x_{|X|}$ of $X$ and $b\in\{0,1\}$ if
+% \[
+%   (x_1,b)\prec (x_2,1-b)\prec\cdots\prec (x_{|X|},?)\prec(x_{|X|},1-?)\prec\cdots\prec (x_2,b)\prec(x_1,1-b) 
+% \]
+
+
+
+
+
+
+
+\begin{lem}\lemlabel{dichotomy}
+  Let $V$ be any set, $|V|=m$, let $S=\{(v,b): v\in V, b\in\{0,1\}$, and let $\prec$ be a total order on $S$.  Then there exists a $\Omega(\sqrt{m})$-element subset $X\subseteq V$ such that $\prec$ separates $X$ or $\prec$ interleaves $X$.   
+\end{lem}
+
+\begin{proof}
+  Scan $S$ in $\prec$ order.  If at the $i$'th iteration you see $i/2 + k$ distinct $v$ values, then you've found a set $X$ of size $k/2$ that $\prec$ separates.  If that never happens then, among the first $2k$ values, at least $k+1$ of them are matched.  Among the next $2k$ values $k+1$ of them are matched. At most $k-1$ of these matching edges go back to unmatched edges in previous blocks, so at least one matching edge is in the second block.  Proceed the same way to find $m/(2k)$ matched pairs.
+\end{proof}
+
+
+\begin{lem}\lemlabel{star-separation}
+  For every $k,s\in\N$, there exists $d,n\in\N$ such that the following is true.
+  Let $S$ be a $d$-leaf star and $P$ be an $n$-vertex path.  Then, in any $s$-stack layout $(\prec,\varphi)$ of $S\times P$, there exists an edge $xy\in E(P)$ and a $t$-vertex subset $S'\subset V(S)$ such that $(v,x) \prec (w,y)$ for every $v,w\in S'$.
+\end{lem}
+
+\begin{proof}
+  Apply \lemref{dichotomy} iteratively to the copies of the leaves of $S$ generated by the path $P$.  If at any point we get a set $X$ such that $\prec$ splits $X$, then we're done.  Otherwise we have $n$ copies of a large star with their leaves interleaved.  This gives a large twist, which can't happen in an $s$-stack layout.  
+\end{proof}
+
+
+I think we're done.  
+
+\begin{thm}
+  For every $k\in\N$, there exists $d,h,n\in N$ such that the following is true.
+  Let $T$ be a complete $d$-regular tree of height $h$ and let $P$ be a path of length $n$.  Then $\sn(T\boxtimes P)\ge k$.
+\end{thm}
+
+\begin{proof}
+  Apply \lemref{star-separation} to the root of $T$ and its and its children to obtain an edge $xy\in E(P)$ and a $t$-element set $X$ of depth-$1$ nodes in $T$ such that $(v,x)\prec (w,y)$ for every $v,w\in X$.  Therefore, the layout contains a matching $M=\{(v,x)(v,y):v\in X\}$ of size $t$ whose left and right endpoints are separated.  An easy application of Dilwerth's Theorem implies that $X$ contains a subset $X'$ of size at least $\sqrt{t}$ that defines a rainbow, i.e., for every $v,w\in X'$, $(v,x)<(w,x)$ if and only if $(w,y)<(v,y)$.
+
+  Now we use strong product.  For each node $x'\in X'$ with child $x''$, $T\boxtimes P$ contains the edges $(x',0)(x'',0)$ and $(x',0)(x'',1)$.  The only way to avoid a big twist is to interleave the $(x',0)$s and $(x'',0)$s.  The same thing is true about the $(x',1)$s and $(x'',1)$s.  But now we've found a big height-2 subtree. that is $\prec$ separated...... Hmmmmmm.
+    % 
+    % 
+    % Another couple of applications of Dilwerth shows that this 
+  % 
+  % 
+  % 
+  % 
+  % Let $Y$ be the children of the nodes in $X'$.
+  % For each node $x  The graph $T\boxtimes P$ contains the edges $(v,x)
+  % 
+  % 
+  % 
+  %  set consisting of exactly one child from each element of $X$.  
+  % 
+\end{proof}
+
+
+
+
+
+% Now, how to do we get from here to a large binary subtree, i.e., \lemref{bbs}?  I'm not sure yet, but we're getting close.  Here's an idea.  Find an enormous set of leaves at the root that are separated by $(x,y)$.   Now consider the (enormous) number of children of these leaves.  
+% 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% Let $S$ denote a star with root $s_0$ and $n$ leaves $s_1,\ldots,s_n$.  Let $P$ denote the path $p_1,\ldots,p_n$ of length $n$.  We are interested in stack layouts of $S\boxtimes P$ (and also $S\times P$).
+% 
+% For a total order $<$ over some set $X$, we say that two subsets $A,B\subseteq X$ are \emph{separated} with respect to $<$ if $a<b$ for all $a\in A$ and $b\in B$ or if $b<a$ for all $a\in A$ and $b\in B$.  In the former case, we write $A<B$ and in the latter case $B<A$.  A sequence of subsets $A_1,\ldots,A_r\subseteq X$ are \emph{separated} (with respect to $<$) if $A_i$ and $A_j$ are separated for every distinct $i,j\in\{1,\ldots,r\}$.
+% 
+% Let $G=S\boxtimes P$ and, for each $i\in\{0,\ldots,n\}$ and $j\in\{1,\ldots,n\}$, $v_{i,j}=(s_i,p_j)$.  For index sets $I\subseteq\{0,\ldots,n\}$ and $J\subseteq\{1,\ldots,n\}$, we define
+% $v_{I,J}=\{v_{i,j}: i\in I,\, j\in J\}$.
+% 
+% \begin{lem}\lemlabel{twister}
+%   Let $<$ denote a total order over $V(G)$ and suppose there exists $I,J\subseteq\{1,\ldots,n\}$ such that
+%   \begin{compactenum} 
+%     \item $|I|=|J|=k$; 
+%     \item $v_{I,\{j\}}$ and $v_{I,\{j'\}}$ are separated for all distinct $j,j'\in J$.  
+%   \end{compactenum}
+%   Then the layout $(G,<)$ has a twist of size $k$.
+% \end{lem}
+% 
+% \begin{proof}
+%   Let $j_1,\ldots,j_{k}$ be the ordering of $J$ such that $v_{0,j_1}< v_{0,j_2}<\cdots< v_{0,j_{k}}$ and let $i_1,\ldots,i_{k}$ be the ordering of $I$ such that $v_{i_1,J}<v_{i_2,J}<\cdots<v_{i_k,J}$.  Then the edge set
+%   \[   
+%     \left\{ v_{0,j_a}v_{a,j_{a}} : j\in\{1,\ldots,k\} \right\}
+%   \]
+%   form a twist of size $|J|$.  Indeed, by definition,
+%   \[
+%       v_{0,j_1} < \cdots < v_{0,j_k}
+%   \]
+%   and, since $v_{i_1,J}<\cdots< v_{i_k,J}$, 
+%   \[
+%       v_{i_1,j_1} < v_{i_2,j_2} < \cdots < v_{i_{k},j_k} \enspace . \qedhere
+%   \]   
+% \end{proof}
+% 
+% % This next one is wrong:
+% % \begin{cor}\corlabel{twister}
+% %   Let $<$, $G$, $I$, $J$ satisfy Conditions 1 and 2 of \lemref{twister} (but not necessarily Condition~3).   Then the layout $(G,<)$ has a twist of size at least $\floor{k/2}$.
+% % \end{cor}
+% % 
+% % \begin{proof}
+% %   Let $j_1,\ldots,j_{k}$ be the ordering of $J$ such that $v_{0,j_1}< v_{0,j_2}<\cdots< v_{0,j_{k}}$ and consider the median element $v_{0,j_{\floor{k/2}}}$.  Then,  
+% %   \begin{enumerate}
+% %     \item There is a set $I'\subseteq I$, $|I'|\ge \floor{k/2}$ such that $v_{\{0\},\{j_{\floor{k/2}}\}} < v_{\{i\},J}$ for all $i\in I'$; or
+% %     \item There is a set $I'\subseteq I$, $|I'|\ge \floor{k/2}$ such that $v_{\{i\},J} < v_{\{0\},\{j_{\floor{k/2}}\}}$ for all $i\in I'$.
+% %   \end{enumerate}
+% %   In the first case we can apply \lemref{twister} directly to the sets $I'$ and $J'=\{j_1,\ldots,j_\floor{k/2}\}$.  In the latter case we can apply \lemref{twister} (with condition 3 replaced by $\{v_{\{0\},J}\}>v_{I,J}$) to the sets $I'$ and $J'=\{j_{\floor{k/2}+1},\ldots,j_k\}$.  
+% % \end{proof}
+% 
+% The preceding lemma dispenses with the possibility that $S\times P$ has an $S$-major layout.  The next lemma shows that, any layout of $S\times P$ that is not $S$-major has a large amount of interleaving.
+% 
+% \begin{lem}\lemlabel{blocks-or-interleave}
+%    There exists a function $k:\N\to\N$ with $k(n)\in\omega_n(1)$ such that, for any ordering $<$ over $V(G)$,  at least one of the following is true:
+%   \begin{enumerate}
+%     \item The conditions of \corref{twister} hold with $|I|=|J|=k$.
+%     \item There exists $I,J\subseteq\{1,\ldots,n\}$ with $|I|=|J|=k$ and an ordering $j_1,\ldots,j_k$ of $J$ such that $v_{I,j_1}< v_{I,j_2}<\cdots<v_{I,j_k}$.
+%   \end{enumerate}
+% \end{lem}
+% 
+% \begin{proof}
+%   Consider the set $S$ of $tn$ leftmost vertices for some value of $t$ to be decided later.
+%   \begin{enumerate}
+%     \item If the vertices in $S$ take on at most $a$ different $J$-values then there is some $j$ and $I$, $|I|\ge\ceil{t/a}$ such that $S$ contains $v_{I,j}$ Save $I_1=I$ as an $I$-block and continue on $v_{I,[n]\setminus\{j\}}$. The point is that this gets us an $I$-block of size $\ceil{a/t}$ and lets us recurse on a set of size $\ceil{t/a}$.
+% 
+%     \item If the vertices in $S$ take on at most $a$ different $I$ values then there is some $i$ and $J$, $|J|\ge\ceil{t/a}$ such that $S$ contains $v_{i,J}$.  Save $J_0=J$ as a $J$-block and continue on $v_{[n]\setminus\{i\},J}$.  Here we get a $J$-block of size $\ceil{n/t}$ and get to recurse on a set of size $t/a$.
+%   \end{enumerate}
+%   We could take $t=n^2/2$ and $a=n/\log n$.  Then we can repeat this procedure $\log n-\log\log n$ times until we eventually get $\log n$ sets, the last of which has size $\log n$.  We can probably do better if we parameterize by $n$, the number of leaves in $S$ and $\ell$, the length of $P$. Maybe $\sqrt{n}$ is the right answer.
+% \end{proof}
+% 
+% \begin{lem}\lemlabel{tiger}
+%   For any constant $s$, and any $s$-stack layout of $G=S\times P$, there exists $I,J\subseteq\{1,\ldots,n\}$, $|I|=|J|\in\omega_n(1)$ and an ordering $j_1,\ldots,j_k$ of $J$ such that $v_{I\cup\{0\},j_1}< v_{I\cup\{0\},j_2}<\cdots<v_{I\cup\{0\},j_k}$.   
+% \end{lem}
+% 
+% \begin{proof}
+%   Use the previous lemma and argue that, in the second case, if we find large sets $I'\subseteq I$ and $J'\subseteq J$ such that $v_{0,J}<v_{I',J'}$ then we get a large rainbow (same in as in \lemref{twister}).  If we can't do that, then the same line of reasoning used in \lemref{blocks-or-interleave} proves the result.
+% \end{proof}
+% 
+% Actually, what we've shown so far is that any $s$-stack layout of $n$ disjoint copies $S$ will contain $k$ separated copies of a subgraph of $S$.
+% 
+% Next step, extend \lemref{tiger} to show that any $s$-stack layout of the Cartesian product of the $n$-ary tree of height $2$ with $P$ has to have a large subtree that is interleaved.  
+% 
+% Finally, this should kill the possibility of an $s$-stack layout of the Cartesian product of the $n$-ary tree of height $2$ with shortcuts from the root to the leaves with a path.   
+
+
+\end{document}
