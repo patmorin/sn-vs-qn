@@ -12,25 +12,139 @@
 
 \section{The Plan}
 
+\subsection{Basic Definitions}
+Let $G$ be a graph and let $\prec$ be a total order on $V(G)$.  Two edges $vw,xy\in E(G)$ with $v\prec w$ and $x\prec y$ \emph{cross} with respect to $\prec$ if $v\prec x\prec w\prec y$ or $x\prec v\prec y\prec w$. Two edges $vw,xy\in E(G)$ with $v\prec w$ and $x\prec y$ \emph{nest} with respect to $\prec$ if $v\prec x\prec y\prec w$ or $x\prec v\prec w\prec y$.  Two edges of $G$ are \emph{disjoint} with respect to $\prec$ if they do not cross and they do not nest. A set of pairwise nesting edges is called a \emph{rainbow} and a set of pairwise crossing edges is called a \emph{twist}.
+
+Let $\varphi:E(G)\to\{1,\ldots,s\}$ be an $s$-colouring of the edges of $G$.  Then $(\prec,\varphi)$ is an \emph{$s$-stack layout} of $G$ if, for every pair of edges $vw,xy\in E(G)$, $vw$ and $xy$ don't cross or $\varphi(vw)\neq\varphi(xy)$.
+
+
+\subsection{Big Fat Trees}
+
 For every $d,h\in\N$, let $T_{d,h}$ denote the complete $d$-ary tree of height $h$ and let $F_{d,h}$ denote the forest containing $d$ complete $d$-ary trees of height $h$.
 
-\begin{clm}\clmlabel{one-stack-subtree}
-  For every $d,h,s\in\N$, there exists $d'=d'(d,h,s)$ such that any $s$-stack layout of $T_{d',h}$ contains a 1-stack layout of $T_{d,h}$.
-\end{clm}
+% The following lemma shows that, for sufficiently large $d'$, every $s$-stack layout of $T_{d',h}$ contains a 1-stack layout of $T_{d,h}$.
+% 
+% \begin{clm}\clmlabel{one-stack-subtree}
+%   For every $d,h,s\in\N$, there exists $d'=d'(d,h,s)$ such that, for any $s$-stack layout $(\prec,\varphi)$ of $T_{d',h}$, $T_{d',h}$ contains a subgraph $T'$ isomorphic to $T_{d,h}$ such that the edges of $T'$ are pairwise non-crossing with respect to $\prec$.  
+% \end{clm}
+% 
+% \begin{proof}
+%   Let $(\prec,\varphi)$ be an $s$-stack layout of $T_{d,h}$ and let $r$ be the root of $T_{d,h}$. For each child $v$ of $r$, let $\varphi(v)$ be a colour $c\in\{1,\ldots,s\}$ such that $\varphi(vw)=c$ for at least $d'/s$ children $w$ of $v$.  Now, let $c\in\{1,\ldots,s\}$ be chosen so that $\varphi(v)=c$ for at least $d'/s$ children of $r$.
+% 
+% 
+% 
+%   By the pigeonhole principle, there exists some colour $c\in\{1,\ldots,s\}$ and at least $k\ge \lceil d'/s\rceil$ children $v_1,\ldots,v_k$ of $r$ such that $\varphi(rv_i)=c$ for each $i\in\{1,\ldots,k\}$.
+% 
+% 
+% 
+%   of the edges $e$ incident to $r$.  Let $v_1,\ldots,v_k$ be the endpoints of these edges.
+% 
+% 
+% 
+%   Work down from the root, repeatedly colouring a node with the edge colour that occurs the most frequently at that node and then keeping the most-frequently occurring node colour at each level\ldots.
+% \end{proof}
 
-\begin{proof}
-  Work down from the root, repeatedly colouring a node with the edge colour that occurs the most frequently at that node and then keeping the most-frequently occurring node colour at each level\ldots.
-\end{proof}
-
-For each $n\in\N$, let $P_n$ denote the path of length $n$ whose vertices are $1,2,3,\ldots,n$ in this order.  For a graph $G=H\boxtimes P_n$, and a subgraph $H'\subseteq H$, we let $H'_i=G[(v,i):v\in V(H')]$ denote the $i$th copy of $H'$ in $G$.  
+For each $n\in\N$, let $P_n$ denote the path of length $n$ whose vertices are $1,2,3,\ldots,n$ in this order.  For a graph $G=H\boxtimes P_n$, and a subgraph $H'\subseteq H$, we let $H'_i$ denote the $i$th copy of $H'$ in $G$.  That is, $V(H'_i)=\{(v,i):v\in V(H')\}$ and $E(H'_i)=\{(v,i)(w,i): vw\in E(H')\}$.
 
 Let $A$ and $B$ be two disjoint sets with $|A|=|B|$, let $X=A\cup B$, and let $\prec$ be a total order over $X$.  We say that $A$ and $B$ \emph{interleave} with respect to $\prec$ if there exists an orderings $a_1,\ldots,a_n$ and $b_1,\ldots,b_n$ of $A$ and $B$, respectively, such that $a_1\prec b_1\prec a_2\prec b_2\prec\cdots\prec a_n\prec b_n$ or $b_1\prec a_1\prec b_2\prec a_2\prec\cdots\prec b_n\prec a_n$.  We say that $A$ and $B$ are \emph{separated} with respect to $\prec$ if there exists $m\in A$ such that $a\prec m$ and $m\prec b$ for every $a\in A\setminus\{m\}$ and every $b\in B$ or if there exists $m\in B$ such that $b\prec m$ and $m\prec a$ for every $a\in A$ and every $b\in B\setminus\{m\}$.
 
 \begin{clm}\clmlabel{early-interleave}
-  For every $s,d\in\N$, there exists $d',h\in\N$ such that, for any $s$-stack layout $(\prec,\varphi)$ of $G=F\times P_2$, where $F=F_{d',h}$, $F$ contains a copy $F'$ of $F_{d,h}$ such that, for some $i\in\{0,\ldots,h\}$, the depth $i$-nodes of $F'_1$ and $F'_2$ interleave perfectly with respect to $\prec$.
+  For every $s,d\in\N$, there exists $d',h\in\N$ such that, for any $s$-stack layout $(\prec,\varphi)$ of $G=F_{d',h}\times P_2$, $F_{d',h}$ contains a copy $F'$ of $F_{d,h}$ such that, for some $i\in\{0,\ldots,h\}$, the depth-$i$ nodes of $F'_1$ and $F'_2$ interleave with respect to $\prec$.
 \end{clm}
 
 \begin{proof}
+  Consider the set $S_0$ of $d'$ roots (depth-0 nodes) of trees in $F_{d',h}$.    Select a subset of $S_0'\subseteq S$ with the following properties:
+  \begin{enumerate}
+    \item For some $(a,b)\in\{(1,2),(2,1)\}$, $(v,a)\prec (v,b)$ for each $v\in S'_0$;
+    \item $\varphi((v,1)(v,2))=\varphi((w,2)(w,2))$ for each $v,w\in S'_0$;
+    \item $|S'_0|\ge d'/(2s)$.
+  \end{enumerate}
+  The Pigeonhole Principle guarantees the existence of such a set $S'_0$.
+  
+  Define the partial order $\prec'$ on $S'_0$ where $v\prec' w$ if and only if $(v,1)\prec (w,1)$ and $(v,2)\prec (w,2)$.  Observe that, if $v\prec' w$, then the edges $e_v =(v,1)(v,2)$ and $e_w=(w,1)(w,2)$ are disjoint with respect to $\prec$.  Indeed, $\varphi(e_v)=\varphi(e_w)$ so $e_v$ and $e_w$ do not cross and $v\prec' w$ so $e_v$ and $e_w$ do not nest.
+  
+  If $prec'$ contains a chain $I$ of length $d$, then we are done.  In this case, the sets $I_1=\{(v,1):v\in I\}$ and $I_2=\{(v,2):v\in I\}$ interleave.  We take $F'$ to be the forest obtained by taking any $d$-ary subtree of each tree rooted a node in $I$ and $F'$ the conditions of the claim for $i=0$.
+  
+  Othwerwise, Dilworth's Theorem \cite{dilwerth:decomposition}, implies that $\prec'$ contains an antichain $R_0$ of size at least $|S'|/d=d'/(2sd)$.
+  Let $E_0=\{(v,1)(v,2):v\in R_0\}$ and notice that $E'$ is a matching that is contained in $G$.  Furthermore, $\varphi(e)=\varphi(f)$ for every $e,f\in E'$, so no two edges in $E_0$ cross.  Therefore $E_0$ forms a rainbow with respect to $\prec$.  Without loss of generality, assume that $(v,1)\prec (v,2)$ for each $v\in X$.
+  
+  Now consider the set $S_1$ of the $d'|R_0|$ (depth-2) children, in $T_{d',h}$, of the (depth-0) nodes in $R_0$.  For each node $x\in S_1$ with parent $v\in R_0$, define the colour-quintuple
+  \[  t(x) = (\varphi((x,1)(x,2)),\,\varphi((x,1),(v,1)),\,\varphi((x,2)(v,2)),\,\varphi((x,1)(v,2)),\,\varphi((x,2)(v,1))   ) \enspace . \]
+  Select a subset $S'_1\subseteq S_1$ with the following properties:
+  \begin{enumerate}
+    \item For some $(a,b)\in\{(1,2),(2,1)\}$, $(v,a)\prec (v,b)$ for each $v\in S'_1$;
+    \item $t(v)=t(w)$ for each $v,w\in S'_1$;
+    \item $|S'_1|\ge |S_1|/(2s^5)\ge (d')^2/(4s^6d)$.
+  \end{enumerate}
+  The Pigeonhole Principle guarantees the existence of such a set $S'_1$.
+  
+  Let $v_1,\ldots,v_{k}$ denote the nodes $R$, ordered so that 
+  \[  (v_1,1)\prec (v_2,1)\prec\cdots \prec (v_k,1)\prec (v_k,2)\prec\cdots\prec (v_2,2)\prec (v_1,2) \enspace . \]
+  For each $i\in\{1,\ldots,k\}$, let $C_i$ denote the subset of $S'_1$ consisting of children of $v_i$ and, for each $a\in\{1,2\}$, let $(C_i,a)=\{(v,a): v\in C_i\}$.
+  
+  
+  \begin{clm}
+    For any $i<j$, any $x\in C_i$, and any $a\in\{1,2\}$, $(x,a)\prec (v_j,1)$ or $(v_j,2)\prec x$.
+  \end{clm}
+  
+  \begin{proof}[Proof Sketch]
+    There's a little-bit of case analysis, but the proof is roughly this:  Consider any child $y$ of $v_j$.  The edges $e_1=(v_j,1)(y_j,1)$ and $e_2=(v_j,2)(y_j,1)$ form a barrier against $(x,1)$ and the edges $e_3=(v_j,1)(y_j,2)$ and $e_4=(v_j,2,y_j,2)$ form a barrier against $(x,2)$. (Note that we really use diagonal strong-product edges here.)
+  \end{proof}
+  
+  For each $i\in\{1,\ldots,k\}$, let $B_i=\{(v,a):a\in\{1,2\}, v\in \{v_i\}\cup C_i\right}$, let $\ell_i=\min_\prec B_i$ and $r_i=\max_\prec B_i$.
+  The preceding claim can be strengthened to the following:
+  
+  \begin{clm}
+    For each $1\le i< j\le k$, there is no $z\in B_i$ such that $\ell_j\prec z\prec r_j$.
+  \end{clm}
+  
+  In essence, the vertices in $(C_i,1)$ and $(C_i,2)$ are clustered near $(v_i,1)$ and $(v_i,2)$.  Give up a factor of 2 and keep only the stuff clustered near $(C_i,2)$, say.  If we are able to find $d$ clusters that $d$-interleave then we're done.
+  
+  Otherwise, by relabelling, we find a $(d')^2/f(d,s)$ rainbow consisting entirely of depth-1 nodes and their horizontal edges in the strong product.
+  Now we continue with the subtrees rooted at these nodes\ldots
+  
+  Actually,\ldots, this lemma should be restated as a preliminary lemma about $F_{d',1}\boxtimes P_2$.  In this forest at least one of three things must happen:
+  \begin{enumerate}
+    \item There is a subset of $d$ depth-0 nodes that interleave.
+    \item There is a copy of $T_{d,1}$ whose depth-1 nodes interleave.
+    \item There is a copy of $T_{d'',1}$ such that the depth-0 nodes form a rainbow and the depth-1 nodes form a rainbow, and these rainbows "match", where $d''\approx (d')^2/(sd)^2$.
+  \end{enumerate}
+  From this we can get the original lemma by induction on $h$.
+  
+  
+  
+  
+  
+  
+  % \begin{enumerate}
+  %   \item For each $a\in\{1,2\}$, each $i,j\in\{1,\ldots,k\}$ with $i\neq j$, $(C_i,a)$ and $(C_i,b)$ are separated.  Indeed, 
+  % 
+  % It has the following properties:  
+  % 
+  % 
+  % 
+  % 
+  % By the Pigeonhole Principle, there exists a subset $S'_2$ of size at least $|S_2|/s^3$ such that $t(x)=t(y)$ for each $x,y\in S'_2$.
+  % 
+  % 
+  % 
+  % 
+  % 
+  % 
+  %   of size at least $d'/(2s)$ such that $\varphi((v,1)(v,2))=\varphi((w,2)(w,2))$ for each $v,w\in R'$.  
+  % 
+  % 
+  % 
+  %  then we claim that $S$ contains a subset $R'$ of size at least $d'/(2ds)$ such that $R_1=\{(v,1):v\in R\}$ and $R_2=\{(v,2):v\in R\}$ are separated. 
+  % 
+  
+  
+  
+  By choosing the most frequently occuring colour $\varphi(e)$ for all $e\in\{(v,1)(v,2):v\in R\}$, we obtain $R\subset R'$ with $|R|\ge |R'|/s$ such $(v,1)\prec (w,1)$ iff $(w,2)\prec (v,2)$ for every $v,w\in R$. In other words, the edges $\{(v,1)(v,2):v\in R\}$ form a rainbow with respect to $\prec$.
+  
+  
+  
+  
   Applying (something like) \clmref{one-stack-subtree} to get $F'\subset F$ such that $F'_1$ and $F'_2$ are each 1-stack layouts.  Next, walk down from the root, doing pruning as in the proof of \clmref{one-stack-subtree}, but this time classiflying each level $i$ as interleaving or reversing (this uses Dilwerth's Theorem, and also requires pruning).  Argue that, as long as the levels are reversing, $F'_1$ and $F'_2$ are separated.  If the levels never interleave, the $F'_1$ and $F'_2$ are two $d$-ary forests of height $h$ that are separated.  But $F'$ contains  $R=\{x_iy_i:i\in\{1,\ldots,h\}\}$ of size $h$ such that $R_1$ is a rainbow and, because of cross edges in the strong product, the endpoints of $R_1$ form a twist of size $h>s$ with $R_2$.   
 \end{proof}
 
