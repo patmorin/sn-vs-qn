@@ -2,27 +2,199 @@
 \usepackage{pat}
 \usepackage{paralist}
 
+\usepackage[utf8]{inputenc}
+
 \setlength{\parskip}{1ex}
 
 
 \DeclareMathOperator{\sn}{sn}
+\DeclareMathOperator{\qn}{qn}
+
 \renewcommand{\SS}{\mathcal{S}}
 
 
 \newcommand{\aref}[1]{(X\ref{a:#1})}
 \newcommand{\alabel}[1]{\label{a:#1}}
 
+\title{\MakeUppercase{Stack Number is not Queue Number Bounded}}
+\author{TBD}
+
 \begin{document}
+\maketitle
 
-\section{The Plan}
+\begin{abstract}
+  We describe a family of graphs in which every member has queue number at most 4, but for every integer $s$, there is a member of the family whose stack number is greater than $s$.
+\end{abstract}
 
-\subsection{Basic Definitions}
-Let $G$ be a graph and let $\prec$ be a total order on $V(G)$.  Two edges $vw,xy\in E(G)$ with $v\prec w$ and $x\prec y$ \emph{cross} with respect to $\prec$ if $v\prec x\prec w\prec y$ or $x\prec v\prec y\prec w$. Two edges $vw,xy\in E(G)$ with $v\prec w$ and $x\prec y$ \emph{nest} with respect to $\prec$ if $v\prec x\prec y\prec w$ or $x\prec v\prec w\prec y$.  Two edges of $G$ are \emph{disjoint} with respect to $\prec$ if they do not cross and they do not nest. A set of pairwise nesting edges is called a \emph{rainbow} and a set of pairwise crossing edges is called a \emph{twist}.
-
-Let $\varphi:E(G)\to\{1,\ldots,s\}$ be an $s$-colouring of the edges of $G$.  Then $(\prec,\varphi)$ is an \emph{$s$-stack layout} of $G$ if, for every pair of edges $vw,xy\in E(G)$, $vw$ and $xy$ don't cross or $\varphi(vw)\neq\varphi(xy)$.
+\section{Introduction}
 
 
-\subsection{Big Fat Trees}
+\section{Basic Definitions}
+
+
+\subsection{Total Orders: Separation and Interleaving}
+For any total order $\prec$ on a set $Z$ and any $x,y\in Z$, we use the interval notation $[x,y]_\prec:=\{v\in Z: x\preceq v\preceq y\}$.  For any subset $X\subseteq Z$, $\min_\prec(X)$ is the unique value in $\ell\in X$ such that $\ell\prec x$ for every $x\in X\setminus\{\ell\}$ and $\max_\prec(X)$ is the unique value in $r\in X$ such that $x\prec r$ for every $x\in X\setminus\{r\}$.  In the remainder of the paper we will only be working one partial order $\prec$ that is used in a hypothetical $s$-stack layout, so we will omit the $\prec$ subscript on $\min$, $\max$ and $[x,y]$.
+
+Let $X\cup Y$ be a partition of $Z$.  We say that $X$ and $Y$ are \emph{separated} (with respect to $\prec$) if $[\min(X),\max(X)]\cap [\min(Y),\max(Y)]=\emptyset$.  We say that $X$ and $Y$ \emph{interleave} (with respect to $\prec$) if, for some integers $\ell,c\ge 1$, $|X|=\ell$, $|Y|=c\ell$, $Y$ can be partitioned into sets $Y_1,\ldots,Y_{\ell}$, each of size $c$, and the elements of $X$ can be ordered as $x_1,\ldots,x_\ell$ so that 
+\[  
+  x_1\prec \min(Y_1) \preceq \max(Y_1) \prec x_2 \prec \cdots \prec x_{\ell} \prec \min(Y_\ell) 
+\]
+or 
+\[  
+  \max(Y_1) \prec x_1 \prec\min(Y_2)\preceq \max(Y_2)\prec x_2 \prec \cdots \prec x_{\ell-1} \prec \min(Y_\ell) \preceq \max(Y_\ell) \prec x_\ell \enspace . 
+\]
+
+\subsection{Linear Layouts of Graphs: Stacks and Queues}
+
+Let $G$ be a graph and let $\prec$ be a total order on $V(G)$.  Two edges $vw,xy\in E(G)$ with $v\prec w$ and $x\prec y$ \emph{cross} with respect to $\prec$ if $v\prec x\prec w\prec y$ or $x\prec v\prec y\prec w$. Two edges $vw,xy\in E(G)$ with $v\prec w$ and $x\prec y$ \emph{nest} with respect to $\prec$ if $v\prec x\prec y\prec w$ or $x\prec v\prec w\prec y$.  Two edges of $G$ are \emph{disjoint} with respect to $\prec$ if they do not cross and they do not nest. A set of $k$ pairwise nesting edges is called a \emph{$k$-rainbow} and a set of pairwise crossing edges is called a \emph{$k$-twist}.
+
+Let $\varphi:E(G)\to\{1,\ldots,k\}$ be an $k$-colouring of the edges of $G$.  Then $(\prec,\varphi)$ is a \emph{$k$-stack layout} of $G$ if, for every pair of edges $vw,xy\in E(G)$, $vw$ and $xy$ don't cross or $\varphi(vw)\neq\varphi(xy)$. The pair $(\prec,\varphi)$ is a $k$-queue layout of $G$ if, for every pair of edges $vw,xy\in E(G)$, $vw$ and $xy$ don't nest or $\varphi(vw)\neq\varphi(xy)$.  The smallest integer $s$ for which $G$ has an $s$-stack layout is called the \emph{stack number} of $G$ and is denoted by $\sn(G)$.  The smallest integer $q$ for which $G$ has a $q$-queue layout is called the \emph{queue number} of $G$ and is denoted by $\qn(G)$.  
+
+The following observation is trivial:
+
+\begin{obs}\obslabel{no-s-twist}
+  If $(\prec,\varphi)$ is an $s$-stack layout of a graph $G$ then $E(G)$ does not contain any $(s+1)$-twist.
+\end{obs}
+
+
+\subsection{Strong Products: Graphs with Paths}
+
+The \emph{strong product} of two graphs $G$ and $H$, denoted $G\boxtimes H$ is the graph with vertex set $V(G\boxtimes H)=V(G)\times V(H)$ and in which the edge $(v,x)(w,y)$ is in $E(G\boxtimes H)$ if and only if
+\begin{enumerate}
+  \item $vw\in E(G)$ and $x=y$;
+  \item $v=w$ and $xy\in E(H)$; or
+  \item $vw\in E(G)$ and $xy\in E(H)$.
+\end{enumerate}
+More concisely: If $d_G(v,w)$ denotes the distance from $v$ to $w$ in $G$, then $(v,x)(w,y)\in E(G\boxtimes H)$ if and only if $d_G(v,w)\le 1$ and $d_H(x,y)\le 1$.
+
+The $n$-vertex path $P_n$ (of length $n-1$) is an important part of this paper and use the convention that the vertices of $P_n$ are the integers $1,\ldots,n$ in the order they appear on the path. That is is, $P_n$ has vertex set $V(P_n)=\{1,\ldots,n\}$ and edge set $E(P_n)=\{(i,i+1):i\in\{1,\ldots,n-1\}\}$.
+
+The following is a special case of a more general result of Dujmović \etal~\cite[Lemma~8]{XXX}:
+
+\begin{cor}\corlabel{queue-product}
+  For any graph $H$ and any integer $n\ge 1$, $\qn(H\boxtimes P_n)\le 3\cdot\qn(G)+1$. 
+\end{cor}
+
+\section{Overview of the Proof}
+
+Our strategy, is to show that, for any $s\in\N$, there exists $b,h,n\in\N$ such that $G:=G_{b,h,n}:=T\boxtimes P_n$ has stack-number greater than $s$, where $T$ is a complete $b$-ary tree of height $h$. For any tree $T$, $\qn(T)=1$.  Therefore, by \corref{queue-product}, $\qn(G)\le 4$.  In the following, most quantities are increasing functions of $s$ and some of them are increasing functions of $h$ or $n$.  None of the quantities is an increasing function of $b$.  More specifically, in many places we treat $s,h,n$ as fixed and choose $b$ arbitrarily large.
+
+\paragraph{The special subtree $T'$ and the mapping $f$:}
+We first fix a hypothetical $s$-stack layout $(\prec,\varphi)$ of $G$ and, using this, we describe a complete $b'$-ary subtree $T'$ of $T$ (also of height $h$) that has many special properties.  (Here $b'\in\omega_b(1)$ grows with $b$.)  
+
+We now describe some of the special properties of $T'$.  For each $i\in\{1,\ldots,n\}$, let $V'_i=\{(v,i):v\in V(T')\}$, and for each $d\in\{0,\ldots,h\}$, let $V'_{i,d}\subseteq V'_i$ consist of the depth-$d$ nodes in $V'_i$. By carefully choosing $T'$ we are able to define a mapping $f:\{1,\ldots,n\}\times \{1,\ldots,h\}\to \{1,\ldots,nh\}$ with the following properties:
+\begin{enumerate}
+  \item If $f(i,d)\neq f(j,e)$ then the sets $V'_{i,d}$ and $V'_{j,e}$ are separated with respect to $\prec$.
+  \item If $f(i,e)= f(j,e)$ then the sets $V'_{i,d}$ and $V'_{j,e}$ interleave\footnote{Define what it means for two sets of unequal size to interleave.} with respect to $\prec$.
+\end{enumerate}
+During this process, we will make extensive use of the ability to choose $b$ arbitrarily large. 
+
+\paragraph{Properties of $f$:}
+
+Next we will show that $f$ must be at most $s'$-to-one for some $s'$ dependent on $s$.\footnote{Watch out here: $s'$ can't depend on $h$, or we're sunk.}  That is, for every $x\in\{1,\ldots,nh\}$, there are at most $s'$ pairs $(i,d)$ such that $f(i,d)=x$.  Indeed, otherwise, we have $s'$ sets $V'_{i,d}$ that pairwise interleave.  Unsurprisingly, this implies that $G$ contains a twist of size $\omega_1(s')$.  In particular, for large enough $s'$, $G$ contains a twist of size greater than $s$. By \obsref{no-s-twist}, this contradicts the assumption that $(\prec,\varphi)$ is an $s$-stack layout.
+
+\paragraph{The grid $Q$ and derived graph $Q_f$:}
+Next we will show that the structure of the $\boxtimes$ operator defines a graph $Q$ with vertex set $V(Q)=\{(i,d):i\in\{1,\ldots,n\},\, d\in\{1,\ldots,h\}\}$ and that contains every edge $(i,j)(i',j')$ such that $\max\{|i-i'|,|j-j'|\}\le 1$. In other words, $Q:=P_n\boxtimes P_h$ has the structure of an $n\times h$ grid, including diagonals. Note that $Q$ is very far from being bipartite: It contains many 3-cycles.
+
+The graph $Q$ and the function $f$ defines a graph $Q_f$ with vertex set $V(Q_f):=\{1,\ldots,nh\}$ and in which the edge $pq$ is present if and only if there exists an edge $ab\in E(Q_f)$ with $f(a)=p$ and $f(b)=q$.\footnote{This has a name: $f$ is a homomorphism of $Q$ onto the graph $Q_f$ (where $Q_f$ has self-loops at each vertex.}  We will show that the graph $Q_f$ must be bipartite.  The final step in the proof is to show that there is no $s'$-to-one function $f$ that makes $Q_f$ bipartite.  Roughly:  Any such function $f$ must take $Q$ onto a graph $Q_f$ that is path of length at most $n$.  But this implies that some vertex of $Q_f$ is the image of at least $|V(Q)|/n=h$ vertices of $Q$. Choosing $h\ge s'$ contradicts the requirement that $f$ is $s'$-to-one thus completing the proof.
+% 
+% 
+% We need:
+% \begin{align*}
+%     s'& =f(s) \\ 
+%     h/n&\ge s',\enspace
+% \end{align*}
+
+The remainder of the paper works through these steps in the proof.
+
+
+\subsection{Getting Started}
+
+\begin{lem}
+  Let $S$ be a $b$-ary star with root $r$ and leaf set $L=\{v_1,\ldots,v_b\}$ and let $(\prec,\varphi)$ be an $s$-stack layout of $G:=S\boxtimes P_2$.  Then, there exists $L'\subseteq L$ such that $|L'|\ge \tfrac{1}{2}\sqrt{b/s}$ and the two sets $L'_1:=\{(v,1):v\in L\}$ and $L'_2=\{(v,2):v\in L\}$ interleave or are separated with respect to $\prec$.  
+\end{lem}
+
+\begin{proof}
+  Select the edge-colour $c\in\{1,\ldots,s\}$ that maximizes the size of the set $L_c:=\{ v\in L: \varphi((v,1)(v,2))=c\}$.  By the Pigeonhole Principle, $|L_c|\ge b/s$.  The subgraph $G[L_c]$ is a matching in which no two edges cross with respect to $\prec$.  By Dilwerth's Theorem, $E(G[L_c])$ contains a subset $M$ size at least $\sqrt{b/s}$ that is a rainbow or a matching with respect to $\prec$.
+
+  The edge set $M$ can be partitioned into two sets $M_1$ and $M_2$ such that $M_1$ contains each edge $(v,1)(v,2)\in M$ such that $(v,1)\prec (v,2)$ and $M_2$ contains each edge such that $(v,2)\prec (v,1)$.  For some $a\in\{1,2\}$, $M_a$ has size at least $\tfrac{1}{2}\sqrt{b/s}$. 
+    
+  Take $L':=\{v: (v,1)(v,2)\in M_a\}$.  If $M_a$ forms a rainbow with respect to $\prec$ then $L'_1$ and $L'_2$ that are separated and therefore satisfy the conclusion of the lemma.  If $M_a$ forms a set that is disjoint with respect to $\prec$, then $L'_1$ and $L'_2$ interleave and therefore also satisfy the conclusion of the lemma.
+\end{proof}
+
+
+\begin{lem}\lemlabel{leaf-selection}
+  For every $r,s,h\in\N$, there exists $b\in\N$ such that the following is true.
+  Let $T$ be a complete $b$-ary tree of height $h$, let $L$ be a set of at least $b^h/s^h$ leaves of $T$.  Then $T$ contains a complete $r$-ary subtree of height $h$ whose leaves are in $L$.
+\end{lem}
+
+\begin{proof}
+  Consider each node $v$ of depth $h-1$ in $T$ and say that $v$ is \emph{good} if $L$ includes at least $r$ children of $v$.  
+  
+\end{proof}
+
+
+At this point, it is convenient to treat the vertices of $T$ (and later of $G$) as real numbers in $[0,1)$ chosen to respect $\prec$, so that for any $v\in V(T)$, $v\prec w$ if and only if $v < w$.  We use this view from this point onward.
+
+
+
+
+
+
+
+
+\begin{lem}
+  For every $b',h\in\N$, there exists $b\in\N$ such that the following is true.
+  Let $T$ be a complete $b$-ary tree of height $h$ and let $(\prec,\varphi)$ be an $s$-stack layout of $T$.  
+  
+  Then there exists a $b'$-ary subtree $T'$ of $T$, a partition $I$ $[0,1)$ into at most $h$ intervals, and a function $f:\{1,\ldots,h\}\to I$ such that,
+  for every $i\in\{1,\ldots,h\}$, the depth-$i$ vertices of $T$ are contained in $f(i)$ and, for each pair $1\le i < j\le h$, $f(i)=f(j)$ implies that the depth-$i$ vertices and the depth-$j$ vertices of $T$ interleave.
+\end{lem}
+
+\begin{proof}
+  The proof is by induction on $h$.  The case $h=1$ is trivial: Set $b:=b'$, and then $I:=\{[0,1)\}$ and $f(1)=[0,1)$, and $T'=T$ satisfy the requirements.
+  
+  For $h>1$ apply the inductive hypothesis with a larger value $b'=r$, for some integer $r$ to be defined shortly, to the first $h-1$ levels of $T$ to obtain the partition $I$, the function $f$ and the $r$-ary subtree $T'$.
+  
+  Now, $T'$ has $r^{h-1}$ leaves, and each of these has $b$ children in $T$.  For each leaf $v$ of $T'$, colour $v$ with a colour $c(v)\in\{1,\ldots,s\}$ such that $\varphi(vx)=c(v)$ for at least $d/s$ edges from $v$ to one of its children $x$ in $T$.  Now, there exists some colour $c\in\{1,\ldots,s\}$ such that $c(v)=c$ for at least $r^{h-1}/s$ leaves of $T'$.  Let $L$ denote the set of leaves in $T$
+  
+  T
+  
+  \begin{enumerate}
+    \item ppffffft
+  \end{enumerate}
+  
+  
+  
+  constructs the partition $I$ and the function $f$ incrementally, one level at a time. For the nodes 
+  
+  
+  
+  
+  
+  It is helpful to think of $f$ as defining a set of disjoint intervals that cover the real interval $[0,1)$. 
+  Initially, we set $f(1)=[0,1)$. The $b$ depth-$1$ nodes of $T$ are indeed contained in $[0,1]$.  More generally, after handling nodes of depth $1,\ldots,d-1$ we have the following situation:
+  \begin{enumerate}
+    \item $[0,1]$ is partitioned into a set $I$ of at most $d-1$ disjoint intervals.
+    \item $T'$ is a $b'$-ary subtree of $T$ for $b'\in\omega_d(1)$.
+    \item For each $i\in\{1,\ldots,d-1\}$, $f(i)\in I$.
+  \end{enumerate}
+  
+    Initially, we choose $f(1)=1$. 
+  
+\end{proof}
+
+
+
+
+\end{document}
+
+
+
+
+
+
+
 
 For every $d,h\in\N$, let $T_{d,h}$ denote the complete $d$-ary tree of height $h$ and let $F_{d,h}$ denote the forest containing $d$ complete $d$-ary trees of height $h$.
 
