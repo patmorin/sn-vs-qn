@@ -123,15 +123,17 @@ The remainder of the paper works through these steps in the proof.
 \end{proof}
 
 
-\begin{lem}\lemlabel{leaf-selection}
-  For every $r,s,h\in\N$, there exists $b\in\N$ such that the following is true.
-  Let $T$ be a complete $b$-ary tree of height $h$, let $L$ be a set of at least $b^h/s^h$ leaves of $T$.  Then $T$ contains a complete $r$-ary subtree of height $h$ whose leaves are in $L$.
+\begin{lem}\lemlabel{large-complete-subtree}
+  Let $T$ be a complete $b$-ary tree of height $h$ and let $L$ be a set of at most $((1-r/b)b)^h$ leaves of $T$.  Then $T-L$ contains a complete $r$-ary tree of height $h$. 
 \end{lem}
 
 \begin{proof}
-  Consider each node $v$ of depth $h-1$ in $T$ and say that $v$ is \emph{good} if $L$ includes at least $r$ children of $v$.  
+  The proof is by induction on $h$.  The case $h=0$ is trivial, since $|L|\le ((1-r/b)b)^0<1$.
   
-\end{proof}
+  For $h\ge 1$, consider the set of $b^{h-1}$ nodes at depth $h-1$.  Say that such a node $v$ is \emph{bad} if more than $b-r$ of $v$'s children are in $L$ and \emph{good} otherwise.  The set $L'$ of bad nodes has size at most
+  \[  |L'|\le \frac{|L|}{b-r} \le \frac{((1-r/b)b)^h}{b-r} = ((1-r/b)b)^{h-1} \]
+  By applying the inductive hypothesis with $h-1$ and $L'$ and we find a complete $r$-ary subtree $T'$ of height $h-1$ whose leaves are all good nodes.  By definition, each good node has at least $r$ children not in $L$, so $T-L$ contains a a complete $r$-ary subtree of height $h$.
+\end{proof}  
 
 
 At this point, it is convenient to treat the vertices of $T$ (and later of $G$) as real numbers in $[0,1)$ chosen to respect $\prec$, so that for any $v\in V(T)$, $v\prec w$ if and only if $v < w$.  We use this view from this point onward.
