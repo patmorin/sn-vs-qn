@@ -48,12 +48,12 @@ or
 
 Let $G$ be a graph and let $\prec$ be a total order on $V(G)$.  Two edges $vw,xy\in E(G)$ with $v\prec w$ and $x\prec y$ \emph{cross} with respect to $\prec$ if $v\prec x\prec w\prec y$ or $x\prec v\prec y\prec w$. Two edges $vw,xy\in E(G)$ with $v\prec w$ and $x\prec y$ \emph{nest} with respect to $\prec$ if $v\prec x\prec y\prec w$ or $x\prec v\prec w\prec y$.  Two edges of $G$ are \emph{disjoint} with respect to $\prec$ if they do not cross and they do not nest. A set of $k$ pairwise nesting edges is called a \emph{$k$-rainbow} and a set of pairwise crossing edges is called a \emph{$k$-twist}.
 
-Let $\varphi:E(G)\to\{1,\ldots,k\}$ be an $k$-colouring of the edges of $G$.  Then $(\prec,\varphi)$ is a \emph{$k$-stack layout} of $G$ if, for every pair of edges $vw,xy\in E(G)$, $vw$ and $xy$ don't cross or $\varphi(vw)\neq\varphi(xy)$. The pair $(\prec,\varphi)$ is a $k$-queue layout of $G$ if, for every pair of edges $vw,xy\in E(G)$, $vw$ and $xy$ don't nest or $\varphi(vw)\neq\varphi(xy)$.  The smallest integer $s$ for which $G$ has an $s$-stack layout is called the \emph{stack number} of $G$ and is denoted by $\sn(G)$.  The smallest integer $q$ for which $G$ has a $q$-queue layout is called the \emph{queue number} of $G$ and is denoted by $\qn(G)$.  
+Let $\varphi:E(G)\to\{1,\ldots,k\}$ for some integer $k\ge 1$.  Then $(\prec,\varphi)$ is a \emph{$k$-stack layout} of $G$ if, for every pair of edges $vw,xy\in E(G)$, $vw$ and $xy$ don't cross or $\varphi(vw)\neq\varphi(xy)$. The pair $(\prec,\varphi)$ is a $k$-queue layout of $G$ if, for every pair of edges $vw,xy\in E(G)$, $vw$ and $xy$ don't nest or $\varphi(vw)\neq\varphi(xy)$.  The smallest integer $s$ for which $G$ has an $s$-stack layout is called the \emph{stack number} of $G$ and is denoted by $\sn(G)$.  The smallest integer $q$ for which $G$ has a $q$-queue layout is called the \emph{queue number} of $G$ and is denoted by $\qn(G)$.  
 
-The following observation is trivial:
+Note that, in an $s$-stack layout, $(\prec,\varphi)$, $\varphi$ is a proper $s$-colouring of the auxilliary graph $H$ with vertex set $V(H)=E(G)$ and in which the edge $ef$ if present if and only if $e$ and $f$ cross with respect to $\varphi$.  Any $k$-twist in $G$ with respect to $\prec$ corresponds to a $k$-clique $H$.  Since the chromatic number of any graph is bounded by its clique number, the following observation is trivial:
 
 \begin{obs}\obslabel{no-s-twist}
-  If $(\prec,\varphi)$ is an $s$-stack layout of a graph $G$ then $E(G)$ does not contain any $(s+1)$-twist.
+  If $(\prec,\varphi)$ is an $s$-stack layout of a graph $G$ then $E(G)$ does not contain any $k$-twist for any $k>s$.
 \end{obs}
 
 
@@ -124,70 +124,90 @@ The remainder of the paper works through these steps in the proof.
 
 
 \begin{lem}\lemlabel{large-complete-subtree}
-  Let $T$ be a complete $b$-ary tree of height $h$ and let $L$ be a set of at most $((1-r/b)b)^h$ leaves of $T$.  Then $T-L$ contains a complete $r$-ary tree of height $h$. 
+  Let $T$ be a complete $b$-ary tree of height $h$ and let $L$ be a set of at most $(b-r)^h$ leaves of $T$.  Then $T-L$ contains a complete $r$-ary tree of height $h$. 
 \end{lem}
 
 \begin{proof}
-  The proof is by induction on $h$.  The case $h=0$ is trivial, since $|L|\le ((1-r/b)b)^0<1$.
+  The proof is by induction on $h$.  For the case $h=1$, $T$ is a $b$-ary star and $L$ contains at most $b-r$ leaves of $T$.  Therefore, $T-L$ is a star with at least $r$ leaves.
   
   For $h\ge 1$, consider the set of $b^{h-1}$ nodes at depth $h-1$.  Say that such a node $v$ is \emph{bad} if more than $b-r$ of $v$'s children are in $L$ and \emph{good} otherwise.  The set $L'$ of bad nodes has size at most
-  \[  |L'|\le \frac{|L|}{b-r} \le \frac{((1-r/b)b)^h}{b-r} = ((1-r/b)b)^{h-1} \]
+  \[  |L'|\le \frac{|L|}{b-r} \le \frac{(b-r)^h}{b-r} = (b-r)^{h-1} \]
   By applying the inductive hypothesis with $h-1$ and $L'$ and we find a complete $r$-ary subtree $T'$ of height $h-1$ whose leaves are all good nodes.  By definition, each good node has at least $r$ children not in $L$, so $T-L$ contains a a complete $r$-ary subtree of height $h$.
 \end{proof}  
 
 
-At this point, it is convenient to treat the vertices of $T$ (and later of $G$) as real numbers in $[0,1)$ chosen to respect $\prec$, so that for any $v\in V(T)$, $v\prec w$ if and only if $v < w$.  We use this view from this point onward.
-
-
-
-
-
-
-
-
-\begin{lem}
-  For every $b',h\in\N$, there exists $b\in\N$ such that the following is true.
-  Let $T$ be a complete $b$-ary tree of height $h$ and let $(\prec,\varphi)$ be an $s$-stack layout of $T$.  
-  
-  Then there exists a $b'$-ary subtree $T'$ of $T$, a partition $I$ $[0,1)$ into at most $h$ intervals, and a function $f:\{1,\ldots,h\}\to I$ such that,
-  for every $i\in\{1,\ldots,h\}$, the depth-$i$ vertices of $T$ are contained in $f(i)$ and, for each pair $1\le i < j\le h$, $f(i)=f(j)$ implies that the depth-$i$ vertices and the depth-$j$ vertices of $T$ interleave.
+\begin{lem}\lemlabel{layer-colouring}
+  For any $r,s\in\N$, there exists $b_0\in\N$ such that the following is true for every integer $b\ge b_0$.  Let $T$ be a complete $b$-ary tree of height $h$ and let $\varphi:E(T)\to\{1,\ldots,s\}$.  Then $T$ contain a complete $r$-ary subtree $T$ of height $h$ such that, for any $d\in\{0,\ldots,h-1\}$ and any two edges $e,f\in E(T')$ whose four endpoints each have depths in $\{d,d+1\}$, $\varphi(e)=\varphi(f)$. 
 \end{lem}
 
 \begin{proof}
-  The proof is by induction on $h$.  The case $h=1$ is trivial: Set $b:=b'$, and then $I:=\{[0,1)\}$ and $f(1)=[0,1)$, and $T'=T$ satisfy the requirements.
-  
-  For $h>1$ apply the inductive hypothesis with a larger value $b'=r$, for some integer $r$ to be defined shortly, to the first $h-1$ levels of $T$ to obtain the partition $I$, the function $f$ and the $r$-ary subtree $T'$.
-  
-  Now, $T'$ has $r^{h-1}$ leaves, and each of these has $b$ children in $T$.  For each leaf $v$ of $T'$, colour $v$ with a colour $c(v)\in\{1,\ldots,s\}$ such that $\varphi(vx)=c(v)$ for at least $d/s$ edges from $v$ to one of its children $x$ in $T$.  Now, there exists some colour $c\in\{1,\ldots,s\}$ such that $c(v)=c$ for at least $r^{h-1}/s$ leaves of $T'$.  Let $L$ denote the set of leaves in $T$
-  
-  T
-  
-  \begin{enumerate}
-    \item ppffffft
-  \end{enumerate}
-  
-  
-  
-  constructs the partition $I$ and the function $f$ incrementally, one level at a time. For the nodes 
-  
-  
-  
-  
-  
-  It is helpful to think of $f$ as defining a set of disjoint intervals that cover the real interval $[0,1)$. 
-  Initially, we set $f(1)=[0,1)$. The $b$ depth-$1$ nodes of $T$ are indeed contained in $[0,1]$.  More generally, after handling nodes of depth $1,\ldots,d-1$ we have the following situation:
-  \begin{enumerate}
-    \item $[0,1]$ is partitioned into a set $I$ of at most $d-1$ disjoint intervals.
-    \item $T'$ is a $b'$-ary subtree of $T$ for $b'\in\omega_d(1)$.
-    \item For each $i\in\{1,\ldots,d-1\}$, $f(i)\in I$.
-  \end{enumerate}
-  
-    Initially, we choose $f(1)=1$. 
-  
+  For each root to leaf path $v_0,\ldots,v_h$ in $T$, define the colour sequence
+  \[  c(v_h):=(\varphi(v_0v_1),\varphi(v_1v_2),\ldots,\varphi(v_{h-1}v_h)) \enspace .
+  \]  
+  These sequences partition the leaves of $T$ into $s^h$ classes.  At least one of these classes has size at least $(b/s)^h$.  The set $L$ of leaves not belonging to this class has size at most $b^h-(b/s)^h=(1-(1/s)^h)b^h$.  By \lemref{large-complete-subtree}, $T-L$ contains a complete $r$-ary subtree of height $h$ provided that $|L|\le (b-r)^h=(1-r/b)^hb^h$, which is true provided that 
+  \begin{equation}\eqlabel{fatty}
+     1-(1/s)^h \le (1-r/b)^h \enspace .
+  \end{equation}  
+  For any positive integers $s$, $h$, and $r$, $1-(1/s)^h<1$ and $\lim_{b\to\infty} (1-r/b)^h=1$.  Therefore, any sufficiently large integer $b$ satisifies \eqref{fatty}. 
 \end{proof}
 
+Let $\prec$ be a total order on $V(T)$ for some tree $T$, let $W$ be the set of depth-$d$ nodes in $T$ and let $Y$ be the set of depth-$d'$ nodes in $T$, for some $d'>d$.  We say that $\prec$ \emph{reverses} $W$ and $Y$ if, for every $x,y\in Y$ with respective ancestors $v,w\in W$, $x\prec y$ if and only if $w\prec v$.  We say that $\prec$ is \emph{consistent} for $W$ and $Y$ if $x\prec y$ if and only if $v\prec w$.  We say that 
 
+\begin{lem}\lemlabel{consistent-interleave}
+  Let $T$ be a complete $b$-ary tree of height $h$, let $\prec$ be a total order on $V(T)$ and let $T'$ be a complete $r$-ary subtree of $T$ of height $h$.  If $\prec$ is consistent for the set $V_i$ of depth-$i$ nodes of $T$ and the set $V_j$ of depth-$j$ nodes of $T$ and $V_i$ and $V_j$ interleave with respect to $\prec$, then the sets $V_i'$ of depth-$i$ nodes in $T'$ and the set $V_j'$ of depth-$j$ nodes in $T'$ also interleave with respect to $\prec$.
+\end{lem}
 
+\begin{proof}
+  Indeed, interleaving implies that between two consecutive nodes of $V_i$ there are exactly $r^{j-i}$ nodes of $V_j$, beginning with a single node $v\in V_i$ followed by a block $x_1,\ldots,x_{b^{j-i}}$ of $b^{j-i}$ nodes of $V_j$ or vice-versa.  In either case, consistency implies that $v$ is an ancestor of $x_1,\ldots,x_{b^{j-i}}$.  If $v\in T'$ then exactly $r^{j-i}$ elements of $x_1,\ldots,x_{b^{j-i}}$ are in $T'$.  If $v\not\in T'$ then none of  $x_1,\ldots,x_{b^{j-i}}$.  Thus, $\prec$ separates any two consecutive elements of $V'_i$ with exactly $r^{j-i}$ elements of $V'_j$, i.e., $V'_i$ and $V'_j$ interleave.
+\end{proof}
+
+At this point, it is convenient to treat the vertices of $T$ (and later of $G$) as real numbers in $[0,1)$ chosen to respect $\prec$, so that for any $v\in V(T)$, $v\prec w$ if and only if $v < w$.  We use this view from this point onward.
+
+\begin{lem}
+  For every $r,h\in\N$, there exists $b_0\in\N$ such that the following is true for every integer $b\ge b_0$.  Let $T$ be a complete $b$-ary tree of height $h$ and let $(\prec,\varphi)$ be an $s$-stack layout of $T$ where $\varphi$ satisfies the conditions of \lemref{layer-colouring}.  
+  
+  Then there exists an $r$-ary subtree $T'$ of $T$ and a partition $I$ of $[0,1)$ into at most $f(h)$ intervals, such that, for any $d\in\{1,\ldots,h-1\}$, the depth-$d$ nodes of $T'$ are contained in a single interval of $I$.
+  
+  Furthermore, for each pair $i,j\in\{1,\ldots,h\}$, $i\neq j$ at least one of these two conditions is satisified:
+  \begin{compactenum}[(O1)]
+    \item $\prec$ reverses $V_i$ and $V_j$; or
+    \item $\prec$ is consistent for $V_i$ and
+    \begin{compactenum}
+      \item If $V_j, V_i\in [x,y)$ for some interval $[x,y)\in I$ then $V_i$ and $V_j$ interleave.
+    \end{compactenum}
+  \end{compactenum}
+  
+  TODO: Clean this up.  With only a tiny amount of work, we can ensure that any two levels assigned to the same interval will be consistent.
+\end{lem}
+
+\begin{proof}
+  The proof is by induction on $h$.  The case $h=1$ is trivial: Take $b\ge b_0:=b'$, let $I:=\{[0,1)\}$ and $f(1)=[0,1)$, and any subtree $T'$ of $T$ with $b'$ leaves.
+    
+  For $h>1$ apply the inductive hypothesis with a larger value $r=t$, for some integer $t$ to be discussed shortly, to the first $h-1$ levels of $T$ to obtain the partition $I$ and a $t$-ary subtree $T'$.
+  
+  Now, $T'$ has $t^{h-1}$ leaves, and each of these has $b$ children in $T$.  The partition $I$ partitions these $bt^{h-1}$ leaves of $T$ into $h-1$ sets and one of these sets, $X$, has size at least $bt^{h-1}/(h-1)$. More precisely, there is some interval $[x,y)\in I$ such that $v\in [x,y)$ for at least $bt^{h-1}/(h-1)$ of the children (in $T$) of the leaves of $T'$.
+  
+  Let $t'>r$ be defined later.  Say that a leaf $v$ of $T'$ is \emph{bad} if less than $t'$ of its children belong to $X$ and $v$ is \emph{good} otherwise.  The set $L$ of bad nodes has size at most 
+  \[ |L|\le \frac{bt^{h-1} - bt^{h-1}/(h-1)}{b-t'} = \frac{(1-1/(h-1))}{b-t'}bt^{h-1} \le (t-t')^{h-1}\]
+  for $b\gg t\gg (h-1)t'$.  In particular, $\lim_{b\to\infty} b/(b-b')=1$ so, for fixed $t'$,
+  \[ \lim_{b\to\infty} |L| = (1-(1/(h-1))t^{h-1} = (t^{h-1}-(t^{h-1}/(h-1)))
+     \le (t-t')^{h-1} \]
+  for $t\ge 2t'(h-1)$.  Therefore, we can apply \lemref{large-complete-subtree} to find a complete $t'$-ary subtree of $T'$ of height $h-1$ and a this can be completed to a complete $t'$-ary subtree $T''$ of $T$ of height $h$.
+  
+  Now, the leaves of $T''$ are all contained in the interval $[x,y)\in I$.  The non-leaf nodes of $T''$ are also nodes in $T'$, so all the depth-$d$ nodes of $T''$ belong to a single interval in $I$, for each $d\in\{1,\ldots,h-1\}$. Condition~O1 is satisified for pairs $1\le i< j<h$.  By \lemref{consistent-interleave}, Condition~O2 is satisified for all pairs $1\le i<j< h$.
+  
+  All that remains is to show how to satisify Condition~1 and 2 for pairs $j,h$.
+  Let $V_h''$ be the set of depth-$h$ nodes in $T''$. There are two cases to consider:
+  \begin{enumerate}
+    \item The set $V_{h-1}''$ of depth-$h-1$ nodes of $T''$ is not contained in $[x,y)$.  In this case $\prec$ reverses $V_h''$ and $V_{h-1}''$. Define $X=V_{h-1}''$.
+    
+    \item The set $V_{h-1}''$ of depth-$h-1$ nodes of $T''$ is contained in $[x,y)$.  In this case, we apply Dilwerth's Theorem to find a set subset of $X\subseteq V''_h$ of size at least $\sqrt{t'}^{h-1}$ such that $\prec$ reverses $V_{h-1}''$ and $V_{h}''$ or is consistent for $V_{h-1}''$ and $V_{h}''$.  In this case, we thin $T''$ again to get a $t''$-ary tree, which works provided that $t'\gg (t'')^2$.
+  \end{enumerate}
+  
+  Finally, $X$ is the set of leaves in a tree that satisifies all the Conditions of the Lemma except possibly (O2).  To satisfy (O2), find the largest index $j$ such that $V_j''\in [x,y)$ and $\prec$ is consistent for $V_j''$ and $V_h''$.  If not such $j$ exists, then the tree $T''$ already satisfies all the conditions of the lemma. Otherwise, for each node $v$ in $V_j''$, consider the minimal interval that contains $v$ and all of $v$'s descendants in $V_h''$.  Apply Dilwerth's Theorem to the poset defined by these intervals.  If this poset contains a large chain, this corresponds to a large subset of $V_j''$ that interleaves with an appropriately-sized subset of $V_h''$.  Again, we thin $T''$ again to get a tree of smaller arity that satisifies the requirements of the lemma.
+  
+  If this poset contains a large anti-chain, then this corresponds to a subset of $V_{j}''$ that is separated from its descendants in $V_{h}''$.  Again, we thin $T''$ to get a tree of smaller arity that satisifies the requirements of the lemma.
+\end{proof}  
 
 \end{document}
 
