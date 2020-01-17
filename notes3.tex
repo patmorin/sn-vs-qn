@@ -140,6 +140,8 @@ The remainder of the paper works through these steps in the proof.
 
 We start with a general Ramsey-Type result about finding large complete subtrees whose leaves come from arbitrarily subset.
 
+\subsection{Ramsey Type Theorems for Trees}
+
 \begin{lem}\lemlabel{large-complete-subtree}
   Let $T$ be a complete $b$-ary tree of height $h$ and let $L$ be a set of at most $(b-r)^h$ leaves of $T$.  Then $T-L$ contains a complete $r$-ary tree of height $h$.
   
@@ -152,9 +154,23 @@ We start with a general Ramsey-Type result about finding large complete subtrees
   For $h\ge 1$, consider the set of $b^{h-1}$ nodes at depth $h-1$.  Say that such a node $v$ is \emph{bad} if more than $b-r$ of $v$'s children are in $L$ and \emph{good} otherwise.  The set $L'$ of bad nodes has size at most
   \[  |L'|\le \frac{|L|}{b-r} \le \frac{(b-r)^h}{b-r} = (b-r)^{h-1} \]
   By applying the inductive hypothesis with $h-1$ and $L'$ and we find a complete $r$-ary subtree $T'$ of height $h-1$ whose leaves are all good nodes.  By definition, each good node has at least $r$ children not in $L$, so $T-L$ contains a a complete $r$-ary subtree of height $h$.
-\end{proof}  
+\end{proof}
 
-Next we show that \lemref{large-complete-subtree} immediately implies that, in any $s$-stack layout of $T$, we can find a large complete subtree whose layers are coloured uniformly.
+The following is more easily digestible version of \lemref{large-complete-subtree}:
+
+\begin{cor}\corlabel{large-complete-subtree}
+  Let $T$ be a complete $b$-ary tree of height $h$ and let
+  $\overline{L}$ be a set of at least $b^{h}/k$ leaves of $T$ where $b\ge hrk$.  Then $T$ contains a complete $r$-ary tree of height $h$ whose leaves are all in $\overline{L}$.
+\end{cor}
+
+\begin{proof}
+  By \lemref{large-complete-subtree}, $T$ contains a complete $r$-ary subtree of height $h$ with leaves in $\overline{L}$ provided that $|\overline{L}|\ge b^h-(b-r)^h$.  For $b\ge r$, Newton's Inequality implies $(b-r)^h\ge b^h-hrb^{h-1}$, so
+  \[  b^h-(b-r)^h \le b^h-(b^h - hrb^{h-1}) = hrb^{h-1} \le b^h/k \le |\overline{L}| \]
+  for $b \ge hrk$.
+\end{proof}
+
+
+Next we show that \corref{large-complete-subtree} immediately implies that, in any $s$-stack layout of $T$, we can find a large complete subtree whose layers are coloured uniformly.
 
 \begin{lem}\lemlabel{layer-colouring}
   For any $r,s\in\N$, there exists $b_0\in\N$ such that the following is true for every integer $b\ge b_0$.  Let $T$ be a complete $b$-ary tree of height $h$ and let $\varphi:E(T)\to\{1,\ldots,s\}$.  Then $T$ contain a complete $r$-ary subtree $T$ of height $h$ such that, for any $d\in\{0,\ldots,h-1\}$ and any two edges $e,f\in E(T')$ whose four endpoints each have depths in $\{d,d+1\}$, $\varphi(e)=\varphi(f)$. 
@@ -164,23 +180,43 @@ Next we show that \lemref{large-complete-subtree} immediately implies that, in a
   For each root to leaf path $v_0,\ldots,v_h$ in $T$, define the colour sequence
   \[  c(v_h):=(\varphi(v_0v_1),\varphi(v_1v_2),\ldots,\varphi(v_{h-1}v_h)) \enspace .
   \]  
-  These sequences partition the leaves of $T$ into $s^h$ classes.  At least one of these classes $\overline{L}$ has size at least $(b/s)^h$.  
-  By \lemref{large-complete-subtree}, $T$ contains a complete $r$-ary subtree of height $h$ with leaves in $\overline{L}$ provided that $|\overline{L}|\le b^h-(b-r)^h$.  For $b\ge r$, Newton's Inequality implies $(b-r)^h\ge b^h-hrb^{h-1}$, so
-  \[  b^h-(b-r)^h \le b^h-(b^h - hrb^{h-1}) = hrb^{h-1} \le \left(\frac{b}{s}\right)^h \]
-  for $b \ge b_0=hrs^h$.
+  These sequences partition the leaves of $T$ into $s^h$ classes.  At least one of these classes $\overline{L}$ has size at least $(b/s)^h$.  Now choose $d\ge d_0=hrs^h$ and apply \corref{large-complete-subtree} to find a complete $r$-ary subtree of height $h$ with leaves in $\overline{L}$.
 \end{proof}
 
-The tree given by \lemlabel{layer-colouring} is useful to us because, for each $i\in\{0,\ldots,h-1\}$ the edges from layer $i$ to layer $i+1$ do not cross. Next we develop some tools that allow us to find a large complete subtree whose layers have very structured interactions between them.
+The tree given by \lemref{layer-colouring} is useful to us because, for each $i\in\{0,\ldots,h-1\}$ the edges from layer $i$ to layer $i+1$ do not cross. Next we develop some tools that allow us to find a large complete subtree whose layers have very structured interactions between them.
 
-Let $\prec$ be a total order on $V(T)$ for some tree $T$, let $V_i$ be the set of depth-$i$ nodes in $T$ and let $V_j$ be the set of depth-$j$ nodes in $T$, for some $j>i$.  We say that $\prec$ \emph{reverses} $V_i$ and $V_j$ if, for every $x,y\in V_j$ with respective ancestors $v,w\in V_i$, $x\prec y$ if and only if $w\prec v$.  We say that $\prec$ is \emph{consistent} for $V_i$ and $V_j$ if $x\prec y$ if and only if $v\prec w$.  
+Now we need a more resilient theorem that works when the size of the killed set $L$ is much larger.
 
-\begin{lem}\lemlabel{consistent-interleave}
-  Let $T$ be a complete $b$-ary tree of height $h$, let $\prec$ be a total order on $V(T)$ and let $T'$ be a complete $r$-ary subtree of $T$ of height $h$.  If $\prec$ is consistent for the set $V_i$ of depth-$i$ nodes of $T$ and the set $V_j$ of depth-$j$ nodes of $T$ and $V_i$ and $V_j$ interleave with respect to $\prec$, then the sets $V_i'$ of depth-$i$ nodes in $T'$ and the set $V_j'$ of depth-$j$ nodes in $T'$ also interleave with respect to $\prec$.
+For any sequence of positive integers $b_0,\ldots,b_h$, let $T_{b_0,\ldots,b_h}$ be the tree in which every node at depth $d$ has $b_d$ children, for each $d\in\{1,\ldots,h\}$.
+
+\begin{lem}
+  For every $\epsilon>0$, and integer $h\in\N$, there exists $b_0,\ldots,b_h$ such that $T:=T_{b_0,\ldots,b_h}$ has the following property:  For any set $L$ of at most $b_0\cdots b_h-(b_0\cdots b_h/k)^{\tfrac12+\epsilon}$ leaves of $T$, $T-L$ contains a complete binary tree of height $h$.
 \end{lem}
 
 \begin{proof}
-  Indeed, interleaving implies that between two consecutive nodes of $V_i$ there are exactly $r^{j-i}$ nodes of $V_j$, beginning with a single node $v\in V_i$ followed by a block $x_1,\ldots,x_{b^{j-i}}$ of $b^{j-i}$ nodes of $V_j$ or vice-versa.  In either case, consistency implies that $v$ is an ancestor of $x_1,\ldots,x_{b^{j-i}}$.  If $v\in T'$ then exactly $r^{j-i}$ elements of $x_1,\ldots,x_{b^{j-i}}$ are in $T'$.  If $v\not\in T'$ then none of  $x_1,\ldots,x_{b^{j-i}}$.  Thus, $\prec$ separates any two consecutive elements of $V'_i$ with exactly $r^{j-i}$ elements of $V'_j$, i.e., $V'_i$ and $V'_j$ interleave.
+  For each $i\in\{1,\ldots,d\}$, we let $b_i=(\prod_{j=1}^{i-1} b_j)^{\tfrac 3\epsilon}$.
+  Using the same argument as before, with induction:
+  \begin{align*}
+    |L'| & \le \frac{b_0\cdots b_h-(b_0\cdots b_h)^{\tfrac12+\epsilon}}{b_h-1} \\
+    &  \approx\left(1+\frac{1}{b_h}\right)\left(\frac{b_0\cdots b_{h}-(b_0\cdots b_h)^{\tfrac12+\epsilon}}{b_h}\right) \\
+    &  =\left(1+\frac{1}{b_h}\right)\left(b_0\cdots b_{h-1}-\frac{(b_0\cdots b_{h-1})^{\tfrac12+\epsilon}}{b_h^{\tfrac12-\epsilon}}\right) \\
+    &  =\left(1+\frac{1}{b_h}\right)\left(b_0\cdots b_{h-1}-\frac{(b_0\cdots b_{h-1})^{\tfrac12+\epsilon}}{b_h^{\tfrac12-\epsilon}}\right) \\
+    &  =\left(1+\frac{1}{b_h}\right)\left(b_0\cdots b_{h-1}-(b_0\cdots b_{h-1})^{\tfrac12+\epsilon/2}\right) \\
+    &  = b_0\cdots b_{h-1} + (b_0\cdots b_h-1)^{1-3\epsilon}-(b_0\cdots b_{h-1})^{\tfrac12+\epsilon/2} \\
+  \end{align*}
+  DOESN'T WORK.  Only if $1-3\epsilon < \tfrac12 +\epsilon/2$.
+
 \end{proof}
+
+Let $\prec$ be a total order on $V(T)$ for some tree $T$, let $V_i$ be the set of depth-$i$ nodes in $T$ and let $V_j$ be the set of depth-$j$ nodes in $T$, for some $j>i$.  We say that $\prec$ \emph{reverses} $V_i$ and $V_j$ if, for every $x,y\in V_j$ with respective ancestors $v,w\in V_i$, $x\prec y$ if and only if $w\prec v$.  We say that $\prec$ is \emph{consistent} for $V_i$ and $V_j$ if $x\prec y$ if and only if $v\prec w$.  
+
+% \begin{lem}\lemlabel{consistent-interleave}
+%   Let $T$ be a complete $b$-ary tree of height $h$, let $\prec$ be a total order on $V(T)$ and let $T'$ be a complete $r$-ary subtree of $T$ of height $h$.  If $\prec$ is consistent for the set $V_i$ of depth-$i$ nodes of $T$ and the set $V_j$ of depth-$j$ nodes of $T$ and $V_i$ and $V_j$ interleave with respect to $\prec$, then the sets $V_i'$ of depth-$i$ nodes in $T'$ and the set $V_j'$ of depth-$j$ nodes in $T'$ also interleave with respect to $\prec$.
+% \end{lem}
+% 
+% \begin{proof}
+%   Indeed, interleaving implies that between two consecutive nodes of $V_i$ there are exactly $r^{j-i}$ nodes of $V_j$, beginning with a single node $v\in V_i$ followed by a block $x_1,\ldots,x_{b^{j-i}}$ of $b^{j-i}$ nodes of $V_j$ or vice-versa.  In either case, consistency implies that $v$ is an ancestor of $x_1,\ldots,x_{b^{j-i}}$.  If $v\in T'$ then exactly $r^{j-i}$ elements of $x_1,\ldots,x_{b^{j-i}}$ are in $T'$.  If $v\not\in T'$ then none of  $x_1,\ldots,x_{b^{j-i}}$.  Thus, $\prec$ separates any two consecutive elements of $V'_i$ with exactly $r^{j-i}$ elements of $V'_j$, i.e., $V'_i$ and $V'_j$ interleave.
+% \end{proof}
 
 At this point, it is convenient to treat the vertices of $T$ (and later of $G$) as real numbers in $[0,1)$ chosen to respect $\prec$, so that for any $v\in V(T)$, $v\prec w$ if and only if $v < w$.  We use this view from this point onward.
 
@@ -192,23 +228,20 @@ At this point, it is convenient to treat the vertices of $T$ (and later of $G$) 
   Furthermore, for each distinct pair $i,j\in\{1,\ldots,h\}$:
   \begin{compactenum}[(O1)]
     \item $\prec$ reverses $V_i$ and $V_j$ or $\prec$ is consistent for $V_i$ and $V_j$.
-    \item If $V_i$ and $V_j$ are contained in the same interval of $I$, then $\prec$ is consistent for $V_i$ and $V_j$ and $V_i$ and $V_j$ interleave.
+    \item If $V_i$ and $V_j$ are contained in the same interval of $I$, then $\prec$ is consistent for $V_i$ and $V_j$.
   \end{compactenum}
 \end{lem}
 
 \begin{proof}
   The proof is by induction on $h$.  The case $h=1$ is trivial: Take $b\ge b_0:=b'$, let $I:=\{[0,1)\}$ and $f(1)=[0,1)$, and any subtree $T'$ of $T$ with $b'$ leaves.
     
-  For $h>1$ apply the inductive hypothesis with a larger value of $r$ that (in order to avoid a sequence excessive notation) we will also call $b$, to the first $h-1$ levels of $T$ to obtain a partition $I$ consisting of at most $h-1$ intervals and a $b$-ary subtree $T'$ of height $h-1$ that satisifies the requirements of the lemma, for the first $h-1$ levels of $T$.
+  For $h>1$ apply the inductive hypothesis with a larger value of $r$ that (in order to avoid excessive notation) we will also call $b$, to the first $h-1$ levels of $T$ to obtain a partition $I$ consisting of at most $h-1$ intervals and a $b$-ary subtree $T'$ of height $h-1$ that satisifies the requirements of the lemma, for the first $h-1$ levels of $T$.
   
   Now, $T'$ has $b^{h-1}$ leaves, and each of these has $b$ children in $T$.\footnote{Actually, the second $b$ is larger than the first $b$ here, but this has no effect.  We can simply ignore all but $b$ of the children (in $T$) of each leaf in $T'$.}  The partition $I$ partitions these $b^{h}$ leaves of $T$ into $h-1$ sets and one of these sets, $\overline{L}$, has size at least $b^{h}/(h-1)$. More precisely, there is some interval $[x,y)\in I$ such that $v\in [x,y)$ for at least $b^{h}/(h-1)$ of the children (in $T$) of the leaves of $T'$.
   
-  Now, \lemref{large-complete-subtree} implies that $T$ contains a complete $t$-ary subtree of height $h$ whose leaves are all contained in $[x,y)$, provided that $b^h/(h-1)\ge b^h- (b-t)^h$.  Using Bernoulli's Inequality again,
-  \[
-     b^h-(b-t)^h \le htb^{h-1} \le b^h/(h-1)
-  \]
-  for any $b\ge ht/(h-1)$.  Note that the first $h-1$ levels of $T'$ satisfy teh requirements of the lemma.  Indeed, the only requirement that is not obviously preserved by taking a complete $t$-ary subtree of (the first $h-1$ levels of) $T'$ is (O2). That (O2) is satisfied is, however, verified by \lemref{consistent-interleave}.
-  
+  Now, \lemref{large-complete-subtree} implies that $T$ contains a complete $t$-ary subtree of height $h$ whose leaves are all contained in $[x,y)$, provided that $b\ge ht/(h-1)$.  Note that the first $h-1$ levels of $T'$ satisfy the requirements of the lemma.  
+  % Indeed, the only requirement that is not obviously preserved by taking a complete $t$-ary subtree of (the first $h-1$ levels of) $T'$ is (O2). That (O2) is satisfied is, however, verified by \lemref{consistent-interleave}.
+   
   We again reset our notation and assume that $T$ is a complete $b$-ary tree of height $h$ whose first $h-1$ levels satisfy the requirements of the lemma, for the set $I$ of at most $h-1$ intervals and that the leaves of $T$ are contained in a single interval $[x,y)\in I$.  All that remains is to trim $T$, and possibly split the interval $[x,y)$ to satisfy (O1) and (O2).
 
   For now, assume that the set $V_{h-1}$ of depth-$(h-1)$ nodes of $T$ is not contained in $[x,y)$.  (We will deal with the annoying case where $V_{h-1}\subset [x,y)$ later.)  In this case, the fact that the edges between $V_{h-1}$ and $V_h$ do not cross implies that $\prec$ reverses $V_h$ and $V_{h-1}$.  This immediately implies that $T$ and $I$ satisfy (O1).
