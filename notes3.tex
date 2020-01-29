@@ -51,7 +51,7 @@ or
 
 \subsection{Linear Layouts of Graphs: Stacks and Queues, Rainbows and Twists}
 
-Let $G$ be a graph and let $\prec$ be a total order on $V(G)$.  Two edges $vw,xy\in E(G)$ with $v\prec w$ and $x\prec y$ \emph{cross} with respect to $\prec$ if $v\prec x\prec w\prec y$ or $x\prec v\prec y\prec w$. Two edges $vw,xy\in E(G)$ with $v\prec w$ and $x\prec y$ \emph{nest} with respect to $\prec$ if $v\prec x\prec y\prec w$ or $x\prec v\prec w\prec y$.  Two edges of $G$ are \emph{disjoint} with respect to $\prec$ if they do not cross and they do not nest. A set of $k$ pairwise nesting edges is called a \emph{$k$-rainbow} and a set of pairwise crossing edges is called a \emph{$k$-twist}.
+Let $G$ be a graph and let $\prec$ be a total order on $V(G)$.  Two edges $vw,xy\in E(G)$ with $v\prec w$ and $x\prec y$ \emph{cross} with respect to $\prec$ if $v\prec x\prec w\prec y$ or $x\prec v\prec y\prec w$. Two edges $vw,xy\in E(G)$ with $v\prec w$ and $x\prec y$ \emph{nest} with respect to $\prec$ if $v\prec x\prec y\prec w$ or $x\prec v\prec w\prec y$.  Two edges of $G$ are \emph{disjoint} with respect to $\prec$ if they do not cross and they do not nest. A set of $k$ pairwise nesting edges is called a \emph{$k$-rainbow} and a set of pairwise crossing edges is called a \emph{$k$-twist}.  A set of $k$ edges, no pair of which nest and no pair of which cross is called a \emph{hopper}.
 
 Let $\varphi:E(G)\to\{1,\ldots,k\}$ for some integer $k\ge 1$.  Then $(\prec,\varphi)$ is a \emph{$k$-stack layout} of $G$ if, for every pair of edges $vw,xy\in E(G)$, $vw$ and $xy$ don't cross or $\varphi(vw)\neq\varphi(xy)$. The pair $(\prec,\varphi)$ is a $k$-queue layout of $G$ if, for every pair of edges $vw,xy\in E(G)$, $vw$ and $xy$ don't nest or $\varphi(vw)\neq\varphi(xy)$.  The smallest integer $s$ for which $G$ has an $s$-stack layout is called the \emph{stack number} of $G$ and is denoted by $\sn(G)$.  The smallest integer $q$ for which $G$ has a $q$-queue layout is called the \emph{queue number} of $G$ and is denoted by $\qn(G)$.  
 
@@ -173,7 +173,7 @@ The following is more easily digestible version of \lemref{large-complete-subtre
 Next we show that \corref{large-complete-subtree} immediately implies that, in any $s$-stack layout of $T$, we can find a large complete subtree whose layers are coloured uniformly.
 
 \begin{lem}\lemlabel{layer-colouring}
-  For any $r,s\in\N$, there exists $b_0\in\N$ such that the following is true for every integer $b\ge b_0$.  Let $T$ be a complete $b$-ary tree of height $h$ and let $\varphi:E(T)\to\{1,\ldots,s\}$.  Then $T$ contain a complete $r$-ary subtree $T$ of height $h$ such that, for any $d\in\{0,\ldots,h-1\}$ and any two edges $e,f\in E(T')$ whose four endpoints each have depths in $\{d,d+1\}$, $\varphi(e)=\varphi(f)$. 
+  For any $r,s\in\N$, there exists $b_0\in\N$ such that the following is true for every integer $b\ge b_0$.  Let $T$ be a complete $b$-ary tree of height $h$ and let $\varphi:E(T)\to\{1,\ldots,s\}$.  Then $T$ contain a complete $r$-ary subtree $T'$ of height $h$ such that, for any $d\in\{0,\ldots,h-1\}$ and any two edges $e,f\in E(T')$ whose four endpoints each have depths in $\{d,d+1\}$, $\varphi(e)=\varphi(f)$. 
 \end{lem}
 
 \begin{proof}
@@ -185,28 +185,80 @@ Next we show that \corref{large-complete-subtree} immediately implies that, in a
 
 The tree given by \lemref{layer-colouring} is useful to us because, for each $i\in\{0,\ldots,h-1\}$ the edges from layer $i$ to layer $i+1$ do not cross. Next we develop some tools that allow us to find a large complete subtree whose layers have very structured interactions between them.
 
-Now we need a more resilient theorem that works when the size of the killed set $L$ is much larger.
-
-For any sequence of positive integers $b_0,\ldots,b_h$, let $T_{b_0,\ldots,b_h}$ be the tree in which every node at depth $d$ has $b_d$ children, for each $d\in\{1,\ldots,h\}$.
+Let $\prec$ be a total order on the node set $V(T)$ of some complete $b$-ary $T$ of height $h$.  For any $i\in\{0,\ldots,h-1\}$, we say that $\prec$ is \emph{$i$-LCA-reversing} for $T$ if, for any pair of leaves $x,y$ whose lowest common-ancestor $a$ has depth $i$ and which $x',y'$ are the depth-$(i+1)$ ancestors of $x$ and $y$, $x\prec y$ if and only if $y'\prec x'$.  We say that $\prec$ is \emph{$i$-LCA-consistent} for $T$ if (with the same definitions of $x,y,x',y'$), $x\prec y$ if and only if $x'\prec y'$.  We say that $\prec$ is \emph{$i$-LCA-determined} for $T$ if $\prec$ is $i$-LCA-reversing or $\prec$ is $i$-LCA-consistent.  Finally, we say that $\prec$ is LCA-determined for $T$ if $\prec$ is $i$-LCA-determined for each $i\in\{1,\ldots,h\}$.
 
 \begin{lem}
-  For every $\epsilon>0$, and integer $h\in\N$, there exists $b_0,\ldots,b_h$ such that $T:=T_{b_0,\ldots,b_h}$ has the following property:  For any set $L$ of at most $b_0\cdots b_h-(b_0\cdots b_h/k)^{\tfrac12+\epsilon}$ leaves of $T$, $T-L$ contains a complete binary tree of height $h$.
+  For any $r,s\in\N$, there exits $b_0\in\N$ such that the following is true for every $b\ge b_0$.  Let $T$ be a complete $b$-ary tree of height $h\ge 1$ and let $(\prec,\varphi)$ be an $s$-stack layout of $T$.  Then $T$ contains a complete $r$-ary subtree $T'$ such that $\prec$ is LCA-determined for $T'$.
 \end{lem}
 
 \begin{proof}
-  For each $i\in\{1,\ldots,d\}$, we let $b_i=(\prod_{j=1}^{i-1} b_j)^{\tfrac 3\epsilon}$.
-  Using the same argument as before, with induction:
-  \begin{align*}
-    |L'| & \le \frac{b_0\cdots b_h-(b_0\cdots b_h)^{\tfrac12+\epsilon}}{b_h-1} \\
-    &  \approx\left(1+\frac{1}{b_h}\right)\left(\frac{b_0\cdots b_{h}-(b_0\cdots b_h)^{\tfrac12+\epsilon}}{b_h}\right) \\
-    &  =\left(1+\frac{1}{b_h}\right)\left(b_0\cdots b_{h-1}-\frac{(b_0\cdots b_{h-1})^{\tfrac12+\epsilon}}{b_h^{\tfrac12-\epsilon}}\right) \\
-    &  =\left(1+\frac{1}{b_h}\right)\left(b_0\cdots b_{h-1}-\frac{(b_0\cdots b_{h-1})^{\tfrac12+\epsilon}}{b_h^{\tfrac12-\epsilon}}\right) \\
-    &  =\left(1+\frac{1}{b_h}\right)\left(b_0\cdots b_{h-1}-(b_0\cdots b_{h-1})^{\tfrac12+\epsilon/2}\right) \\
-    &  = b_0\cdots b_{h-1} + (b_0\cdots b_h-1)^{1-3\epsilon}-(b_0\cdots b_{h-1})^{\tfrac12+\epsilon/2} \\
-  \end{align*}
-  DOESN'T WORK.  Only if $1-3\epsilon < \tfrac12 +\epsilon/2$.
+  Note: This is just proof sketch that was written as the ideas were developing.  The actual proof should be by lexicographic induction on the pair $(h,k)$, $h\in\N$, $k\in\{1,\ldots,h\}$, to show that, we can always find a tree that for which $\prec$ is $i$-LCA-determined for each $i\in\{h-k,h-k+1,\ldots,h-1\}$.
+  
+  The proof is by induction on $h$.  The base case, $h=1$ (where $T$ is a star with $b$ leaves), is trivial.  Indeed, we need only show that $\prec$ is $0$-LCA-determined.  For any two distinct leaves $x$ and $y$, the depth-$1$ ancestors of $x'$ and $y'$ of $x$ and $y$ are $x'=x$ and $y'=y$, respectively.  Therefore $x\prec y$ if and only if $x'\prec y'$ so $\prec$ is $0$-LCA consistent, as required.
+  
+  For $h\ge 2$, we first apply the inductive hypothesis on the complete height-$(h-1)$ subtree of $T$ obtained by removing the leaves of $T$.  Next we may assume, by \lemref{layer-colouring}, that every edge incident to every leaf is assigned the same colour by $\varphi$.  In particular, no two of these edges cross.
+  
+  Therefore (after rescaling the value of $b$) we may assume that $\prec$ is LCA-determined for the subtree $T_{h-1}$ consisting of the first $h-1$ levels of $T$ and that no two edges incident to leaves of $T$ cross.  Furthermore (after doubling the value of $b$) we may assume, without loss of generality, that every edge from a leaf $x$ of $T$ to its parent $p$ has $p\prec x$.
+  
+  Consider any node $a$ of depth $h-2$.  By Dilwerth's Theorem, $a$ contains a set of $r\ge \sqrt{b}$ children $a_1,\ldots,a_r$ such that $\prec$ is $0$-LCA-determined for the height-2 subtree $T_a$ rooted at $a$ that contains $a,a_1,\ldots,a_r$ and the $rd$ children of $a_1,\ldots,a_r$.  Therefore each node $a$ of depth $h-2$ can be classified as \emph{reversing} or \emph{consistent} depending on whether $T_a$ is $0$-LCA-reversing or $0$-LCA-consistent.  
+  
+  At least half the nodes of depth $h-2$ are classified  as reversing or at least half the nodes are classified as consistent.  Now, we can apply \corref{large-complete-subtree} (with a rescaled value of $b$) to the height $h-2$ subtree of $T$ whose leaves are the depth $h-2$ nodes of $T$.  In this way, we may assume that $\prec$ is $(h-2)$-determined for $T$.  
+  
+  There are two cases to consider:
+  \begin{enumerate}
+    \item $\prec$ is $(h-2)$-LCA-consistent for $T$.  Every total order $\prec$ over $V(T)$ is $(h-1)$-consistent for $T$ and, by assumption, $\prec$ is $h-2$-LCA-consistent.  Therefore, it only remains to show that $\prec$ is $i$-determined for $T$ for each $i\in\{0,\ldots,h-3\}$.  In particular, we need only concern ourselves with leaves $x,y$ whose ancestors $v,w$ at depth $h-2$ are distinct.
+    
+    Because of \lemref{layer-colouring} we know that if $v$ and $w$ are two distinct nodes of depth $h-2$, then the children of $v$ and the children of $w$ are separated with respect to $\prec$.  Furthermore, since $\prec$ is $(h-2)$-LCA consistent, the strict descendants of $v$ and the strict descendants of $w$ are also separated with respect to $\prec$.  
+    Let $vx'x$  and $wy'y$ be two paths to leaves of $T$.
 
+    As discussed above $\{y',y\}$ and $\{x',x\}$ are separable with respect to $\prec$, so, $x\prec y$ if and only if $x'\prec y'$.  The fact that $T$ is LCA-determined now follows from the fact that $T_{h-1}$ is LCA-determined.  (In short: the relative order of depth-$h$ nodes $x$ and $y$ is consistent with the relative order of their depth-$(h-1)$ parents $x'$ and $y'$ and $x'$ and $y'$ are leaves of $T_{h-1}$.)
+    
+    \item $\prec$ is $(h-2)$-LCA-reversing for $T$.  In this case we have to repeat the above process to get a subtree for which $\prec$ is $(h-3)$-LCA-determined.  
+    
+    To do this, for each depth-$(h-2)$ in $T$, let $I_a$ be the minimal interval that contains all edges of $T$ incident to leaf descendants of $a$.  Note that, for any two depth-$(h-2)$ nodes $a$ and $a'$, the intervals $I_a$ and $I_{a'}$ either nest or are disjoint.  Therefore, for each depth-$(h-3)$ node $c$ we find a find a set of $r\ge\sqrt{d}$ children $a_1,\ldots,a_{r}$ of $c$ such that the intervals $I_{a_1},\ldots,I_{a_{r}}$ are pairwise disjoint or pairwise nesting.  In the former case, the subtree $T_c$ rooted at $c$ is $0$-LCA-determined because, for any two leaves $x,y$ with distinct parents $x',y'$,  $x\prec y$ if and only if $x'\prec y'$ and the tree $T_{h-1}$ whose leaves include $x'$ and $y'$ is $0$-LCA-determined.  In the latter case, $T_c$ is also $0$-LCA-determined because $x\prec y$ if and only if $y'\prec x'$.
+    
+    Again, we can now apply \corref{large-complete-subtree} to assume that $T$ is $i$-LCA-determine for each $i\in\{h-1,h-2,h-3\}$.  If $T$ happens to be $(h-3)$-consistent then we're done (the whole thing follows from $T_{h-2}$ being LCA-determined).  If $T$ is $(h-3)$-reversing, then we have to continue.  Eventually we finish because we can always find a tree $T_1$ for which $\prec$ is LCA-consistent.
+  \end{enumerate}
 \end{proof}
+
+
+The preceding lemma looks very powerful.  It implies that the leaves of $T$ have to satisfy a hierarchical partition. (Just the leaves?)  For any $a$ with children $c_1,\ldots,c_b$, the the leaf-sets of $T_{c_1},\ldots,T_{c_b}$ are disjoint (and they either reverse or are consistent with the ordering of $c_1,\ldots,c_b$.) 
+
+
+% 
+% 
+% 
+% 
+% 
+% 
+% 
+% 
+% 
+% 
+% Now we need a more resilient theorem that works when the size of the killed set $L$ is much larger.
+% 
+% For any sequence of positive integers $b_0,\ldots,b_h$, let $T_{b_0,\ldots,b_h}$ be the tree in which every node at depth $d$ has $b_d$ children, for each $d\in\{1,\ldots,h\}$.
+% 
+% \begin{lem}
+%   For every $\epsilon>0$, and integer $h\in\N$, there exists $b_0,\ldots,b_h$ such that $T:=T_{b_0,\ldots,b_h}$ has the following property:  For any set $L$ of at most $b_0\cdots b_h-(b_0\cdots b_h/k)^{\tfrac12+\epsilon}$ leaves of $T$, $T-L$ contains a complete binary tree of height $h$.
+% \end{lem}
+% 
+% \begin{proof}
+%   For each $i\in\{1,\ldots,d\}$, we let $b_i=(\prod_{j=1}^{i-1} b_j)^{\tfrac 3\epsilon}$.
+%   Using the same argument as before, with induction:
+%   \begin{align*}
+%     |L'| & \le \frac{b_0\cdots b_h-(b_0\cdots b_h)^{\tfrac12+\epsilon}}{b_h-1} \\
+%     &  \approx\left(1+\frac{1}{b_h}\right)\left(\frac{b_0\cdots b_{h}-(b_0\cdots b_h)^{\tfrac12+\epsilon}}{b_h}\right) \\
+%     &  =\left(1+\frac{1}{b_h}\right)\left(b_0\cdots b_{h-1}-\frac{(b_0\cdots b_{h-1})^{\tfrac12+\epsilon}}{b_h^{\tfrac12-\epsilon}}\right) \\
+%     &  =\left(1+\frac{1}{b_h}\right)\left(b_0\cdots b_{h-1}-\frac{(b_0\cdots b_{h-1})^{\tfrac12+\epsilon}}{b_h^{\tfrac12-\epsilon}}\right) \\
+%     &  =\left(1+\frac{1}{b_h}\right)\left(b_0\cdots b_{h-1}-(b_0\cdots b_{h-1})^{\tfrac12+\epsilon/2}\right) \\
+%     &  = b_0\cdots b_{h-1} + (b_0\cdots b_h-1)^{1-3\epsilon}-(b_0\cdots b_{h-1})^{\tfrac12+\epsilon/2} \\
+%   \end{align*}
+%   DOESN'T WORK.  Only if $1-3\epsilon < \tfrac12 +\epsilon/2$.
+% 
+% \end{proof}
+
+\hrule
 
 Let $\prec$ be a total order on $V(T)$ for some tree $T$, let $V_i$ be the set of depth-$i$ nodes in $T$ and let $V_j$ be the set of depth-$j$ nodes in $T$, for some $j>i$.  We say that $\prec$ \emph{reverses} $V_i$ and $V_j$ if, for every $x,y\in V_j$ with respective ancestors $v,w\in V_i$, $x\prec y$ if and only if $w\prec v$.  We say that $\prec$ is \emph{consistent} for $V_i$ and $V_j$ if $x\prec y$ if and only if $v\prec w$.  
 
