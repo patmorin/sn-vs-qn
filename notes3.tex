@@ -192,32 +192,72 @@ Let $\prec$ be a total order on the node set $V(T)$ of some complete $b$-ary $T$
 \end{lem}
 
 \begin{proof}
-  Note: This is just proof sketch that was written as the ideas were developing.  The actual proof should be by lexicographic induction on the pair $(h,k)$, $h\in\N$, $k\in\{1,\ldots,h\}$, to show that, we can always find a tree that for which $\prec$ is $i$-LCA-determined for each $i\in\{h-k,h-k+1,\ldots,h-1\}$.
+  We prove a more generalized form that is more amenable to induction:  
+  For any integers $h,k,r\in \N$, $k\in\{1,\ldots,h\}$, there exists $b\in\N$ such that the complete $b$-ary tree $T$ of height $h$ contains a complete $r$-ary subtree $T'$ for which $\prec$ is $i$-LCA-determined for each $i\in\{h-k,h-k+1,\ldots,h-1\}$.  Note that the lemma is the special case of this statement where $k=h$.
   
-  The proof is by induction on $h$.  The base case, $h=1$ (where $T$ is a star with $b$ leaves), is trivial.  Indeed, we need only show that $\prec$ is $0$-LCA-determined.  For any two distinct leaves $x$ and $y$, the depth-$1$ ancestors of $x'$ and $y'$ of $x$ and $y$ are $x'=x$ and $y'=y$, respectively.  Therefore $x\prec y$ if and only if $x'\prec y'$ so $\prec$ is $0$-LCA consistent, as required.
+  The proof is by induction on the pair $(h,k)$, ordered lexicographically.
+  When $k=1$, the result is trivial.  Any pair of distinct leaves $x,y$ whose lowest common ancestor $a$ has depth $h-1$ are siblings.  The second vertex on the path from $a$ to $x$ is $x'=x$ and the second vertex on the path from $a$ to $y$ is $y'=y$.  Thus, it is certainly the case $x\prec y$ if and only only if $x'\prec y$, so $T$ is $(h-1)$-LCA-consistent.
   
-  For $h\ge 2$, we first apply the inductive hypothesis on the complete height-$(h-1)$ subtree of $T$ obtained by removing the leaves of $T$.  Next we may assume, by \lemref{layer-colouring}, that every edge incident to every leaf is assigned the same colour by $\varphi$.  In particular, no two of these edges cross.
+  When $h=1$ the result is also trivial since, in this case $k=1$, and the preceding argument applies.
   
-  Therefore (after rescaling the value of $b$) we may assume that $\prec$ is LCA-determined for the subtree $T_{h-1}$ consisting of the first $h-1$ levels of $T$ and that no two edges incident to leaves of $T$ cross.  Furthermore (after doubling the value of $b$) we may assume, without loss of generality, that every edge from a leaf $x$ of $T$ to its parent $p$ has $p\prec x$.
-  
-  Consider any node $a$ of depth $h-2$.  By Dilwerth's Theorem, $a$ contains a set of $r\ge \sqrt{b}$ children $a_1,\ldots,a_r$ such that $\prec$ is $0$-LCA-determined for the height-2 subtree $T_a$ rooted at $a$ that contains $a,a_1,\ldots,a_r$ and the $rd$ children of $a_1,\ldots,a_r$.  Therefore each node $a$ of depth $h-2$ can be classified as \emph{reversing} or \emph{consistent} depending on whether $T_a$ is $0$-LCA-reversing or $0$-LCA-consistent.  
-  
-  At least half the nodes of depth $h-2$ are classified  as reversing or at least half the nodes are classified as consistent.  Now, we can apply \corref{large-complete-subtree} (with a rescaled value of $b$) to the height $h-2$ subtree of $T$ whose leaves are the depth $h-2$ nodes of $T$.  In this way, we may assume that $\prec$ is $(h-2)$-determined for $T$.  
-  
-  There are two cases to consider:
-  \begin{enumerate}
-    \item $\prec$ is $(h-2)$-LCA-consistent for $T$.  Every total order $\prec$ over $V(T)$ is $(h-1)$-consistent for $T$ and, by assumption, $\prec$ is $h-2$-LCA-consistent.  Therefore, it only remains to show that $\prec$ is $i$-determined for $T$ for each $i\in\{0,\ldots,h-3\}$.  In particular, we need only concern ourselves with leaves $x,y$ whose ancestors $v,w$ at depth $h-2$ are distinct.
-    
-    Because of \lemref{layer-colouring} we know that if $v$ and $w$ are two distinct nodes of depth $h-2$, then the children of $v$ and the children of $w$ are separated with respect to $\prec$.  Furthermore, since $\prec$ is $(h-2)$-LCA consistent, the strict descendants of $v$ and the strict descendants of $w$ are also separated with respect to $\prec$.  
-    Let $vx'x$  and $wy'y$ be two paths to leaves of $T$.
+  Thus, assume $h\ge 2$ and $k\ge 2$. By applying \lemref{layer-colouring} we may assume that every edge incident to every leaf of $T$ is assigned the same colour by $\varphi$.  By applying \corref{large-complete-subtree} we can, without loss of generality, assume that for every leave $x$ with parent $p$, $p\prec x$.  By the inductive hypothesis on the pair $(h-1,h-1)$ we may assume that the subtree $T_{h-1}$ consisting of the first $h-1$ levels of $T$ is LCA-determined.  Finally, by the inductive hypothesis with the pair $(h,k-1)$ (and the freedom to choose $r$ arbitrarily large), we may assume that $T$ is $i$-LCA-determined for each $i\in\{h-k+1,\ldots,h-1\}$. 
 
-    As discussed above $\{y',y\}$ and $\{x',x\}$ are separable with respect to $\prec$, so, $x\prec y$ if and only if $x'\prec y'$.  The fact that $T$ is LCA-determined now follows from the fact that $T_{h-1}$ is LCA-determined.  (In short: the relative order of depth-$h$ nodes $x$ and $y$ is consistent with the relative order of their depth-$(h-1)$ parents $x'$ and $y'$ and $x'$ and $y'$ are leaves of $T_{h-1}$.)
-    
-    \item $\prec$ is $(h-2)$-LCA-reversing for $T$.  In this case we have to repeat the above process to get a subtree for which $\prec$ is $(h-3)$-LCA-determined.  
-    
-    To do this, for each depth-$(h-2)$ in $T$, let $I_a$ be the minimal interval that contains all edges of $T$ incident to leaf descendants of $a$.  Note that, for any two depth-$(h-2)$ nodes $a$ and $a'$, the intervals $I_a$ and $I_{a'}$ either nest or are disjoint.  Therefore, for each depth-$(h-3)$ node $c$ we find a find a set of $r\ge\sqrt{d}$ children $a_1,\ldots,a_{r}$ of $c$ such that the intervals $I_{a_1},\ldots,I_{a_{r}}$ are pairwise disjoint or pairwise nesting.  In the former case, the subtree $T_c$ rooted at $c$ is $0$-LCA-determined because, for any two leaves $x,y$ with distinct parents $x',y'$,  $x\prec y$ if and only if $x'\prec y'$ and the tree $T_{h-1}$ whose leaves include $x'$ and $y'$ is $0$-LCA-determined.  In the latter case, $T_c$ is also $0$-LCA-determined because $x\prec y$ if and only if $y'\prec x'$.
-    
-    Again, we can now apply \corref{large-complete-subtree} to assume that $T$ is $i$-LCA-determine for each $i\in\{h-1,h-2,h-3\}$.  If $T$ happens to be $(h-3)$-consistent then we're done (the whole thing follows from $T_{h-2}$ being LCA-determined).  If $T$ is $(h-3)$-reversing, then we have to continue.  Eventually we finish because we can always find a tree $T_1$ for which $\prec$ is LCA-consistent.
+  For each depth-$(h-k+1)$ node $p$ of $T$, consider the smallest interval $J_p$ that contains all of $p$'s descendants at depth $h-1$.  Since $T_{h-1}$ is LCA-determined, $J_p$ and $J_q$ are disjoint for each pair of depth-$(h-k-1)$ siblings $p$ and $q$.
+
+  For each depth-$(h-k+1)$ node $p$ of $T$, consider the smallest interval $I_p$ that contains all of $p$'s descendants at depth $h-1$.  Since $T_{h-1}$ is LCA-determined, $J_p$ and $J_q$ are disjoint for each pair of depth-$(h-k-1)$ siblings $p$ and $q$.
+  
+  For each depth-$(h-k+1)$ node $p$ of $T$, consider the smallest interval $K_p$ that contains $I_p\cup J_p$.
+
+  We claim that for any pair of depth-$(h-k+1)$ nodes $p,q$ (not necessarily siblings), $K_p$ and $K_q$ are either disjoint or they nest.  Indeed, otherwise assume $J_p\prec J_q$.  Then $T$ contains an edge $xy$ with $x\in J_p$, $y\in I_p$ and (by assumption) $x\prec y$ and an edge $vw$ with $v\in J_q$, $w\in I_q$ and (by assumption) $v\prec w$. blah di blah\ldots
+  
+  
+  Now, for each node $a$ at depth $h-k$ we can find a set of its children that make a big nesting set of intervals or a big disjoint set of intervals.  A big rainbow corresponds to a node that LCA-reversing and a big disjoint set corresponds to a node that is LCA-consistent. We can then choose the set of nodes at depth $h-k$ that occur more often and use \corref{big-complete-subtree} to get a subtree that is $(h-k)$-LCA determined.
+  
+   
+  % 
+  % 
+  % 
+  % At this point, $T$ is $(h-1)$-LCA-determined, so there are two cases to consider:
+  % 
+  % Case 1: $T$ is $(h-1)$-LCA-consistent.  
+  % 
+  % For each depth-$(h-k+2)$ node $a$ of $T$, consider the smallest interval $I_a$ that contains all of $a$'s leaf descendants. Since $T$ is $(h-k+1)$-LCA determined, $I_a$ and $I_b$ are disjoint for each pair of depth-$(h-k+2)$ siblings $a$ and $b$.  
+  % 
+  % 
+  % 
+  % 
+  % $I_a$ and $I_b$ are disjoint for each pair of depth-$(h-k+2)$ siblings $a$ and $b$.
+  % 
+  % 
+  % Apply induction on the subtree $T_{h-1}$ consisting of the first $h-1$ levels of $T$ with the value $k'=h-1$
+  % 
+  % 
+  % 
+  % 
+  %   The base case, $h=1$ (where $T$ is a star with $b$ leaves), is trivial.  Indeed, we need only show that $\prec$ is $0$-LCA-determined.  For any two distinct leaves $x$ and $y$, the depth-$1$ ancestors of $x'$ and $y'$ of $x$ and $y$ are $x'=x$ and $y'=y$, respectively.  Therefore $x\prec y$ if and only if $x'\prec y'$ so $\prec$ is $0$-LCA consistent, as required.
+  % 
+  % For $h\ge 2$, we first apply the inductive hypothesis on the complete height-$(h-1)$ subtree of $T$ obtained by removing the leaves of $T$.  Next we may assume, by \lemref{layer-colouring}, that every edge incident to every leaf is assigned the same colour by $\varphi$.  In particular, no two of these edges cross.
+  % 
+  % Therefore (after rescaling the value of $b$) we may assume that $\prec$ is LCA-determined for the subtree $T_{h-1}$ consisting of the first $h-1$ levels of $T$ and that no two edges incident to leaves of $T$ cross.  Furthermore (after doubling the value of $b$) we may assume, without loss of generality, that every edge from a leaf $x$ of $T$ to its parent $p$ has $p\prec x$.
+  % 
+  % Consider any node $a$ of depth $h-2$.  By Dilwerth's Theorem, $a$ contains a set of $r\ge \sqrt{b}$ children $a_1,\ldots,a_r$ such that $\prec$ is $0$-LCA-determined for the height-2 subtree $T_a$ rooted at $a$ that contains $a,a_1,\ldots,a_r$ and the $rd$ children of $a_1,\ldots,a_r$.  Therefore each node $a$ of depth $h-2$ can be classified as \emph{reversing} or \emph{consistent} depending on whether $T_a$ is $0$-LCA-reversing or $0$-LCA-consistent.  
+  % 
+  % At least half the nodes of depth $h-2$ are classified  as reversing or at least half the nodes are classified as consistent.  Now, we can apply \corref{large-complete-subtree} (with a rescaled value of $b$) to the height $h-2$ subtree of $T$ whose leaves are the depth $h-2$ nodes of $T$.  In this way, we may assume that $\prec$ is $(h-2)$-determined for $T$.  
+  % 
+  % There are two cases to consider:
+  % \begin{enumerate}
+  %   \item $\prec$ is $(h-2)$-LCA-consistent for $T$.  Every total order $\prec$ over $V(T)$ is $(h-1)$-consistent for $T$ and, by assumption, $\prec$ is $h-2$-LCA-consistent.  Therefore, it only remains to show that $\prec$ is $i$-determined for $T$ for each $i\in\{0,\ldots,h-3\}$.  In particular, we need only concern ourselves with leaves $x,y$ whose ancestors $v,w$ at depth $h-2$ are distinct.
+  % 
+  %   Because of \lemref{layer-colouring} we know that if $v$ and $w$ are two distinct nodes of depth $h-2$, then the children of $v$ and the children of $w$ are separated with respect to $\prec$.  Furthermore, since $\prec$ is $(h-2)$-LCA consistent, the strict descendants of $v$ and the strict descendants of $w$ are also separated with respect to $\prec$.  
+  %   Let $vx'x$  and $wy'y$ be two paths to leaves of $T$.
+  % 
+  %   As discussed above $\{y',y\}$ and $\{x',x\}$ are separable with respect to $\prec$, so, $x\prec y$ if and only if $x'\prec y'$.  The fact that $T$ is LCA-determined now follows from the fact that $T_{h-1}$ is LCA-determined.  (In short: the relative order of depth-$h$ nodes $x$ and $y$ is consistent with the relative order of their depth-$(h-1)$ parents $x'$ and $y'$ and $x'$ and $y'$ are leaves of $T_{h-1}$.)
+  % 
+  %   \item $\prec$ is $(h-2)$-LCA-reversing for $T$.  In this case we have to repeat the above process to get a subtree for which $\prec$ is $(h-3)$-LCA-determined.  
+  % 
+  %   To do this, for each depth-$(h-2)$ in $T$, let $I_a$ be the minimal interval that contains all edges of $T$ incident to leaf descendants of $a$.  Note that, for any two depth-$(h-2)$ nodes $a$ and $a'$, the intervals $I_a$ and $I_{a'}$ either nest or are disjoint.  Therefore, for each depth-$(h-3)$ node $c$ we find a find a set of $r\ge\sqrt{d}$ children $a_1,\ldots,a_{r}$ of $c$ such that the intervals $I_{a_1},\ldots,I_{a_{r}}$ are pairwise disjoint or pairwise nesting.  In the former case, the subtree $T_c$ rooted at $c$ is $0$-LCA-determined because, for any two leaves $x,y$ with distinct parents $x',y'$,  $x\prec y$ if and only if $x'\prec y'$ and the tree $T_{h-1}$ whose leaves include $x'$ and $y'$ is $0$-LCA-determined.  In the latter case, $T_c$ is also $0$-LCA-determined because $x\prec y$ if and only if $y'\prec x'$.
+  % 
+  %   Again, we can now apply \corref{large-complete-subtree} to assume that $T$ is $i$-LCA-determine for each $i\in\{h-1,h-2,h-3\}$.  If $T$ happens to be $(h-3)$-consistent then we're done (the whole thing follows from $T_{h-2}$ being LCA-determined).  If $T$ is $(h-3)$-reversing, then we have to continue.  Eventually we finish because we can always find a tree $T_1$ for which $\prec$ is LCA-consistent.
   \end{enumerate}
 \end{proof}
 
