@@ -187,6 +187,8 @@ The tree given by \lemref{layer-colouring} is useful to us because, for each $i\
 
 Let $\prec$ be a total order on the node set $V(T)$ of some complete $b$-ary $T$ of height $h$.  For any $i\in\{0,\ldots,h-1\}$, we say that $\prec$ is \emph{$i$-LCA-reversing} for $T$ if, for any pair of leaves $x,y$ whose lowest common-ancestor $a$ has depth $i$ and which $x',y'$ are the depth-$(i+1)$ ancestors of $x$ and $y$, $x\prec y$ if and only if $y'\prec x'$.  We say that $\prec$ is \emph{$i$-LCA-consistent} for $T$ if (with the same definitions of $x,y,x',y'$), $x\prec y$ if and only if $x'\prec y'$.  We say that $\prec$ is \emph{$i$-LCA-determined} for $T$ if $\prec$ is $i$-LCA-reversing or $\prec$ is $i$-LCA-consistent.  Finally, we say that $\prec$ is LCA-determined for $T$ if $\prec$ is $i$-LCA-determined for each $i\in\{1,\ldots,h\}$.
 
+
+NOTE: The following lemma might be a red herring.
 \begin{lem}
   For any $r,s\in\N$, there exits $b_0\in\N$ such that the following is true for every $b\ge b_0$.  Let $T$ be a complete $b$-ary tree of height $h\ge 1$ and let $(\prec,\varphi)$ be an $s$-stack layout of $T$.  Then $T$ contains a complete $r$-ary subtree $T'$ such that $\prec$ is LCA-determined for $T'$.
 \end{lem}
@@ -196,7 +198,7 @@ Let $\prec$ be a total order on the node set $V(T)$ of some complete $b$-ary $T$
   For any integers $h,k,r\in \N$, $k\in\{1,\ldots,h\}$, there exists $b\in\N$ such that the complete $b$-ary tree $T$ of height $h$ contains a complete $r$-ary subtree $T'$ for which $\prec$ is $i$-LCA-determined for each $i\in\{h-k,h-k+1,\ldots,h-1\}$.  Note that the lemma is the special case of this statement where $k=h$.
   
   The proof is by induction on the pair $(h,k)$, ordered lexicographically.
-  When $k=1$, the result is trivial.  Any pair of distinct leaves $x,y$ whose lowest common ancestor $a$ has depth $h-1$ are siblings.  The second vertex on the path from $a$ to $x$ is $x'=x$ and the second vertex on the path from $a$ to $y$ is $y'=y$.  Thus, it is certainly the case $x\prec y$ if and only only if $x'\prec y$, so $T$ is $(h-1)$-LCA-consistent.
+  When $k=1$, the result is trivial.  Any pair of distinct leaves $x,y$ whose lowest common ancestor $a$ has depth $h-1$ are siblings.  The second vertex on the path from $a$ to $x$ is $x'=x$ and the second vertex on the path from $a$ to $y$ is $y'=y$.  Thus, it is certainly the case $x\prec y$ if and only only if $x'\prec y'$, so $T$ is $(h-1)$-LCA-consistent.
   
   When $h=1$ the result is also trivial since, in this case $k=1$, and the preceding argument applies.
   
@@ -258,7 +260,7 @@ Let $\prec$ be a total order on the node set $V(T)$ of some complete $b$-ary $T$
   %   To do this, for each depth-$(h-2)$ in $T$, let $I_a$ be the minimal interval that contains all edges of $T$ incident to leaf descendants of $a$.  Note that, for any two depth-$(h-2)$ nodes $a$ and $a'$, the intervals $I_a$ and $I_{a'}$ either nest or are disjoint.  Therefore, for each depth-$(h-3)$ node $c$ we find a find a set of $r\ge\sqrt{d}$ children $a_1,\ldots,a_{r}$ of $c$ such that the intervals $I_{a_1},\ldots,I_{a_{r}}$ are pairwise disjoint or pairwise nesting.  In the former case, the subtree $T_c$ rooted at $c$ is $0$-LCA-determined because, for any two leaves $x,y$ with distinct parents $x',y'$,  $x\prec y$ if and only if $x'\prec y'$ and the tree $T_{h-1}$ whose leaves include $x'$ and $y'$ is $0$-LCA-determined.  In the latter case, $T_c$ is also $0$-LCA-determined because $x\prec y$ if and only if $y'\prec x'$.
   % 
   %   Again, we can now apply \corref{large-complete-subtree} to assume that $T$ is $i$-LCA-determine for each $i\in\{h-1,h-2,h-3\}$.  If $T$ happens to be $(h-3)$-consistent then we're done (the whole thing follows from $T_{h-2}$ being LCA-determined).  If $T$ is $(h-3)$-reversing, then we have to continue.  Eventually we finish because we can always find a tree $T_1$ for which $\prec$ is LCA-consistent.
-  \end{enumerate}
+  % \end{enumerate}
 \end{proof}
 
 
