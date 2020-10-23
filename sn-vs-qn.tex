@@ -232,13 +232,57 @@ The path $R$ also satisfies the 2 piles property:
 
 \subsection*{Wrapping Up}
 
-To summarize, \lemref{two-piles} shows that we can find a stack layout of a subdivision of $T$ that is spread across two piles $X$ and $Y$ that are separated with respect to $\prec$.  In fact, in each pile, we can find at least one copy of each node of $T$.  Recall now that the graph $H$ we are using contains edges from $v$ to the grandparent of $v$ for each node of $T$.  Therefore, for each vertex $x$ in pile $X$, there is either a copy $g'$ of $x$'s parent or grandparent also in pile $X$ and the edge $xg'$ is in $G$.  Therefore $X$ contains an induced $B$-ary tree of height at least $h/2$.  Therefore the vertices in $X$ defines a rainbow $M$ of height at least $h/4$.
+To summarize, \lemref{two-piles} shows that we can find a stack layout of a subdivision of $T$ that is spread across two piles $X$ and $Y$ that are separated with respect to $\prec$.  In fact, in each pile, we can find at least one copy of each node of $T$.
+
+\begin{lem}
+    For each node $v$ in $T$ of depth $i\ge 1$, there exists vertices $(v,a)\in X$ and $(v,a')\in Y$ such that $aa'$ is an edge of $Q$.
+\end{lem}
+
+\begin{proof}
+    For each $i\in\{1,\ldots,h\}$, the path $R$ contains a at least one horizontal edge $(i,a)(i,a')$.  The proof of \lemref{two-piles} places one endpoint of this edge in $A$ and the other endpoint in $B$.  The endpoint in $A$ produces a copy of all depth-$i$ nodes in $X$ and the copy in $B$ produces a copy of all depth-$i$ nodes in $Y$.  Each of these includes a copy of $v$.
+\end{proof}
+
+Recall now that the graph $H$ we are using contains edges from $v$ to the grandparent of $v$ for each node of $T$.
+
+\begin{lem}
+    For each vertex $(v,a)\in X$ of depth $i\ge 1$, there is a vertex $(w,a')\in X$ such that $w$ is the parent of $v$ in $T$ and the edge $(v,a)(w,a')$ is in $G$.
+\end{lem}
+
+\begin{proof}
+
+\end{proof}
+
+
+Therefore, for each vertex $x$ in pile $X$, there is either a copy $g'$ of $x$'s parent or grandparent also in pile $X$ and the edge $xg'$ is in $G$.
+
+
+
+
+
+
+
+
+
+
+
+Therefore $X$ contains an induced $B$-ary tree of height at least $h/2$.  Therefore the vertices in $X$ defines a rainbow $M$ of height at least $h/4$.
 
 Now, for each edge $xy$ of $M$ there is a copy $x'$ of $x$ in $Y$ (or maybe a parent or maybe a grandparent or whatever) and the edges $xx'$ and $yx'$ are both in $G$.  But this implies that graph induced by $X$ and $Y$ contains a set of $\Omega(\sqrt{h})$ pairwise crosssing edges.  That's it!
 
 \begin{lem}
     $\sn(H\boxtimes P^2\boxtimes P^2) \in \Omega(\sqrt{h})$.
 \end{lem}
+
+
+For one thing, we can assume that the rainbow m does not contain two siblings or two cousins by only keeping edges whose depth modulo 5 is in {0,1} or {1,2} or {2,3} or {3,4} or {4,0}.  One of those 5 sets has size at least |M|/5 and those sets contain no cousins or siblings.  This ensures that when we assign each endpoint of M to its parent or grandparent in pile Y then we get a 2-to-1 function.
+For each node v at depth i+1, there is at least one copy of its parent in pile X and one copy in pile Y.  Why are they adjacent?  Good question.  For that we might have to be a bit more careful but, like I said, the argument is robust.  Here's an approach, but maybe not the simplest:
+I mentioned once that, in each colouring of Q every connected component of blue edges is small.  I can justify that with: Since Q has bounded degree, if it contains a large blue component then it has a long blue path.  One long blue path is any of the h+1 colourings of Q is enough.
+So now since 
+
+
+For that I think we have to consider how we're getting the tree of height h/2.  
+
+
 
 
 
