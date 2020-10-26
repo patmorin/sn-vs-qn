@@ -3,6 +3,7 @@
 \usepackage{paralist,graphicx}
 
 \usepackage[utf8]{inputenc}
+\usepackage{todonotes}
 
 \usepackage[noabbrev,capitalise]{cleveref}
 \crefname{lem}{Lemma}{Lemmas}
@@ -65,7 +66,7 @@
 	,\,\,
 	Pat Morin%
 	\thanks{School of Computer Science, Carleton University, Ottawa, Canada (\texttt{morin@scs.carleton.ca}). Research  supported by NSERC and the Ontario Ministry of Research and Innovation.}
-	,\,\, 
+	,\,\,
 	David R. Wood\thanks{School of Mathematics, Monash University, Melbourne, Australia (\texttt{david.wood@monash.edu}). Research supported by the Australian Research Council.}
 }
 
@@ -90,14 +91,14 @@ BOUNDED PARAMETERS
 
 IMPORTANT PAPERS \citep{HLR92,CLR87,Pupyrev20,DujWoo05,HR92}
 
-IS STACK-NUMBER BOUNDED BY QUEUE-NUMBER? 
+IS STACK-NUMBER BOUNDED BY QUEUE-NUMBER?
 
-\citet{HLR92} showed that every 1-queue graph has a 2-stack layout. 
-\citet{HLR92} showed that the ternary hypercubes requires exponentially more stacks than queues. In particular, $n$-vertex ternary hypercubes have queue-number at most $2 \log_3 n$, but stack-number at least $\Omega(n^{1/9-\epsilon})$ for any $\epsilon>0$. We prove the following theorem, which shows that stack-number is not bounded by queue-number. 
+\citet{HLR92} showed that every 1-queue graph has a 2-stack layout.
+\citet{HLR92} showed that the ternary hypercubes requires exponentially more stacks than queues. In particular, $n$-vertex ternary hypercubes have queue-number at most $2 \log_3 n$, but stack-number at least $\Omega(n^{1/9-\epsilon})$ for any $\epsilon>0$. We prove the following theorem, which shows that stack-number is not bounded by queue-number.
 
 \begin{thm}\label{family}
 %  There exists a family $\mathcal{F}$ of graphs for which $\qn(G)\le 4$ for every $G\in\mathcal{F}$, and for every $s\in\N$, there exists $G\in\mathcal{F}$ for which $\sn(G)>s$.
- For every $s\in \N$ there exists a graph $G$ with $\qn(G)\le 4$ and $\sn(G)>s$.  
+ For every $s\in \N$ there exists a graph $G$ with $\qn(G)\le 4$ and $\sn(G)>s$.
 \end{thm}
 
 IS QUEUE-NUMBER BOUNDED BY STACK-NUMBER?
@@ -109,27 +110,27 @@ BLANKENSHIP AND OPOROWSKI CONJECTURE \citep{BO99,BO01}
 
 %Specifically,
 %\[
-%    \mathcal{F} := \{ S_B\square Q_n : B,Q\in\N\}
+%    \mathcal{F} := \{ S_b\square Q_n : b,n\in\N\}
 %\]
-%where $S_B$ denotes the star with $B$ leaves and $Q_n$ is the triangulated $n\times n$ grid.
+%where $S_b$ denotes the star with $b$ leaves and $Q_n$ is the triangulated $n\times n$ grid.
 
-The graph $G$ in \cref{family} is obtained as follow. Let $S_B$ denote the star graph with root $r$ and $B$ leaves.  Let $Q_n$ be the $n\times n$ triangulated grid, defined by $V(Q):=\{1,\ldots,n\}^2$ and
+The graph $G$ in \cref{family} is obtained as follow. Let $S_b$ denote the star graph with root $r$ and $b$ leaves.  Let $Q_n$ be the $n\times n$ triangulated grid, defined by $V(Q):=\{1,\ldots,n\}^2$ and
 \begin{align*}
 E(Q) & :=\{(x,y)(x+1,y):x\in\{1,\ldots,n-1\},\,y\in\{1,\ldots,n\}\} \\
 & \qquad \cup \{(x,y)(x,y+1):x\in\{1,\ldots,n\},\,y\in\{1,\ldots,n-1\}\} \\
 & \qquad \cup \{(x,y)(x+1,y+1):x,y\in\{1,\ldots,n-1\}\} \enspace .
 \end{align*}
-We consider the graph $G:=S_B\square Q_n$. That is, $V(G)=V(S_B)\times V(Q_n)$ where vertices $(v_1,w_1),(v_2,w_2)\in V(G)$ are adjacent whenever $v_1=w_1$ and $v_2w_2\in E(Q_n)$, or $v_1w_1\in E(S_B)$ and $v_2=w_2$. 
+We consider the graph $G:=S_b\square Q_n$. That is, $V(G)=V(S_b)\times V(Q_n)$ where vertices $(v_1,w_1),(v_2,w_2)\in V(G)$ are adjacent whenever $v_1=w_1$ and $v_2w_2\in E(Q_n)$, or $v_1w_1\in E(S_b)$ and $v_2=w_2$.
 
 \includegraphics[width=\textwidth]{figs/figure}
 
 
 \section{Queue-Number Upper Bound}
 
-To prove that $\qn(G)\leq 4$ in Theorem~\ref{family} we need the following definition due to \citet{Wood-Queue-DMTCS05}. A queue layout $(\varphi,\prec)$ is \emph{strict} if for every vertex $u\in V(G)$ and for all neighbours $v,w\in N_G(u)$ with $u\prec v,w$ or $v,w \prec u$, we have $\phi(uv)\neq \phi(uw)$. Let $\sqn(G)$ be the minimum integer $k$ such that $G$ has a strict $k$-queue layout. 
-Note that $\sqn(Q_n) \leq 3$: Order the vertices row-by-row and then left-to-right within a row, with vertical edges in one queue, horizontal edges in one queue, and diagonal edges in another queue. 
-\citet{Wood-Queue-DMTCS05} proved that $\qn(G \square H) \leq \qn(G) + \sqn(H)$ for all graphs $G$ and $H$. Of course, $S_B$ has a 1-queue layout (since no two edges are nested for any vertex-ordering). Thus 
-$$\qn(S_B \square Q_n)\leq 4.$$
+To prove that $\qn(G)\leq 4$ in Theorem~\ref{family} we need the following definition due to \citet{Wood-Queue-DMTCS05}. A queue layout $(\varphi,\prec)$ is \emph{strict} if for every vertex $u\in V(G)$ and for all neighbours $v,w\in N_G(u)$ with $u\prec v,w$ or $v,w \prec u$, we have $\phi(uv)\neq \phi(uw)$. Let $\sqn(G)$ be the minimum integer $k$ such that $G$ has a strict $k$-queue layout.
+Note that $\sqn(Q_n) \leq 3$: Order the vertices row-by-row and then left-to-right within a row, with vertical edges in one queue, horizontal edges in one queue, and diagonal edges in another queue.
+\citet{Wood-Queue-DMTCS05} proved that $\qn(G \square H) \leq \qn(G) + \sqn(H)$ for all graphs $G$ and $H$. Of course, $S_b$ has a 1-queue layout (since no two edges are nested for any vertex-ordering). Thus
+$$\qn(S_b \square Q_n)\leq 4.$$
 
 
 ADD TO DISCUSSION LATER:	$Q$ is planar with a Hamiltonian cycle (assuming $n$ is even), so $\sn(Q) \leq 2$
@@ -137,33 +138,36 @@ ADD TO DISCUSSION LATER:	$Q$ is planar with a Hamiltonian cycle (assuming $n$ is
 
 \section{Stack-Number Lower Bound}
 
-Consider a hypothetical $s$-stack layout $(\varphi,\prec)$ of $G$ where $n$ and $B$ are chosen sufficiently large compared to $s$ as detailed below. 
+Consider a hypothetical $s$-stack layout $(\varphi,\prec)$ of $G$ where $n$ and $b$ are chosen sufficiently large compared to $s$ as detailed below.  We begin with three lemmata that, for sufficiently large $b$, allow us to find a large subgraph $S_d$ of $S_b$ for which the stack layout $(\varphi,\prec)$ of $S_d\square Q$ is highly structured.
+
+\todo[inline]{Does anyone know if there is a standard box operator that is typeset like this $S\boxtimes Q$ or $S\boxdot Q$ instead of like this $S\square Q$ or like this $S\Box Q$?  I tried square and Box.}
+
 
 For each node $v$ of $S_b$, we define $\pi_v$ as the permutation of $\{1,\ldots,n\}^2$ in which $(x_1,y_1)$ appears before $(x_2,y_2)$ if and only $(v,x_1,y_1)\prec (v,x_2,y_2)$.  The following lemma is an immediate consequence of the Pigeonhole Principle:
 
 \begin{lem}\lemlabel{uniform_order}
-    There exists a permutation $\pi$ of $\{1,\ldots,n\}^2$ and a set $L_1$ of leaves of $S_B$ of size $B_1\ge \lceil B/(n^2)!\rceil$ such that $\pi_{v}=\pi$ for each $v\in L_1$.
+    There exists a permutation $\pi$ of $\{1,\ldots,n\}^2$ and a set $L_1$ of leaves of $S_b$ of size $b_1\ge \lceil b/(n^2)!\rceil$ such that $\pi_{v}=\pi$ for each $v\in L_1$.
 \end{lem}
 
 For each leaf $v$ in $L$, consider the subgraph $Q_v$ of $G$ induced by the vertex set $\{(v,x,y):x,y\in\{1,\ldots,n\}$.  The edge colouring $\varphi$ used in the stack layout gives an edge colouring of $Q_v$ using $s$ colours.  The graph $Q_v$ is isomorphic to $Q$, so the edge colouring of $Q_v$ defines an edge colouring of $Q$.  We call this colouring of $Q$ $\varphi_v:Q\to\{1,\ldots,s\}$.  The graph $Q$ has less than $7n^2$ edges, so there are fewer than $s^{7n^2}$ edge colourings of $Q$.  Another application of the Pigeonhole Principle proves the following:
 
 \begin{lem}\lemlabel{uniform_colour}
-    There exists a subset $L_2\subseteq L_1$ of size $B_2\ge B_1/s^{7n^2}$
+    There exists a subset $L_2\subseteq L_1$ of size $b_2\ge b_1/s^{7n^2}$
     and an edge colouring $\varphi_0:Q\to\{1,\ldots,s\}$ such that $\varphi_v=\varphi_0$ for each $v\in L_2$.
 \end{lem}
 
 
 
 \begin{lem}\lemlabel{forward_or_backward}
-    There exists a sequence $L_3:=u_1,\ldots,u_{B_3}$ with $\{u_1,\ldots,u_{B_3}\}\subseteq L_2$ of length $B_3\ge (B_2)^{1/2^{n^2-1}}$ such that, for each $p\in V(Q)$, $(u_1,p)\prec (u_2,p)\prec\cdots\prec (u_{B_3},p)$ or $(u_1,p)\succ (u_2,p)\succ\cdots\succ (u_{B_3},p)$.
+    There exists a sequence $L_3:=u_1,\ldots,u_{b_3}$ with $\{u_1,\ldots,u_{b_3}\}\subseteq L_2$ of length $b_3\ge (b_2)^{1/2^{n^2-1}}$ such that, for each $p\in V(Q)$, $(u_1,p)\prec (u_2,p)\prec\cdots\prec (u_{b_3},p)$ or $(u_1,p)\succ (u_2,p)\succ\cdots\succ (u_{b_3},p)$.
 \end{lem}
 
 \begin{proof}
     Let $p_1,\ldots,p_{n^2}$ denote the vertices of $Q$, in any order.
-    Begin with the sequence $S_1:=v_{1,1},\ldots,v_{1,b}$ that contains all $b_1:=B_2$ elements of $L_2$ ordered so that $(v_{1,1},p_1)\prec\cdots(v_{1,b},p_1)$.  For each $i\in\{2,\ldots,n^2\}$, the Erd\H{o}s-Szekeres Theorem implies that, $S_{i-1}$ contains a subsequence $S_i:=v_{i,1},\ldots,v_{i,b_i}$ of length $b_i\ge \sqrt{|S_{i-1}|}$ such that $(v_{i,1},p_i)\prec\cdots\prec(v_{i,b_i},p_i)$ or $(v_{i,1},p_i)\succ\cdots\succ(v_{i,b_i},p_i)$.  It is straightforward to verify by induction that $b_i \ge B_3^{1/2^{i-1}}$ resulting in a final sequence $S_{n^2}$ of length at least $B_2^{1/2^{n^2-1}}$.
+    Begin with the sequence $S_1:=v_{1,1},\ldots,v_{1,b}$ that contains all $b_1:=b_2$ elements of $L_2$ ordered so that $(v_{1,1},p_1)\prec\cdots(v_{1,b},p_1)$.  For each $i\in\{2,\ldots,n^2\}$, the Erd\H{o}s-Szekeres Theorem implies that, $S_{i-1}$ contains a subsequence $S_i:=v_{i,1},\ldots,v_{i,b_i}$ of length $b_i\ge \sqrt{|S_{i-1}|}$ such that $(v_{i,1},p_i)\prec\cdots\prec(v_{i,b_i},p_i)$ or $(v_{i,1},p_i)\succ\cdots\succ(v_{i,b_i},p_i)$.  It is straightforward to verify by induction that $b_i \ge b_3^{1/2^{i-1}}$ resulting in a final sequence $S_{n^2}$ of length at least $b_2^{1/2^{n^2-1}}$.
 \end{proof}
 
-Let $d=B_3$ and let $S_d$ be the the subgraph of $S_b$ induced by $\{r\}\cup\{u_1,\ldots,u_{d}\}$ where $u_1,\ldots,u_d$ is the sequence of leaves defined in \lemref{forward_or_backward}.  Consider the vertex colouring of $Q$ obtained by colouring each vertex $p\in V(Q)$ \emph{red} if $(u_1,p)\prec\cdots\prec (u_d,p)$ and colouring $p$ \emph{blue} if $(u_1,p)\succ\cdots\succ(u_d,p)$.
+Let $d=b_3$ and let $S_d$ be the the subgraph of $S_b$ induced by $\{r\}\cup\{u_1,\ldots,u_{d}\}$ where $u_1,\ldots,u_d$ is the sequence of leaves defined in \lemref{forward_or_backward}.  Consider the vertex colouring of $Q$ obtained by colouring each vertex $p\in V(Q)$ \emph{red} if $(u_1,p)\prec\cdots\prec (u_d,p)$ and colouring $p$ \emph{blue} if $(u_1,p)\succ\cdots\succ(u_d,p)$.
 
 \begin{lem}\lemlabel{hex_lemma}
     The graph $Q$ contains an $n$-vertex path $R$ consisting entirely of red vertices or entirely of blue vertices.
@@ -207,11 +211,17 @@ Recall that $(\varphi,\prec)$ is a hypothetical $s$-stack layout of $G$ and ther
         \item By the application of \lemref{hex_lemma} the order of vertices in $Q_{i-1}$ by $\prec$ is identical to the order of vertices in $Q_i$ by $\prec$.  That is $(v,p_{i-1})\prec (w,p_{i-1})$ if and only if $(v,p_{i})\prec (w,p_{i})$ for each $v,w\in A_{i-1}$.
         \item By \lemref{uniform_order}, $(v,p_{i-1})\prec (v,p_i)$ for every $v\in A_{i-1}$ or $(v,p_{i-1})\succ (v,p_i)$ for every $v\in A_{i-1}$.
     \end{compactenum}
-    These three conditions imply that the vertex sets $Q_{i-1}$ and $Q_{i}$ interleave perfectly with respect to $\prec$. More precisely,
-    \[
-        (v_1,p_{i-1+b})\prec (v_1,p_{i-b}) \prec (v_2,p_{i-1+b}) \prec (v_2,p_{i-b}) \cdots \prec (v_r,p_{i-1+b}) \prec (v_r,p_{i-b})
-    \]
-    for some $b\in\{0,1\}$.  Suppose, without loss of generality that $b=0$. [TODO: Explain why (P1)--(P3) imply a perfect interleave.]
+    We claim that these three conditions imply that the vertex sets $Q_{i-1}$ and $Q_{i}$ interleave perfectly with respect to $\prec$. More precisely:
+	\begin{clm}\clmlabel{interleave} $(v_1,p_{i-1+b})\prec (v_1,p_{i-b}) \prec (v_2,p_{i-1+b}) \prec (v_2,p_{i-b}) \cdots \prec (v_r,p_{i-1+b}) \prec (v_r,p_{i-b})$ for some $b\in\{0,1\}$.
+	\end{clm}
+	\begin{proof}[Proof of \clmref{interleave}]
+		\todo{Finish proof.}This completes the proof of \clmref{interleave}.
+	\end{proof}
+
+	Now, apply \clmref{interleave} and assume, without loss of generality that $b=0$, so that
+	\[
+		(v_1,p_{i-1})\prec (v_1,p_{i}) \prec (v_2,p_{i-1}) \prec (v_2,p_{i}) \cdots \prec (v_r,p_{i-1}) \prec (v_r,p_{i}) \enspace .
+	\]
 
     For each odd $j\in\{1,\ldots,r-2\}$ we have $(v_j,p_i)\prec (v_{j+1},p_{i-1}) \prec Z_{j+2}$.  Therefore $Z_j\cup\{(v_j,p_i)\} \prec Z_{j+2}$.  By a symmetric argument, $Z_j\cup\{(v_j,p_i)\} \succ Z_{j-2}$ for each odd $j\in\{3,\ldots,r\}$.  Finally, since $(v_{j},p_i)\prec (v_{j+2},p_i)$ for each odd $i\in\{1,\ldots,r\}$, we have $Z_{j}\cup\{(v_j,p_i)\} \prec Z_{j+2}\cup\{(v_{j+2},p_i)\}$ for each odd $j\in\{1,\ldots,r-2\}$.  Thus $A_i$ satisifies (C2) since the sets $Z_1\cup\{(v_1,p_i)\},Z_3\cup\{(v_3,p_i)\},\ldots,Z_{2\floor (r-1)/2\rfloor+1} \cup (v_{2\floor (r-1)/2\rfloor+1},p_i)$ are precisely the sets $Z_{i,1},\ldots,Z_{i,d_i}$ determined by our choice of $A_i$.
 \end{proof}
