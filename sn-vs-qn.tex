@@ -118,13 +118,16 @@ BLANKENSHIP AND OPOROWSKI CONJECTURE \citep{BO99,BO01}
 %\]
 %where $S_b$ denotes the star with $b$ leaves and $Q_n$ is the triangulated $n\times n$ grid.
 
-The graph $G$ in \cref{family} is obtained as follow. Let $S_b$ denote the star graph with root $r$ and $b$ leaves.  For an even positive integer $n$, let $Q_n$ be the $n\times n$ triangulated grid, defined by $V(Q_n):=\{1,\ldots,n\}^2$ and
+\todo[inline]{Does anyone know if there is a standard box operator that is typeset like this $S\boxtimes Q$ or $S\boxdot Q$ instead of like this $S\square Q$ or like this $S\Box Q$?  I tried square and Box.}
+
+
+The graph $G$ in \cref{family} is obtained as follows (See \figref{graph}): Let $S_b$ denote the star graph with root $r$ and $b$ leaves.  For an even positive integer $n$, let $Q_n$ be the $n\times n$ triangulated grid, defined by $V(Q_n):=\{1,\ldots,n\}^2$ and
 \begin{align*}
 E(Q_n) & :=\{(x,y)(x+1,y):x\in\{1,\ldots,n-1\},\,y\in\{1,\ldots,n\}\} \\
 & \qquad \cup \{(x,y)(x,y+1):x\in\{1,\ldots,n\},\,y\in\{1,\ldots,n-1\}\} \\
 & \qquad \cup \{(x,y+1)(x+1,y):x,y\in\{1,\ldots,n-1\}\} \enspace .
 \end{align*}
-We consider the graph $G:=S_b\square Q_n$. See \figref{graph}. That is, $V(G)=V(S_b)\times V(Q_n)$ where vertices $(v_1,w_1),(v_2,w_2)\in V(G)$ are adjacent whenever $v_1=w_1$ and $v_2w_2\in E(Q_n)$, or $v_1w_1\in E(S_b)$ and $v_2=w_2$.\todo{Suggestion: Replace $Q_n$ with $H$ (for \emph{H}ex)}
+We consider the graph $G:=S_b\square Q_n$. That is, $V(G)=V(S_b)\times V(Q_n)$ where vertices $(v_1,w_1),(v_2,w_2)\in V(G)$ are adjacent whenever $v_1=w_1$ and $v_2w_2\in E(Q_n)$, or $v_1w_1\in E(S_b)$ and $v_2=w_2$.\todo{Suggestion: Replace $Q_n$ with $H$ (for \emph{H}ex)}
 
 \begin{figure}
 	\begin{center}
@@ -140,7 +143,7 @@ We consider the graph $G:=S_b\square Q_n$. See \figref{graph}. That is, $V(G)=V(
 
 \section{Queue-Number Upper Bound}
 
-To prove that $\qn(G)\leq 4$ in Theorem~\ref{family} we need the following definition due to \citet{Wood-Queue-DMTCS05}. A queue layout $(\varphi,\prec)$ is \emph{strict} if for every vertex $u\in V(G)$ and for all neighbours $v,w\in N_G(u)$ with $u\prec v,w$ or $v,w \prec u$, we have $\phi(uv)\neq \phi(uw)$. Let $\sqn(G)$ be the minimum integer $k$ such that $G$ has a strict $k$-queue layout.
+To prove that $\qn(G)\leq 4$ in Theorem~\ref{family} we need the following definition due to \citet{Wood-Queue-DMTCS05}. A queue layout $(\varphi,\prec)$ is \emph{strict} if for every vertex $u\in V(G)$ and for all neighbours $v,w\in N_G(u)$ with $u\prec v,w$ or $v,w \prec u$, we have $\varphi(uv)\neq \varphi(uw)$. Let $\sqn(G)$ be the minimum integer $k$ such that $G$ has a strict $k$-queue layout.
 Note that $\sqn(Q_n) \leq 3$: Order the vertices row-by-row and then left-to-right within a row, with vertical edges in one queue, horizontal edges in one queue, and diagonal edges in another queue.
 \citet{Wood-Queue-DMTCS05} proved that $\qn(G \square H) \leq \qn(G) + \sqn(H)$ for all graphs $G$ and $H$. Of course, $S_b$ has a 1-queue layout (since no two edges are nested for any vertex-ordering). Thus
 $$\qn(S_b \square Q_n)\leq 4.$$
@@ -153,14 +156,13 @@ ADD TO DISCUSSION LATER:	$Q_n$ is planar with a Hamiltonian cycle (assuming $n$ 
 
 Consider a hypothetical $s$-stack layout $(\varphi,\prec)$ of $G$ where $n$ and $b$ are chosen sufficiently large compared to $s$ as detailed below.  We begin with three lemmata that, for sufficiently large $b$, allow us to find a large subgraph $S_d$ of $S_b$ for which the stack layout $(\varphi,\prec)$ of $S_d\square Q_n$ is highly structured.
 
-\todo[inline]{Does anyone know if there is a standard box operator that is typeset like this $S\boxtimes Q$ or $S\boxdot Q$ instead of like this $S\square Q$ or like this $S\Box Q$?  I tried square and Box.}
-
-
 For each node $v$ of $S_b$, we define $\pi_v$ as the permutation of $\{1,\ldots,n\}^2$ in which $(x_1,y_1)$ appears before $(x_2,y_2)$ if and only $(v,x_1,y_1)\prec (v,x_2,y_2)$.  The following lemma is an immediate consequence of the Pigeonhole Principle:
 
 \begin{lem}\lemlabel{uniform_order}
     There exists a permutation $\pi$ of $\{1,\ldots,n\}^2$ and a set $L_1$ of leaves of $S_b$ of size $b_1\ge \lceil b/(n^2)!\rceil$ such that $\pi_{v}=\pi$ for each $v\in L_1$.
 \end{lem}
+
+\todo[inline]{If we cared, we could improve this to $b/2^{cn^2}$ since we only use the weaker property (P3) in the final proof.}
 
 For each leaf $v$ in $L$, let $\varphi_v$ be the edge colouring of $Q_n$ defined by $\varphi_v(x,y):=\varphi(v,x,y)$.  The edges of $Q_n$ are defined as the union of three sets, each of which has size less than $n^2$, so $Q_n$ has less than $3n^2$ edges.  Therefore are fewer than $s^{3n^2}$ edge colourings of $Q_n$ using $s$ colours.  Another application of the Pigeonhole Principle proves the following:
 
@@ -169,15 +171,15 @@ For each leaf $v$ in $L$, let $\varphi_v$ be the edge colouring of $Q_n$ defined
     and an edge colouring $\varphi_0:Q_n\to\{1,\ldots,s\}$ such that $\varphi_v=\varphi_0$ for each $v\in L_2$.
 \end{lem}
 
-The preceding two lemmas ensure that, for distinct leaves $v$ and $w$ of $S_{b_2}$, the stack layout of the isomorphic graphs $Q_v:=G[\{(v,p):p\in V(Q)]$ and $Q_w:=G[\{(w,p):p\in V(Q)]$ is identical.  The next lemma is a statement about the relationships between the stack layouts of $S_p:=G[\{(v,p):v\in V(S_{b_2})]$ and $S_q:=G[\{(v,q):v\in V(S_{b_2})]$ for two distinct $p,q\in V(Q)$.  It cannot assert that these two layouts are identical but it does state that they fall into one of two categories.
+The preceding two lemmata ensure that, for distinct leaves $v$ and $w$ of $S_{b_2}$, the stack layout of the isomorphic graphs $Q_v:=G[\{(v,p):p\in V(Q)]$ and $Q_w:=G[\{(w,p):p\in V(Q)]$ is identical.  The next lemma is a statement about the relationships between the stack layouts of $S_p:=G[\{(v,p):v\in V(S_{b_2})]$ and $S_q:=G[\{(v,q):v\in V(S_{b_2})]$ for two distinct $p,q\in V(Q)$.  It cannot assert that these two layouts are identical but it does state that they fall into one of two categories.
 
 \begin{lem}\lemlabel{forward_or_backward}
-    There exists a sequence $L_3:=u_1,\ldots,u_{b_3}$ with $\{u_1,\ldots,u_{b_3}\}\subseteq L_2$ of length $b_3\ge (b_2)^{1/2^{n^2-1}}$ such that, for each $p\in V(Q_n)$, $(u_1,p)\prec (u_2,p)\prec\cdots\prec (u_{b_3},p)$ or $(u_1,p)\succ (u_2,p)\succ\cdots\succ (u_{b_3},p)$.
+    There exists a sequence $L_3:=u_1,\ldots,u_{b_3}$ with $\{u_1,\ldots,u_{b_3}\}\subseteq L_2$ of length $b_3\ge b_2^{1/2^{n^2-1}}$ such that, for each $p\in V(Q_n)$, $(u_1,p)\prec (u_2,p)\prec\cdots\prec (u_{b_3},p)$ or $(u_1,p)\succ (u_2,p)\succ\cdots\succ (u_{b_3},p)$.
 \end{lem}
 
 \begin{proof}
     Let $p_1,\ldots,p_{n^2}$ denote the vertices of $Q_n$, in any order.
-    Begin with the sequence $S_1:=v_{1,1},\ldots,v_{1,d_1}$ that contains all $d_1:=b_2$ elements of $L_2$ ordered so that $(v_{1,1},p_1)\prec\cdots\prec(v_{1,d_1},p_1)$.  For each $i\in\{2,\ldots,n^2\}$, the Erd\H{o}s-Szekeres Theorem implies that, $S_{i-1}$ contains a subsequence $S_i:=v_{i,1},\ldots,v_{i,d_i}$ of length $d_i\ge \sqrt{|S_{i-1}|}$ such that $(v_{i,1},p_i)\prec\cdots\prec(v_{i,d_i},p_i)$ or $(v_{i,1},p_i)\succ\cdots\succ(v_{i,d_i},p_i)$.  It is straightforward to verify by induction that $d_i \ge b_2^{1/2^{i-1}}$ resulting in a final sequence $S_{n^2}=:L_3$ of length at least $b_2^{1/2^{n^2-1}}$.
+    Begin with the sequence $S_1:=v_{1,1},\ldots,v_{1,d_1}$ that contains all $d_1:=b_2$ elements of $L_2$ ordered so that $(v_{1,1},p_1)\prec\cdots\prec(v_{1,d_1},p_1)$.  For each $i\in\{2,\ldots,n^2\}$, the Erd\H{o}s-Szekeres Theorem\todo{Reference?} implies that, $S_{i-1}$ contains a subsequence $S_i:=v_{i,1},\ldots,v_{i,d_i}$ of length $d_i\ge \sqrt{|S_{i-1}|}$ such that $(v_{i,1},p_i)\prec\cdots\prec(v_{i,d_i},p_i)$ or $(v_{i,1},p_i)\succ\cdots\succ(v_{i,d_i},p_i)$.  It is straightforward to verify by induction on $i$ that $d_i \ge b_2^{1/2^{i-1}}$ resulting in a final sequence $S_{n^2}=:L_3$ of length at least $b_2^{1/2^{n^2-1}}$.
 \end{proof}
 
 Let $d:=b_3$ and let $S_d$ be the the subgraph of $S_b$ induced by $\{r\}\cup\{u_1,\ldots,u_{d}\}$ where $u_1,\ldots,u_d$ is the sequence of leaves defined in \lemref{forward_or_backward}.  Consider the (improper) vertex colouring of $Q_n$ obtained by colouring each vertex $p\in V(Q_n)$ \emph{red} if $(u_1,p)\prec\cdots\prec (u_d,p)$ and colouring $p$ \emph{blue} if $(u_1,p)\succ\cdots\succ(u_d,p)$.
@@ -196,16 +198,16 @@ Let $d:=b_3$ and let $S_d$ be the the subgraph of $S_b$ induced by $\{r\}\cup\{u
 \end{proof}
 
 Without loss of generality, assume that the path $R:=p_1,\ldots,p_n$ defined by \lemref{hex_lemma} consists entirely of red vertices, so that $(u_1,p_j)\prec\cdots\prec (u_d,p_j)$ for each $j\in\{1,\ldots,n\}$.
-Recall that $(\varphi,\prec)$ is a hypothetical $s$-stack layout of $G$ and therefore it is also an $s$-stack layout of the subgraph $X:=S_d\square R$.  The following result finishes the proof by showing that this is not possible when $n> 2s$ and $d> s2^{2s+1}$.
+Recall that $(\varphi,\prec)$ is a hypothetical $s$-stack layout of $G$ and therefore it is also an $s$-stack layout of the subgraph $X:=S_d\square R$.  The following result finishes the proof by showing that this is not possible when $n> 2s$ and $d> s2^{n}$.
 
 \begin{lem}
-    The graph $X$ contains a set of edges of size at least $\min\{d/2^{n},n\}/2$ that are pairwise crossing with respect to $\prec$.
+    The graph $X$ contains a set of edges of size at least $\min\{d/2^{n},n/2\}$ that are pairwise crossing with respect to $\prec$.
 \end{lem}
 
 \begin{proof}
-    We will define two sequences of nested sets $A_1\supseteq A_1\supseteq A_{n}$ of leaves of $S_d$ so that each $A_i$ satisifies the following conditions:
+    We will define two sequences of nested sets $A_1\supseteq \cdots\supseteq A_{n}$ of leaves of $S_d$ so that each $A_i$ satisifies the following conditions:
     \begin{compactenum}[(C1)]
-        \item $A_i$ contain $d_i\ge d/2^i$ leaves of $S_d$.
+        \item $A_i$ contain $d_i\ge d/2^{i-1}$ leaves of $S_d$.
         \item Each leaf $v\in A_i$ defines an $i$-element vertex set $Z_{i,v}:=\{(v,p_j):j\in\{1,\ldots,i\}\}$.  For any distinct $v,w\in A_i$, $Z_{i,v}$ and $Z_{i,w}$ are \emph{separated} with respect to $\prec$, i.e., $Z_{i,v}\prec Z_{i,w}$ or $Z_{i,v}\succ Z_{i,w}$.
     \end{compactenum}
 
@@ -218,17 +220,17 @@ Recall that $(\varphi,\prec)$ is a hypothetical $s$-stack layout of $G$ and ther
 		\figlabel{twister}
 	\end{figure}
 
-    Since $Z_{n,v_1},\ldots,Z_{n,v_{d'}}$ are separated with respect to $\prec$, when viewed from afar, this situation looks like a complete bipartite graph $K_{n,d'}$ with the root vertices $L:=\{(r,p_j):j\in\{1,\ldots,n\}\}$ in left part and the groups $R:=Z_{n,v_1}\cup\cdots\cup Z_{n,v_{d'}}$ in the right part.  Any linear ordering of $K_{n,d'}$ has a large set of pairwise crossing edges so, intuitively, the graph induced by $L\cup R$ should also have a large set of pairwise crossing edges. \lemref{twister}, below, formalizes this and shows that this graph has a set of at least $\min\{d',n\}/2$ pairwise crossing edges.
+    Since $Z_{n,v_1},\ldots,Z_{n,v_{d'}}$ are separated with respect to $\prec$, when viewed from afar, this situation looks like a complete bipartite graph $K_{n,d'}$ with the root vertices $L:=\{(r,p_j):j\in\{1,\ldots,n\}\}$ in one part and the groups $R:=Z_{n,v_1}\cup\cdots\cup Z_{n,v_{d'}}$ in the other part.  Any linear ordering of $K_{n,d'}$ has a large set of pairwise crossing edges so, intuitively, the graph induced by $L\cup R$ should also have a large set of pairwise crossing edges. \lemref{twister}, below, formalizes this and shows that this graph has a set of at least $\min\{d',n\}/2$ pairwise crossing edges.
 
-    All that remains is to define the sets $A_1\supseteq\cdots\supseteq A_n$.  The set $A_1$ contains all the leaves of $S_d$.  For each $i\in\{2,\ldots,n\}$, the set $A_i$ is defined as follows:  Let $Z_1,\ldots,Z_r$ denote the sets $\{\{(v,p_j):j\in\{1,\ldots,i-1\}\}:v\in A_{i-1}\}$ ordered so that $Z_1\prec\cdots\prec Z_r$.  By Property (C2), this is always possible.	Label the vertices of $A_{i-1}$ as $v_1,\ldots,v_r$ so that $(v_1,p_{i-1})\prec\cdots\prec (v_r,p_{i-1})$.   (This is equivalent to naming them so that $(v_j,p_j)\in Z_j$ for each $j\in\{1,\ldots,r\}$.)  We define the set $A_i:=\{v_{2k+1}:k\in\{0,\ldots,\lfloor(r-1)/2\rfloor\}$.  This completes the definition of $A_1,\ldots,A_n$.
+    All that remains is to define the sets $A_1\supseteq\cdots\supseteq A_n$ that satisfy (C1) and (C2).  The set $A_1$ contains all the leaves of $S_d$.  For each $i\in\{2,\ldots,n\}$, the set $A_i$ is defined as follows:  Let $Z_1,\ldots,Z_r$ denote the sets $\{(v,p_j):j\in\{1,\ldots,i-1\}\}$ for $v\in A_{i-1}$ ordered so that $Z_1\prec\cdots\prec Z_r$.  By Property (C2), this is always possible.	Label the vertices of $A_{i-1}$ as $v_1,\ldots,v_r$ so that $(v_1,p_{i-1})\prec\cdots\prec (v_r,p_{i-1})$.   (This is equivalent to naming them so that $(v_j,p_{i-1})\in Z_j$ for each $j\in\{1,\ldots,r\}$.)  We define the set $A_i:=\{v_{2k+1}:k\in\{0,\ldots,\lfloor(r-1)/2\rfloor\}\}=\{v_{j}\in A_{i-1}:\text{$j$ is odd}\}$.  This completes the definition of $A_1,\ldots,A_n$.
 
-	All that remains is to verify that $A_i$ satisfies (C1) and (C2).  We do this by induction on $i$. The base case $i=1$ is trivial so we assume from this point on that $i\in\{2,\ldots,n\}$.   To see that $A_i$ satisfies (C1) just observe that $|A_i|=\lceil r/2\rceil \ge r/2= |A_{i-1}|/2\ge d/2^{i}$.  All that remains is to show that $A_i$ satisfies (C2).
+	All that remains is to verify that $A_i$ satisfies (C1) and (C2).  We do this by induction on $i$. The base case $i=1$ is trivial so we assume from this point on that $i\in\{2,\ldots,n\}$.   To see that $A_i$ satisfies (C1) just observe that $|A_i|=\lceil r/2\rceil \ge r/2= |A_{i-1}|/2\ge d/2^{i-1}$.  All that remains is to show that $A_i$ satisfies (C2).
 
     For each $j\in\{i-1,i\}$, let $Q_j:=Q_n[\{(v,p_j):v\in A_{i-1}\}]$.\todo{Tiny notation conflict here: $Q_n$, $Q_i$, $Q_{i-1}$.}
     Recall that, for each $v\in A_{i-1}$, the edge $e_v:=(v,p_{i-1})(v,p_i)$ is in $X$.  We have the following properties:
     \begin{compactenum}[(P1)]
-        \item By \lemref{uniform_colour}, $\varphi(e_v)=\varphi_0(p_{i-1},p_i)$ does not depend on $v$.  In particular for distinct $v,w\in A_{i-1}$ the edges $e_v$ and $e_w$ do not cross.
-        \item By the application of \lemref{hex_lemma} the order of vertices in $Q_{i-1}$ by $\prec$ is identical to the order of vertices in $Q_i$ by $\prec$.  That is $(v,p_{i-1})\prec (w,p_{i-1})$ if and only if $(v,p_{i})\prec (w,p_{i})$ for each $v,w\in A_{i-1}$.
+        \item By \lemref{uniform_colour}, $\varphi(e_v)=\varphi_0(p_{i-1},p_i)$ for each $v\in\{A_{i-1}$.
+        \item By the application of \lemref{hex_lemma}, $(v,p_{i-1})\prec (w,p_{i-1})$ if and only if $(v,p_{i})\prec (w,p_{i})$ for each $v,w\in A_{i-1}$.
         \item By \lemref{uniform_order}, $(v,p_{i-1})\prec (v,p_i)$ for every $v\in A_{i-1}$ or $(v,p_{i-1})\succ (v,p_i)$ for every $v\in A_{i-1}$.
     \end{compactenum}
     We claim that these three conditions imply that the vertex sets $Q_{i-1}$ and $Q_{i}$ interleave perfectly with respect to $\prec$. More precisely:
@@ -240,15 +242,16 @@ Recall that $(\varphi,\prec)$ is a hypothetical $s$-stack layout of $G$ and ther
 			(v_j,p_{i-1})\prec (v_{j+1},p_{i-1}) {\color{red}{}\prec{}} (v_{j},p_i) \prec
 		   (v_{j+1}, p_i) \enspace .
 	   	\]
-		Therefore the edges $(v_j,p_{i-1})(v_j,p_{i})$ and $(v_{j+1},p_{i-1})(v_{j+1},p_i)$ cross.  But this contradicts (P1) and completes the proof of \clmref{interleave}.
+		Therefore the edges $(v_j,p_{i-1})(v_j,p_{i})$ and $(v_{j+1},p_{i-1})(v_{j+1},p_i)$ cross with repect to $\prec$.  But this is a contradiction since, by (P1),  $\varphi((v_j,p_{i-1})(v_j,p_{i})) =\varphi((v_{j+1},p_{i-1})(v_{j+1},p_i))=\varphi_0(p_{i-1}p_i)$.
+		This contradiction completes the proof of \clmref{interleave}.
 	\end{proof}
 
-	Now, apply \clmref{interleave} and assume, without loss of generality that $t=0$, so that
+	Now, apply \clmref{interleave} and assume without loss of generality that $t=0$, so that
 	\[
 		(v_1,p_{i-1})\prec (v_1,p_{i}) \prec (v_2,p_{i-1}) \prec (v_2,p_{i}) \cdots \prec (v_r,p_{i-1}) \prec (v_r,p_{i}) \enspace .
 	\]
 
-    For each $j\in\{1,\ldots,r-2\}$, $(v_{j+1},p_{i-1})\in Z_{j+1}\prec Z_{j+2}$, so  $(v_j,p_i)\prec (v_{j+1},p_{i-1}) \prec Z_{j+2}$.  Therefore $Z_j\cup\{(v_j,p_i)\} \prec Z_{j+2}$.  By a symmetric argument, $Z_j\cup\{(v_j,p_i)\} \succ Z_{j-2}$ for each  $j\in\{2,\ldots,r\}$.  Finally, since $(v_{j},p_i)\prec (v_{j+2},p_i)$ for each odd $i\in\{1,\ldots,r\}$, we have $Z_{j}\cup\{(v_j,p_i)\} \prec Z_{j+2}\cup\{(v_{j+2},p_i)\}$ for each odd $j\in\{1,\ldots,r-2\}$.  Thus $A_i$ satisifies (C2) since the sets $Z_1\cup\{(v_1,p_i)\},Z_3\cup\{(v_3,p_i)\},\ldots,Z_{2\floor (r-1)/2\rfloor+1} \cup (v_{2\floor (r-1)/2\rfloor+1},p_i)$ are precisely the sets $Z_{i,1},\ldots,Z_{i,d_i}$ determined by our choice of $A_i$.
+    For each $j\in\{1,\ldots,r-2\}$, $(v_{j+1},p_{i-1})\in Z_{j+1}\prec Z_{j+2}$, so  $(v_j,p_i)\prec (v_{j+1},p_{i-1}) \prec Z_{j+2}$.  Therefore $Z_j\cup\{(v_j,p_i)\} \prec Z_{j+2}$.  By a symmetric argument, $Z_j\cup\{(v_j,p_i)\} \succ Z_{j-2}$ for each  $j\in\{2,\ldots,r\}$.  Finally, since $(v_{j},p_i)\prec (v_{j+2},p_i)$ for each odd $i\S_4in\{1,\ldots,r\}$, we have $Z_{j}\cup\{(v_j,p_i)\} \prec Z_{j+2}\cup\{(v_{j+2},p_i)\}$ for each odd $j\in\{1,\ldots,r-2\}$.  Thus $A_i$ satisifies (C2) since the sets $Z_1\cup\{(v_1,p_i)\},Z_3\cup\{(v_3,p_i)\},\ldots,Z_{2\floor (r-1)/2\rfloor+1} \cup (v_{2\floor (r-1)/2\rfloor+1},p_i)$ are precisely the sets $Z_{i,1},\ldots,Z_{i,d_i}$ determined by our choice of $A_i$.
 \end{proof}
 
 \begin{lem}\lemlabel{twister}
@@ -256,12 +259,20 @@ Recall that $(\varphi,\prec)$ is a hypothetical $s$-stack layout of $G$ and ther
 \end{lem}
 
 \begin{proof}
-    At least one of the following two cases applies:
+    At least one of the following two cases applies (see \figref{median}):
     \begin{enumerate}
         \item $Z_s\prec r_{s+1}$ in which case the graph between $r_{s+1},\ldots,r_{2s}$ and $Z_1,\ldots,Z_s$ has a set of $s$ pairwise-crossing edges.
         \item $r_{s}\prec Z_{s+1}$ in which case the graph between $r_1,\ldots,r_s$ and $Z_{s+1},\ldots,Z_{2s}$ has a set of $s$ pairwise-crossing edges. \qedhere
     \end{enumerate}
 \end{proof}
+\begin{figure}
+	\begin{center}
+		\includegraphics{figs/median-1} \\ 1 \\[2em]
+		\includegraphics{figs/median-2} \\ 2
+	\end{center}
+	\caption{The two cases in the proof of \lemref{twister}.}
+	\figlabel{median}
+\end{figure}
 
 \section{Open Problems}
 

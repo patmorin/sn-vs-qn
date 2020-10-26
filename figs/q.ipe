@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE ipe SYSTEM "ipe.dtd">
 <ipe version="70218" creator="Ipe 7.2.18">
-<info created="D:20201026074129" modified="D:20201026122335"/>
+<info created="D:20201026074129" modified="D:20201026133008"/>
 <ipestyle name="basic">
 <symbol name="arrow/arc(spx)">
 <path stroke="sym-stroke" fill="sym-stroke" pen="sym-pen">
@@ -469,135 +469,135 @@ h
 264 626.144 l
 h
 </path>
-<path layer="Q" matrix="1 0 -0.578301 1 296.192 0" stroke="brew1" pen="heavier">
+<path layer="Q" matrix="1 0 -0.578301 1 296.192 0" stroke="brew1" pen="fat">
 181.829 528.175 m
 209.542 528.175 l
 </path>
-<path matrix="1 0 -0.578301 1 296.192 0" stroke="brew3" pen="heavier">
+<path matrix="1 0 -0.578301 1 296.192 0" stroke="brew3" pen="fat">
 181.829 528.175 m
 195.686 552.175 l
 </path>
-<path matrix="1 0 -0.578301 1 296.192 0" stroke="brew1" pen="heavier">
+<path matrix="1 0 -0.578301 1 296.192 0" stroke="brew1" pen="fat">
 195.686 552.175 m
 223.399 552.174 l
 </path>
-<path matrix="1 0 -0.578301 1 296.192 0" stroke="brew3" pen="heavier">
+<path matrix="1 0 -0.578301 1 296.192 0" stroke="brew3" pen="fat">
 223.399 552.174 m
 209.542 528.175 l
 </path>
-<path matrix="1 0 -0.578301 1 296.192 0" stroke="brew3" pen="heavier">
+<path matrix="1 0 -0.578301 1 296.192 0" stroke="brew3" pen="fat">
 195.686 552.175 m
 209.543 576.174 l
 </path>
-<path matrix="1 0 -0.578301 1 296.192 0" stroke="brew1" pen="heavier">
+<path matrix="1 0 -0.578301 1 296.192 0" stroke="brew1" pen="fat">
 209.543 576.174 m
 237.256 576.174 l
 </path>
-<path matrix="1 0 -0.578301 1 296.192 0" stroke="brew3" pen="heavier">
+<path matrix="1 0 -0.578301 1 296.192 0" stroke="brew3" pen="fat">
 237.256 576.174 m
 223.399 552.174 l
 </path>
-<path matrix="1 0 -0.578301 1 296.192 0" stroke="brew3" pen="heavier">
+<path matrix="1 0 -0.578301 1 296.192 0" stroke="brew3" pen="fat">
 209.543 576.174 m
 223.4 600.174 l
 </path>
-<path matrix="1 0 -0.578301 1 296.192 0" stroke="brew1" pen="heavier">
+<path matrix="1 0 -0.578301 1 296.192 0" stroke="brew1" pen="fat">
 223.4 600.174 m
 251.113 600.173 l
 </path>
-<path matrix="1 0 -0.578301 1 296.192 0" stroke="brew3" pen="heavier">
+<path matrix="1 0 -0.578301 1 296.192 0" stroke="brew3" pen="fat">
 251.113 600.173 m
 237.256 576.174 l
 </path>
-<path matrix="1 0 -0.578301 1 296.192 0" stroke="brew1" pen="heavier">
+<path matrix="1 0 -0.578301 1 296.192 0" stroke="brew1" pen="fat">
 251.113 600.173 m
 278.826 600.174 l
 </path>
-<path matrix="1 0 -0.578301 1 296.192 0" stroke="brew3" pen="heavier">
+<path matrix="1 0 -0.578301 1 296.192 0" stroke="brew3" pen="fat">
 278.826 600.174 m
 264.969 576.174 l
 </path>
-<path matrix="1 0 -0.578301 1 296.192 0" stroke="brew1" pen="heavier">
+<path matrix="1 0 -0.578301 1 296.192 0" stroke="brew1" pen="fat">
 264.969 576.174 m
 237.256 576.174 l
 </path>
-<path matrix="1 0 -0.578301 1 296.192 0" stroke="brew4" pen="heavier">
+<path matrix="1 0 -0.578301 1 296.192 0" stroke="brew4" pen="fat">
 209.543 576.174 m
 223.399 552.174 l
 </path>
-<path matrix="1 0 -0.578301 1 296.192 0" stroke="brew4" pen="heavier">
+<path matrix="1 0 -0.578301 1 296.192 0" stroke="brew4" pen="fat">
 195.686 552.175 m
 209.542 528.175 l
 </path>
-<path matrix="1 0 -0.578301 1 296.192 0" stroke="brew4" pen="heavier">
+<path matrix="1 0 -0.578301 1 296.192 0" stroke="brew4" pen="fat">
 223.4 600.174 m
 237.256 576.174 l
 </path>
-<path matrix="1 0 -0.578301 1 296.192 0" stroke="brew4" pen="heavier">
+<path matrix="1 0 -0.578301 1 296.192 0" stroke="brew4" pen="fat">
 251.113 600.173 m
 264.969 576.174 l
 </path>
-<path matrix="1 0 -0.578301 1 296.192 0" stroke="brew1" pen="heavier">
+<path matrix="1 0 -0.578301 1 296.192 0" stroke="brew1" pen="fat">
 223.399 552.174 m
 251.112 552.175 l
 </path>
-<path matrix="1 0 -0.578301 1 296.192 0" stroke="brew3" pen="heavier">
+<path matrix="1 0 -0.578301 1 296.192 0" stroke="brew3" pen="fat">
 251.112 552.175 m
 264.969 576.174 l
 </path>
-<path matrix="1 0 -0.578301 1 296.192 0" stroke="brew4" pen="heavier">
+<path matrix="1 0 -0.578301 1 296.192 0" stroke="brew4" pen="fat">
 237.256 576.174 m
 251.112 552.175 l
 </path>
-<path matrix="1 0 -0.578301 1 296.192 0" stroke="brew4" pen="heavier">
+<path matrix="1 0 -0.578301 1 296.192 0" stroke="brew4" pen="fat">
 223.399 552.174 m
 237.255 528.175 l
 </path>
-<path matrix="1 0 -0.578301 1 296.192 0" stroke="brew1" pen="heavier">
+<path matrix="1 0 -0.578301 1 296.192 0" stroke="brew1" pen="fat">
 209.542 528.175 m
 237.255 528.175 l
 </path>
-<path matrix="1 0 -0.578301 1 296.192 0" stroke="brew3" pen="heavier">
+<path matrix="1 0 -0.578301 1 296.192 0" stroke="brew3" pen="fat">
 237.255 528.175 m
 251.112 552.175 l
 </path>
-<path matrix="1 0 -0.578301 1 296.192 0" stroke="brew1" pen="heavier">
+<path matrix="1 0 -0.578301 1 296.192 0" stroke="brew1" pen="fat">
 278.826 600.174 m
 306.538 600.174 l
 </path>
-<path matrix="1 0 -0.578301 1 296.192 0" stroke="brew1" pen="heavier">
+<path matrix="1 0 -0.578301 1 296.192 0" stroke="brew1" pen="fat">
 264.969 576.174 m
 292.681 576.175 l
 </path>
-<path matrix="1 0 -0.578301 1 296.192 0" stroke="brew1" pen="heavier">
+<path matrix="1 0 -0.578301 1 296.192 0" stroke="brew1" pen="fat">
 251.112 552.175 m
 278.824 552.175 l
 </path>
-<path matrix="1 0 -0.578301 1 296.192 0" stroke="brew1" pen="heavier">
+<path matrix="1 0 -0.578301 1 296.192 0" stroke="brew1" pen="fat">
 237.255 528.175 m
 264.967 528.176 l
 </path>
-<path matrix="1 0 -0.578301 1 296.192 0" stroke="brew4" pen="heavier">
+<path matrix="1 0 -0.578301 1 296.192 0" stroke="brew4" pen="fat">
 251.112 552.175 m
 264.967 528.176 l
 </path>
-<path matrix="1 0 -0.578301 1 296.192 0" stroke="brew4" pen="heavier">
+<path matrix="1 0 -0.578301 1 296.192 0" stroke="brew4" pen="fat">
 264.969 576.174 m
 278.824 552.175 l
 </path>
-<path matrix="1 0 -0.578301 1 296.192 0" stroke="brew4" pen="heavier">
+<path matrix="1 0 -0.578301 1 296.192 0" stroke="brew4" pen="fat">
 278.826 600.174 m
 292.681 576.175 l
 </path>
-<path matrix="1 0 -0.578301 1 296.192 0" stroke="brew3" pen="heavier">
+<path matrix="1 0 -0.578301 1 296.192 0" stroke="brew3" pen="fat">
 264.967 528.176 m
 278.824 552.175 l
 </path>
-<path matrix="1 0 -0.578301 1 296.192 0" stroke="brew3" pen="heavier">
+<path matrix="1 0 -0.578301 1 296.192 0" stroke="brew3" pen="fat">
 278.824 552.175 m
 292.681 576.175 l
 </path>
-<path matrix="1 0 -0.578301 1 296.192 0" stroke="brew3" pen="heavier">
+<path matrix="1 0 -0.578301 1 296.192 0" stroke="brew3" pen="fat">
 292.681 576.175 m
 306.538 600.174 l
 </path>

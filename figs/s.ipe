@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE ipe SYSTEM "ipe.dtd">
 <ipe version="70218" creator="Ipe 7.2.18">
-<info created="D:20201026074633" modified="D:20201026121410"/>
+<info created="D:20201026074633" modified="D:20201026133039"/>
 <ipestyle name="basic">
 <symbol name="arrow/arc(spx)">
 <path stroke="sym-stroke" fill="sym-stroke" pen="sym-pen">
@@ -1987,39 +1987,39 @@ h
 <use matrix="1 0 0 1 -160 -64" name="mark/disk(sx)" pos="304 704" size="normal" stroke="black"/>
 <use matrix="1 0 0 1 -160 -64" name="mark/disk(sx)" pos="320 704" size="normal" stroke="black"/>
 <use matrix="1 0 0 1 -160 -64" name="mark/disk(sx)" pos="192 704" size="normal" stroke="black"/>
-<path matrix="1 0 0 1 -160 -64" stroke="black" pen="heavier">
+<path matrix="1 0 0 1 -160 -64" stroke="black" pen="fat">
 256 768 m
 192 704 l
 </path>
-<path matrix="1 0 0 1 -160 -64" stroke="black" pen="heavier">
+<path matrix="1 0 0 1 -160 -64" stroke="black" pen="fat">
 256 768 m
 208 704 l
 </path>
-<path matrix="1 0 0 1 -160 -64" stroke="black" pen="heavier">
+<path matrix="1 0 0 1 -160 -64" stroke="black" pen="fat">
 256 768 m
 224 704 l
 </path>
-<path matrix="1 0 0 1 -160 -64" stroke="black" pen="heavier">
+<path matrix="1 0 0 1 -160 -64" stroke="black" pen="fat">
 256 768 m
 240 704 l
 </path>
-<path matrix="1 0 0 1 -160 -64" stroke="black" pen="heavier">
+<path matrix="1 0 0 1 -160 -64" stroke="black" pen="fat">
 256 768 m
 256 704 l
 </path>
-<path matrix="1 0 0 1 -160 -64" stroke="black" pen="heavier">
+<path matrix="1 0 0 1 -160 -64" stroke="black" pen="fat">
 256 768 m
 272 704 l
 </path>
-<path matrix="1 0 0 1 -160 -64" stroke="black" pen="heavier">
+<path matrix="1 0 0 1 -160 -64" stroke="black" pen="fat">
 256 768 m
 288 704 l
 </path>
-<path matrix="1 0 0 1 -160 -64" stroke="black" pen="heavier">
+<path matrix="1 0 0 1 -160 -64" stroke="black" pen="fat">
 256 768 m
 304 704 l
 </path>
-<path matrix="1 0 0 1 -160 -64" stroke="black" pen="heavier">
+<path matrix="1 0 0 1 -160 -64" stroke="black" pen="fat">
 256 768 m
 320 704 l
 </path>
