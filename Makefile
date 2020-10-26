@@ -5,7 +5,9 @@ texsources=$(name).tex
 
 $(name).pdf : $(texsources) $(name).bib figs/
 	make -C figs
-	latexmk -pdf $(name)
+	pdflatex $(name)
+	pdflatex $(name)
+	# latexmk -pdf $(name)
 
 reset : clean $(name).pdf
 
