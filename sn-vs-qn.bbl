@@ -8,7 +8,7 @@
   L#1\relax\rlap{\raise.5\dimen7\hbox{\kern.7ex
   \char'47}}#1\relax\else\message{accent \string\soft \space #1 not
   defined!}#1\relax\fi\fi\fi\fi\fi\fi}
-\begin{thebibliography}{10}
+\begin{thebibliography}{11}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\msn}[1]{MR:\,\href{http://www.ams.org/mathscinet-getitem?mr=MR{#1}}{#1}}
 \providecommand{\ZBL}[1]{Zbl:\,\href{https://www.zentralblatt-math.org/zmath/en/search/?q=an:#1}{#1}}
@@ -53,6 +53,13 @@
   Layouts of graph subdivisions}.
 \newblock \emph{Discrete Math. Theor. Comput. Sci.}, 7:155--202, 2005.
 \newblock \msn{2164064}.
+
+\bibitem[{Erd\H{o}s and Szekeres(1935)}]{ES35}
+\textsc{Paul Erd\H{o}s and George Szekeres}.
+\newblock \href{http://www.numdam.org/item?id=CM_1935__2__463_0}{A
+  combinatorial problem in geometry}.
+\newblock \emph{Compositio Math.}, 2:463--470, 1935.
+\newblock \msn{1556929}.
 
 \bibitem[{Gale(1979)}]{Gale79}
 \textsc{David Gale}.

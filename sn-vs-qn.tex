@@ -53,10 +53,15 @@
 \renewcommand{\ge}{\geqslant}
 \renewcommand{\geq}{\geqslant}
 
+\newcommand{\CartProd}{\,\square\,}
+
 \newcommand{\aref}[1]{(X\ref{a:#1})}
 \newcommand{\alabel}[1]{\label{a:#1}}
 
-\title{\MakeUppercase{Stack Number is not Queue-Number Bounded}}
+\title{\MakeUppercase{Stack Number is not Queue-Number Bounded}\\or\\
+STACKS ARE NOT MORE POWERFUL THAN QUEUES
+\\or\\
+STACKS ARE NO MORE POWERFUL THAN QUEUES}
 
 \author{Vida Dujmovi\'c,\!\!%
 	\thanks{School of Computer Science and Electrical Engineering,
@@ -71,8 +76,6 @@
 	\,\,
 	David R. Wood\thanks{School of Mathematics, Monash University, Melbourne, Australia (\texttt{david.wood@monash.edu}). Research supported by the Australian Research Council.}
 }
-
-
 
 \begin{document}
 \maketitle
@@ -105,9 +108,13 @@ IS STACK-NUMBER BOUNDED BY QUEUE-NUMBER?
  For every $s\in \N$ there exists a graph $G$ with $\qn(G)\le 4$ and $\sn(G)>s$.
 \end{thm}
 
+PUNCH-LINE: STACKS ARE NO MORE POWERFUL THAN QUEUES
+
 IS QUEUE-NUMBER BOUNDED BY STACK-NUMBER?
 
 \citet{HLR92} showed that every 1-stack graph has a 2-queue layout. \citet{DJMMUW20} showed that planar graphs have bounded queue-number. In particular, 2-stack graphs have bounded queue-number. It is open whether 3-stack graphs have bounded queue-number. In fact, the case of three stacks is as hard as the general question. \citet{DujWoo05} proved that queue-number is bounded by stack-number if and only if 3-stack graphs have bounded queue-number. Moreover, if this is true then stack-number is bounded by a polynomial function of queue-number.
+
+
 
 BLANKENSHIP AND OPOROWSKI CONJECTURE \citep{BO99,BO01}
 
@@ -118,7 +125,7 @@ BLANKENSHIP AND OPOROWSKI CONJECTURE \citep{BO99,BO01}
 %\]
 %where $S_b$ denotes the star with $b$ leaves and $Q_n$ is the triangulated $n\times n$ grid.
 
-\todo[inline]{Does anyone know if there is a standard box operator that is typeset like this $S\boxtimes Q$ or $S\boxdot Q$ instead of like this $S\square Q$ or like this $S\Box Q$?  I tried square and Box.}
+\todo[inline]{PM: Does anyone know if there is a standard box operator that is typeset like this $S\boxtimes Q$ or $S\boxdot Q$ instead of like this $S\square Q$ or like this $S\Box Q$?  I tried square and Box. DW: I defined \texttt{CartProd} which typesets okay $A \CartProd B$	.}
 
 
 The graph $G$ in \cref{family} is obtained as follows (See \figref{graph}): Let $S_b$ denote the star graph with root $r$ and $b$ leaves.  For an even positive integer $n$, let $Q_n$ be the $n\times n$ triangulated grid, defined by $V(Q_n):=\{1,\ldots,n\}^2$ and
@@ -127,7 +134,7 @@ E(Q_n) & :=\{(x,y)(x+1,y):x\in\{1,\ldots,n-1\},\,y\in\{1,\ldots,n\}\} \\
 & \qquad \cup \{(x,y)(x,y+1):x\in\{1,\ldots,n\},\,y\in\{1,\ldots,n-1\}\} \\
 & \qquad \cup \{(x,y+1)(x+1,y):x,y\in\{1,\ldots,n-1\}\} \enspace .
 \end{align*}
-We consider the graph $G:=S_b\square Q_n$. That is, $V(G)=V(S_b)\times V(Q_n)$ where vertices $(v_1,w_1),(v_2,w_2)\in V(G)$ are adjacent whenever $v_1=w_1$ and $v_2w_2\in E(Q_n)$, or $v_1w_1\in E(S_b)$ and $v_2=w_2$.\todo{Suggestion: Replace $Q_n$ with $H$ (for \emph{H}ex)}
+We consider the graph $G:=S_b\CartProd Q_n$. That is, $V(G)=V(S_b)\times V(Q_n)$ where vertices $(v_1,w_1),(v_2,w_2)\in V(G)$ are adjacent whenever $v_1=w_1$ and $v_2w_2\in E(Q_n)$, or $v_1w_1\in E(S_b)$ and $v_2=w_2$.\todo{PM: Suggestion: Replace $Q_n$ with $H$ (for \emph{H}ex). DW: I like this change.}
 
 \begin{figure}
 	\begin{center}
@@ -141,12 +148,14 @@ We consider the graph $G:=S_b\square Q_n$. That is, $V(G)=V(S_b)\times V(Q_n)$ w
 	\figlabel{graph}
 \end{figure}
 
+SAY SOMETHING ABOUT THE RESULTS OF \citet{Pupyrev}. I EXPECT WE SOLVE SOME OPEN PROBLEM HERE.
+
 \section{Queue-Number Upper Bound}
 
 To prove that $\qn(G)\leq 4$ in Theorem~\ref{family} we need the following definition due to \citet{Wood-Queue-DMTCS05}. A queue layout $(\varphi,\prec)$ is \emph{strict} if for every vertex $u\in V(G)$ and for all neighbours $v,w\in N_G(u)$ with $u\prec v,w$ or $v,w \prec u$, we have $\varphi(uv)\neq \varphi(uw)$. Let $\sqn(G)$ be the minimum integer $k$ such that $G$ has a strict $k$-queue layout.
 Note that $\sqn(Q_n) \leq 3$: Order the vertices row-by-row and then left-to-right within a row, with vertical edges in one queue, horizontal edges in one queue, and diagonal edges in another queue.
-\citet{Wood-Queue-DMTCS05} proved that $\qn(G \square H) \leq \qn(G) + \sqn(H)$ for all graphs $G$ and $H$. Of course, $S_b$ has a 1-queue layout (since no two edges are nested for any vertex-ordering). Thus
-$$\qn(S_b \square Q_n)\leq 4.$$
+\citet{Wood-Queue-DMTCS05} proved that $\qn(G \CartProd H) \leq \qn(G) + \sqn(H)$ for all graphs $G$ and $H$. Of course, $S_b$ has a 1-queue layout (since no two edges are nested for any vertex-ordering). Thus
+$$\qn(S_b \CartProd Q_n)\leq 4.$$
 
 
 ADD TO DISCUSSION LATER:	$Q_n$ is planar with a Hamiltonian cycle (assuming $n$ is even), so $\sn(Q_n) \leq 2$
@@ -154,7 +163,7 @@ ADD TO DISCUSSION LATER:	$Q_n$ is planar with a Hamiltonian cycle (assuming $n$ 
 
 \section{Stack-Number Lower Bound}
 
-Consider a hypothetical $s$-stack layout $(\varphi,\prec)$ of $G$ where $n$ and $b$ are chosen sufficiently large compared to $s$ as detailed below.  We begin with three lemmata that, for sufficiently large $b$, allow us to find a large subgraph $S_d$ of $S_b$ for which the stack layout $(\varphi,\prec)$ of $S_d\square Q_n$ is highly structured.
+Consider a hypothetical $s$-stack layout $(\varphi,\prec)$ of $G$ where $n$ and $b$ are chosen sufficiently large compared to $s$ as detailed below.  We begin with three lemmata that, for sufficiently large $b$, allow us to find a large subgraph $S_d$ of $S_b$ for which the stack layout $(\varphi,\prec)$ of $S_d\CartProd Q_n$ is highly structured.
 
 For each node $v$ of $S_b$, we define $\pi_v$ as the permutation of $\{1,\ldots,n\}^2$ in which $(x_1,y_1)$ appears before $(x_2,y_2)$ if and only $(v,x_1,y_1)\prec (v,x_2,y_2)$.  The following lemma is an immediate consequence of the Pigeonhole Principle:
 
@@ -179,7 +188,7 @@ The preceding two lemmata ensure that, for distinct leaves $v$ and $w$ of $S_{b_
 
 \begin{proof}
     Let $p_1,\ldots,p_{n^2}$ denote the vertices of $Q_n$, in any order.
-    Begin with the sequence $S_1:=v_{1,1},\ldots,v_{1,d_1}$ that contains all $d_1:=b_2$ elements of $L_2$ ordered so that $(v_{1,1},p_1)\prec\cdots\prec(v_{1,d_1},p_1)$.  For each $i\in\{2,\ldots,n^2\}$, the Erd\H{o}s-Szekeres Theorem\todo{Reference?} implies that, $S_{i-1}$ contains a subsequence $S_i:=v_{i,1},\ldots,v_{i,d_i}$ of length $d_i\ge \sqrt{|S_{i-1}|}$ such that $(v_{i,1},p_i)\prec\cdots\prec(v_{i,d_i},p_i)$ or $(v_{i,1},p_i)\succ\cdots\succ(v_{i,d_i},p_i)$.  It is straightforward to verify by induction on $i$ that $d_i \ge b_2^{1/2^{i-1}}$ resulting in a final sequence $S_{n^2}=:L_3$ of length at least $b_2^{1/2^{n^2-1}}$.
+    Begin with the sequence $S_1:=v_{1,1},\ldots,v_{1,d_1}$ that contains all $d_1:=b_2$ elements of $L_2$ ordered so that $(v_{1,1},p_1)\prec\cdots\prec(v_{1,d_1},p_1)$.  For each $i\in\{2,\ldots,n^2\}$, the Erd\H{o}s-Szekeres Theorem~\citep{ES35} implies that, $S_{i-1}$ contains a subsequence $S_i:=v_{i,1},\ldots,v_{i,d_i}$ of length $d_i\ge \sqrt{|S_{i-1}|}$ such that $(v_{i,1},p_i)\prec\cdots\prec(v_{i,d_i},p_i)$ or $(v_{i,1},p_i)\succ\cdots\succ(v_{i,d_i},p_i)$.  It is straightforward to verify by induction on $i$ that $d_i \ge b_2^{1/2^{i-1}}$ resulting in a final sequence $S_{n^2}=:L_3$ of length at least $b_2^{1/2^{n^2-1}}$.
 \end{proof}
 
 Let $d:=b_3$ and let $S_d$ be the the subgraph of $S_b$ induced by $\{r\}\cup\{u_1,\ldots,u_{d}\}$ where $u_1,\ldots,u_d$ is the sequence of leaves defined in \lemref{forward_or_backward}.  Consider the (improper) vertex colouring of $Q_n$ obtained by colouring each vertex $p\in V(Q_n)$ \emph{red} if $(u_1,p)\prec\cdots\prec (u_d,p)$ and colouring $p$ \emph{blue} if $(u_1,p)\succ\cdots\succ(u_d,p)$.
@@ -198,7 +207,7 @@ Let $d:=b_3$ and let $S_d$ be the the subgraph of $S_b$ induced by $\{r\}\cup\{u
 \end{proof}
 
 Without loss of generality, assume that the path $R:=p_1,\ldots,p_n$ defined by \lemref{hex_lemma} consists entirely of red vertices, so that $(u_1,p_j)\prec\cdots\prec (u_d,p_j)$ for each $j\in\{1,\ldots,n\}$.
-Recall that $(\varphi,\prec)$ is a hypothetical $s$-stack layout of $G$ and therefore it is also an $s$-stack layout of the subgraph $X:=S_d\square R$.  The following result finishes the proof by showing that this is not possible when $n> 2s$ and $d> s2^{n}$.
+Recall that $(\varphi,\prec)$ is a hypothetical $s$-stack layout of $G$ and therefore it is also an $s$-stack layout of the subgraph $X:=S_d\CartProd R$.  The following result finishes the proof by showing that this is not possible when $n> 2s$ and $d> s2^{n}$.
 
 \begin{lem}
     The graph $X$ contains a set of edges of size at least $\min\{d/2^{n},n/2\}$ that are pairwise crossing with respect to $\prec$.
@@ -246,6 +255,8 @@ Recall that $(\varphi,\prec)$ is a hypothetical $s$-stack layout of $G$ and ther
 		This contradiction completes the proof of \clmref{interleave}.
 	\end{proof}
 
+\todo{DW: Why are these $\prec$'s red?}
+
 	Now, apply \clmref{interleave} and assume without loss of generality that $t=0$, so that
 	\[
 		(v_1,p_{i-1})\prec (v_1,p_{i}) \prec (v_2,p_{i-1}) \prec (v_2,p_{i}) \cdots \prec (v_r,p_{i-1}) \prec (v_r,p_{i}) \enspace .
@@ -278,13 +289,13 @@ Recall that $(\varphi,\prec)$ is a hypothetical $s$-stack layout of $G$ and ther
 
 Recall that every 1-queue graph has a 2-stack layout \citep{HLR92} and we proved that there are 4-queue graphs with unbounded stack-number. The following questions remain open: Do 2-queue graphs have bounded stack-number? Do 3-queue graphs have bounded stack-number?
 
-Is $\sn(T \square H)$ bounded for every tree $T$ and outerplanar graph $H$ with bounded degree?
+Is $\sn(T \CartProd H)$ bounded for every tree $T$ and outerplanar graph $H$ with bounded degree?
 
 Is $\sn(T \boxtimes P)$ bounded for every tree $T$ and path $P$?
 
-\input{sn-vs-qn.bbl}
+%\input{sn-vs-qn.bbl}
 
-%\bibliographystyle{DavidNatbibStyle}
-%\bibliography{../../BibTeX/myBibliography}
+\bibliographystyle{DavidNatbibStyle}
+\bibliography{../../BibTeX/myBibliography}
 
 \end{document}
