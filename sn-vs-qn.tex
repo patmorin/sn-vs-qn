@@ -58,7 +58,11 @@
 \newcommand{\aref}[1]{(X\ref{a:#1})}
 \newcommand{\alabel}[1]{\label{a:#1}}
 
-\title{\MakeUppercase{Stack Number is not Queue-Number Bounded}\\or\\
+\title{
+\MakeUppercase{Stack Number is not Bounded by Queue-Number}
+\\or\\
+\MakeUppercase{Stack Number is not Queue-Number Bounded}
+\\or\\
 STACKS ARE NOT MORE POWERFUL THAN QUEUES
 \\or\\
 STACKS ARE NO MORE POWERFUL THAN QUEUES}
@@ -86,37 +90,88 @@ STACKS ARE NO MORE POWERFUL THAN QUEUES}
 
 \section{Introduction}
 
-STACKS vs QUEUES
+Stacks and queues are fundamental structures in computer science. But which one is more powerful? In 1992, this question was explored by Heath et al. \cite{HLR92} where they compared the graph parameters \textit{stack-number} and \textit{queue-number} which respectively measure the power of stacks and queues for laying out graphs. They showed that every graph which admits a $1$-queue layout has a $2$-stack layout and that the ternary hypercubes requires exponentially more stacks than queues \cite{HLR92}. In particular, $n$-vertex ternary hypercubes have queue-number at most $2 \log_3 n$, but stack-number at least $\Omega(n^{1/9-\epsilon})$ for any $\epsilon>0$.
 
-LINEAR LAYOUTS, CROSSINGS AND NESTINGS
+We say that a graph parameter $\alpha$ is \textit{bounded} by $\beta$ if there exists a function $f$ such that for every graph $G$ we have $\alpha(G) \leq f(\beta(G))$. In 2005, Dujmovi\'c et al. \cite{DujWoo05} extended the study on the comparison of stacks and queues by asking whether stack-number is bounded by queue-number or queue-number bounded by stack-number. If stack-number is bounded by queue-number but queue-number is not bounded by stack-number, then we would consider stacks to be more powerful than queues. Similarly, if the converse holds, then we would consider queues to be more powerful than stacks. Despite extensive research on stack and queue layouts of graphs [references???], it has remained unclear which one is more powerful for laying out graphs.
 
-STACKS AND QUEUES
+\textbf{UPDATE THE FOLLOWING PARAGRAPH WITH PAT'S NOTATION}
 
-STACK-NUMBER AND QUEUE-NUMBER
+We now formally define stack and queue layouts of graphs. Let $G=(V,E)$ be a graph with disjoint edges $vw, xy$ and a linear ordering $\leq$ of the vertices. Without loss of generality, we may assume that $v < w$, $x <y$ and $v < x$. We say that $vw$ and $xy$ \textit{cross} if $v<x<w<y$,  \textit{nest} if $v <x <y < w$, and are \textit{disjoint} if $v <w<x<y$. A \textit{stack} is a set of pairwise non-crossing edges and a \textit{queue} is a set of pairwise non-nesting edges. A $k$-queue layout of $G$ consist of a linear ordering $\leq$ of its vertices and a partition $E_1,E_2, \dots, E_k$, of its edges into queues with respect to $\leq$. The stack-number of a graph $G$, $\sn(G)$, is the minimum integer $k$ such that $G$ has a $k$-stack layout. Similarly, the queue-number of a graph $G$, $\qn(G)$, is the minimum integer $k$ such that $G$ has a $k$-queue layout. We note that stack layouts of graphs are related to book embeddings of graph and that stack-number is also known as \textit{page-number}, \textit{book-thickness}, or \textit{fixed outer-thickness}.
 
-BOUNDED PARAMETERS
+Note that stacks and queues are closely related to breadth-first search (BFS) and depth-first search (DFS) layouts of graphs. It can be easily shown that a BFS vertex ordering of a tree admits a $1$-queue layout and a DFS vertex ordering of a tree admits a $1$-stack layout. 
 
-IMPORTANT PAPERS \citep{HLR92,CLR87,Pupyrev20,DujWoo05,HR92}
+%\citet{HLR92} showed that every 1-queue graph has a 2-stack layout. \citet{HLR92} showed that the ternary hypercubes requires exponentially more stacks than queues. In particular, $n$-vertex ternary hypercubes have queue-number at most $2 \log_3 n$, but stack-number at least $\Omega(n^{1/9-\epsilon})$ for any $\epsilon>0$. We prove the following theorem, which shows that stack-number is not bounded by queue-number.
 
-IS STACK-NUMBER BOUNDED BY QUEUE-NUMBER?
-
-\citet{HLR92} showed that every 1-queue graph has a 2-stack layout.
-\citet{HLR92} showed that the ternary hypercubes requires exponentially more stacks than queues. In particular, $n$-vertex ternary hypercubes have queue-number at most $2 \log_3 n$, but stack-number at least $\Omega(n^{1/9-\epsilon})$ for any $\epsilon>0$. We prove the following theorem, which shows that stack-number is not bounded by queue-number.
+Our key contribution is the following theorem, which shows that stack-number is not bounded by queue-number. 
 
 \begin{thm}\label{family}
-%  There exists a family $\mathcal{F}$ of graphs for which $\qn(G)\le 4$ for every $G\in\mathcal{F}$, and for every $s\in\N$, there exists $G\in\mathcal{F}$ for which $\sn(G)>s$.
- For every $s\in \N$ there exists a graph $G$ with $\qn(G)\le 4$ and $\sn(G)>s$.
+	%  There exists a family $\mathcal{F}$ of graphs for which $\qn(G)\le 4$ for every $G\in\mathcal{F}$, and for every $s\in\N$, there exists $G\in\mathcal{F}$ for which $\sn(G)>s$.
+	For every $s\in \N$ there exists a graph $G$ with $\qn(G)\le 4$ and $\sn(G)>s$.
 \end{thm}
 
-PUNCH-LINE: STACKS ARE NO MORE POWERFUL THAN QUEUES
+This demonstrates that stacks are not more powerful than queues for laying out graphs. It remains open whether queues are more powerful than stacks; that is, whether queue-number is bounded by stack-number. Before we specify the graph $G$ in \Cref{family}, we must first introduce graph products.
 
-IS QUEUE-NUMBER BOUNDED BY STACK-NUMBER?
+Let $Q$ and $G$ be graph. We define a graph product $G \times Q$ with the vertex set: 
+$$V(G \times Q)= \{(a,v): a \in V(G), v \in V(Q)\}.$$
+
+A potential edge $(a,v)(b,u)$ in $G \times Q$ can be classified as:
+\begin{itemize}
+	\item $G$-edge: $ab \in E(G)$ and $v=u$;	
+	\item $Q$-edge: $uv \in E(Q)$ and $a=b$; or	
+	\item direct-edge: $ab \in E(G)$ and $uv \in E(Q)$.
+\end{itemize}
+
+The \textit{Cartesian product} $G \square Q$ consists of the $G$-edges and $Q$-edges. The \textit{direct product} $G \times Q$ consist of the direct edges. The \textit{strong product} $G \boxtimes Q$ consist of the $G$-edges, $Q$-edges and the direct edges.
+
+Graph products are a powerful tool in structural graph theory and have been used to solve many open problems concerning queue layouts of graphs \cite{DJMMUW20,DMW}. The graph $G$ in \Cref{family} is obtained as follows (See \figref{graph}): Let $S_b$ denote the star graph with root $r$ and $b$ leaves. For an even positive integer $n$, let $H_n$ be the Hex $n \times n$ grid, defined by $V(H_n):=\{1,\ldots,n\}^2$ and
+
+\begin{align*}
+E(H_n) & :=\{(x,y)(x+1,y):x\in\{1,\ldots,n-1\},\,y\in\{1,\ldots,n\}\} \\
+& \qquad \cup \{(x,y)(x,y+1):x\in\{1,\ldots,n\},\,y\in\{1,\ldots,n-1\}\} \\
+& \qquad \cup \{(x,y+1)(x+1,y):x,y\in\{1,\ldots,n-1\}\} \enspace .
+\end{align*}
+
+Note that the Hex graph corresponds to the board used in the game \textit{Hex} which was invented by the mathematician Peit Hein in 1942. In this paper, we prove \Cref{family} with the graph $G:= S_b \square H_n$ where $b$ and $n$ are large compared to $s$. We note that Pupyrev first suggested using graph products to show that stack-number is not bounded by queue-number \cite{Pupyrev20}. 
+
+Another noteworthy consequence of \Cref{family} is that it resolves a conjecture of \citet{BO99,BO01}. A graph $G’$ is a \textit{subdivision} of a graph $G$ if it can be obtained by replacing every edge by a path. The vertices in $G’-G$ are called the \textit{division vertices}. A subdivision of $G$ with exactly $t$ division vertices for each edge of $G$ is called the \textit{$t$-subdivision} of $G$. In 1999, Blankeship and Oporowski conjectured that the subdivision of any graph is not too much smaller than that of the original graph. More precisely:
+
+\begin{conj}\label{B_conj}\citep{BO99,BO01}
+	There exists a function $f$ such that for every graph $G$ and the $2$-subdivision $G’$ of $G$ we have $\sn(G) \leq f(\sn(G’))$. 
+\end{conj} 
+
+Dujmovi\'c et al. \cite{DujWoo05}, in their extensive study of layout of graph subdivisions, proved the following.
+
+\begin{thm}\label{sub_thm} \cite{DujWoo05}
+	For every integer $s \geq 3$, every graph $G$ has an $s$-stack subdivision with $1+2 \ceil{\log_{s-1}\qn(G)}$ division vertices per edge.
+\end{thm}
+
+
+As a consequence of this result, Dujvonic et al. showed that if the Blankeship and Oporowski Conjecture is true, then it follows that stack-number is bounded by queue-number. But as \Cref{family} proves that this is not the case, it follows that \Cref{B_conj} is indeed false. We note that for our graph $G$ in \Cref{family}, since $\qn(G) \leq 4$ as a consequence of \Cref{sub_thm} we have the following corollary.
+
+\begin{cor}
+	For the graph $G$ specified in \Cref{family}, there exists a $3$-stack layout of the $5$-subdivision of $G$.
+\end{cor}
+
+This demonstrates that the stack-number of a graph can be unboundedly larger than that of a subdivision of it.
+
+
+%STACKS vs QUEUES
+%
+%LINEAR LAYOUTS, CROSSINGS AND NESTINGS
+%
+%STACKS AND QUEUES
+%
+%STACK-NUMBER AND QUEUE-NUMBER
+%
+%BOUNDED PARAMETERS
+%
+%IMPORTANT PAPERS \citep{HLR92,CLR87,Pupyrev20,DujWoo05,HR92}
+
+
 
 \citet{HLR92} showed that every 1-stack graph has a 2-queue layout. \citet{DJMMUW20} showed that planar graphs have bounded queue-number. In particular, 2-stack graphs have bounded queue-number. It is open whether 3-stack graphs have bounded queue-number. In fact, the case of three stacks is as hard as the general question. \citet{DujWoo05} proved that queue-number is bounded by stack-number if and only if 3-stack graphs have bounded queue-number. Moreover, if this is true then stack-number is bounded by a polynomial function of queue-number.
 
 
-
-BLANKENSHIP AND OPOROWSKI CONJECTURE \citep{BO99,BO01}
 
 
 %Specifically,
