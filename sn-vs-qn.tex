@@ -94,15 +94,15 @@ Stacks and queues are fundamental structures in computer science. But which one 
 
 We say that a graph parameter $\alpha$ is \textit{bounded} by $\beta$ if there exists a function $f$ such that for every graph $G$ we have $\alpha(G) \leq f(\beta(G))$. In 2005, Dujmovi\'c et al. \cite{DujWoo05} extended the study on the comparison of stacks and queues by asking whether stack-number is bounded by queue-number or queue-number bounded by stack-number. If stack-number is bounded by queue-number but queue-number is not bounded by stack-number, then we would consider stacks to be more powerful than queues. Similarly, if the converse holds, then we would consider queues to be more powerful than stacks. Despite extensive research on stack and queue layouts of graphs [references???], it has remained unclear which one is more powerful for laying out graphs.
 
-\textbf{UPDATE THE FOLLOWING PARAGRAPH WITH PAT'S NOTATION}
+\textbf{UPDATE THE FOLLOWING PARAGRAPH WITH PAT'S NOTATION}\todo{PM: We should probably replace $\prec$ and $\succ$ with $<$ and $>$, but I do think the edge colouring $\varphi$ is more convenient for what we're doing.}
 
 We now formally define stack and queue layouts of graphs. Let $G=(V,E)$ be a graph with disjoint edges $vw, xy$ and a linear ordering $\leq$ of the vertices. Without loss of generality, we may assume that $v < w$, $x <y$ and $v < x$. We say that $vw$ and $xy$ \textit{cross} if $v<x<w<y$,  \textit{nest} if $v <x <y < w$, and are \textit{disjoint} if $v <w<x<y$. A \textit{stack} is a set of pairwise non-crossing edges and a \textit{queue} is a set of pairwise non-nesting edges. A $k$-queue layout of $G$ consist of a linear ordering $\leq$ of its vertices and a partition $E_1,E_2, \dots, E_k$, of its edges into queues with respect to $\leq$. The stack-number of a graph $G$, $\sn(G)$, is the minimum integer $k$ such that $G$ has a $k$-stack layout. Similarly, the queue-number of a graph $G$, $\qn(G)$, is the minimum integer $k$ such that $G$ has a $k$-queue layout. We note that stack layouts of graphs are related to book embeddings of graph and that stack-number is also known as \textit{page-number}, \textit{book-thickness}, or \textit{fixed outer-thickness}.
 
-Note that stacks and queues are closely related to breadth-first search (BFS) and depth-first search (DFS) layouts of graphs. It can be easily shown that a BFS vertex ordering of a tree admits a $1$-queue layout and a DFS vertex ordering of a tree admits a $1$-stack layout. 
+Note that stacks and queues are closely related to breadth-first search (BFS) and depth-first search (DFS) layouts of graphs. It can be easily shown that a BFS vertex ordering of a tree admits a $1$-queue layout and a DFS vertex ordering of a tree admits a $1$-stack layout.
 
 %\citet{HLR92} showed that every 1-queue graph has a 2-stack layout. \citet{HLR92} showed that the ternary hypercubes requires exponentially more stacks than queues. In particular, $n$-vertex ternary hypercubes have queue-number at most $2 \log_3 n$, but stack-number at least $\Omega(n^{1/9-\epsilon})$ for any $\epsilon>0$. We prove the following theorem, which shows that stack-number is not bounded by queue-number.
 
-Our key contribution is the following theorem, which shows that stack-number is not bounded by queue-number. 
+Our key contribution is the following theorem, which shows that stack-number is not bounded by queue-number.
 
 \begin{thm}\label{family}
 	%  There exists a family $\mathcal{F}$ of graphs for which $\qn(G)\le 4$ for every $G\in\mathcal{F}$, and for every $s\in\N$, there exists $G\in\mathcal{F}$ for which $\sn(G)>s$.
@@ -111,13 +111,13 @@ Our key contribution is the following theorem, which shows that stack-number is 
 
 This demonstrates that stacks are not more powerful than queues for laying out graphs. It remains open whether queues are more powerful than stacks; that is, whether queue-number is bounded by stack-number. Before we specify the graph $G$ in \Cref{family}, we must first introduce graph products.
 
-Let $Q$ and $G$ be graph. We define a graph product $G \times Q$ with the vertex set: 
+Let $Q$ and $G$ be graph. We define a graph product $G \times Q$ with the vertex set:
 $$V(G \times Q)= \{(a,v): a \in V(G), v \in V(Q)\}.$$
 
 A potential edge $(a,v)(b,u)$ in $G \times Q$ can be classified as:
 \begin{itemize}
-	\item $G$-edge: $ab \in E(G)$ and $v=u$;	
-	\item $Q$-edge: $uv \in E(Q)$ and $a=b$; or	
+	\item $G$-edge: $ab \in E(G)$ and $v=u$;
+	\item $Q$-edge: $uv \in E(Q)$ and $a=b$; or
 	\item direct-edge: $ab \in E(G)$ and $uv \in E(Q)$.
 \end{itemize}
 
@@ -131,13 +131,13 @@ E(H_n) & :=\{(x,y)(x+1,y):x\in\{1,\ldots,n-1\},\,y\in\{1,\ldots,n\}\} \\
 & \qquad \cup \{(x,y+1)(x+1,y):x,y\in\{1,\ldots,n-1\}\} \enspace .
 \end{align*}
 
-Note that the Hex graph corresponds to the board used in the game \textit{Hex} which was invented by the mathematician Peit Hein in 1942. In this paper, we prove \Cref{family} with the graph $G:= S_b \square H_n$ where $b$ and $n$ are large compared to $s$. We note that Pupyrev first suggested using graph products to show that stack-number is not bounded by queue-number \cite{Pupyrev20}. 
+Note that the Hex graph corresponds to the board used in the game \textit{Hex} which was invented by the mathematician Peit Hein in 1942. In this paper, we prove \Cref{family} with the graph $G:= S_b \square H_n$ where $b$ and $n$ are large compared to $s$. We note that Pupyrev first suggested using graph products to show that stack-number is not bounded by queue-number \cite{Pupyrev20}.
 
 Another noteworthy consequence of \Cref{family} is that it resolves a conjecture of \citet{BO99,BO01}. A graph $G’$ is a \textit{subdivision} of a graph $G$ if it can be obtained by replacing every edge by a path. The vertices in $G’-G$ are called the \textit{division vertices}. A subdivision of $G$ with exactly $t$ division vertices for each edge of $G$ is called the \textit{$t$-subdivision} of $G$. In 1999, Blankeship and Oporowski conjectured that the subdivision of any graph is not too much smaller than that of the original graph. More precisely:
 
 \begin{conj}\label{B_conj}\citep{BO99,BO01}
-	There exists a function $f$ such that for every graph $G$ and the $2$-subdivision $G’$ of $G$ we have $\sn(G) \leq f(\sn(G’))$. 
-\end{conj} 
+	There exists a function $f$ such that for every graph $G$ and the $2$-subdivision $G’$ of $G$ we have $\sn(G) \leq f(\sn(G’))$.
+\end{conj}
 
 Dujmovi\'c et al. \cite{DujWoo05}, in their extensive study of layout of graph subdivisions, proved the following.
 
@@ -189,7 +189,7 @@ E(Q_n) & :=\{(x,y)(x+1,y):x\in\{1,\ldots,n-1\},\,y\in\{1,\ldots,n\}\} \\
 & \qquad \cup \{(x,y)(x,y+1):x\in\{1,\ldots,n\},\,y\in\{1,\ldots,n-1\}\} \\
 & \qquad \cup \{(x,y+1)(x+1,y):x,y\in\{1,\ldots,n-1\}\} \enspace .
 \end{align*}
-We consider the graph $G:=S_b\CartProd Q_n$. That is, $V(G)=V(S_b)\times V(Q_n)$ where vertices $(v_1,w_1),(v_2,w_2)\in V(G)$ are adjacent whenever $v_1=w_1$ and $v_2w_2\in E(Q_n)$, or $v_1w_1\in E(S_b)$ and $v_2=w_2$.\todo{PM: Suggestion: Replace $Q_n$ with $H$ (for \emph{H}ex). DW: I like this change.}
+We consider the graph $G:=S_b\CartProd Q_n$. That is, $V(G)=V(S_b)\times V(Q_n)$ where vertices $(v_1,w_1),(v_2,w_2)\in V(G)$ are adjacent whenever $v_1=w_1$ and $v_2w_2\in E(Q_n)$, or $v_1w_1\in E(S_b)$ and $v_2=w_2$.\todo{PM: Suggestion: Replace $Q_n$ with $H_n$ (for \emph{H}ex). DW: I like this change.}
 
 \begin{figure}
 	\begin{center}
@@ -310,7 +310,7 @@ Recall that $(\varphi,\prec)$ is a hypothetical $s$-stack layout of $G$ and ther
 		This contradiction completes the proof of \clmref{interleave}.
 	\end{proof}
 
-\todo{DW: Why are these $\prec$'s red?}
+\todo{DW: Why are these $\prec$'s red?  PM: Just me keeping track of which one was the assumption, they don't need to be red.}
 
 	Now, apply \clmref{interleave} and assume without loss of generality that $t=0$, so that
 	\[
