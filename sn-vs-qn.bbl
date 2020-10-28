@@ -19,6 +19,14 @@
   \providecommand{\doi}{doi:\discretionary{}{}{}\begingroup
   \urlstyle{rm}\Url}\fi
 
+\bibitem[{Blankenship(2003)}]{Blankenship-PhD03}
+\textsc{Robin Blankenship}.
+\newblock
+  \href{http://etd.lsu.edu/docs/available/etd-0709103-163907/unrestricted/Blankenship_dis.pdf}{Book
+  embeddings of graphs}.
+\newblock Ph.D. thesis, Department of Mathematics, Louisiana State University,
+  U.S.A., 2003.
+
 \bibitem[{Blankenship and Oporowski(1999)}]{BO99}
 \textsc{Robin Blankenship and Bogdan Oporowski}.
 \newblock \href{http://www.math.lsu.edu/~preprint/1999/rbbo991.ps}{Drawing
@@ -40,12 +48,6 @@
 \newblock \href{https://doi.org/10.1145/3385731}{Planar graphs have bounded
   queue-number}.
 \newblock \emph{J. ACM}, 67(4):22, 2020.
-
-\bibitem[{Dujmovi{\'c} et~al.(2019)Dujmovi{\'c}, Morin, and Wood}]{DMW}
-\textsc{Vida Dujmovi{\'c}, Pat Morin, and David~R. Wood}.
-\newblock \href{http://arxiv.org/abs/1907.05168}{Graph product structure for
-  non-minor-closed classes}.
-\newblock 2019, arXiv:1907.05168.
 
 \bibitem[{Dujmovi{\'c} and Wood(2004)}]{DujWoo04}
 \textsc{Vida Dujmovi{\'c} and David~R. Wood}.
