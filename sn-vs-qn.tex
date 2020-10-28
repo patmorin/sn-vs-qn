@@ -72,25 +72,21 @@ We describe a family of graphs with queue-number at most 4 but unbounded stack-n
 
 \section{Introduction}
 
-Stacks and queues are fundamental data structures in computer science, but which is more powerful? In 1992, \citet{HLR92} introduced an approach for answering this question by defining the graph parameters \textit{stack-number} and \textit{queue-number}, which respectively measure the power of stacks and queues for representing graphs.
-
-%We now formally define stack and queue layouts of graphs.
-Let $G$ be a graph and let $\prec$ be a total order on $V(G)$.  Two disjoint edges $vw,xy\in E(G)$ with $v\prec w$ and $x\prec y$ \emph{cross} with respect to $\prec$ if $v\prec x\prec w\prec y$ or $x\prec v\prec y\prec w$, and \emph{nest} with respect to $\prec$ if $v\prec x\prec y\prec w$ or $x\prec v\prec w\prec y$.
-%A set of $k$ pairwise nested edges is called a \emph{$k$-rainbow} and a set of $k$ pairwise crossing edges is called a \emph{$k$-twist}. A set of $k$ edges, no pair of which nest and no pair of which cross is called a \emph{hopper}.
-Let $\varphi:E(G)\to\{1,\ldots,k\}$ for some integer $k\ge 1$.  Then $(\prec,\varphi)$ is a \emph{$k$-stack layout} of $G$ if, for every pair of edges $vw,xy\in E(G)$, if $\varphi(vw) = \varphi(xy)$ then $vw$ and $xy$ do not cross.\todo{PM: Suggestion: Replace second if then with $\varphi(vw)\neq\varphi(xy)$ or $vw$ and $xy$ do not cross.} Similarly, the pair $(\prec,\varphi)$ is a \emph{$k$-queue layout} of $G$ if, for every pair of edges $vw,xy\in E(G)$, if $\varphi(vw)=\varphi(xy)$ then  $vw$ and $xy$ do not nest. The smallest integer $s$ for which $G$ has an $s$-stack layout is called the \emph{stack-number} of $G$, denoted  $\sn(G)$. The smallest integer $q$ for which $G$ has a $q$-queue layout is called the \emph{queue-number} of $G$, denoted $\qn(G)$. Note that stack layouts are equivalent to book embeddings, and stack-number is also known as \emph{page-number}, \emph{book-thickness} or \emph{fixed outer-thickness}. \todo{add references}
-
-Given a $k$-stack layout $(\prec,\varphi)$ of a graph $G$, for each $i\in\{1,\dots,k\}$, the set $E_i:= \{e\in E(G):\varphi(e)=i\}$ behaves like a stack, in the sense that each edge $e=vw \in E_i$ with $v\prec w$ corresponds to an element in a sequence of stack opertions, such that if we traverse the vertices in the order of $\prec$, then $e$ is pushed onto the stack at $v$ and popped off the stack at $w$. Similarly, given a $k$-queue layout $(\prec,\varphi)$, each set $E_i$ behaves like a queue. In this way, the stack-number and queue-number  respectively measure the power of stacks and queues to represent graphs.
-
-\todo{Should the following two paragraphs be moved to prior to the definitions\newline PM: Yes}
-
-The following key problems are implcit in the work of \citet{HLR92}, made explicit by \citet{DujWoo05}
-\footnote{A \emph{graph parameter} is a function $\alpha$ such that $\alpha(G)\in\mathbb{R}$ for every graph $G$, such that $\alpha(G_1)=\alpha(G_2)$ for all isomorphic graphs $G_1$ and $G_2$. A graph parameter $\alpha$ is \textit{bounded} by a graph parameter $\beta$ if there exists a function $f$ such that for every graph $G$ we have $\alpha(G) \leq f(\beta(G))$.}:
+Stacks and queues are fundamental data structures in computer science, but which is more powerful? In 1992, Heath, Leighton and Rosenberg~\cite{HLR92,HR92} introduced an approach for answering this question by defining the graph parameters \textit{stack-number} and \textit{queue-number} (defined below), which respectively measure the power of stacks and queues for representing graphs. The following fundamental problems, implcit in \citep{HLR92,HR92}, were made explicit by \citet{DujWoo05}\footnote{A \emph{graph parameter} is a function $\alpha$ such that $\alpha(G)\in\mathbb{R}$ for every graph $G$, such that $\alpha(G_1)=\alpha(G_2)$ for all isomorphic graphs $G_1$ and $G_2$. A graph parameter $\alpha$ is \textit{bounded} by a graph parameter $\beta$ if there exists a function $f$ such that for every graph $G$ we have $\alpha(G) \leq f(\beta(G))$.}:
 \begin{compactitem}
 	\item Is stack-number bounded by queue-number?
 	\item Is queue-number bounded by stack-number?
 \end{compactitem}
 
-If stack-number is bounded by queue-number but queue-number is not bounded by stack-number, then we would consider stacks to be more powerful than queues. Similarly, if the converse holds, then we would consider queues to be more powerful than stacks. Despite extensive research on stack and queue layouts of graphs (see \citep{DujWoo04,DujWoo-DCG07,DJMMUW20} and the references therein), these fundamental questions have remained unsolved.
+If stack-number is bounded by queue-number but queue-number is not bounded by stack-number, then stacks would be considered to be more powerful than queues. Similarly, if the converse holds, then queues would be considered to be more powerful than stacks. Despite extensive research on stack- and queue-numbers (see \citep{BK79,DujWoo04,DujWoo-DCG07,DJMMUW20,DFP13,BFGMMRU19,Yannakakis89,Yann20,MBKPRU20} and the references therein), these fundamental questions have remained unsolved.
+
+We now formally define stack and queue layouts of graphs.
+Let $G$ be a graph and let $\prec$ be a total order on $V(G)$.  Two disjoint edges $vw,xy\in E(G)$ with $v\prec w$ and $x\prec y$ \emph{cross} with respect to $\prec$ if $v\prec x\prec w\prec y$ or $x\prec v\prec y\prec w$, and \emph{nest} with respect to $\prec$ if $v\prec x\prec y\prec w$ or $x\prec v\prec w\prec y$.
+%A set of $k$ pairwise nested edges is called a \emph{$k$-rainbow} and a set of $k$ pairwise crossing edges is called a \emph{$k$-twist}. A set of $k$ edges, no pair of which nest and no pair of which cross is called a \emph{hopper}.
+Let $\varphi:E(G)\to\{1,\ldots,k\}$ for some integer $k\ge 1$.  Then $(\prec,\varphi)$ is a \emph{$k$-stack layout} of $G$ if, for every pair of edges $vw,xy\in E(G)$, if $\varphi(vw) = \varphi(xy)$ then $vw$ and $xy$ do not cross.\todo{PM: Suggestion: Replace second if then with $\varphi(vw)\neq\varphi(xy)$ or $vw$ and $xy$ do not cross.} Similarly, the pair $(\prec,\varphi)$ is a \emph{$k$-queue layout} of $G$ if, for every pair of edges $vw,xy\in E(G)$, if $\varphi(vw)=\varphi(xy)$ then  $vw$ and $xy$ do not nest. The smallest integer $s$ for which $G$ has an $s$-stack layout is called the \emph{stack-number} of $G$, denoted  $\sn(G)$. The smallest integer $q$ for which $G$ has a $q$-queue layout is called the \emph{queue-number} of $G$, denoted $\qn(G)$. Note that stack layouts are equivalent to book embeddings (first defined by \citet{Ollmann73}), and stack-number is also known as \emph{page-number}, \emph{book-thickness} or \emph{fixed outer-thickness}. \todo{add references}
+
+Given a $k$-stack layout $(\prec,\varphi)$ of a graph $G$, for each $i\in\{1,\dots,k\}$, the set $\varphi^{-1}(i)$ behaves like a stack, in the sense that each edge $vw \in \varphi^{-1}(i)$ with $v\prec w$ corresponds to an element in a sequence of stack opertions, such that if we traverse the vertices in the order of $\prec$, then $vw$ is pushed onto the stack at $v$ and popped off the stack at $w$. Similarly, each set $\varphi^{-1}(i)$ in a queue layout  behaves like a queue. In this way, the stack-number and queue-number  respectively measure the power of stacks and queues to represent graphs.
+
 
 \subsection*{Is Stack-Number Bounded by Queue-number?}
 
@@ -144,7 +140,7 @@ Note that \citet{Pupyrev20} independently suggested using graph products to show
 
 \subsection*{Subdivisions}
 
-A noteworthy consequence of \Cref{family} is that it resolves a conjecture of \citet{BO99,BO01}. A graph $G'$ is a \textit{subdivision} of a graph $G$ if $G'$ can be obtained from $G$ by replacing the edges $vw$ of $G$ by internally disjoint paths $P_{vw}$ with endpoints $v$ and $w$. If each $P_{vw}$ has exactly $k$ internal vertices, then $G'$ is the \emph{$k$-subdivision} of $G$. If each $P_{vw}$ has at most $k$ internal vertices, then $G'$ is a \emph{$(\leq k)$-subdivision} of $G$. \citet{BO99} conjectured that the stack-number of $(\leq k)$-subdivisions ($k$ fixed)  is not much less than the stack-number of the original graph. More precisely:
+A noteworthy consequence of \Cref{family} is that it resolves a conjecture of \citet{BO99}. A graph $G'$ is a \textit{subdivision} of a graph $G$ if $G'$ can be obtained from $G$ by replacing the edges $vw$ of $G$ by internally disjoint paths $P_{vw}$ with endpoints $v$ and $w$. If each $P_{vw}$ has exactly $k$ internal vertices, then $G'$ is the \emph{$k$-subdivision} of $G$. If each $P_{vw}$ has at most $k$ internal vertices, then $G'$ is a \emph{$(\leq k)$-subdivision} of $G$. \citet{BO99} conjectured that the stack-number of $(\leq k)$-subdivisions ($k$ fixed)  is not much less than the stack-number of the original graph. More precisely:
 
 \begin{conj}[\citep{BO99}]
 \label{B_conj}
@@ -152,7 +148,7 @@ There exists a function $f$ such that for every graph $G$ and integer $k$, if $G
 \end{conj}
 
 \citet{DujWoo05} established a connection between this conjecture and the question of whether stack-number is bounded by queue-number. In particular, they showed that if
-\cref{B_conj} is true then stack-number is bounded by queue-number. Since \cref{family} shows that stack-number is not bounded by queue-number, \cref{B_conj} is false. The proof of \citet{DujWoo05} is based on the folllowing key lemma: every graph $G$ has a $3$-stack subdivision with $1+2 \ceil{\log_2\qn(G)}$ division vertices per edge. Applying this result to the graph $G=S_b\CartProd H_n$ in \cref{family},
+\cref{B_conj} is true, then stack-number is bounded by queue-number. Since \cref{family} shows that stack-number is not bounded by queue-number, \cref{B_conj} is false. The proof of \citet{DujWoo05} is based on the folllowing key lemma: every graph $G$ has a $3$-stack subdivision with $1+2 \ceil{\log_2\qn(G)}$ division vertices per edge. Applying this result to the graph $G=S_b\CartProd H_n$ in \cref{family},
 the $5$-subdivision of $S_b\CartProd H_n$ has a $3$-stack layout. If \cref{B_conj} was true, then $\sn(S_b\CartProd H_n) \leq f( 3,5)$, contradicting \cref{family}.
 
 %Specifically,
@@ -322,17 +318,19 @@ MENTION RESULTS OF \citet{Pupyrev20} about bipartite graphs.
 Since $H_n\subseteq P \boxtimes P$ where $P$ is the $n$-vertex path, \cref{family} implies that $\sn(S\boxtimes P\boxtimes P)$ is unbounded for stars $S$ and paths $P$. It is easily seen that $\sn(S\boxtimes P)$ is bounded~\citep{Pupyrev20}. The following question naturally arises (independently asked by \citet{Pupyrev20}):
 Is $\sn(T \boxtimes P)$ bounded for every tree $T$ and path $P$? We conjecture the answer is ``no''.
 
-%\input{sn-vs-qn.bbl}
-
-%%%  Squashing the bibliography 
 \let\oldthebibliography=\thebibliography
 \let\endoldthebibliography=\endthebibliography
 \renewenvironment{thebibliography}[1]{%
-	\begin{oldthebibliography}{#1}%
-		\setlength{\parskip}{0.1ex}%
-		\setlength{\itemsep}{0.1ex}%
-	}{\end{oldthebibliography}}
-\bibliographystyle{DavidNatbibStyle}
-\bibliography{../../BibTeX/myBibliography}
+\begin{oldthebibliography}{#1}%
+\setlength{\parskip}{0ex}%
+\setlength{\itemsep}{0ex}%
+}{\end{oldthebibliography}}
+
+\input{sn-vs-qn.bbl}
+
+% OR
+
+%\bibliographystyle{DavidNatbibStyle}
+%\bibliography{../../BibTeX/myBibliography}
 
 \end{document}

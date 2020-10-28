@@ -1115,10 +1115,6 @@ FUNCTION {article}
   format.arxiv output
   new.block
   format.note output
-  new.block
-  format.mrnumber output
-  new.block
-  format.zbl  output
   fin.entry
 }
 
