@@ -25,6 +25,7 @@
 \makeatother
 
 \setlength{\parskip}{1ex}
+\setlength{\parindent}{0ex}
 
 
 \newtheorem{property}{Property}
@@ -56,7 +57,7 @@
 3. STACKS ARE NOT MORE POWERFUL THAN QUEUES 
 \\or\\
 4. STACKS ARE NO MORE POWERFUL THAN QUEUES\\~ \\
-[Votes \quad Vida: \quad Robert: 3 \quad Pat:\quad  David: 3 or 4 ]}
+[Votes \quad Vida: 1 \quad Robert: 3 \quad Pat: 1 or 2 \quad  David: 3 or 4 ]}
 
 \author{Vida Dujmovi\'c,\!\!%
 	\thanks{School of Computer Science and Electrical Engineering,
@@ -93,7 +94,7 @@ Given a $k$-stack layout $(\prec,\varphi)$ of a graph $G$, for each $i\in\{1,\do
 
 \todo{Should the following two paragraphs be moved to prior to the definitions}
 
-The following key problems are implcit in the work of \citet{HLR92}, and made explicit by \citet{DujWoo05}
+The following key problems are implcit in the work of \citet{HLR92}, made explicit by \citet{DujWoo05}
 \footnote{A \emph{graph parameter} is a function $\alpha$ such that $\alpha(G)\in\mathbb{R}$ for every graph $G$, such that $\alpha(G_1)=\alpha(G_2)$ for all isomorphic graphs $G_1$ and $G_2$. A graph parameter $\alpha$ is \textit{bounded} by a graph parameter $\beta$ if there exists a function $f$ such that for every graph $G$ we have $\alpha(G) \leq f(\beta(G))$.}:
 \begin{compactitem}
 	\item Is stack-number bounded by queue-number?
@@ -155,7 +156,7 @@ Note that \citet{Pupyrev20} independently suggested using graph products to show
 
 \subsection*{Subdivisions}
 
-A noteworthy consequence of \Cref{family} is that it resolves a conjecture of \citet{BO99,BO01}. A graph $G'$ is a \textit{subdivision} of a graph $G$ if $G'$ can be obtained from $G$ by replacing the edges $vw$ of $G$ by internally disjoint paths $P_{vw}$ with endpoints $v$ and $w$. If each $P_{vw}$ has eaxctly $k$ internal vertices, then $G'$ is the \emph{$k$-subdivision}. If each $P_{vw}$ has at most $k$ internal vertices, then $G'$ is a \emph{$(\leq k)$-subdivision}. \citet{BO99} conjectured that the stack-number of $(\leq k)$-subdivisions ($k$ fixed)  is not much less than that of the original graph. More precisely:
+A noteworthy consequence of \Cref{family} is that it resolves a conjecture of \citet{BO99,BO01}. A graph $G'$ is a \textit{subdivision} of a graph $G$ if $G'$ can be obtained from $G$ by replacing the edges $vw$ of $G$ by internally disjoint paths $P_{vw}$ with endpoints $v$ and $w$. If each $P_{vw}$ has exactly $k$ internal vertices, then $G'$ is the \emph{$k$-subdivision} of $G$. If each $P_{vw}$ has at most $k$ internal vertices, then $G'$ is a \emph{$(\leq k)$-subdivision} of $G$. \citet{BO99} conjectured that the stack-number of $(\leq k)$-subdivisions ($k$ fixed)  is not much less than the stack-number of the original graph. More precisely:
 
 \begin{conj}[\citep{BO99}]
 \label{B_conj}
@@ -196,8 +197,8 @@ It remains open whether queues are more powerful than stacks; that is, whether q
 First we prove that $\qn(S_b\CartProd H_n)\leq 4$, as claimed in \cref{family}. We need the following definition due to \citet{Wood-Queue-DMTCS05}. A queue layout $(\varphi,\prec)$ is \emph{strict} if for every vertex $u\in V(G)$ and for all neighbours $v,w\in N_G(u)$, if $u\prec v,w$ or $v,w \prec u$, then $\varphi(uv)\neq \varphi(uw)$. Let $\sqn(G)$ be the minimum integer $k$ such that $G$ has a strict $k$-queue layout. To see that $\sqn(H_n) \leq 3$, order the vertices row-by-row and then left-to-right within a row, with vertical edges in one queue, horizontal edges in one queue, and diagonal edges in another queue.
 \citet{Wood-Queue-DMTCS05} proved that $\qn(G \CartProd H) \leq \qn(G) + \sqn(H)$ for all graphs $G$ and $H$. Of course, $S_b$ has a 1-queue layout (since no two edges are nested for any vertex-ordering). Thus $\qn(S_b \CartProd H_n)\leq 4$. 
 
-
-\bigskip We now turn to the proof of our main result, the lower bound on $\sn(G)$, where $G:= S_b\CartProd H_n$. Consider a hypothetical $s$-stack layout $(\varphi,\prec)$ of $G$ where $n$ and $b$ are chosen sufficiently large compared to $s$ as detailed below. We begin with three lemmata that, for sufficiently large $b$, provide a large subgraph $S_d$ of $S_b$ for which the induced stack layout of $S_d\CartProd H_n$ is highly structured.
+%\bigskip 
+We now turn to the proof of our main result, the lower bound on $\sn(G)$, where $G:= S_b\CartProd H_n$. Consider a hypothetical $s$-stack layout $(\varphi,\prec)$ of $G$ where $n$ and $b$ are chosen sufficiently large compared to $s$ as detailed below. We begin with three lemmata that, for sufficiently large $b$, provide a large subgraph $S_d$ of $S_b$ for which the induced stack layout of $S_d\CartProd H_n$ is highly structured.
 
 For each node $v$ of $S_b$, define $\pi_v$ as the permutation of $\{1,\ldots,n\}^2$ in which $(x_1,y_1)$ appears before $(x_2,y_2)$ if and only $(v,x_1,y_1)\prec (v,x_2,y_2)$.  The following lemma is an immediate consequence of the Pigeonhole Principle:
 
@@ -334,6 +335,15 @@ Since $H_n\subseteq P \boxtimes P$ where $P$ is the $n$-vertex path, \cref{famil
 Is $\sn(T \boxtimes P)$ bounded for every tree $T$ and path $P$? We conjecture the answer is ``no''.
 
 %\input{sn-vs-qn.bbl}
+
+%%%  Squashing the bibliography 
+\let\oldthebibliography=\thebibliography
+\let\endoldthebibliography=\endthebibliography
+\renewenvironment{thebibliography}[1]{%
+	\begin{oldthebibliography}{#1}%
+		\setlength{\parskip}{0.1ex}%
+		\setlength{\itemsep}{0.1ex}%
+	}{\end{oldthebibliography}}
 \bibliographystyle{DavidNatbibStyle}
 \bibliography{../../BibTeX/myBibliography}
 
