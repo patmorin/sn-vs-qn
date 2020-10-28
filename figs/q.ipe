@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE ipe SYSTEM "ipe.dtd">
 <ipe version="70218" creator="Ipe 7.2.18">
-<info created="D:20201026074129" modified="D:20201026133008"/>
+<info created="D:20201026074129" modified="D:20201028055244"/>
 <ipestyle name="basic">
 <symbol name="arrow/arc(spx)">
 <path stroke="sym-stroke" fill="sym-stroke" pen="sym-pen">
@@ -323,8 +323,44 @@ h
 </ipestyle>
 <page>
 <layer name="hex-board"/>
-<layer name="Q"/>
-<view layers="Q" active="Q"/>
+<layer name="H_4"/>
+<view layers="H_4" active="H_4"/>
+<path layer="H_4" stroke="brew4" pen="fat">
+228.003 528.175 m
+255.693 552.175 l
+</path>
+<path stroke="brew4" pen="fat">
+200.29 528.175 m
+227.981 552.175 l
+</path>
+<path stroke="brew4" pen="fat">
+172.577 528.175 m
+200.268 552.174 l
+</path>
+<path stroke="brew4" pen="fat">
+227.981 552.175 m
+255.671 576.175 l
+</path>
+<path stroke="brew4" pen="fat">
+200.268 552.174 m
+227.959 576.174 l
+</path>
+<path stroke="brew4" pen="fat">
+172.555 552.174 m
+200.246 576.174 l
+</path>
+<path stroke="brew4" pen="fat">
+227.959 576.174 m
+255.649 600.174 l
+</path>
+<path stroke="brew4" pen="fat">
+200.246 576.174 m
+227.937 600.174 l
+</path>
+<path stroke="brew4" pen="fat">
+172.533 576.174 m
+200.224 600.173 l
+</path>
 <path layer="hex-board" matrix="0.576875 0.5 -1.00082 0.866025 720.848 -154.08" stroke="lightgray">
 272 640 m
 264 653.856 l
@@ -469,7 +505,7 @@ h
 264 626.144 l
 h
 </path>
-<path layer="Q" matrix="1 0 -0.578301 1 296.192 0" stroke="brew1" pen="fat">
+<path layer="H_4" matrix="1 0 -0.578301 1 296.192 0" stroke="brew1" pen="fat">
 181.829 528.175 m
 209.542 528.175 l
 </path>
@@ -521,22 +557,6 @@ h
 264.969 576.174 m
 237.256 576.174 l
 </path>
-<path matrix="1 0 -0.578301 1 296.192 0" stroke="brew4" pen="fat">
-209.543 576.174 m
-223.399 552.174 l
-</path>
-<path matrix="1 0 -0.578301 1 296.192 0" stroke="brew4" pen="fat">
-195.686 552.175 m
-209.542 528.175 l
-</path>
-<path matrix="1 0 -0.578301 1 296.192 0" stroke="brew4" pen="fat">
-223.4 600.174 m
-237.256 576.174 l
-</path>
-<path matrix="1 0 -0.578301 1 296.192 0" stroke="brew4" pen="fat">
-251.113 600.173 m
-264.969 576.174 l
-</path>
 <path matrix="1 0 -0.578301 1 296.192 0" stroke="brew1" pen="fat">
 223.399 552.174 m
 251.112 552.175 l
@@ -544,14 +564,6 @@ h
 <path matrix="1 0 -0.578301 1 296.192 0" stroke="brew3" pen="fat">
 251.112 552.175 m
 264.969 576.174 l
-</path>
-<path matrix="1 0 -0.578301 1 296.192 0" stroke="brew4" pen="fat">
-237.256 576.174 m
-251.112 552.175 l
-</path>
-<path matrix="1 0 -0.578301 1 296.192 0" stroke="brew4" pen="fat">
-223.399 552.174 m
-237.255 528.175 l
 </path>
 <path matrix="1 0 -0.578301 1 296.192 0" stroke="brew1" pen="fat">
 209.542 528.175 m
@@ -576,18 +588,6 @@ h
 <path matrix="1 0 -0.578301 1 296.192 0" stroke="brew1" pen="fat">
 237.255 528.175 m
 264.967 528.176 l
-</path>
-<path matrix="1 0 -0.578301 1 296.192 0" stroke="brew4" pen="fat">
-251.112 552.175 m
-264.967 528.176 l
-</path>
-<path matrix="1 0 -0.578301 1 296.192 0" stroke="brew4" pen="fat">
-264.969 576.174 m
-278.824 552.175 l
-</path>
-<path matrix="1 0 -0.578301 1 296.192 0" stroke="brew4" pen="fat">
-278.826 600.174 m
-292.681 576.175 l
 </path>
 <path matrix="1 0 -0.578301 1 296.192 0" stroke="brew3" pen="fat">
 264.967 528.176 m
