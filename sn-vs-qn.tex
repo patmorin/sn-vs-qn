@@ -1,7 +1,6 @@
 \documentclass[kpfonts]{patmorin}
 \usepackage{pat}
 \usepackage{paralist,graphicx}
-
 \usepackage{array,longtable}
 
 \usepackage[utf8]{inputenc}
@@ -18,15 +17,6 @@
 
 \crefformat{equation}{(#2#1#3)}
 \Crefformat{equation}{Equation #2(#1)#3}
-
-%\theoremstyle{plain}
-%\newtheorem{thm}{Theorem}
-%\newtheorem{lem}[thm]{Lemma}
-%\newtheorem{cor}[thm]{Corollary}
-%\newtheorem{prop}[thm]{Proposition}
-%\newtheorem{conj}[thm]{Conjecture}
-%\newtheorem{open}[thm]{Open Problem}
-%\newtheorem{obs}[thm]{Observation}
 
 \usepackage[numbers,sort&compress]{natbib}
 \usepackage{hypernat}
@@ -59,13 +49,14 @@
 \newcommand{\alabel}[1]{\label{a:#1}}
 
 \title{
-\MakeUppercase{Stack Number is not Bounded by Queue-Number}
+1. \MakeUppercase{Stack-Number is not Bounded by Queue-Number}
 \\or\\
-\MakeUppercase{Stack Number is not Queue-Number Bounded}
+2. \MakeUppercase{Stack-Number is not Queue-Number Bounded}
 \\or\\
-STACKS ARE NOT MORE POWERFUL THAN QUEUES
+3. STACKS ARE NOT MORE POWERFUL THAN QUEUES 
 \\or\\
-STACKS ARE NO MORE POWERFUL THAN QUEUES}
+4. STACKS ARE NO MORE POWERFUL THAN QUEUES\\
+[Votes: RH: 3 DW:3 or 4 ]}
 
 \author{Vida Dujmovi\'c,\!\!%
 	\thanks{School of Computer Science and Electrical Engineering,
@@ -83,144 +74,132 @@ STACKS ARE NO MORE POWERFUL THAN QUEUES}
 
 \begin{document}
 \maketitle
-
+%
 \begin{abstract}
-  We describe a family of graphs in which every member has queue number at most 4, but for every integer $s$, there is a member of the family whose stack number is greater than $s$. This resolves open problems of ??? and Blankenship and Oporwoski (???).
+%	We describe a family of graphs in which every member has queue-number at most 4, but for every integer $s$, there is a member of the family whose stack-number is greater than $s$. This resolves open problems of ??? and Blankenship and Oporwoski (???).
+We describe a family of graphs with queue-number at most 4 but unbounded stack-number. This resolves open problems of Heath, Leighton and Rosenberg (1992) and Blankenship and Oporwoski (1999).
 \end{abstract}
 
 \section{Introduction}
 
-Stacks and queues are fundamental structures in computer science. But which one is more powerful? In 1992, this question was explored by Heath et al. \cite{HLR92} where they compared the graph parameters \textit{stack-number} and \textit{queue-number} which respectively measure the power of stacks and queues for laying out graphs. They showed that every graph which admits a $1$-queue layout has a $2$-stack layout and that the ternary hypercubes requires exponentially more stacks than queues \cite{HLR92}. In particular, $n$-vertex ternary hypercubes have queue-number at most $2 \log_3 n$, but stack-number at least $\Omega(n^{1/9-\epsilon})$ for any $\epsilon>0$.
+Stacks and queues are fundamental data structures in computer science, but which is more powerful? This question was introduced in 1992 by Heath et al. \cite{HLR92} where they compared the graph parameters \textit{stack-number} and \textit{queue-number} which respectively measure the power of stacks and queues for laying out graphs. 
 
-We say that a graph parameter $\alpha$ is \textit{bounded} by $\beta$ if there exists a function $f$ such that for every graph $G$ we have $\alpha(G) \leq f(\beta(G))$. In 2005, Dujmovi\'c et al. \cite{DujWoo05} extended the study on the comparison of stacks and queues by asking whether stack-number is bounded by queue-number or queue-number bounded by stack-number. If stack-number is bounded by queue-number but queue-number is not bounded by stack-number, then we would consider stacks to be more powerful than queues. Similarly, if the converse holds, then we would consider queues to be more powerful than stacks. Despite extensive research on stack and queue layouts of graphs [references???], it has remained unclear which one is more powerful for laying out graphs.
+%We now formally define stack and queue layouts of graphs. 
+Let $G$ be a graph and let $\prec$ be a total order on $V(G)$.  Two disjoint edges $vw,xy\in E(G)$ with $v\prec w$ and $x\prec y$ \emph{cross} with respect to $\prec$ if $v\prec x\prec w\prec y$ or $x\prec v\prec y\prec w$, and \emph{nest} with respect to $\prec$ if $v\prec x\prec y\prec w$ or $x\prec v\prec w\prec y$. 
+%A set of $k$ pairwise nested edges is called a \emph{$k$-rainbow} and a set of $k$ pairwise crossing edges is called a \emph{$k$-twist}. A set of $k$ edges, no pair of which nest and no pair of which cross is called a \emph{hopper}.
+Let $\varphi:E(G)\to\{1,\ldots,k\}$ for some integer $k\ge 1$.  Then $(\prec,\varphi)$ is a \emph{$k$-stack layout} of $G$ if, for every pair of edges $vw,xy\in E(G)$, if $\varphi(vw) = \varphi(xy)$ then $vw$ and $xy$ do not cross. Similarly, the pair $(\prec,\varphi)$ is a \emph{$k$-queue layout} of $G$ if, for every pair of edges $vw,xy\in E(G)$, if $\varphi(vw)=\varphi(xy)$ then  $vw$ and $xy$ do not nest. The smallest integer $s$ for which $G$ has an $s$-stack layout is called the \emph{stack-number} of $G$ and is denoted by $\sn(G)$. The smallest integer $q$ for which $G$ has a $q$-queue layout is called the \emph{queue-number} of $G$ and is denoted by $\qn(G)$. Note that stack layouts are equivalent to book embeddings, and stack-number is also known as \emph{page-number}, \emph{book-thickness} or \emph{fixed outer-thickness}. \todo{add references}
 
-\textbf{UPDATE THE FOLLOWING PARAGRAPH WITH PAT'S NOTATION}
+Given a $k$-stack layout $(\prec,\varphi)$ of a graph $G$, for each $i\in\{1,\dots,k\}$, the set $E_i:= \{e\in E(G):\varphi(e)=i\}$ behaves like a stack, in the sense that each edge $e=vw \in E_i$ with $v\prec w$ corresponds to an element in a sequence of stack opertions, such that if we traverse the vertices in the order of $\prec$, then $e$ is pushed onto the stack at $v$ and popped of the stack at $w$. Similarly, given a $k$-queue layout $(\prec,\varphi)$ of a graph $G$, for each $i\in\{1,\dots,k\}$, the set $E_i:= \{e\in E(G):\varphi(e)=i\}$ behaves like a queue. Hence the stack-number and queue-number  respectively measure the power of stacks and queues to represent graphs. 
 
-We now formally define stack and queue layouts of graphs. Let $G=(V,E)$ be a graph with disjoint edges $vw, xy$ and a linear ordering $\leq$ of the vertices. Without loss of generality, we may assume that $v < w$, $x <y$ and $v < x$. We say that $vw$ and $xy$ \textit{cross} if $v<x<w<y$,  \textit{nest} if $v <x <y < w$, and are \textit{disjoint} if $v <w<x<y$. A \textit{stack} is a set of pairwise non-crossing edges and a \textit{queue} is a set of pairwise non-nesting edges. A $k$-queue layout of $G$ consist of a linear ordering $\leq$ of its vertices and a partition $E_1,E_2, \dots, E_k$, of its edges into queues with respect to $\leq$. The stack-number of a graph $G$, $\sn(G)$, is the minimum integer $k$ such that $G$ has a $k$-stack layout. Similarly, the queue-number of a graph $G$, $\qn(G)$, is the minimum integer $k$ such that $G$ has a $k$-queue layout. We note that stack layouts of graphs are related to book embeddings of graph and that stack-number is also known as \textit{page-number}, \textit{book-thickness}, or \textit{fixed outer-thickness}.
+The following key problems are implcit in the work of \citet{HLR92}, and made explicit by \citet{DujWoo05}
+\footnote{A \emph{graph parameter} is a function $\alpha$ such that $\alpha(G)\in\mathbb{R}$ for every graph $G$, such that $\alpha(G_1)=\alpha(G_2)$ for all isomorphic graphs $G_1$ and $G_2$. A graph parameter $\alpha$ is \textit{bounded} by a graph parameter $\beta$ if there exists a function $f$ such that for every graph $G$ we have $\alpha(G) \leq f(\beta(G))$.}:
+\begin{compactitem}
+	\item Is stack-number bounded by queue-number?
+	\item Is queue-number bounded by stack-number?
+\end{compactitem}
 
-Note that stacks and queues are closely related to breadth-first search (BFS) and depth-first search (DFS) layouts of graphs. It can be easily shown that a BFS vertex ordering of a tree admits a $1$-queue layout and a DFS vertex ordering of a tree admits a $1$-stack layout. 
+If stack-number is bounded by queue-number but queue-number is not bounded by stack-number, then we would consider stacks to be more powerful than queues. Similarly, if the converse holds, then we would consider queues to be more powerful than stacks. Despite extensive research on stack and queue layouts of graphs (see \citep{DujWoo04,DujWoo-DCG07,DJMMUW20} and the references therein), these fundamental questions have remained unsolved. 
+
+\subsection*{Is Stack-Number Bounded by Queue-number?}
+
+This paper considers the first of the above questions. In a positive direction, \citet{HLR92}  showed that every 1-queue graph has a $2$-stack layout. On the other hand, they described graphs that need exponentially more stacks than queues. In particular, $n$-vertex ternary hypercubes have queue-number $O(\log n)$ and stack-number $\Omega(n^{1/9-\epsilon})$ for any $\epsilon>0$.
+
+
+%Note that, in an $s$-stack layout, $(\prec,\varphi)$, $\varphi$ is a proper $s$-colouring of the auxilliary graph $H$ with vertex set $V(H)=E(G)$ and in which the edge $ef$ if present if and only if $e$ and $f$ cross with respect to $\varphi$.  Any $k$-twist in $G$ with respect to $\prec$ corresponds to a $k$-clique $H$.  Since the chromatic number of any graph is bounded by its clique number, the following observation is trivial:
+
+%\begin{obs}\obslabel{no-s-twist}
+%If $(\prec,\varphi)$ is an $s$-stack layout of a graph $G$ then $E(G)$ does not contain any $k$-twist for any $k>s$.
+%\end{obs}
+
+%We now formally define stack and queue layouts of graphs. Let $G=(V,E)$ be a graph with disjoint edges $vw, xy$ and a linear ordering $\leq$ of the vertices. Without loss of generality, we may assume that $v < w$, $x <y$ and $v < x$. We say that $vw$ and $xy$ \textit{cross} if $v<x<w<y$,  \textit{nest} if $v <x <y < w$, and are \textit{disjoint} if $v <w<x<y$. \todo{DW: Do we  need ``disjoint''?} A \textit{stack} is a set of pairwise non-crossing edges and a \textit{queue} is a set of pairwise non-nesting edges. A $k$-queue layout of $G$ consist of a linear ordering $\leq$ of its vertices and a partition $E_1,E_2, \dots, E_k$, of its edges into queues with respect to $\leq$. The stack-number of a graph $G$, $\sn(G)$, is the minimum integer $k$ such that $G$ has a $k$-stack layout. Similarly, the queue-number of a graph $G$, $\qn(G)$, is the minimum integer $k$ such that $G$ has a $k$-queue layout. We note that stack layouts of graphs are related to book embeddings of graph and that stack-number is also known as \textit{page-number}, \textit{book-thickness}, or \textit{fixed outer-thickness}.
+
+%Note that stacks and queues are closely related to breadth-first search (BFS) and depth-first search (DFS) layouts of graphs. It can be easily shown that a BFS vertex ordering of a tree admits a $1$-queue layout and a DFS vertex ordering of a tree admits a $1$-stack layout.
 
 %\citet{HLR92} showed that every 1-queue graph has a 2-stack layout. \citet{HLR92} showed that the ternary hypercubes requires exponentially more stacks than queues. In particular, $n$-vertex ternary hypercubes have queue-number at most $2 \log_3 n$, but stack-number at least $\Omega(n^{1/9-\epsilon})$ for any $\epsilon>0$. We prove the following theorem, which shows that stack-number is not bounded by queue-number.
 
-Our key contribution is the following theorem, which shows that stack-number is not bounded by queue-number. 
+Our key contribution is the following theorem, which shows that stack-number is not bounded by queue-number.
+This demonstrates that stacks are not more powerful than queues in the sense discussed above. 
 
 \begin{thm}\label{family}
 	%  There exists a family $\mathcal{F}$ of graphs for which $\qn(G)\le 4$ for every $G\in\mathcal{F}$, and for every $s\in\N$, there exists $G\in\mathcal{F}$ for which $\sn(G)>s$.
 	For every $s\in \N$ there exists a graph $G$ with $\qn(G)\le 4$ and $\sn(G)>s$.
 \end{thm}
 
-This demonstrates that stacks are not more powerful than queues for laying out graphs. It remains open whether queues are more powerful than stacks; that is, whether queue-number is bounded by stack-number. Before we specify the graph $G$ in \Cref{family}, we must first introduce graph products.
+\subsection*{The Construction}
 
-Let $Q$ and $G$ be graph. We define a graph product $G \times Q$ with the vertex set: 
-$$V(G \times Q)= \{(a,v): a \in V(G), v \in V(Q)\}.$$
+The graph $G$ in \cref{family} is a cartesian product. For graphs $G_1$ and $G_2$, the \emph{cartesian product} $G_1\CartProd G_2$ is the graph with vertex set $\{(v_1,v_2): v_1 \in V(G_1), v_2 \in V(G_2)\}$, where $(v_1,v_2)(w_1,w_2)\in E(G_1\CartProd G_2)$ if $v_1=w_1$ and $v_2w_2\in E(G_2)$, or $v_1w_1\in E(G_1)$ and $v_2=w_2$.
 
-A potential edge $(a,v)(b,u)$ in $G \times Q$ can be classified as:
-\begin{itemize}
-	\item $G$-edge: $ab \in E(G)$ and $v=u$;	
-	\item $Q$-edge: $uv \in E(Q)$ and $a=b$; or	
-	\item direct-edge: $ab \in E(G)$ and $uv \in E(Q)$.
-\end{itemize}
-
-\todo{DW: do we actually use the $Q$-edge and $Q$-edge terminology? Are these definitions needed?}
-
-The \textit{Cartesian product} $G \square Q$ consists of the $G$-edges and $Q$-edges. The \textit{direct product} $G \times Q$ consist of the direct edges. The \textit{strong product} $G \boxtimes Q$ consist of the $G$-edges, $Q$-edges and the direct edges.
-
-Graph products are a powerful tool in structural graph theory and have been used to solve many open problems concerning queue layouts of graphs \cite{DJMMUW20,DMW}. The graph $G$ in \Cref{family} is obtained as follows (See \figref{graph}): Let $S_b$ denote the star graph with root $r$ and $b$ leaves. For an even positive integer $n$, let $H_n$ be the Hex $n \times n$ grid, defined by $V(H_n):=\{1,\ldots,n\}^2$ and
-
+Let $S_b$ be the star graph with root $r$ and $b$ leaves. For $n\in\N$, let $H_n$ be the Hex $n \times n$ grid, defined by $V(H_n):=\{1,\ldots,n\}^2$ and
 \begin{align*}
 E(H_n) & :=\{(x,y)(x+1,y):x\in\{1,\ldots,n-1\},\,y\in\{1,\ldots,n\}\} \\
 & \qquad \cup \{(x,y)(x,y+1):x\in\{1,\ldots,n\},\,y\in\{1,\ldots,n-1\}\} \\
 & \qquad \cup \{(x,y+1)(x+1,y):x,y\in\{1,\ldots,n-1\}\} \enspace .
 \end{align*}
+Note that $H_n$ is the dual of the hexagonal grid. 
 
-Note that the Hex graph corresponds to the board used in the game \textit{Hex} which was invented by the mathematician Peit Hein in 1942. In this paper, we prove \Cref{family} with the graph $G:= S_b \square H_n$ where $b$ and $n$ are large compared to $s$. We note that Pupyrev first suggested using graph products to show that stack-number is not bounded by queue-number \cite{Pupyrev20}. 
-
-Another noteworthy consequence of \Cref{family} is that it resolves a conjecture of \citet{BO99,BO01}. A graph $G’$ is a \textit{subdivision} of a graph $G$ if it can be obtained by replacing every edge by a path. The vertices in $G’-G$ are called the \textit{division vertices}. A subdivision of $G$ with exactly $t$ division vertices for each edge of $G$ is called the \textit{$t$-subdivision} of $G$. In 1999, Blankeship and Oporowski conjectured that the subdivision of any graph is not too much smaller than that of the original graph. More precisely:
-
-\begin{conj}\label{B_conj}\citep{BO99,BO01}
-	There exists a function $f$ such that for every graph $G$ and the $2$-subdivision $G’$ of $G$ we have $\sn(G) \leq f(\sn(G’))$. 
-\end{conj} 
-
-Dujmovi\'c et al. \cite{DujWoo05}, in their extensive study of layout of graph subdivisions, proved the following.
-
-\begin{thm}\label{sub_thm} \cite{DujWoo05}
-	For every integer $s \geq 3$, every graph $G$ has an $s$-stack subdivision with $1+2 \ceil{\log_{s-1}\qn(G)}$ division vertices per edge.
-\end{thm}
-
-
-As a consequence of this result, Dujvonic et al. showed that if the Blankeship and Oporowski Conjecture is true, then it follows that stack-number is bounded by queue-number. But as \Cref{family} proves that this is not the case, it follows that \Cref{B_conj} is indeed false. We note that for our graph $G$ in \Cref{family}, since $\qn(G) \leq 4$ as a consequence of \Cref{sub_thm} we have the following corollary.
-
-\begin{cor}
-	For the graph $G$ specified in \Cref{family}, there exists a $3$-stack layout of the $5$-subdivision of $G$.
-\end{cor}
-
-This demonstrates that the stack-number of a graph can be unboundedly larger than that of a subdivision of it.
-
-
-%STACKS vs QUEUES
-%
-%LINEAR LAYOUTS, CROSSINGS AND NESTINGS
-%
-%STACKS AND QUEUES
-%
-%STACK-NUMBER AND QUEUE-NUMBER
-%
-%BOUNDED PARAMETERS
-%
-%IMPORTANT PAPERS \citep{HLR92,CLR87,Pupyrev20,DujWoo05,HR92}
-
-
-
-\citet{HLR92} showed that every 1-stack graph has a 2-queue layout. \citet{DJMMUW20} showed that planar graphs have bounded queue-number. In particular, 2-stack graphs have bounded queue-number. It is open whether 3-stack graphs have bounded queue-number. In fact, the case of three stacks is as hard as the general question. \citet{DujWoo05} proved that queue-number is bounded by stack-number if and only if 3-stack graphs have bounded queue-number. Moreover, if this is true then stack-number is bounded by a polynomial function of queue-number.
-
-
-
-
-%Specifically,
-%\[
-%    \mathcal{F} := \{ S_b\square Q_n : b,n\in\N\}
-%\]
-%where $S_b$ denotes the star with $b$ leaves and $Q_n$ is the triangulated $n\times n$ grid.
-
-\todo[inline]{PM: Does anyone know if there is a standard box operator that is typeset like this $S\boxtimes Q$ or $S\boxdot Q$ instead of like this $S\square Q$ or like this $S\Box Q$?  I tried square and Box. DW: I defined \texttt{CartProd} which typesets okay $A \CartProd B$	.}
-
-
-The graph $G$ in \cref{family} is obtained as follows (See \figref{graph}): Let $S_b$ denote the star graph with root $r$ and $b$ leaves.  For an even positive integer $n$, let $Q_n$ be the $n\times n$ triangulated grid, defined by $V(Q_n):=\{1,\ldots,n\}^2$ and
-\begin{align*}
-E(Q_n) & :=\{(x,y)(x+1,y):x\in\{1,\ldots,n-1\},\,y\in\{1,\ldots,n\}\} \\
-& \qquad \cup \{(x,y)(x,y+1):x\in\{1,\ldots,n\},\,y\in\{1,\ldots,n-1\}\} \\
-& \qquad \cup \{(x,y+1)(x+1,y):x,y\in\{1,\ldots,n-1\}\} \enspace .
-\end{align*}
-We consider the graph $G:=S_b\CartProd Q_n$. That is, $V(G)=V(S_b)\times V(Q_n)$ where vertices $(v_1,w_1),(v_2,w_2)\in V(G)$ are adjacent whenever $v_1=w_1$ and $v_2w_2\in E(Q_n)$, or $v_1w_1\in E(S_b)$ and $v_2=w_2$.\todo{PM: Suggestion: Replace $Q_n$ with $H$ (for \emph{H}ex). DW: I like this change.}
+The graph $G$ in \cref{family} is $S_b \CartProd H_n$ where $b$ and $n$ are chosen to be sufficiently large compared to $s$. 
+%Note that the Hex graph corresponds to the board used in the game \textit{Hex} which was invented by the  Peit Hein in 1942. In this paper, we prove \Cref{family} with the graph $G:= S_b \square H_n$ where $b$ and $n$ are large compared to $s$. 
+Note that \citet{Pupyrev20} independently suggested using graph products to show that stack-number is not bounded by queue-number.
 
 \begin{figure}
 	\begin{center}
 		\begin{tabular}{m{.25\textwidth}m{2ex}m{.25\textwidth}m{2ex}m{.3\textwidth}}
-		\includegraphics[width=.25\textwidth]{figs/s} & $\Box$ & \includegraphics[width=.25\textwidth]{figs/q} & $=$
-		& \includegraphics[width=.3\textwidth]{figs/product}
-	\end{tabular}
+			\includegraphics[width=.25\textwidth]{figs/s} & $\CartProd$ & \includegraphics[width=.25\textwidth]{figs/q} & $=$
+			& \includegraphics[width=.3\textwidth]{figs/product}
+		\end{tabular}
 	\end{center}
 	% \includegraphics[width=\textwidth]{figs/figure}
-	\caption{$S_9\Box Q_4$.}
+	\caption{$S_9 \CartProd Q_4$.}
 	\figlabel{graph}
 \end{figure}
 
-SAY SOMETHING ABOUT THE RESULTS OF \citet{Pupyrev}. I EXPECT WE SOLVE SOME OPEN PROBLEM HERE.
+\subsection*{Subdivisions}
 
-\section{Queue-Number Upper Bound}
+A noteworthy consequence of \Cref{family} is that it resolves a conjecture of \citet{BO99,BO01}. A graph $G'$ is a \textit{subdivision} of a graph $G$ if it can be obtained from $G$ by replacing the edges of $G$ by internally disjoint paths. The vertices of $V(G')\setminus V(G)$ are called \textit{division} vertices. The subdivision of $G$ with exactly $t$ division vertices for each edge is called the \textit{$t$-subdivision} of $G$. \citet{BO99,BO01} conjectured that the stack-number of the 1-subdivision of any graph is not much smaller than that of the original graph. More precisely:
 
-To prove that $\qn(G)\leq 4$ in Theorem~\ref{family} we need the following definition due to \citet{Wood-Queue-DMTCS05}. A queue layout $(\varphi,\prec)$ is \emph{strict} if for every vertex $u\in V(G)$ and for all neighbours $v,w\in N_G(u)$ with $u\prec v,w$ or $v,w \prec u$, we have $\varphi(uv)\neq \varphi(uw)$. Let $\sqn(G)$ be the minimum integer $k$ such that $G$ has a strict $k$-queue layout.
-Note that $\sqn(Q_n) \leq 3$: Order the vertices row-by-row and then left-to-right within a row, with vertical edges in one queue, horizontal edges in one queue, and diagonal edges in another queue.
-\citet{Wood-Queue-DMTCS05} proved that $\qn(G \CartProd H) \leq \qn(G) + \sqn(H)$ for all graphs $G$ and $H$. Of course, $S_b$ has a 1-queue layout (since no two edges are nested for any vertex-ordering). Thus
-$$\qn(S_b \CartProd Q_n)\leq 4.$$
+\begin{conj}\label{B_conj}\citep{BO99,BO01}
+There exists a function $f$ such that for every graph $G$, if $G'$ is the $1$-subdivision of $G$, then $\sn(G) \leq f(\sn(G’))$. \todo{$\leq 1)$-subdivision?}
+\end{conj}
+
+\citet{DujWoo05} established a connection between this conjecture and the question of whether stack-number is bounded by queue-number. In particular, they showed that if 
+\cref{B_conj} is true then stack-number is bounded by queue-number. Since \cref{family} shows that stack-number is not bounded by queue-number, \cref{B_conj} is false. The proof of \citet{DujWoo05} is based on the folllowing key lemma: 
+every graph $G$ has a $3$-stack subdivision with $1+2 \ceil{\log_2\qn(G)}$ division vertices per edge. Applying this result to the graph $G=S_b\CartProd H_n$ in \cref{family}, 
+the $5$-subdivision of $S_b\CartProd H_n$ has a $3$-stack layout. If \cref{B_conj} was true, then applying it three times would imply that  $S_b\CartProd H_n$ has bounded stack-number, contradicting \cref{family}. 
+
+%Specifically,
+%\[
+%    \mathcal{F} := \{ S_b\square H_n : b,n\in\N\}
+%\]
+%where $S_b$ denotes the star with $b$ leaves and $H_n$ is the triangulated $n\times n$ grid.
+
+%\todo[inline]{PM: Does anyone know if there is a standard box operator that is typeset like this $S\boxtimes Q$ or $S\boxdot Q$ instead of like this $S\square Q$ or like this $S\Box Q$?  I tried square and Box. DW: I defined \texttt{CartProd} which typesets okay $A \CartProd B$	.}
 
 
-ADD TO DISCUSSION LATER:	$Q_n$ is planar with a Hamiltonian cycle (assuming $n$ is even), so $\sn(Q_n) \leq 2$
+%The graph $G$ in \cref{family} is obtained as follows (See \figref{graph}): Let $S_b$ denote the star graph with root $r$ and $b$ leaves.  For an even positive integer $n$, let $H_n$ be the $n\times n$ triangulated grid, defined by $V(H_n):=\{1,\ldots,n\}^2$ and
+%\begin{align*}
+%E(H_n) & :=\{(x,y)(x+1,y):x\in\{1,\ldots,n-1\},\,y\in\{1,\ldots,n\}\} \\
+%& \qquad \cup \{(x,y)(x,y+1):x\in\{1,\ldots,n\},\,y\in\{1,\ldots,n-1\}\} \\
+%& \qquad \cup \{(x,y+1)(x+1,y):x,y\in\{1,\ldots,n-1\}\} \enspace .
+%\end{align*}
+%We consider the graph $G:=S_b\CartProd H_n$. That is, $V(G)=V(S_b)\times V(H_n)$ where vertices $(v_1,w_1),(v_2,w_2)\in V(G)$ are adjacent whenever $v_1=w_1$ and $v_2w_2\in E(H_n)$, or $v_1w_1\in E(S_b)$ and $v_2=w_2$.
+\todo{PM: Suggestion: Replace $Q_n$ with $H_n$ (for \emph{H}ex). DW: I have made this change.}
 
 
-\section{Stack-Number Lower Bound}
+%SAY SOMETHING ABOUT THE RESULTS OF \citet{Pupyrev20}. I EXPECT WE SOLVE SOME OPEN PROBLEM HERE.\todo{PM:Not really, his open problem is about $H\boxtimes P$ where $H$ has bounded treewidth.}
 
-Consider a hypothetical $s$-stack layout $(\varphi,\prec)$ of $G$ where $n$ and $b$ are chosen sufficiently large compared to $s$ as detailed below.  We begin with three lemmata that, for sufficiently large $b$, allow us to find a large subgraph $S_d$ of $S_b$ for which the stack layout $(\varphi,\prec)$ of $S_d\CartProd Q_n$ is highly structured.
+\subsection*{Is Queue-number Bounded by Stack-Number? }
+
+It remains open whether queues are more powerful than stacks; that is, whether queue-number is bounded by stack-number. Several reults are known about this problem. \citet{HLR92} showed that every 1-stack graph has a 2-queue layout. \citet{DJMMUW20} showed that planar graphs have bounded queue-number. (Note that graph products also feature heavily in this proof.)\ In particular, 2-stack graphs have bounded queue-number. It is open whether 3-stack graphs have bounded queue-number. In fact, the case of three stacks is as hard as the general question. \citet{DujWoo05} proved that queue-number is bounded by stack-number if and only if 3-stack graphs have bounded queue-number. Moreover, if this is true then stack-number is bounded by a polynomial function of queue-number.
+
+
+\section{The Proof}
+
+First we prove that $\qn(S_b\CartProd H_n)\leq 4$, as claimed in \cref{family}. We need the following definition due to \citet{Wood-Queue-DMTCS05}. A queue layout $(\varphi,\prec)$ is \emph{strict} if for every vertex $u\in V(G)$ and for all neighbours $v,w\in N_G(u)$ with $u\prec v,w$ or $v,w \prec u$, we have $\varphi(uv)\neq \varphi(uw)$. Let $\sqn(G)$ be the minimum integer $k$ such that $G$ has a strict $k$-queue layout.
+Note that $\sqn(H_n) \leq 3$: Order the vertices row-by-row and then left-to-right within a row, with vertical edges in one queue, horizontal edges in one queue, and diagonal edges in another queue.
+\citet{Wood-Queue-DMTCS05} proved that $\qn(G \CartProd H) \leq \qn(G) + \sqn(H)$ for all graphs $G$ and $H$. Of course, $S_b$ has a 1-queue layout (since no two edges are nested for any vertex-ordering). Thus $\qn(S_b \CartProd H_n)\leq 4$. 
+
+
+\bigskip We now turn to the proof of our main result, the lower bound on $\sn(S_b\CartProd H_n)$. Consider a hypothetical $s$-stack layout $(\varphi,\prec)$ of $S_b\CartProd H_n$ where $n$ and $b$ are chosen sufficiently large compared to $s$ as detailed below.  We begin with three lemmata that, for sufficiently large $b$, allow us to find a large subgraph $S_d$ of $S_b$ for which the stack layout $(\varphi,\prec)$ of $S_d\CartProd H_n$ is highly structured.
 
 For each node $v$ of $S_b$, we define $\pi_v$ as the permutation of $\{1,\ldots,n\}^2$ in which $(x_1,y_1)$ appears before $(x_2,y_2)$ if and only $(v,x_1,y_1)\prec (v,x_2,y_2)$.  The following lemma is an immediate consequence of the Pigeonhole Principle:
 
@@ -230,38 +209,38 @@ For each node $v$ of $S_b$, we define $\pi_v$ as the permutation of $\{1,\ldots,
 
 \todo[inline]{If we cared, we could improve this to $b/2^{cn^2}$ since we only use the weaker property (P3) in the final proof.}
 
-For each leaf $v$ in $L$, let $\varphi_v$ be the edge colouring of $Q_n$ defined by $\varphi_v(x,y):=\varphi(v,x,y)$.  The edges of $Q_n$ are defined as the union of three sets, each of which has size less than $n^2$, so $Q_n$ has less than $3n^2$ edges.  Therefore are fewer than $s^{3n^2}$ edge colourings of $Q_n$ using $s$ colours.  Another application of the Pigeonhole Principle proves the following:
+For each leaf $v$ in $L$, let $\varphi_v$ be the edge colouring of $H_n$ defined by $\varphi_v(x,y):=\varphi(v,x,y)$. Since $H_n$ has maximum degree $6$, it has less than $3n^2$ edges.  Therefore are fewer than $s^{3n^2}$ edge colourings of $H_n$ using $s$ colours.  Another application of the Pigeonhole Principle proves the following:
 
 \begin{lem}\lemlabel{uniform_colour}
     There exists a subset $L_2\subseteq L_1$ of size $b_2\ge b_1/s^{3n^2}$
-    and an edge colouring $\varphi_0:Q_n\to\{1,\ldots,s\}$ such that $\varphi_v=\varphi_0$ for each $v\in L_2$.
+    and an edge colouring $\varphi_0:H_n\to\{1,\ldots,s\}$ such that $\varphi_v=\varphi_0$ for each $v\in L_2$.
 \end{lem}
 
 The preceding two lemmata ensure that, for distinct leaves $v$ and $w$ of $S_{b_2}$, the stack layout of the isomorphic graphs $Q_v:=G[\{(v,p):p\in V(Q)]$ and $Q_w:=G[\{(w,p):p\in V(Q)]$ is identical.  The next lemma is a statement about the relationships between the stack layouts of $S_p:=G[\{(v,p):v\in V(S_{b_2})]$ and $S_q:=G[\{(v,q):v\in V(S_{b_2})]$ for two distinct $p,q\in V(Q)$.  It cannot assert that these two layouts are identical but it does state that they fall into one of two categories.
 
 \begin{lem}\lemlabel{forward_or_backward}
-    There exists a sequence $L_3:=u_1,\ldots,u_{b_3}$ with $\{u_1,\ldots,u_{b_3}\}\subseteq L_2$ of length $b_3\ge b_2^{1/2^{n^2-1}}$ such that, for each $p\in V(Q_n)$, $(u_1,p)\prec (u_2,p)\prec\cdots\prec (u_{b_3},p)$ or $(u_1,p)\succ (u_2,p)\succ\cdots\succ (u_{b_3},p)$.
+    There exists a sequence $L_3:=u_1,\ldots,u_{b_3}$ with $\{u_1,\ldots,u_{b_3}\}\subseteq L_2$ of length $b_3\ge b_2^{1/2^{n^2-1}}$ such that, for each $p\in V(H_n)$, $(u_1,p)\prec (u_2,p)\prec\cdots\prec (u_{b_3},p)$ or $(u_1,p)\succ (u_2,p)\succ\cdots\succ (u_{b_3},p)$.
 \end{lem}
 
 \begin{proof}
-    Let $p_1,\ldots,p_{n^2}$ denote the vertices of $Q_n$, in any order.
+    Let $p_1,\ldots,p_{n^2}$ denote the vertices of $H_n$, in any order.
     Begin with the sequence $S_1:=v_{1,1},\ldots,v_{1,d_1}$ that contains all $d_1:=b_2$ elements of $L_2$ ordered so that $(v_{1,1},p_1)\prec\cdots\prec(v_{1,d_1},p_1)$.  For each $i\in\{2,\ldots,n^2\}$, the Erd\H{o}s-Szekeres Theorem~\citep{ES35} implies that, $S_{i-1}$ contains a subsequence $S_i:=v_{i,1},\ldots,v_{i,d_i}$ of length $d_i\ge \sqrt{|S_{i-1}|}$ such that $(v_{i,1},p_i)\prec\cdots\prec(v_{i,d_i},p_i)$ or $(v_{i,1},p_i)\succ\cdots\succ(v_{i,d_i},p_i)$.  It is straightforward to verify by induction on $i$ that $d_i \ge b_2^{1/2^{i-1}}$ resulting in a final sequence $S_{n^2}=:L_3$ of length at least $b_2^{1/2^{n^2-1}}$.
 \end{proof}
 
-Let $d:=b_3$ and let $S_d$ be the the subgraph of $S_b$ induced by $\{r\}\cup\{u_1,\ldots,u_{d}\}$ where $u_1,\ldots,u_d$ is the sequence of leaves defined in \lemref{forward_or_backward}.  Consider the (improper) vertex colouring of $Q_n$ obtained by colouring each vertex $p\in V(Q_n)$ \emph{red} if $(u_1,p)\prec\cdots\prec (u_d,p)$ and colouring $p$ \emph{blue} if $(u_1,p)\succ\cdots\succ(u_d,p)$.
+Let $d:=b_3$ and let $S_d$ be the the subgraph of $S_b$ induced by $\{r\}\cup\{u_1,\ldots,u_{d}\}$ where $u_1,\ldots,u_d$ is the sequence of leaves defined in \lemref{forward_or_backward}.  Consider the (improper) vertex colouring of $H_n$ obtained by colouring each vertex $p\in V(H_n)$ \emph{red} if $(u_1,p)\prec\cdots\prec (u_d,p)$ and colouring $p$ \emph{blue} if $(u_1,p)\succ\cdots\succ(u_d,p)$. We need the following famous Hex Lemma~\citep{Gale79}. 
 
 \begin{lem}\lemlabel{hex_lemma}
-    The graph $Q_n$ contains an $n$-vertex path $R$ consisting entirely of red vertices or entirely of blue vertices.
+Every red--blue vertex colouring of the graph $H_n$	contains an $n$-vertex path $R$ consisting entirely of red vertices or entirely of blue vertices.
 \end{lem}
 
-\begin{proof}
-    The dual of $Q_n$ is the board on which the game Hex is played.  The well-known \emph{Hex Lemma} states that any colouring of the vertices of $Q_n$ with colours red and blue contains exactly one of the following \cite{Gale79}:
-    \begin{compactenum}
-        \item a path with endpoints $(x,1)$ and $(x',n)$ consisting entirely of red vertices, for some $x,x'\in\{1,\ldots,n\}$; or
-        \item a path with endpoints $(1,y)$ and $(n,y')$ consisting entirely of blue vertices, for some $y,y'\in\{1,\ldots,n\}$.
-    \end{compactenum}
-    In either case, the path contains at least $n$ vertices and therefore has a $n$-vertex subpath consisting entirely of red vertices or entirely of blue vertices.
-\end{proof}
+%\begin{proof}
+%    The dual of $H_n$ is the board on which the game Hex is played.  The well-known \emph{Hex Lemma} states that any colouring of the vertices of $H_n$ with colours red and blue contains exactly one of the following \cite{Gale79}:
+%    \begin{compactenum}
+%        \item a path with endpoints $(x,1)$ and $(x',n)$ consisting entirely of red vertices, for some $x,x'\in\{1,\ldots,n\}$; or
+%        \item a path with endpoints $(1,y)$ and $(n,y')$ consisting entirely of blue vertices, for some $y,y'\in\{1,\ldots,n\}$.
+%    \end{compactenum}
+%    In either case, the path contains at least $n$ vertices and therefore has a $n$-vertex subpath consisting entirely of red vertices or entirely of blue vertices.
+%\end{proof}
 
 Without loss of generality, assume that the path $R:=p_1,\ldots,p_n$ defined by \lemref{hex_lemma} consists entirely of red vertices, so that $(u_1,p_j)\prec\cdots\prec (u_d,p_j)$ for each $j\in\{1,\ldots,n\}$.
 Recall that $(\varphi,\prec)$ is a hypothetical $s$-stack layout of $G$ and therefore it is also an $s$-stack layout of the subgraph $X:=S_d\CartProd R$.  The following result finishes the proof by showing that this is not possible when $n> 2s$ and $d> s2^{n}$.
@@ -292,7 +271,7 @@ Recall that $(\varphi,\prec)$ is a hypothetical $s$-stack layout of $G$ and ther
 
 	All that remains is to verify that $A_i$ satisfies (C1) and (C2).  We do this by induction on $i$. The base case $i=1$ is trivial so we assume from this point on that $i\in\{2,\ldots,n\}$.   To see that $A_i$ satisfies (C1) just observe that $|A_i|=\lceil r/2\rceil \ge r/2= |A_{i-1}|/2\ge d/2^{i-1}$.  All that remains is to show that $A_i$ satisfies (C2).
 
-    For each $j\in\{i-1,i\}$, let $Q_j:=Q_n[\{(v,p_j):v\in A_{i-1}\}]$.\todo{Tiny notation conflict here: $Q_n$, $Q_i$, $Q_{i-1}$.}
+    For each $j\in\{i-1,i\}$, let $Q_j:=H_n[\{(v,p_j):v\in A_{i-1}\}]$.\todo{Tiny notation conflict here: $Q_n$, $Q_i$, $Q_{i-1}$. DW: FIxed since $Q_n$ is now $H_n$.}
     Recall that, for each $v\in A_{i-1}$, the edge $e_v:=(v,p_{i-1})(v,p_i)$ is in $X$.  We have the following properties:
     \begin{compactenum}[(P1)]
         \item By \lemref{uniform_colour}, $\varphi(e_v)=\varphi_0(p_{i-1},p_i)$ for each $v\in\{A_{i-1}$.
@@ -312,7 +291,7 @@ Recall that $(\varphi,\prec)$ is a hypothetical $s$-stack layout of $G$ and ther
 		This contradiction completes the proof of \clmref{interleave}.
 	\end{proof}
 
-\todo{DW: Why are these $\prec$'s red?}
+\todo{DW: Why are these $\prec$'s red?  PM: Just me keeping track of which one was the assumption, they don't need to be red.}
 
 	Now, apply \clmref{interleave} and assume without loss of generality that $t=0$, so that
 	\[
@@ -346,9 +325,17 @@ Recall that $(\varphi,\prec)$ is a hypothetical $s$-stack layout of $G$ and ther
 
 Recall that every 1-queue graph has a 2-stack layout \citep{HLR92} and we proved that there are 4-queue graphs with unbounded stack-number. The following questions remain open: Do 2-queue graphs have bounded stack-number? Do 3-queue graphs have bounded stack-number?
 
-Is $\sn(T \CartProd H)$ bounded for every tree $T$ and outerplanar graph $H$ with bounded degree?
+Given the role of cartesian products in our proof, it is natural to ask when is $\sn(G_1\CartProd G_2)$ bounded? Note that $H_n$ is a subgraph of a planar Hamiltonian graphs (namely, $Q_{2n}$), so $\sn(H_n) \leq 2$. So $\sn(G_1\CartProd G_2)$ can be unbounded even when $G_1$ is a star and $\sn(G_2)\leq 2$. 
+Since $\sn(G_2)\leq 1$ if and only $G_2$ is outerplanar, the following question naturally arises: Is $\sn(S \CartProd H)$ bounded for every star $S$ and outerplanar graph $H$ with bounded degree? Is $\sn(T \CartProd H)$ bounded for every tree $T$ and outerplanar graph $H$ with bounded degree? The assumption that $H$ has bounded degree is needed since $S_n \CartProd S_n$ contain the 1-subdivision of $K_{n,n}$ ...........
 
-Is $\sn(T \boxtimes P)$ bounded for every tree $T$ and path $P$?
+\todo{Does the 1-subdivision of $K_{n,n}$ have unbounded stack-number?}
+
+MENTION RESULTS OF \citet{Pupyrev20} about bipartite graphs.
+
+Our main result implies that $\sn(S\boxtimes P\boxtimes P)$ is unbounded for stars $S$ and paths $P$. 
+It is easily seen that $\sn(S\boxtimes P)$ is bounded~\citep{Pupyrev20}. 
+The following question naturally arises (independently asked by \citet{Pupyrev20}): 
+Is $\sn(T \boxtimes P)$ bounded for every tree $T$ and path $P$? We conjecture the answer is ``no''.
 
 %\input{sn-vs-qn.bbl}
 

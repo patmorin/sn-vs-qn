@@ -33,12 +33,6 @@
   Theory and Computing}. Department of Mathematics, Louisiana State University,
   2001.
 
-\bibitem[{Chung et~al.(1987)Chung, Leighton, and Rosenberg}]{CLR87}
-\textsc{Fan R.~K. Chung, F.~Thomson Leighton, and Arnold~L. Rosenberg}.
-\newblock \href{https://doi.org/10.1137/0608002}{Embedding graphs in books: a
-  layout problem with applications to {V}{L}{S}{I} design}.
-\newblock \emph{SIAM J. Algebraic Discrete Methods}, 8(1):33--58, 1987.
-
 \bibitem[{Dujmovi{\'c} et~al.(2020)Dujmovi{\'c}, Joret, Micek, Morin, Ueckerdt,
   and Wood}]{DJMMUW20}
 \textsc{Vida Dujmovi{\'c}, Gwena\"{e}l Joret, Piotr Micek, Pat Morin, Torsten
@@ -53,12 +47,25 @@
   non-minor-closed classes}.
 \newblock 2019, arXiv:1907.05168.
 
+\bibitem[{Dujmovi{\'c} and Wood(2004)}]{DujWoo04}
+\textsc{Vida Dujmovi{\'c} and David~R. Wood}.
+\newblock \href{http://dmtcs.episciences.org/317}{On linear layouts of graphs}.
+\newblock \emph{Discrete Math. Theor. Comput. Sci.}, 6(2):339--358, 2004.
+\newblock \msn{2081479}.
+
 \bibitem[{Dujmovi{\'c} and Wood(2005)}]{DujWoo05}
 \textsc{Vida Dujmovi{\'c} and David~R. Wood}.
 \newblock \href{http://dmtcs.episciences.org/346}{Stacks, queues and tracks:
   Layouts of graph subdivisions}.
 \newblock \emph{Discrete Math. Theor. Comput. Sci.}, 7:155--202, 2005.
 \newblock \msn{2164064}.
+
+\bibitem[{Dujmovi{\'c} and Wood(2007)}]{DujWoo-DCG07}
+\textsc{Vida Dujmovi{\'c} and David~R. Wood}.
+\newblock \href{https://doi.org/10.1007/s00454-007-1318-7}{Graph treewidth and
+  geometric thickness parameters}.
+\newblock \emph{Discrete Comput. Geom.}, 37(4):641--670, 2007.
+\newblock \msn{2321747}.
 
 \bibitem[{Erd\H{o}s and Szekeres(1935)}]{ES35}
 \textsc{Paul Erd\H{o}s and George Szekeres}.
@@ -80,13 +87,6 @@
   mechanisms for laying out graphs}.
 \newblock \emph{SIAM J. Discrete Math.}, 5(3):398--412, 1992.
 \newblock \msn{1172748}.
-
-\bibitem[{Heath and Rosenberg(1992)}]{HR92}
-\textsc{Lenwood~S. Heath and Arnold~L. Rosenberg}.
-\newblock \href{https://doi.org/10.1137/0221055}{Laying out graphs using
-  queues}.
-\newblock \emph{SIAM J. Comput.}, 21(5):927--958, 1992.
-\newblock \msn{1181408}.
 
 \bibitem[{Pupyrev(2020)}]{Pupyrev20}
 \textsc{Sergey Pupyrev}.
