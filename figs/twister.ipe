@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE ipe SYSTEM "ipe.dtd">
 <ipe version="70218" creator="Ipe 7.2.18">
-<info created="D:20201026094405" modified="D:20201026104132"/>
+<info created="D:20201026094405" modified="D:20201029062544"/>
 <ipestyle name="basic">
 <symbol name="arrow/arc(spx)">
 <path stroke="sym-stroke" fill="sym-stroke" pen="sym-pen">
@@ -426,28 +426,28 @@ h
 128 608
 128 656 u
 </path>
-<text transformations="translations" pos="88 624" stroke="black" type="label" width="18.672" height="6.808" depth="2.85" halign="center" valign="baseline" style="math">Z_{n,{\color{brew1}\bullet}}</text>
+<text transformations="translations" pos="88 624" stroke="black" type="label" width="22.463" height="6.808" depth="2.85" halign="center" valign="baseline" style="math">Z_{n,v_1}</text>
 <path matrix="1 0 0 1 80 0" stroke="black">
 48 656
 48 608
 128 608
 128 656 u
 </path>
-<text matrix="1 0 0 1 80 0" transformations="translations" pos="88 624" stroke="black" type="label" width="18.561" height="6.808" depth="2.85" halign="center" valign="baseline" style="math">Z_{n,2}</text>
+<text matrix="1 0 0 1 80 0" transformations="translations" pos="88 624" stroke="black" type="label" width="22.463" height="6.808" depth="2.85" halign="center" valign="baseline" style="math">Z_{n,v_2}</text>
 <path matrix="1 0 0 1 160 0" stroke="black">
 48 656
 48 608
 128 608
 128 656 u
 </path>
-<text matrix="1 0 0 1 160 0" transformations="translations" pos="88 624" stroke="black" type="label" width="18.561" height="6.808" depth="2.85" halign="center" valign="baseline" style="math">Z_{n,3}</text>
+<text matrix="1 0 0 1 160 0" transformations="translations" pos="88 624" stroke="black" type="label" width="22.463" height="6.808" depth="2.85" halign="center" valign="baseline" style="math">Z_{n,v_3}</text>
 <path matrix="1 0 0 1 240 0" stroke="black">
 48 656
 48 608
 128 608
 128 656 u
 </path>
-<text matrix="1 0 0 1 240 0" transformations="translations" pos="88 624" stroke="black" type="label" width="18.561" height="6.808" depth="2.85" halign="center" valign="baseline" style="math">Z_{n,4}</text>
+<text matrix="1 0 0 1 240 0" transformations="translations" pos="88 624" stroke="black" type="label" width="22.463" height="6.808" depth="2.85" halign="center" valign="baseline" style="math">Z_{n,v_4}</text>
 <use matrix="1 0 0 1 256 0" name="mark/disk(sx)" pos="128 640" size="large" stroke="brew1"/>
 <use matrix="1 0 0 1 272 0" name="mark/disk(sx)" pos="128 640" size="large" stroke="brew3"/>
 <use matrix="1 0 0 1 288 0" name="mark/disk(sx)" pos="128 640" size="large" stroke="brew4"/>
@@ -458,7 +458,7 @@ h
 128 608
 128 656 u
 </path>
-<text matrix="1 0 0 1 320 0" transformations="translations" pos="88 624" stroke="black" type="label" width="18.561" height="6.808" depth="2.85" halign="center" valign="baseline" style="math">Z_{n,5}</text>
+<text matrix="1 0 0 1 320 0" transformations="translations" pos="88 624" stroke="black" type="label" width="22.463" height="6.808" depth="2.85" halign="center" valign="baseline" style="math">Z_{n,v_5}</text>
 <use matrix="1 0 0 1 -8 0" name="mark/disk(sx)" pos="240 736" size="large" stroke="brew3"/>
 <use matrix="1 0 0 1 8 0" name="mark/disk(sx)" pos="256 736" size="large" stroke="brew4"/>
 <use matrix="1 0 0 1 24 0" name="mark/disk(sx)" pos="272 736" size="large" stroke="brew5"/>
