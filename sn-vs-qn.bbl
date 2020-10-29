@@ -227,20 +227,25 @@
   \emph{Lecture Notes in Comput. Sci.}, pp. 96--107. Springer,
   1986{\natexlab{b}}.
 
-\bibitem[{Shahrokhi et~al.(1995)Shahrokhi, S{\'y}kora, Sz{\'e}kely, and
+\bibitem[{Shahrokhi et~al.(1994)Shahrokhi, S{\'y}kora, Sz{\'e}kely, and
   V{\v{r}}{\soft{t}}o}]{SSSV-WG94}
 \textsc{Farhad Shahrokhi, Ondrej S{\'y}kora, L{\'a}szl{\'o}~A. Sz{\'e}kely, and
   Imrich V{\v{r}}{\soft{t}}o}.
-\newblock Book embeddings and crossing numbers.
-\newblock Lecture Notes in Comput. Sci., pp. 256--268. Springer, 1995.
+\newblock \href{https://doi.org/10.1007/3-540-59071-4\_53}{Book embeddings and
+  crossing numbers}.
+\newblock In \textsc{Ernst~W. Mayr, Gunther Schmidt, and Gottfried Tinhofer},
+  eds., \emph{Proc. 20th International Workshop on Graph-Theoretic Concepts in
+  Computer Science (WG '94)}, Lecture Notes in Comput. Sci., pp. 256--268.
+  Springer, 1994.
 
-\bibitem[{Wood(2002)}]{Wood-GD01}
+\bibitem[{Wood(2001)}]{Wood-GD01}
 \textsc{David~R. Wood}.
-\newblock Bounded degree book embeddings and three-dimensional orthogonal graph
-  drawing.
-\newblock In \textsc{Petra Mutzel, Michael J{\"u}nger, and Sebastian Leipert},
-  eds., \emph{Proc. 9th International Symp. on Graph Drawing (GD '01)}, vol.
-  2265 of \emph{Lecture Notes in Comput. Sci.}, pp. 312--327. Springer, 2002.
+\newblock \href{https://doi.org/10.1007/3-540-45848-4\_25}{Bounded degree book
+  embeddings and three-dimensional orthogonal graph drawing}.
+\newblock In \textsc{Petra Mutzel, Michael J{\"{u}}nger, and Sebastian
+  Leipert}, eds., \emph{Proc. 9th International Symposium on Graph Drawing (GD
+  '01)}, vol. 2265 of \emph{Lecture Notes in Computer Science}, pp. 312--327.
+  Springer, 2001.
 
 \bibitem[{Wood(2005)}]{Wood-Queue-DMTCS05}
 \textsc{David~R. Wood}.
