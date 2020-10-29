@@ -1236,6 +1236,8 @@ FUNCTION {incollection}
       format.chapter.pages output
     }
   if$
+  new.block
+  format.arxiv output
   format.note output
   fin.entry
 }
@@ -1266,6 +1268,8 @@ FUNCTION {inproceedings}
       format.pages output
     }
   if$
+  new.block
+  format.arxiv output
   format.note output
   fin.entry
 }
