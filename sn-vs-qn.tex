@@ -76,7 +76,7 @@ We describe a family of graphs with queue-number at most 4 but unbounded stack-n
 
 \section{Introduction}
 
-Stacks and queues are fundamental data structures in computer science, but which is more powerful? In 1992, Heath, Leighton and Rosenberg~\cite{HLR92,HR92} introduced an approach for answering this question by defining the graph parameters \textit{stack-number} and \textit{queue-number} (defined below), which respectively measure the power of stacks and queues for representing graphs. The following fundamental problems, implicit in \citep{HLR92,HR92}, were made explicit by \citet{DujWoo05}\footnote{A \emph{graph parameter} is a function $\alpha$ such that $\alpha(G)\in\mathbb{R}$ for every graph $G$, such that $\alpha(G_1)=\alpha(G_2)$ for all isomorphic graphs $G_1$ and $G_2$. A graph parameter $\alpha$ is \textit{bounded} by a graph parameter $\beta$ if there exists a function $f$ such that $\alpha(G) \leq f(\beta(G))$ for every graph $G$.}:
+Stacks and queues are fundamental data structures in computer science, but which is more powerful? In 1992, Heath, Leighton and Rosenberg~\cite{HLR92,HR92} introduced an approach for answering this question by defining the graph parameters \textit{stack-number} and \textit{queue-number} (defined below), which respectively measure the power of stacks and queues for representing graphs. The following fundamental problems, implicit in \citep{HLR92,HR92}, were made explicit by \citet{DujWoo05}\footnote{A \emph{graph parameter} is a function $\alpha$ such that $\alpha(G)\in\mathbb{R}$ for every graph $G$ and such that $\alpha(G_1)=\alpha(G_2)$ for all isomorphic graphs $G_1$ and $G_2$. A graph parameter $\alpha$ is \textit{bounded} by a graph parameter $\beta$ if there exists a function $f$ such that $\alpha(G) \leq f(\beta(G))$ for every graph $G$.}:
 \begin{compactitem}
 	\item Is stack-number bounded by queue-number?
 	\item Is queue-number bounded by stack-number?
@@ -89,7 +89,7 @@ Let $G$ be a graph and let $\prec$ be a total order on $V(G)$.  Two disjoint edg
 %A set of $k$ pairwise nested edges is called a \emph{$k$-rainbow} and a set of $k$ pairwise crossing edges is called a \emph{$k$-twist}. A set of $k$ edges, no pair of which nest and no pair of which cross is called a \emph{hopper}.
 Let $\varphi:E(G)\to\{1,\ldots,k\}$ for some integer $k\ge 1$.  Then $(\prec,\varphi)$ is a \emph{$k$-stack layout} of $G$ if, for every pair of edges $vw,xy\in E(G)$, if $\varphi(vw) = \varphi(xy)$ then $vw$ and $xy$ do not cross.\todo{PM: Suggestion: Replace second if then with $\varphi(vw)\neq\varphi(xy)$ or $vw$ and $xy$ do not cross.} Similarly, the pair $(\prec,\varphi)$ is a \emph{$k$-queue layout} of $G$ if, for every pair of edges $vw,xy\in E(G)$, if $\varphi(vw)=\varphi(xy)$ then  $vw$ and $xy$ do not nest. The smallest integer $s$ for which $G$ has an $s$-stack layout is called the \emph{stack-number} of $G$, denoted  $\sn(G)$. The smallest integer $q$ for which $G$ has a $q$-queue layout is called the \emph{queue-number} of $G$, denoted $\qn(G)$. Note that stack layouts are equivalent to book embeddings (first defined by \citet{Ollmann73}), and stack-number is also known as \emph{page-number}, \emph{book-thickness} or \emph{fixed outer-thickness}. See \citep{BK79,DujWoo04,DujWoo-DCG07,DJMMUW20,DFP13,BFGMMRU19,Yannakakis89,Yann20,MBKPRU20} and the references therein for work on stack- and queue-layouts.
 
-Given a $k$-stack layout $(\prec,\varphi)$ of a graph $G$, for each $i\in\{1,\dots,k\}$, the set $\varphi^{-1}(i)$ behaves like a stack, in the sense that each edge $vw \in \varphi^{-1}(i)$ with $v\prec w$ corresponds to an element in a sequence of stack opertions, such that if we traverse the vertices in the order of $\prec$, then $vw$ is pushed onto the stack at $v$ and popped off the stack at $w$. Similarly, each set $\varphi^{-1}(i)$ in a queue layout  behaves like a queue. In this way, the stack-number and queue-number  respectively measure the power of stacks and queues to represent graphs.
+Given a $k$-stack layout $(\prec,\varphi)$ of a graph $G$, for each $i\in\{1,\dots,k\}$, the set $\varphi^{-1}(i)$ behaves like a stack, in the sense that each edge $vw \in \varphi^{-1}(i)$ with $v\prec w$ corresponds to an element in a sequence of stack operations, such that if we traverse the vertices in the order of $\prec$, then $vw$ is pushed onto the stack at $v$ and popped off the stack at $w$. Similarly, each set $\varphi^{-1}(i)$ in a queue layout  behaves like a queue. In this way, the stack-number and queue-number  respectively measure the power of stacks and queues to represent graphs.
 
 
 \subsection*{Is Stack-Number Bounded by Queue-number?}
@@ -184,7 +184,7 @@ It remains open whether queues are more powerful than stacks; that is, whether q
 \todo{mention results of \citet{Pupyrev20} about bipartite graphs?}
 
 First we prove that $\qn(S_b\CartProd H_n)\leq 4$, as claimed in \cref{family}. We need the following definition due to \citet{Wood-Queue-DMTCS05}. A queue layout $(\varphi,\prec)$ is \emph{strict} if for every vertex $u\in V(G)$ and for all neighbours $v,w\in N_G(u)$, if $u\prec v,w$ or $v,w \prec u$, then $\varphi(uv)\neq \varphi(uw)$. Let $\sqn(G)$ be the minimum integer $k$ such that $G$ has a strict $k$-queue layout. To see that $\sqn(H_n) \leq 3$, order the vertices row-by-row and then left-to-right within a row, with vertical edges in one queue, horizontal edges in one queue, and diagonal edges in another queue.
-\citet{Wood-Queue-DMTCS05} proved that $\qn(G \CartProd H) \leq \qn(G) + \sqn(H)$ for all graphs $G$ and $H$. Of course, $S_b$ has a 1-queue layout (since no two edges are nested for any vertex-ordering). Thus $\qn(S_b \CartProd H_n)\leq 4$.
+\citet{Wood-Queue-DMTCS05} proved that $\qn(G\CartProd H) \leq \qn(G) + \sqn(H)$ for all graphs $G$ and $H$. Of course, $S_b$ has a 1-queue layout (since no two edges are nested for any vertex-ordering). Thus $\qn(S_b \CartProd H_n)\leq 4$.
 
 \section{The Main Proof}
 
@@ -198,7 +198,7 @@ For each node $v$ of $S_b$, define $\pi_v$ as the permutation of $\{1,\ldots,n\}
 
 % \todo[inline]{If we cared, we could improve this to $b/2^{cn^2}$ since we only use the weaker property (P3) in the final proof. DW: I don't care. }
 
-For each leaf $v$ in $L_1$, let $\varphi_v$ be the edge colouring of $H_n$ defined by $\varphi_v(x,y):=\varphi(v,(x,y))$. Since $H_n$ has maximum degree $6$ and is not 6-regular, it has fewer than $3n^2$ edges.  Therefore there are fewer than $s^{3n^2}$ edge colourings of $H_n$ using $s$ colours.  Another application of the Pigeonhole Principle proves the following:
+For each leaf $v$ in $L_1$, let $\varphi_v$ be the edge colouring of $H_n$ defined by $\varphi_v(xy):=\varphi((v,x)(v,y))$ for each $xy\in E(H_n)$. Since $H_n$ has maximum degree $6$ and is not 6-regular, it has fewer than $3n^2$ edges.  Therefore there are fewer than $s^{3n^2}$ edge colourings of $H_n$ using $s$ colours.  Another application of the Pigeonhole Principle proves the following:
 
 \begin{lem}\lemlabel{uniform_colour}
     There exists a subset $L_2\subseteq L_1$ of size $c\ge a/s^{3n^2}$
@@ -214,7 +214,7 @@ Let $S_{c}$ be the subgraph of $S_b$ induced by $L_2\cup\{r\}$. The preceding tw
 
 \begin{proof}
     Let $p_1,\ldots,p_{n^2}$ denote the vertices of $H_n$ in any order.
-    Begin with the sequence $S_1:=v_{1,1},\ldots,v_{1,c}$ that contains all $c$ elements of $L_2$ ordered so that $(v_{1,1},p_1)\prec\cdots\prec(v_{1,c},p_1)$.  For each $i\in\{2,\ldots,n^2\}$, the Erd\H{o}s-Szekeres Theorem~\citep{ES35} implies that $S_{i-1}$ contains a subsequence $S_i:=v_{i,1},\ldots,v_{i,|S_i|}$ of length $|S_i|\ge \sqrt{|S_{i-1}|}$ such that $(v_{i,1},p_i)\prec\cdots\prec(v_{i,d_i},p_i)$ or $(v_{i,1},p_i)\succ\cdots\succ(v_{i,d_i},p_i)$.  It is straightforward to verify by induction on $i$ that $d_i \ge c^{1/2^{i-1}}$ resulting in a final sequence $S_{n^2}=:L_3$ of length at least $c^{1/2^{n^2-1}}$.
+    Begin with the sequence $S_1:=v_{1,1},\ldots,v_{1,c}$ that contains all $c$ elements of $L_2$ ordered so that $(v_{1,1},p_1)\prec\cdots\prec(v_{1,c},p_1)$.  For each $i\in\{2,\ldots,n^2\}$, the Erd\H{o}s-Szekeres Theorem~\citep{ES35} implies that $S_{i-1}$ contains a subsequence $S_i:=v_{i,1},\ldots,v_{i,|S_i|}$ of length $|S_i|\ge \sqrt{|S_{i-1}|}$ such that $(v_{i,1},p_i)\prec\cdots\prec(v_{i,|S_i|},p_i)$ or $(v_{i,1},p_i)\succ\cdots\succ(v_{i,|S_i|},p_i)$.  It is straightforward to verify by induction on $i$ that $|S_i| \ge c^{1/2^{i-1}}$ resulting in a final sequence $S_{n^2}=:L_3$ of length at least $c^{1/2^{n^2-1}}$.
 \end{proof}
 
 For the rest of the proof we will work with the star $S_d$ whose leaves are $u_1,\ldots,u_d$ described in \lemref{forward_or_backward}.  Consider the (improper) vertex colouring of $H_n$ obtained by colouring each vertex $p\in V(H_n)$ \emph{red} if $(u_1,p)\prec\cdots\prec (u_d,p)$ and colouring $p$ \emph{blue} if $(u_1,p)\succ\cdots\succ(u_d,p)$. We need the following famous Hex Lemma~\citep{Gale79}.
@@ -270,17 +270,17 @@ Without loss of generality, assume that the path $R:=p_1,\ldots,p_n$ defined by 
 	\end{figure}
 	Since, by (C1), $d'\ge d/2^{n-1}$, either case results in a set of pairwise-crossing edges of size at least $\min\{\lfloor d/2^n\rfloor,\lceil n/2\rceil\}$, as claimed.
 
-    All that remains is to define the sets $A_1\supseteq\cdots\supseteq A_n$ that satisfy (C1) and (C2).  Let $A_1$ be the set of all the leaves of $S_d$.  For each $i\in\{2,\ldots,n\}$, the set $A_i$ is defined as follows:  Let $Z_1,\ldots,Z_{|A_{i-1}}$ denote the sets $Z_{i-1, v}$ for each $v\in A_{i-1}$ ordered so that $Z_1\prec\cdots\prec Z_r$. By Property (C2), this is always possible.	Label the vertices of $A_{i-1}$ as $v_1,\ldots,v_{|A_{i-1}|}$ so that $(v_1,p_{i-1})\prec\cdots\prec (v_r,p_{i-1})$.   (This is equivalent to naming them so that $(v_j,p_{i-1})\in Z_j$ for each $j\in\{1,\ldots,|A_{i-1}|\}$.)  Define the set $A_i:=\{v_{2k+1}:k\in\{0,\ldots,\lfloor(|A_{i-1}|-1)/2\rfloor\}\}=\{v_{j}\in A_{i-1}:\text{$j$ is odd}\}$.  This completes the definition of $A_1,\ldots,A_n$.
+    All that remains is to define the sets $A_1\supseteq\cdots\supseteq A_n$ that satisfy (C1) and (C2).  Let $A_1$ be the set of all the leaves of $S_d$.  For each $i\in\{2,\ldots,n\}$, the set $A_i$ is defined as follows:  Let $Z_1,\ldots,Z_{|A_{i-1}|}$ denote the sets $Z_{i-1, v}$ for each $v\in A_{i-1}$ ordered so that $Z_1\prec\cdots\prec Z_{|A_{i-1}|}$. By Property (C2), this is always possible.	Label the vertices of $A_{i-1}$ as $v_1,\ldots,v_{|A_{i-1}|}$ so that $(v_1,p_{i-1})\prec\cdots\prec (v_r,p_{i-1})$.   (This is equivalent to naming them so that $(v_j,p_{i-1})\in Z_j$ for each $j\in\{1,\ldots,|A_{i-1}|\}$.)  Define the set $A_i:=\{v_{2k+1}:k\in\{0,\ldots,\lfloor(|A_{i-1}|-1)/2\rfloor\}\}=\{v_{j}\in A_{i-1}:\text{$j$ is odd}\}$.  This completes the definition of $A_1,\ldots,A_n$.
 
-	All that remains is to verify that $A_i$ satisfies (C1) and (C2).  We do this by induction on $i$. The base case $i=1$ is trivial so we assume from this point on that $i\in\{2,\ldots,n\}$.   To see that $A_i$ satisfies (C1) just observe that $|A_i|=\lceil |A_{i-1}|/2\rceil \ge |A_{i-1}|/2\ge d/2^{i-1}$, where the final inequality follows by applying the inductive hypothesis $|A_{i-1}|\ge d/2^{i-2}$.  All that remains is to show that $A_i$ satisfies (C2).
+	All that remains is to verify that $A_i$ satisfies (C1) and (C2) for each $i\in\{1,\ldots,n\}$.  We do this by induction on $i$. The base case $i=1$ is trivial so we assume from this point on that $i\in\{2,\ldots,n\}$.   To see that $A_i$ satisfies (C1) just observe that $|A_i|=\lceil |A_{i-1}|/2\rceil \ge |A_{i-1}|/2\ge d/2^{i-1}$, where the final inequality follows by applying the inductive hypothesis $|A_{i-1}|\ge d/2^{i-2}$.  Now all that remains is to show that $A_i$ satisfies (C2).
 
-    For each $j\in\{i-1,i\}$, let $H^j:=\{(v,p_j):v\in A_{i-1}\}$.     Recall that, for each $v\in A_{i-1}$, the edge $e_v:=(v,p_{i-1})(v,p_i)$ is in $X$.  We have the following properties:
+    Recall that, for each $v\in A_{i-1}$, the edge $e_v:=(v,p_{i-1})(v,p_i)$ is in $X$.  We have the following properties:
     \begin{compactenum}[(P1)]
         \item By \lemref{uniform_colour}, $\varphi(e_v)=\phi(p_{i-1}p_i)$ for each $v\in A_{i-1}$.
         \item Since $p_{i-1}$ and $p_i$ are both red, $(v,p_{i-1})\prec (w,p_{i-1})$ if and only if $(v,p_{i})\prec (w,p_{i})$ for each $v,w\in A_{i-1}$.
         \item By \lemref{uniform_order}, $(v,p_{i-1})\prec (v,p_i)$ for every $v\in A_{i-1}$ or $(v,p_{i-1})\succ (v,p_i)$ for every $v\in A_{i-1}$.
     \end{compactenum}
-    We claim that these three conditions imply that the vertex sets of $H^{i-1}$ and $H^{i}$ interleave perfectly with respect to $\prec$. More precisely:
+    We claim that these three conditions imply that the vertex sets $\{(v,p_{i-1}):v\in A_{i-1}\}$ and $\{(v,p_i):v\in A_{i-1}\}$ interleave perfectly with respect to $\prec$. More precisely:
 	\begin{clm}\clmlabel{interleave} $(v_1,p_{i-1+t})\prec (v_1,p_{i-t}) \prec (v_2,p_{i-1+t}) \prec (v_2,p_{i-t}) \cdots \prec (v_r,p_{i-1+t}) \prec (v_r,p_{i-t})$ for some $t\in\{0,1\}$.
 	\end{clm}
 	\begin{proof}[Proof of \clmref{interleave}]
@@ -314,10 +314,10 @@ We now complete the proof that $A_i$ satisfies (C2). Apply \clmref{interleave} a
 
 Recall that every 1-queue graph has a 2-stack layout \citep{HLR92} and we proved that there are 4-queue graphs with unbounded stack-number. The following questions remain open: Do 2-queue graphs have bounded stack-number? Do 3-queue graphs have bounded stack-number?
 
-Given the role of cartesian products in our proof, it is natural to ask when is $\sn(G_1\CartProd G_2)$ bounded? Note that $H_n$ is a subgraph of a planar Hamiltonian graphs (namely, $H_{2n}$), so $\sn(H_n) \leq 2$. So $\sn(G_1\CartProd G_2)$ can be unbounded even when $G_1$ is a star and $\sn(G_2)\leq 2$.
+Given the role of cartesian products in our proof, it is natural to ask when is $\sn(G_1\CartProd G_2)$ bounded? Note that $H_n$ is a subgraph of a planar Hamiltonian graph (namely, $H_{2n}$), so $\sn(H_n) \leq 2$. So $\sn(G_1\CartProd G_2)$ can be unbounded even when $G_1$ is a star and $\sn(G_2)\leq 2$.
 Since $\sn(G_2)\leq 1$ if and only if $G_2$ is outerplanar, the following question naturally arises: Is $\sn(S \CartProd H)$ bounded for every star $S$ and outerplanar graph $H$ with bounded degree? Is $\sn(T \CartProd H)$ bounded for every tree $T$ and outerplanar graph $H$ with bounded degree? The assumption that $H$ has bounded degree is needed since $S_n \CartProd S_n$ contain the 1-subdivision of $K_{n,n}$, which has unbounded stack-number~\citep{Blankenship-PhD03}.
 
-Since $H_n\subseteq P \boxtimes P$ where $P$ is the $n$-vertex path, \cref{family} implies that $\sn(S\boxtimes P\boxtimes P)$ is unbounded for stars $S$ and paths $P$. It is easily seen that $\sn(S\boxtimes P)$ is bounded~\citep{Pupyrev20}. The following question naturally arises (independently asked by \citet{Pupyrev20}):
+Since $H_n\subseteq P \boxtimes P$\todo{$\boxtimes$ is not defined} where $P$ is the $n$-vertex path, \cref{family} implies that $\sn(S\boxtimes P\boxtimes P)$ is unbounded for stars $S$ and paths $P$. It is easily seen that $\sn(S\boxtimes P)$ is bounded~\citep{Pupyrev20}. The following question naturally arises (independently asked by \citet{Pupyrev20}):
 Is $\sn(T \boxtimes P)$ bounded for every tree $T$ and path $P$? We conjecture the answer is ``no''.
 
 \let\oldthebibliography=\thebibliography
