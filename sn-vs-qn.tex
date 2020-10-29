@@ -74,7 +74,7 @@ We describe a family of graphs with queue-number at most 4 but unbounded stack-n
 
 \section{Introduction}
 
-Stacks and queues are fundamental data structures in computer science, but which is more powerful? In 1992, Heath, Leighton and Rosenberg~\cite{HLR92,HR92} introduced an approach for answering this question by defining the graph parameters \textit{stack-number} and \textit{queue-number} (defined below), which respectively measure the power of stacks and queues for representing graphs. The following fundamental problems, implicit in \citep{HLR92,HR92}, were made explicit by \citet{DujWoo05}\footnote{A \emph{graph parameter} is a function $\alpha$ such that $\alpha(G)\in\mathbb{R}$ for every graph $G$, such that $\alpha(G_1)=\alpha(G_2)$ for all isomorphic graphs $G_1$ and $G_2$. A graph parameter $\alpha$ is \textit{bounded} by a graph parameter $\beta$ if there exists a function $f$ such that for every graph $G$ we have $\alpha(G) \leq f(\beta(G))$.}:
+Stacks and queues are fundamental data structures in computer science, but which is more powerful? In 1992, Heath, Leighton and Rosenberg~\cite{HLR92,HR92} introduced an approach for answering this question by defining the graph parameters \textit{stack-number} and \textit{queue-number} (defined below), which respectively measure the power of stacks and queues for representing graphs. The following fundamental problems, implicit in \citep{HLR92,HR92}, were made explicit by \citet{DujWoo05}\footnote{A \emph{graph parameter} is a function $\alpha$ such that $\alpha(G)\in\mathbb{R}$ for every graph $G$, such that $\alpha(G_1)=\alpha(G_2)$ for all isomorphic graphs $G_1$ and $G_2$. A graph parameter $\alpha$ is \textit{bounded} by a graph parameter $\beta$ if there exists a function $f$ such that $\alpha(G) \leq f(\beta(G))$ for every graph $G$.}:
 \begin{compactitem}
 	\item Is stack-number bounded by queue-number?
 	\item Is queue-number bounded by stack-number?
@@ -82,7 +82,7 @@ Stacks and queues are fundamental data structures in computer science, but which
 
 If stack-number is bounded by queue-number but queue-number is not bounded by stack-number, then stacks would be considered to be more powerful than queues. Similarly, if the converse holds, then queues would be considered to be more powerful than stacks. Despite extensive research on stack- and queue-numbers, these fundamental questions have remained unsolved.
 
-We now formally define stack and queue layouts of graphs.
+We now formally define stack- and queue-number.
 Let $G$ be a graph and let $\prec$ be a total order on $V(G)$.  Two disjoint edges $vw,xy\in E(G)$ with $v\prec w$ and $x\prec y$ \emph{cross} with respect to $\prec$ if $v\prec x\prec w\prec y$ or $x\prec v\prec y\prec w$, and \emph{nest} with respect to $\prec$ if $v\prec x\prec y\prec w$ or $x\prec v\prec w\prec y$.
 %A set of $k$ pairwise nested edges is called a \emph{$k$-rainbow} and a set of $k$ pairwise crossing edges is called a \emph{$k$-twist}. A set of $k$ edges, no pair of which nest and no pair of which cross is called a \emph{hopper}.
 Let $\varphi:E(G)\to\{1,\ldots,k\}$ for some integer $k\ge 1$.  Then $(\prec,\varphi)$ is a \emph{$k$-stack layout} of $G$ if, for every pair of edges $vw,xy\in E(G)$, if $\varphi(vw) = \varphi(xy)$ then $vw$ and $xy$ do not cross.\todo{PM: Suggestion: Replace second if then with $\varphi(vw)\neq\varphi(xy)$ or $vw$ and $xy$ do not cross.} Similarly, the pair $(\prec,\varphi)$ is a \emph{$k$-queue layout} of $G$ if, for every pair of edges $vw,xy\in E(G)$, if $\varphi(vw)=\varphi(xy)$ then  $vw$ and $xy$ do not nest. The smallest integer $s$ for which $G$ has an $s$-stack layout is called the \emph{stack-number} of $G$, denoted  $\sn(G)$. The smallest integer $q$ for which $G$ has a $q$-queue layout is called the \emph{queue-number} of $G$, denoted $\qn(G)$. Note that stack layouts are equivalent to book embeddings (first defined by \citet{Ollmann73}), and stack-number is also known as \emph{page-number}, \emph{book-thickness} or \emph{fixed outer-thickness}. See \citep{BK79,DujWoo04,DujWoo-DCG07,DJMMUW20,DFP13,BFGMMRU19,Yannakakis89,Yann20,MBKPRU20} and the references therein for work on stack- and queue-layouts. 
@@ -113,18 +113,18 @@ Our key contribution is the following theorem, which shows that stack-number is 
 	For every $s\in \N$ there exists a graph $G$ with $\qn(G)\le 4$ and $\sn(G)>s$.
 \end{thm}
 
-The graph $G$ in \cref{family} is the cartesian product\footnote{For graphs $G_1$ and $G_2$, the \emph{cartesian product} $G_1\CartProd G_2$ is the graph with vertex set $\{(v_1,v_2): v_1 \in V(G_1), v_2 \in V(G_2)\}$, where $(v_1,v_2)(w_1,w_2)\in E(G_1\CartProd G_2)$ if $v_1=w_1$ and $v_2w_2\in E(G_2)$, or $v_1w_1\in E(G_1)$ and $v_2=w_2$.} $S_b\CartProd H_n$, where $S_b$ is the star graph with root $r$ and $b$ leaves, and $H_n$ is the dual of the hexagonal grid, defined by $V(H_n):=\{1,\ldots,n\}^2$ and
+As illustrated in \cref{graph}, the graph $G$ in \cref{family} is the cartesian product\footnote{For graphs $G_1$ and $G_2$, the \emph{cartesian product} $G_1\CartProd G_2$ is the graph with vertex set $\{(v_1,v_2): v_1 \in V(G_1), v_2 \in V(G_2)\}$, where $(v_1,v_2)(w_1,w_2)\in E(G_1\CartProd G_2)$ if $v_1=w_1$ and $v_2w_2\in E(G_2)$, or $v_1w_1\in E(G_1)$ and $v_2=w_2$.} $S_b\CartProd H_n$, where $S_b$ is the star graph with root $r$ and $b$ leaves, and $H_n$ is the dual of the hexagonal grid, defined by
 \begin{align*}
+V(H_n)  :=\{1,\ldots,n\}^2 \quad \text{ and } \quad
 E(H_n) & :=  \{(x,y)(x+1,y):x\in\{1,\ldots,n-1\},\,y\in\{1,\ldots,n\}\} \\
 & \qquad \cup \{(x,y)(x,y+1):x\in\{1,\ldots,n\},\,y\in\{1,\ldots,n-1\}\} \\
 & \qquad \cup \{(x,y)(x+1,y+1):x,y\in\{1,\ldots,n-1\}\} \enspace .
 \end{align*}
-
-The graph $G$ in \cref{family} is $S_b \CartProd H_n$ (see \cref{graph}), where $b$ and $n$ are chosen to be sufficiently large compared to $s$.
+In \cref{family}, $b$ and $n$ are chosen to be sufficiently large compared to $s$.
 %Note that the Hex graph corresponds to the board used in the game \textit{Hex} which was invented by the  Peit Hein in 1942. In this paper, we prove \Cref{family} with the graph $G:= S_b \square H_n$ where $b$ and $n$ are large compared to $s$.
 Note that \citet{Pupyrev20} independently suggested using graph products to show that stack-number is not bounded by queue-number.
 
-\begin{figure}
+\begin{figure}[!h]
 	\begin{center}
 		\begin{tabular}{m{.25\textwidth}m{2ex}m{.25\textwidth}m{2ex}m{.3\textwidth}}
 			\includegraphics[width=.25\textwidth]{figs/s} & $\CartProd$ & \includegraphics[width=.25\textwidth]{figs/q} & $=$
@@ -177,7 +177,9 @@ It remains open whether queues are more powerful than stacks; that is, whether q
 
 \section{Stack and Queue Layouts of Cartesian Products}
 
-\todo{Add discussion of result of \citet{BK79}: $\sn(G\CartProd H) \leq \sn(G) + \dsn(H)$ for bipartite $H$. Highlight the key difference between stack and queue layouts is that we need $H$ to be bipartite here.}
+\todo[inline]{Add discussion of result of \citet{BK79}: $\sn(G\CartProd H) \leq \sn(G) + \dsn(H)$ for bipartite $H$. Highlight the key difference between stack and queue layouts is that we need $H$ to be bipartite here.}
+
+\todo{mention results of \citet{Pupyrev20} about bipartite graphs?}
 
 First we prove that $\qn(S_b\CartProd H_n)\leq 4$, as claimed in \cref{family}. We need the following definition due to \citet{Wood-Queue-DMTCS05}. A queue layout $(\varphi,\prec)$ is \emph{strict} if for every vertex $u\in V(G)$ and for all neighbours $v,w\in N_G(u)$, if $u\prec v,w$ or $v,w \prec u$, then $\varphi(uv)\neq \varphi(uw)$. Let $\sqn(G)$ be the minimum integer $k$ such that $G$ has a strict $k$-queue layout. To see that $\sqn(H_n) \leq 3$, order the vertices row-by-row and then left-to-right within a row, with vertical edges in one queue, horizontal edges in one queue, and diagonal edges in another queue.
 \citet{Wood-Queue-DMTCS05} proved that $\qn(G \CartProd H) \leq \qn(G) + \sqn(H)$ for all graphs $G$ and $H$. Of course, $S_b$ has a 1-queue layout (since no two edges are nested for any vertex-ordering). Thus $\qn(S_b \CartProd H_n)\leq 4$.
@@ -323,8 +325,6 @@ Recall that every 1-queue graph has a 2-stack layout \citep{HLR92} and we proved
 
 Given the role of cartesian products in our proof, it is natural to ask when is $\sn(G_1\CartProd G_2)$ bounded? Note that $H_n$ is a subgraph of a planar Hamiltonian graphs (namely, $H_{2n}$), so $\sn(H_n) \leq 2$. So $\sn(G_1\CartProd G_2)$ can be unbounded even when $G_1$ is a star and $\sn(G_2)\leq 2$.
 Since $\sn(G_2)\leq 1$ if and only if $G_2$ is outerplanar, the following question naturally arises: Is $\sn(S \CartProd H)$ bounded for every star $S$ and outerplanar graph $H$ with bounded degree? Is $\sn(T \CartProd H)$ bounded for every tree $T$ and outerplanar graph $H$ with bounded degree? The assumption that $H$ has bounded degree is needed since $S_n \CartProd S_n$ contain the 1-subdivision of $K_{n,n}$, which has unbounded stack-number~\citep{Blankenship-PhD03}.
-
-MENTION RESULTS OF \citet{Pupyrev20} about bipartite graphs.
 
 Since $H_n\subseteq P \boxtimes P$ where $P$ is the $n$-vertex path, \cref{family} implies that $\sn(S\boxtimes P\boxtimes P)$ is unbounded for stars $S$ and paths $P$. It is easily seen that $\sn(S\boxtimes P)$ is bounded~\citep{Pupyrev20}. The following question naturally arises (independently asked by \citet{Pupyrev20}):
 Is $\sn(T \boxtimes P)$ bounded for every tree $T$ and path $P$? We conjecture the answer is ``no''.
