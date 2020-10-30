@@ -85,14 +85,14 @@ If stack-number is bounded by queue-number but queue-number is not bounded by st
 We now formally define stack- and queue-number.
 Let $G$ be a graph and let $\prec$ be a total order on $V(G)$.  Two disjoint edges $vw,xy\in E(G)$ with $v\prec w$ and $x\prec y$ \emph{cross} with respect to $\prec$ if $v\prec x\prec w\prec y$ or $x\prec v\prec y\prec w$, and \emph{nest} with respect to $\prec$ if $v\prec x\prec y\prec w$ or $x\prec v\prec w\prec y$.
 %A set of $k$ pairwise nested edges is called a \emph{$k$-rainbow} and a set of $k$ pairwise crossing edges is called a \emph{$k$-twist}. A set of $k$ edges, no pair of which nest and no pair of which cross is called a \emph{hopper}.
-Let $\varphi:E(G)\to\{1,\ldots,k\}$ for some integer $k\ge 1$. 
+Let $\varphi:E(G)\to\{1,\ldots,k\}$ for some integer $k\ge 1$.
 
-Then $(\prec,\varphi)$ is a \emph{$k$-stack layout} of $G$ if $vw$ and $xy$ do not cross for all edges $vw,xy\in E(G)$ with $\varphi(vw) = \varphi(xy)$. Similarly, $(\prec,\varphi)$ is a \emph{$k$-queue layout} of $G$ if $vw$ and $xy$ do not nest for all edges $vw,xy\in E(G)$ with  $\varphi(vw)=\varphi(xy)$. The smallest integer $s$ for which $G$ has an $s$-stack layout is called the \emph{stack-number} of $G$, denoted  $\sn(G)$. The smallest integer $q$ for which $G$ has a $q$-queue layout is called the \emph{queue-number} of $G$, denoted $\qn(G)$. 
+Then $(\prec,\varphi)$ is a \emph{$k$-stack layout} of $G$ if $vw$ and $xy$ do not cross for all edges $vw,xy\in E(G)$ with $\varphi(vw) = \varphi(xy)$. Similarly, $(\prec,\varphi)$ is a \emph{$k$-queue layout} of $G$ if $vw$ and $xy$ do not nest for all edges $vw,xy\in E(G)$ with  $\varphi(vw)=\varphi(xy)$. The smallest integer $s$ for which $G$ has an $s$-stack layout is called the \emph{stack-number} of $G$, denoted  $\sn(G)$. The smallest integer $q$ for which $G$ has a $q$-queue layout is called the \emph{queue-number} of $G$, denoted $\qn(G)$.
 
 Given a $k$-stack layout $(\prec,\varphi)$ of a graph $G$, for each $i\in\{1,\dots,k\}$, the set $\varphi^{-1}(i)$ behaves like a stack, in the sense that each edge $vw \in \varphi^{-1}(i)$ with $v\prec w$ corresponds to an element in a sequence of stack operations, such that if we traverse the vertices in the order of $\prec$, then $vw$ is pushed onto the stack at $v$ and popped off the stack at $w$. Similarly, each set $\varphi^{-1}(i)$ in a queue layout  behaves like a queue. In this way, the stack-number and queue-number  respectively measure the power of stacks and queues to represent graphs.
 
-Note that stack layouts are equivalent to book embeddings (first defined by \citet{Ollmann73} in 1973), and stack-number is also known as \emph{page-number}, \emph{book-thickness} or \emph{fixed outer-thickness}. Stack and queue layouts have other applications including computational complexity~\citep{GKS89,DSW16,Bourgain09,BY13},  RNA folding~\citep{HS99}, graph drawing in two~\citep{BB04,ADFPR12,SSSV-WG94} and three dimensions~\citep{DMW05,Wood-GD01,DMW17}, 
-fault-tolerant multiprocessing~\citep{CLR87,Rosenberg83a,Rosenberg86a,Rosenberg86}, stack sorting~\citep{CLR87}, and traffic light control~\citep{Kainen90}. See  \citep{BK79,Blankenship-PhD03,DujWoo04,DujWoo-DCG07,DJMMUW20,DFP13,BFGMMRU19,Yannakakis89,Yann20,MBKPRU20} for bounds on the stack- and queue-number for various graph classes. 
+Note that stack layouts are equivalent to book embeddings (first defined by \citet{Ollmann73} in 1973), and stack-number is also known as \emph{page-number}, \emph{book-thickness} or \emph{fixed outer-thickness}. Stack and queue layouts have other applications including computational complexity~\citep{GKS89,DSW16,Bourgain09,BY13},  RNA folding~\citep{HS99}, graph drawing in two~\citep{BB04,ADFPR12,SSSV-WG94} and three dimensions~\citep{DMW05,Wood-GD01,DMW17},
+fault-tolerant multiprocessing~\citep{CLR87,Rosenberg83a,Rosenberg86a,Rosenberg86}, stack sorting~\citep{CLR87}, and traffic light control~\citep{Kainen90}. See  \citep{BK79,Blankenship-PhD03,DujWoo04,DujWoo-DCG07,DJMMUW20,DFP13,BFGMMRU19,Yannakakis89,Yann20,MBKPRU20} for bounds on the stack- and queue-number for various graph classes.
 
 \subsection*{Is Stack-Number Bounded by Queue-Number?}
 
@@ -110,7 +110,7 @@ This paper considers the first of the above questions. In a positive direction, 
 
 %\citet{HLR92} showed that every 1-queue graph has a 2-stack layout. \citet{HLR92} showed that the ternary hypercubes requires exponentially more stacks than queues. In particular, $n$-vertex ternary hypercubes have queue-number at most $2 \log_3 n$, but stack-number at least $\Omega(n^{1/9-\epsilon})$ for any $\epsilon>0$. We prove the following theorem, which shows that stack-number is not bounded by queue-number.
 
-Our key contribution is the following theorem, which shows that stack-number is not bounded by queue-number. 
+Our key contribution is the following theorem, which shows that stack-number is not bounded by queue-number.
 
 \begin{thm}\label{family}
 	%  There exists a family $\mathcal{F}$ of graphs for which $\qn(G)\le 4$ for every $G\in\mathcal{F}$, and for every $s\in\N$, there exists $G\in\mathcal{F}$ for which $\sn(G)>s$.
@@ -148,19 +148,19 @@ For every $s\in\N$, if $b$ and $n$ are sufficiently large compared to $s$, then 
 
 %Note that the Hex graph corresponds to the board used in the game \textit{Hex} which was invented by the  Peit Hein in 1942. In this paper, we prove \Cref{family} with the graph $G:= S_b \square H_n$ where $b$ and $n$ are large compared to $s$.
 
-We now show that $\qn(S_b\CartProd H_n)\leq 4$, which with \cref{Main} implies \cref{family}. We need the following definition due to \citet{Wood-Queue-DMTCS05}. A queue layout $(\varphi,\prec)$ is \emph{strict} if for every vertex $u\in V(G)$ and for all neighbours $v,w\in N_G(u)$, if $u\prec v,w$ or $v,w \prec u$, then $\varphi(uv)\neq \varphi(uw)$. Let $\sqn(G)$ be the minimum integer $k$ such that $G$ has a strict $k$-queue layout. To see that $\sqn(H_n) \leq 3$, order the vertices row-by-row and then left-to-right within a row, with vertical edges in one queue, horizontal edges in one queue, and diagonal edges in another queue. \citet{Wood-Queue-DMTCS05} proved that for all graphs $G_1$ and $G_2$, 
+We now show that $\qn(S_b\CartProd H_n)\leq 4$, which with \cref{Main} implies \cref{family}. We need the following definition due to \citet{Wood-Queue-DMTCS05}. A queue layout $(\varphi,\prec)$ is \emph{strict} if for every vertex $u\in V(G)$ and for all neighbours $v,w\in N_G(u)$, if $u\prec v,w$ or $v,w \prec u$, then $\varphi(uv)\neq \varphi(uw)$. Let $\sqn(G)$ be the minimum integer $k$ such that $G$ has a strict $k$-queue layout. To see that $\sqn(H_n) \leq 3$, order the vertices row-by-row and then left-to-right within a row, with vertical edges in one queue, horizontal edges in one queue, and diagonal edges in another queue. \citet{Wood-Queue-DMTCS05} proved that for all graphs $G_1$ and $G_2$,
 \begin{equation}
 \label{QueueProduct}
 \qn(G_1 \CartProd G_2) \leq \qn(G_1) + \sqn(G_2).
 \end{equation}
 Of course, $S_b$ has a 1-queue layout (since no two edges are nested for any vertex-ordering). Thus $\qn(S_b \CartProd H_n)\leq 4$.
 
-\citet{BK79} implicitly proved a result similar to \cref{QueueProduct} for stack layouts. Let $\dsn(G)$ be the minimum integer $k$ such that $G$ has a $k$-stack layout $(\prec,\varphi)$ where $\varphi$ is a proper edge-colouring of $G$; that is, $\varphi(vx)\neq\varphi(vy)$ for any two edges $vx,vy$ with a common endpoint. Then for every graph $G_1$ and every bipartite graph $G_2$, 
+\citet{BK79} implicitly proved a result similar to \cref{QueueProduct} for stack layouts. Let $\dsn(G)$ be the minimum integer $k$ such that $G$ has a $k$-stack layout $(\prec,\varphi)$ where $\varphi$ is a proper edge-colouring of $G$; that is, $\varphi(vx)\neq\varphi(vy)$ for any two edges $vx,vy$ with a common endpoint. Then for every graph $G_1$ and every bipartite graph $G_2$,
 \begin{equation}
 \label{StackProduct}
 \sn(G_1 \CartProd G_2) \leq \sn(G_1) + \dsn(G_2).
 \end{equation}
-The key difference between \cref{QueueProduct} and \cref{StackProduct} is that $G_2$ is assumed to be bipartite in \cref{StackProduct}. \cref{Main} says that this assumption is essential, since it is easily seen that $\dsn(H_n)$ is bounded, but $\sn(S_b \CartProd H_n)$ is unbounded by \cref{Main}. 
+The key difference between \cref{QueueProduct} and \cref{StackProduct} is that $G_2$ is assumed to be bipartite in \cref{StackProduct}. \cref{Main} says that this assumption is essential, since it is easily seen that $\dsn(H_n)$ is bounded, but $\sn(S_b \CartProd H_n)$ is unbounded by \cref{Main}.
 
 %\todo{are there any results of \citet{Pupyrev20} worth mentioning here?}
 
@@ -224,7 +224,7 @@ For each leaf $v$ in $L_1$, let $\varphi_v$ be the edge colouring of $H_n$ defin
 Let $S_{c}$ be the subgraph of $S_b$ induced by $L_2\cup\{r\}$. The preceding two lemmata ensure that, for distinct leaves $v$ and $w$ of $S_{c}$, the stack layouts of the isomorphic graphs $G[\{(v,p):p\in V(H_n)\}]$ and $G[\{(w,p):p\in V(H_n)\}]$ are identical. The next lemma is a statement about the relationships between the stack layouts of $G[\{(v,p):v\in V(S_{c})\}]$ and $G[\{(v,q):v\in V(S_{c})\}]$ for  distinct $p,q\in V(H_n)$.  It does not assert that these two layouts are identical but it does state that they fall into one of two categories.
 
 \begin{lem}\label{forward_or_backward}
-    There exists a sequence $L_3:=u_1,\ldots,u_{d}$ with $\{u_1,\ldots,u_{d}\}\subseteq L_2$ of length $d\ge c^{1/2^{n^2-1}}$ such that, for each $p\in V(H_n)$, either  $(u_1,p)\prec (u_2,p)\prec\cdots\prec (u_{d},p)$ or $(u_1,p)\succ (u_2,p)\succ\cdots\succ (u_{d},p)$.
+    There exists a sequence $u_1,\ldots,u_{d}\in L_2$ of length $d\ge c^{1/2^{n^2-1}}$ such that, for each $p\in V(H_n)$, either  $(u_1,p)\prec (u_2,p)\prec\cdots\prec (u_{d},p)$ or $(u_1,p)\succ (u_2,p)\succ\cdots\succ (u_{d},p)$.
 \end{lem}
 
 \begin{proof}
@@ -232,13 +232,12 @@ Let $S_{c}$ be the subgraph of $S_b$ induced by $L_2\cup\{r\}$. The preceding tw
     Begin with the sequence $S_1:=v_{1,1},\ldots,v_{1,c}$ that contains all $c$ elements of $L_2$ ordered so that $(v_{1,1},p_1)\prec\cdots\prec(v_{1,c},p_1)$.  For each $i\in\{2,\ldots,n^2\}$, the Erd\H{o}s-Szekeres Theorem~\citep{ES35} implies that $S_{i-1}$ contains a subsequence $S_i:=v_{i,1},\ldots,v_{i,|S_i|}$ of length $|S_i|\ge \sqrt{|S_{i-1}|}$ such that $(v_{i,1},p_i)\prec\cdots\prec(v_{i,|S_i|},p_i)$ or $(v_{i,1},p_i)\succ\cdots\succ(v_{i,|S_i|},p_i)$.  It is straightforward to verify by induction on $i$ that $|S_i| \ge c^{1/2^{i-1}}$ resulting in a final sequence $S_{n^2}=:L_3$ of length at least $c^{1/2^{n^2-1}}$.
 \end{proof}
 
-\todo[inline]{DW: I think there is no need to mention $L_3$. Just write ``There exists a sequence $u_1,\ldots,u_{d}\in L_2 ....$ }
 
 For the rest of the proof we work with the star $S_d$ whose leaves are $u_1,\ldots,u_d$ described in \cref{forward_or_backward}.  Consider the (improper) colouring of $H_n$ obtained by colouring each vertex $p\in V(H_n)$ \emph{red} if $(u_1,p)\prec\cdots\prec (u_d,p)$ and colouring $p$ \emph{blue} if $(u_1,p)\succ\cdots\succ(u_d,p)$. We need the following famous Hex Lemma~\citep{Gale79}.
 
 \begin{lem}[\citep{Gale79}] \label{hex_lemma}
 %Every red--blue vertex colouring of the graph $H_n$	contains an $n$-vertex path $R$ consisting entirely of red vertices or entirely of blue vertices.
-Every vertex 2-colouring of $H_n$ contains a monochromatic path on $n$ vertices. 
+Every vertex 2-colouring of $H_n$ contains a monochromatic path on $n$ vertices.
 \end{lem}
 
 %\begin{proof}
@@ -250,8 +249,8 @@ Every vertex 2-colouring of $H_n$ contains a monochromatic path on $n$ vertices.
 %    In either case, the path contains at least $n$ vertices and therefore has a $n$-vertex subpath consisting entirely of red vertices or entirely of blue vertices.
 %\end{proof}
 
-Apply \cref{hex_lemma} with the above-defined colouring of $H_n$. We obtain a path $R:=p_1,\ldots,p_n$ in $H_n$ that, without loss of generality, consists entirely of red vertices; 
-thus $(u_1,p_j)\prec\cdots\prec (u_d,p_j)$ for each $j\in\{1,\ldots,n\}$.  Let $X$ be the subgraph $S_d \CartProd R$ of $G$. 
+Apply \cref{hex_lemma} with the above-defined colouring of $H_n$. We obtain a path $R:=p_1,\ldots,p_n$ in $H_n$ that, without loss of generality, consists entirely of red vertices;
+thus $(u_1,p_j)\prec\cdots\prec (u_d,p_j)$ for each $j\in\{1,\ldots,n\}$.  Let $X$ be the subgraph $S_d \CartProd R$ of $G$.
 
 \begin{lem}\label{twister}
 $X$ contains a set of at least $\min\{\lfloor d/2^{n}\rfloor,\lceil n/2\rceil\}$ pairwise crossing edges with respect to $\prec$.
@@ -277,7 +276,7 @@ $X$ contains a set of at least $\min\{\lfloor d/2^{n}\rfloor,\lceil n/2\rceil\}$
         \item $Z_{n,\lfloor d'/2\rfloor}\prec r_{\lceil n/2\rceil}$ in which case the graph between $r_{\lceil n/2\rceil},\ldots,r_{n}$ and $Z_{n,1},\ldots,Z_{n,\lfloor d'/2\rfloor}$ has a set of at least $\min\{\lfloor d'/2\rfloor,\lceil n/2\rceil\}$ pairwise-crossing edges.
         \item $r_{\lceil n/2\rceil}\prec Z_{\lceil d'/2\rceil+1}$ in which case the graph between $r_1,\ldots,r_{\lceil n/2\rceil}$ and $Z_{\lceil d'/2\rceil+1},\ldots,Z_{d'}$ has a set of $\min\{\lfloor d'/2\rfloor,\lceil n/2\rceil\}$ pairwise-crossing edges.
     \end{enumerate}
-	\begin{figure}[!h] 
+	\begin{figure}[!h]
 		\centering
 			\includegraphics{figs/median-1} \\ 1 \\[2em]
 			\includegraphics{figs/median-2} \\ 2
@@ -327,9 +326,9 @@ We now complete the proof that $A_i$ satisfies (C2). Apply \clmref{interleave} a
 % \end{proof}
 %
 
-\begin{proof}[Proof of \cref{Main}] 
-Let $G := S_b \CartProd H_n$, where $n :=2s+1$ and $b := (n^2)!\, s^{3n^2}\, ((s+1)2^n)^{2^{n^2-1}} $. Suppose that $G$ has an $s$-stack layout  $(\varphi,\prec)$. In particular, there are no $s+1$ pairwise crossing edges in $G$ with respect to $\prec$. By \cref{uniform_colour,uniform_order,forward_or_backward}, we have $a\ge b/(n^2)! = s^{3n^2}\, ((s+1)2^n)^{2^{n^2-1}}$ and $c\ge a/s^{3n^2} \geq ((s+1)2^n)^{2^{n^2-1}}$ and 
-$d\ge c^{1/2^{n^2-1}} \ge (s+1)2^n$. By \cref{twister}, the graph $X$, which is a subgraph of $G$, contains $\min\{\lfloor d/2^{n}\rfloor,\lceil n/2\rceil\}=s+1$ pairwise crossing edges with respect to $\prec$. This contradictions shows that $\sn(G)> s$. 
+\begin{proof}[Proof of \cref{Main}]
+Let $G := S_b \CartProd H_n$, where $n :=2s+1$ and $b := (n^2)!\, s^{3n^2}\, ((s+1)2^n)^{2^{n^2-1}} $. Suppose that $G$ has an $s$-stack layout  $(\varphi,\prec)$. In particular, there are no $s+1$ pairwise crossing edges in $G$ with respect to $\prec$. By \cref{uniform_colour,uniform_order,forward_or_backward}, we have $a\ge b/(n^2)! = s^{3n^2}\, ((s+1)2^n)^{2^{n^2-1}}$ and $c\ge a/s^{3n^2} \geq ((s+1)2^n)^{2^{n^2-1}}$ and
+$d\ge c^{1/2^{n^2-1}} \ge (s+1)2^n$. By \cref{twister}, the graph $X$, which is a subgraph of $G$, contains $\min\{\lfloor d/2^{n}\rfloor,\lceil n/2\rceil\}=s+1$ pairwise crossing edges with respect to $\prec$. This contradictions shows that $\sn(G)> s$.
 \end{proof}
 
 \section{Open Problems}
