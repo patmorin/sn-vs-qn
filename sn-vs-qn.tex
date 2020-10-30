@@ -94,7 +94,7 @@ Given a $k$-stack layout $(\prec,\varphi)$ of a graph $G$, for each $i\in\{1,\do
 Note that stack layouts are equivalent to book embeddings (first defined by \citet{Ollmann73} in 1973), and stack-number is also known as \emph{page-number}, \emph{book-thickness} or \emph{fixed outer-thickness}. Stack and queue layouts have other applications including computational complexity~\citep{GKS89,DSW16,Bourgain09,BY13},  RNA folding~\citep{HS99}, graph drawing in two~\citep{BB04,ADFPR12,SSSV-WG94} and three dimensions~\citep{DMW05,Wood-GD01,DMW17}, 
 fault-tolerant multiprocessing~\citep{CLR87,Rosenberg83a,Rosenberg86a,Rosenberg86}, stack sorting~\citep{CLR87}, and traffic light control~\citep{Kainen90}. See  \citep{BK79,Blankenship-PhD03,DujWoo04,DujWoo-DCG07,DJMMUW20,DFP13,BFGMMRU19,Yannakakis89,Yann20,MBKPRU20} for bounds on the stack- and queue-number for various graph classes. 
 
-\subsection*{Is Stack-Number Bounded by Queue-number?}
+\subsection*{Is Stack-Number Bounded by Queue-Number?}
 
 This paper considers the first of the above questions. In a positive direction, \citet{HLR92}  showed that every 1-queue graph has a $2$-stack layout. On the other hand, they described graphs that need exponentially more stacks than queues. In particular, $n$-vertex ternary hypercubes have queue-number $O(\log n)$ and stack-number $\Omega(n^{1/9-\epsilon})$ for any $\epsilon>0$.
 
@@ -174,7 +174,7 @@ There exists a function $f$ such that for every graph $G$ and integer $k$, if $G
 \end{conj}
 
 \citet{DujWoo05} established a connection between this conjecture and the question of whether stack-number is bounded by queue-number. In particular, they showed that if
-\cref{B_conj} is true, then stack-number is bounded by queue-number. Since \cref{family} shows that stack-number is not bounded by queue-number, \cref{B_conj} is false. The proof of \citet{DujWoo05} is based on the folllowing key lemma: every graph $G$ has a $3$-stack subdivision with $1+2 \ceil{\log_2\qn(G)}$ division vertices per edge. Applying this result to the graph $G=S_b\CartProd H_n$ in \cref{family},
+\cref{B_conj} is true, then stack-number is bounded by queue-number. Since \cref{family} shows that stack-number is not bounded by queue-number, \cref{B_conj} is false. The proof of \citet{DujWoo05} is based on the following key lemma: every graph $G$ has a $3$-stack subdivision with $1+2 \ceil{\log_2\qn(G)}$ division vertices per edge. Applying this result to the graph $G=S_b\CartProd H_n$ in \cref{family},
 the $5$-subdivision of $S_b\CartProd H_n$ has a $3$-stack layout. If \cref{B_conj} was true, then $\sn(S_b\CartProd H_n) \leq f( 3,5)$, contradicting \cref{family}.
 
 %Specifically,
@@ -197,7 +197,7 @@ the $5$-subdivision of $S_b\CartProd H_n$ has a $3$-stack layout. If \cref{B_con
 
 %SAY SOMETHING ABOUT THE RESULTS OF \citet{Pupyrev20}. I EXPECT WE SOLVE SOME OPEN PROBLEM HERE.\todo{PM:Not really, his open problem is about $H\boxtimes P$ where $H$ has bounded treewidth.}
 
-\subsection*{Is Queue-number Bounded by Stack-Number? }
+\subsection*{Is Queue-Number Bounded by Stack-Number? }
 
 It remains open whether queues are more powerful than stacks; that is, whether queue-number is bounded by stack-number. Several reults are known about this problem. \citet{HLR92} showed that every 1-stack graph has a 2-queue layout. \citet{DJMMUW20} showed that planar graphs have bounded queue-number. (Note that graph products also feature heavily in this proof.)\ Since 2-stack graphs are planar, this implies that 2-stack graphs have bounded queue-number. It is open whether 3-stack graphs have bounded queue-number. In fact, the case of three stacks is as hard as the general question. \citet{DujWoo05} proved that queue-number is bounded by stack-number if and only if 3-stack graphs have bounded queue-number. Moreover, if this is true then queue-number is bounded by a polynomial function of stack-number.
 
@@ -316,7 +316,7 @@ We now complete the proof that $A_i$ satisfies (C2). Apply \clmref{interleave} a
 		(v_1,p_{i-1})\prec (v_1,p_{i}) \prec (v_2,p_{i-1}) \prec (v_2,p_{i}) \cdots \prec (v_r,p_{i-1}) \prec (v_r,p_{i}) \enspace .
 	\]
 
-    For each $j\in\{1,\ldots,r-2\}$, we have $(v_{j+1},p_{i-1})\in Z_{j+1}\prec Z_{j+2}$, so  $(v_j,p_i)\prec (v_{j+1},p_{i-1}) \prec Z_{j+2}$.  Therefore $Z_j\cup\{(v_j,p_i)\} \prec Z_{j+2}$.  By a symmetric argument, $Z_j\cup\{(v_j,p_i)\} \succ Z_{j-2}$ for each  $j\in\{3,\ldots,r\}$.  Finally, since $(v_{j},p_i)\prec (v_{j+2},p_i)$ for each odd $i\in\{1,\ldots,r\}$, we have $Z_{j}\cup\{(v_j,p_i)\} \prec Z_{j+2}\cup\{(v_{j+2},p_i)\}$ for each odd $j\in\{1,\ldots,r-2\}$.  Thus $A_i$ satisifies (C2) since the sets $Z_1\cup\{(v_1,p_i)\},Z_3\cup\{(v_3,p_i)\},\ldots,Z_{2\lfloor (r-1)/2\rfloor+1} \cup (v_{2\lfloor (r-1)/2\rfloor+1},p_i)$ are precisely the sets $Z_{i,1},\ldots,Z_{i,d_i}$ determined by our choice of $A_i$.
+    For each $j\in\{1,\ldots,r-2\}$, we have $(v_{j+1},p_{i-1})\in Z_{j+1}\prec Z_{j+2}$, so  $(v_j,p_i)\prec (v_{j+1},p_{i-1}) \prec Z_{j+2}$.  Therefore $Z_j\cup\{(v_j,p_i)\} \prec Z_{j+2}$.  By a symmetric argument, $Z_j\cup\{(v_j,p_i)\} \succ Z_{j-2}$ for each  $j\in\{3,\ldots,r\}$.  Finally, since $(v_{j},p_i)\prec (v_{j+2},p_i)$ for each odd $i\in\{1,\ldots,r\}$, we have $Z_{j}\cup\{(v_j,p_i)\} \prec Z_{j+2}\cup\{(v_{j+2},p_i)\}$ for each odd $j\in\{1,\ldots,r-2\}$.  Thus $A_i$ satisfies (C2) since the sets $Z_1\cup\{(v_1,p_i)\},Z_3\cup\{(v_3,p_i)\},\ldots,Z_{2\lfloor (r-1)/2\rfloor+1} \cup (v_{2\lfloor (r-1)/2\rfloor+1},p_i)$ are precisely the sets $Z_{i,1},\ldots,Z_{i,d_i}$ determined by our choice of $A_i$.
 \end{proof}
 
 % \begin{lem}\lemlabel{twister}
@@ -328,7 +328,7 @@ We now complete the proof that $A_i$ satisfies (C2). Apply \clmref{interleave} a
 %
 
 \begin{proof}[Proof of \cref{Main}] 
-Let $G := S_b \CartProd H_n$, where $n :=2s+1$ and $b := (n^2)!\, s^{3n^2}\, ((s+1)2^n)^{2^{n^2-1}} $. Suppose that $G$ has an $s$-stack layout  $(\varphi,\prec)$. In particular, there are no $s+1$ pairwise crossing edges in $G$ with resect to $\prec$. By \cref{uniform_colour,uniform_order,forward_or_backward}, we have $a\ge b/(n^2)! = s^{3n^2}\, ((s+1)2^n)^{2^{n^2-1}}$ and $c\ge a/s^{3n^2} \geq ((s+1)2^n)^{2^{n^2-1}}$ and 
+Let $G := S_b \CartProd H_n$, where $n :=2s+1$ and $b := (n^2)!\, s^{3n^2}\, ((s+1)2^n)^{2^{n^2-1}} $. Suppose that $G$ has an $s$-stack layout  $(\varphi,\prec)$. In particular, there are no $s+1$ pairwise crossing edges in $G$ with respect to $\prec$. By \cref{uniform_colour,uniform_order,forward_or_backward}, we have $a\ge b/(n^2)! = s^{3n^2}\, ((s+1)2^n)^{2^{n^2-1}}$ and $c\ge a/s^{3n^2} \geq ((s+1)2^n)^{2^{n^2-1}}$ and 
 $d\ge c^{1/2^{n^2-1}} \ge (s+1)2^n$. By \cref{twister}, the graph $X$, which is a subgraph of $G$, contains $\min\{\lfloor d/2^{n}\rfloor,\lceil n/2\rceil\}=s+1$ pairwise crossing edges with respect to $\prec$. This contradictions shows that $\sn(G)> s$. 
 \end{proof}
 
