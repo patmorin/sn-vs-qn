@@ -1,6 +1,6 @@
 \documentclass[kpfonts]{patmorin}
 \usepackage{pat}
-\usepackage{paralist,graphicx}
+\usepackage{paralist,graphicx,float}
 \usepackage{array,longtable}
 
 \usepackage[utf8]{inputenc}
@@ -63,8 +63,6 @@
 	David R. Wood\thanks{School of Mathematics, Monash University, Melbourne, Australia (\texttt{david.wood@monash.edu}). Research supported by the Australian Research Council.}
 }
 
-\author{TBD}
-
 \begin{document}
 \maketitle
 
@@ -93,7 +91,8 @@ Then $(\prec,\varphi)$ is a \emph{$k$-stack layout} of $G$ if $vw$ and $xy$ do n
 
 Given a $k$-stack layout $(\prec,\varphi)$ of a graph $G$, for each $i\in\{1,\dots,k\}$, the set $\varphi^{-1}(i)$ behaves like a stack, in the sense that each edge $vw \in \varphi^{-1}(i)$ with $v\prec w$ corresponds to an element in a sequence of stack operations, such that if we traverse the vertices in the order of $\prec$, then $vw$ is pushed onto the stack at $v$ and popped off the stack at $w$. Similarly, each set $\varphi^{-1}(i)$ in a queue layout  behaves like a queue. In this way, the stack-number and queue-number  respectively measure the power of stacks and queues to represent graphs.
 
-Note that stack layouts are equivalent to book embeddings (first defined by \citet{Ollmann73} in 1973), and stack-number is also known as \emph{page-number}, \emph{book-thickness} or \emph{fixed outer-thickness}. Stack and queue layouts have other applications including fault-tolerant multiprocessing~\citep{CLR87,Rosenberg83a,Rosenberg86a,Rosenberg86}, stack sorting~\citep{CLR87}, traffic control~\citep{Kainen90}, graph drawing in two~\citep{BB04,ADFPR12,SSSV-WG94} and three dimensions~\citep{DMW05,Wood-GD01,DMW17}, RNA folding~\citep{HS99}, and computational complexity~\citep{GKS89,DSW16,Bourgain09,BY13}. See  \citep{BK79,BO01,DujWoo04,DujWoo-DCG07,DJMMUW20,DFP13,BFGMMRU19,Yannakakis89,Yann20,MBKPRU20} for bounds on the stack- and queue-number for various graph classes. 
+Note that stack layouts are equivalent to book embeddings (first defined by \citet{Ollmann73} in 1973), and stack-number is also known as \emph{page-number}, \emph{book-thickness} or \emph{fixed outer-thickness}. Stack and queue layouts have other applications including computational complexity~\citep{GKS89,DSW16,Bourgain09,BY13},  RNA folding~\citep{HS99}, graph drawing in two~\citep{BB04,ADFPR12,SSSV-WG94} and three dimensions~\citep{DMW05,Wood-GD01,DMW17}, 
+fault-tolerant multiprocessing~\citep{CLR87,Rosenberg83a,Rosenberg86a,Rosenberg86}, stack sorting~\citep{CLR87}, and traffic light control~\citep{Kainen90}. See  \citep{BK79,Blankenship-PhD03,DujWoo04,DujWoo-DCG07,DJMMUW20,DFP13,BFGMMRU19,Yannakakis89,Yann20,MBKPRU20} for bounds on the stack- and queue-number for various graph classes. 
 
 \subsection*{Is Stack-Number Bounded by Queue-number?}
 
@@ -130,7 +129,7 @@ E(H_n) & :=  \{(x,y)(x+1,y):x\in\{1,\ldots,n-1\},\,y\in\{1,\ldots,n\}\} \\
 & \qquad \cup \{(x,y)(x+1,y+1):x,y\in\{1,\ldots,n-1\}\} \enspace .
 \end{align*}
 
-\begin{figure}[!h]
+\begin{figure}[H]
 \centering
 \begin{tabular}{m{.25\textwidth}m{2ex}m{.25\textwidth}m{2ex}m{.3\textwidth}}
 	\includegraphics[width=.25\textwidth]{figs/s} & $\CartProd$ & \includegraphics[width=.25\textwidth]{figs/q} & $=$
@@ -156,7 +155,7 @@ We now show that $\qn(S_b\CartProd H_n)\leq 4$, which with \cref{Main} implies \
 \end{equation}
 Of course, $S_b$ has a 1-queue layout (since no two edges are nested for any vertex-ordering). Thus $\qn(S_b \CartProd H_n)\leq 4$.
 
-\citet{BK79} proved a result similar to \cref{QueueProduct} for stack layouts. Let $\dsn(G)$ be the minimum integer $k$ such that $G$ has a $k$-stack layout $(\prec,\varphi)$ where $\varphi$ is a proper edge-colouring of $G$; that is, $\varphi(vx)\neq\varphi(vy)$ for any two edges $vx,vy$ with a common endpoint. Then for every graph $G_1$ and every bipartite graph $G_2$, 
+\citet{BK79} implicitly proved a result similar to \cref{QueueProduct} for stack layouts. Let $\dsn(G)$ be the minimum integer $k$ such that $G$ has a $k$-stack layout $(\prec,\varphi)$ where $\varphi$ is a proper edge-colouring of $G$; that is, $\varphi(vx)\neq\varphi(vy)$ for any two edges $vx,vy$ with a common endpoint. Then for every graph $G_1$ and every bipartite graph $G_2$, 
 \begin{equation}
 \label{StackProduct}
 \sn(G_1 \CartProd G_2) \leq \sn(G_1) + \dsn(G_2).
@@ -200,7 +199,7 @@ the $5$-subdivision of $S_b\CartProd H_n$ has a $3$-stack layout. If \cref{B_con
 
 \subsection*{Is Queue-number Bounded by Stack-Number? }
 
-It remains open whether queues are more powerful than stacks; that is, whether queue-number is bounded by stack-number. Several reults are known about this problem. \citet{HLR92} showed that every 1-stack graph has a 2-queue layout. \citet{DJMMUW20} showed that planar graphs have bounded queue-number. (Note that graph products also feature heavily in this proof.)\ Since 2-stack graphs are planar, this implies that 2-stack graphs have bounded queue-number. It is open whether 3-stack graphs have bounded queue-number. In fact, the case of three stacks is as hard as the general question. \citet{DujWoo05} proved that queue-number is bounded by stack-number if and only if 3-stack graphs have bounded queue-number. Moreover, if this is true then stack-number is bounded by a polynomial function of queue-number.
+It remains open whether queues are more powerful than stacks; that is, whether queue-number is bounded by stack-number. Several reults are known about this problem. \citet{HLR92} showed that every 1-stack graph has a 2-queue layout. \citet{DJMMUW20} showed that planar graphs have bounded queue-number. (Note that graph products also feature heavily in this proof.)\ Since 2-stack graphs are planar, this implies that 2-stack graphs have bounded queue-number. It is open whether 3-stack graphs have bounded queue-number. In fact, the case of three stacks is as hard as the general question. \citet{DujWoo05} proved that queue-number is bounded by stack-number if and only if 3-stack graphs have bounded queue-number. Moreover, if this is true then queue-number is bounded by a polynomial function of stack-number.
 
 \section{Proof of \cref{Main}}
 
@@ -233,10 +232,13 @@ Let $S_{c}$ be the subgraph of $S_b$ induced by $L_2\cup\{r\}$. The preceding tw
     Begin with the sequence $S_1:=v_{1,1},\ldots,v_{1,c}$ that contains all $c$ elements of $L_2$ ordered so that $(v_{1,1},p_1)\prec\cdots\prec(v_{1,c},p_1)$.  For each $i\in\{2,\ldots,n^2\}$, the Erd\H{o}s-Szekeres Theorem~\citep{ES35} implies that $S_{i-1}$ contains a subsequence $S_i:=v_{i,1},\ldots,v_{i,|S_i|}$ of length $|S_i|\ge \sqrt{|S_{i-1}|}$ such that $(v_{i,1},p_i)\prec\cdots\prec(v_{i,|S_i|},p_i)$ or $(v_{i,1},p_i)\succ\cdots\succ(v_{i,|S_i|},p_i)$.  It is straightforward to verify by induction on $i$ that $|S_i| \ge c^{1/2^{i-1}}$ resulting in a final sequence $S_{n^2}=:L_3$ of length at least $c^{1/2^{n^2-1}}$.
 \end{proof}
 
-For the rest of the proof we will work with the star $S_d$ whose leaves are $u_1,\ldots,u_d$ described in \cref{forward_or_backward}.  Consider the (improper) vertex colouring of $H_n$ obtained by colouring each vertex $p\in V(H_n)$ \emph{red} if $(u_1,p)\prec\cdots\prec (u_d,p)$ and colouring $p$ \emph{blue} if $(u_1,p)\succ\cdots\succ(u_d,p)$. We need the following famous Hex Lemma~\citep{Gale79}.
+\todo[inline]{DW: I think there is no need to mention $L_3$. Just write ``There exists a sequence $u_1,\ldots,u_{d}\in L_2 ....$ }
+
+For the rest of the proof we work with the star $S_d$ whose leaves are $u_1,\ldots,u_d$ described in \cref{forward_or_backward}.  Consider the (improper) colouring of $H_n$ obtained by colouring each vertex $p\in V(H_n)$ \emph{red} if $(u_1,p)\prec\cdots\prec (u_d,p)$ and colouring $p$ \emph{blue} if $(u_1,p)\succ\cdots\succ(u_d,p)$. We need the following famous Hex Lemma~\citep{Gale79}.
 
 \begin{lem}[\citep{Gale79}] \label{hex_lemma}
-Every red--blue vertex colouring of the graph $H_n$	contains an $n$-vertex path $R$ consisting entirely of red vertices or entirely of blue vertices.
+%Every red--blue vertex colouring of the graph $H_n$	contains an $n$-vertex path $R$ consisting entirely of red vertices or entirely of blue vertices.
+Every vertex 2-colouring of $H_n$ contains a monochromatic path on $n$ vertices. 
 \end{lem}
 
 %\begin{proof}
@@ -248,14 +250,15 @@ Every red--blue vertex colouring of the graph $H_n$	contains an $n$-vertex path 
 %    In either case, the path contains at least $n$ vertices and therefore has a $n$-vertex subpath consisting entirely of red vertices or entirely of blue vertices.
 %\end{proof}
 
-Without loss of generality, assume that the path $R:=p_1,\ldots,p_n$ defined by \cref{hex_lemma} (with the above-defined colouring) consists entirely of red vertices, so that $(u_1,p_j)\prec\cdots\prec (u_d,p_j)$ for each $j\in\{1,\ldots,n\}$.  
+Apply \cref{hex_lemma} with the above-defined colouring of $H_n$. We obtain a path $R:=p_1,\ldots,p_n$ in $H_n$ that, without loss of generality, consists entirely of red vertices; 
+thus $(u_1,p_j)\prec\cdots\prec (u_d,p_j)$ for each $j\in\{1,\ldots,n\}$.  Let $X$ be the subgraph $S_d \CartProd R$ of $G$. 
 
 \begin{lem}\label{twister}
-The graph $X :=S_d \CartProd R$ contains a set of edges of size at least $\min\{\lfloor d/2^{n}\rfloor,\lceil n/2\rceil\}$ that are pairwise crossing with respect to $\prec$.
+$X$ contains a set of at least $\min\{\lfloor d/2^{n}\rfloor,\lceil n/2\rceil\}$ pairwise crossing edges with respect to $\prec$.
 \end{lem}
 
 \begin{proof}
-	Extend the total order $\prec$ onto a partial order over subsets of $V(G)$ so that, for $V,W\subseteq V(G)$,  $V\prec W$ if and only if $v\prec w$ for each $v\in V$ and each $w\in W$.  We abuse notation slightly by using $\prec$ to compare elements of $V(G)$ and subsets of $V(G)$ so that, for $v\in V(G)$ and $V\subseteq V(G)$, $v\prec V$ denotes $\{v\}\prec V$.
+	Extend the total order $\prec$ to a partial order over subsets of $V(G)$, where for all $V,W\subseteq V(G)$, we have $V\prec W$ if and only if $v\prec w$ for each $v\in V$ and each $w\in W$.  We abuse notation slightly by using $\prec$ to compare elements of $V(G)$ and subsets of $V(G)$ so that, for $v\in V(G)$ and $V\subseteq V(G)$, $v\prec V$ denotes $\{v\}\prec V$.
     We will define sets $A_1\supseteq \cdots\supseteq A_{n}$ of leaves of $S_d$ so that each $A_i$ satisifies the following conditions:
     \begin{compactenum}[(C1)]
         \item $A_i$ contains $d_i\ge d/2^{i-1}$ leaves of $S_d$.
