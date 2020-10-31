@@ -89,10 +89,14 @@ Let $\varphi:E(G)\to\{1,\ldots,k\}$ for some integer $k\ge 1$.
 
 Then $(\prec,\varphi)$ is a \emph{$k$-stack layout} of $G$ if $vw$ and $xy$ do not cross for all edges $vw,xy\in E(G)$ with $\varphi(vw) = \varphi(xy)$. Similarly, $(\prec,\varphi)$ is a \emph{$k$-queue layout} of $G$ if $vw$ and $xy$ do not nest for all edges $vw,xy\in E(G)$ with  $\varphi(vw)=\varphi(xy)$. The smallest integer $s$ for which $G$ has an $s$-stack layout is called the \emph{stack-number} of $G$, denoted  $\sn(G)$. The smallest integer $q$ for which $G$ has a $q$-queue layout is called the \emph{queue-number} of $G$, denoted $\qn(G)$.
 
+\todo{Do we want a figure showing an example of a stack layout and a queue layout here? $H_4$ would be a good example. Then we could refer to it when we show $\sqn(H_n)\leq 3$. }
+
 Given a $k$-stack layout $(\prec,\varphi)$ of a graph $G$, for each $i\in\{1,\dots,k\}$, the set $\varphi^{-1}(i)$ behaves like a stack, in the sense that each edge $vw \in \varphi^{-1}(i)$ with $v\prec w$ corresponds to an element in a sequence of stack operations, such that if we traverse the vertices in the order of $\prec$, then $vw$ is pushed onto the stack at $v$ and popped off the stack at $w$. Similarly, each set $\varphi^{-1}(i)$ in a queue layout  behaves like a queue. In this way, the stack-number and queue-number  respectively measure the power of stacks and queues to represent graphs.
 
-Note that stack layouts are equivalent to book embeddings (first defined by \citet{Ollmann73} in 1973), and stack-number is also known as \emph{page-number}, \emph{book-thickness} or \emph{fixed outer-thickness}. Stack and queue layouts have other applications including computational complexity~\citep{GKS89,DSW16,Bourgain09,BY13},  RNA folding~\citep{HS99}, graph drawing in two~\citep{BB04,ADFPR12,SSSV-WG94} and three dimensions~\citep{DMW05,Wood-GD01,DMW17},
-fault-tolerant multiprocessing~\citep{CLR87,Rosenberg83a,Rosenberg86a,Rosenberg86}, stack sorting~\citep{CLR87}, and traffic light control~\citep{Kainen90}. See  \citep{BK79,Blankenship-PhD03,DujWoo04,DujWoo-DCG07,DJMMUW20,DFP13,BFGMMRU19,Yannakakis89,Yann20,MBKPRU20} for bounds on the stack- and queue-number for various graph classes.
+Note that stack layouts are equivalent to book embeddings (first defined by \citet{Ollmann73} in 1973), and stack-number is also known as \emph{page-number}, \emph{book-thickness} or \emph{fixed outer-thickness}. Stack and queue layouts have other applications including computational complexity~\citep{GKS89,DSW16,Bourgain09,BY13},  RNA folding~\citep{HS99}, graph drawing in two~\citep{BB04,ADFPR12,SSSV-WG94} and three dimensions~\citep{DMW05,Wood-GD01,DMW17,DPW04},
+and fault-tolerant multiprocessing~\citep{CLR87,Rosenberg83a,Rosenberg86a,Rosenberg86}.
+%, stack sorting~\citep{CLR87}, and traffic light control~\citep{Kainen90}. 
+See \citep{BK79,Blankenship-PhD03,DujWoo04,DujWoo-DCG07,DJMMUW20,DFP13,BFGMMRU19,Yannakakis89,Yann20,MBKPRU20} for bounds on the stack- and queue-number for various graph classes.
 
 \subsection*{Is Stack-Number Bounded by Queue-Number?}
 
@@ -345,15 +349,15 @@ Is $\sn(T \boxtimes P)$ bounded for every tree $T$ and path $P$? We conjecture t
 \let\endoldthebibliography=\endthebibliography
 \renewenvironment{thebibliography}[1]{%
 \begin{oldthebibliography}{#1}%
-\setlength{\parskip}{0ex}%
-\setlength{\itemsep}{0ex}%
+\setlength{\parskip}{0.3ex}%
+\setlength{\itemsep}{0.3ex}%
 }{\end{oldthebibliography}}
 
-\input{sn-vs-qn.bbl}
+%\input{sn-vs-qn.bbl}
 
 % OR
 
-%\bibliographystyle{DavidNatbibStyle}
-%\bibliography{../../BibTeX/myBibliography}
+\bibliographystyle{DavidNatbibStyle}
+\bibliography{../../BibTeX/myBibliography}
 
 \end{document}

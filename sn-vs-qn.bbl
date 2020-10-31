@@ -110,6 +110,11 @@
   in minor-closed graph classes with applications}.
 \newblock \emph{J. Combin. Theory Ser. B}, 127:111--147, 2017.
 
+\bibitem[{Dujmovi{\'c} et~al.(2004)Dujmovi{\'c}, P\'or, and Wood}]{DPW04}
+\textsc{Vida Dujmovi{\'c}, Attila P\'or, and David~R. Wood}.
+\newblock \href{http://dmtcs.episciences.org/315}{Track layouts of graphs}.
+\newblock \emph{Discrete Math. Theor. Comput. Sci.}, 6(2):497--522, 2004.
+
 \bibitem[{Dujmovi{\'c} et~al.(2016)Dujmovi{\'c}, Sidiropoulos, and
   Wood}]{DSW16}
 \textsc{Vida Dujmovi{\'c}, Anastasios Sidiropoulos, and David~R. Wood}.
@@ -170,12 +175,6 @@
 \newblock \href{https://doi.org/10.1137/0221055}{Laying out graphs using
   queues}.
 \newblock \emph{SIAM J. Comput.}, 21(5):927--958, 1992.
-
-\bibitem[{Kainen(1990)}]{Kainen90}
-\textsc{Paul~C. Kainen}.
-\newblock The book thickness of a graph. {II}.
-\newblock In \emph{Proc. 20th Southeastern Conf. on Combinatorics, Graph
-  Theory, and Computing}, vol.~71 of \emph{Congr. Numer.}, pp. 127--132. 1990.
 
 \bibitem[{Kaufmann et~al.(2020)Kaufmann, Bekos, Klute, Pupyrev, Raftopoulou,
   and Ueckerdt}]{MBKPRU20}
