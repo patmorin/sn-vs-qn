@@ -95,7 +95,7 @@ Given a $k$-stack layout $(\prec,\varphi)$ of a graph $G$, for each $i\in\{1,\do
 
 Note that stack layouts are equivalent to book embeddings (first defined by \citet{Ollmann73} in 1973), and stack-number is also known as \emph{page-number}, \emph{book-thickness} or \emph{fixed outer-thickness}. Stack and queue layouts have other applications including computational complexity~\citep{GKS89,DSW16,Bourgain09,BY13},  RNA folding~\citep{HS99}, graph drawing in two~\citep{BB04,ADFPR12,SSSV-WG94} and three dimensions~\citep{DMW05,Wood-GD01,DMW17,DPW04},
 and fault-tolerant multiprocessing~\citep{CLR87,Rosenberg83a,Rosenberg86a,Rosenberg86}.
-%, stack sorting~\citep{CLR87}, and traffic light control~\citep{Kainen90}. 
+%, stack sorting~\citep{CLR87}, and traffic light control~\citep{Kainen90}.
 See \citep{BK79,Blankenship-PhD03,DujWoo04,DujWoo-DCG07,DJMMUW20,DFP13,BFGMMRU19,Yannakakis89,Yann20,MBKPRU20} for bounds on the stack- and queue-number for various graph classes.
 
 \subsection*{Is Stack-Number Bounded by Queue-Number?}
@@ -134,13 +134,21 @@ E(H_n) & :=  \{(x,y)(x+1,y):x\in\{1,\ldots,n-1\},\,y\in\{1,\ldots,n\}\} \\
 \end{align*}
 
 \begin{figure}[H]
-\centering
-\begin{tabular}{m{.25\textwidth}m{2ex}m{.25\textwidth}m{2ex}m{.3\textwidth}}
-	\includegraphics[width=.25\textwidth]{figs/s} & $\CartProd$ & \includegraphics[width=.25\textwidth]{figs/q} & $=$
-	& \includegraphics[width=.3\textwidth]{figs/product}
-\end{tabular}
-\caption{$S_9 \CartProd H_4$.}
-\label{graph}
+	\centering
+	\begin{tabular}{m{.25\textwidth}m{2ex}m{.25\textwidth}m{2ex}m{.3\textwidth}}
+		\includegraphics[width=.25\textwidth]{figs/s} & $\CartProd$ & \includegraphics[width=.25\textwidth]{figs/q} & $=$
+		& \includegraphics[width=.3\textwidth]{figs/product}
+	\end{tabular}
+	\caption{$S_9 \CartProd H_4$.}
+	\label{graph}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics{figs/layouts-1.pdf} \\[2ex]
+	\includegraphics{figs/layouts-2.pdf}
+	\caption{A $3$-queue layout and a $2$-stack layout of $H_4$}
+	\label{layouts}
 \end{figure}
 
 We prove the following:
@@ -152,7 +160,7 @@ For every $s\in\N$, if $b$ and $n$ are sufficiently large compared to $s$, then 
 
 %Note that the Hex graph corresponds to the board used in the game \textit{Hex} which was invented by the  Peit Hein in 1942. In this paper, we prove \Cref{family} with the graph $G:= S_b \square H_n$ where $b$ and $n$ are large compared to $s$.
 
-We now show that $\qn(S_b\CartProd H_n)\leq 4$, which with \cref{Main} implies \cref{family}. We need the following definition due to \citet{Wood-Queue-DMTCS05}. A queue layout $(\varphi,\prec)$ is \emph{strict} if for every vertex $u\in V(G)$ and for all neighbours $v,w\in N_G(u)$, if $u\prec v,w$ or $v,w \prec u$, then $\varphi(uv)\neq \varphi(uw)$. Let $\sqn(G)$ be the minimum integer $k$ such that $G$ has a strict $k$-queue layout. To see that $\sqn(H_n) \leq 3$, order the vertices row-by-row and then left-to-right within a row, with vertical edges in one queue, horizontal edges in one queue, and diagonal edges in another queue. \citet{Wood-Queue-DMTCS05} proved that for all graphs $G_1$ and $G_2$,
+We now show that $\qn(S_b\CartProd H_n)\leq 4$, which with \cref{Main} implies \cref{family}. We need the following definition due to \citet{Wood-Queue-DMTCS05}. A queue layout $(\varphi,\prec)$ is \emph{strict} if for every vertex $u\in V(G)$ and for all neighbours $v,w\in N_G(u)$, if $u\prec v,w$ or $v,w \prec u$, then $\varphi(uv)\neq \varphi(uw)$. Let $\sqn(G)$ be the minimum integer $k$ such that $G$ has a strict $k$-queue layout. To see that $\sqn(H_n) \leq 3$, order the vertices row-by-row and then left-to-right within a row, with vertical edges in one queue, horizontal edges in one queue, and diagonal edges in another queue (see \cref{layouts}). \citet{Wood-Queue-DMTCS05} proved that for all graphs $G_1$ and $G_2$,
 \begin{equation}
 \label{QueueProduct}
 \qn(G_1 \CartProd G_2) \leq \qn(G_1) + \sqn(G_2).
