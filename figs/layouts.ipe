@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE ipe SYSTEM "ipe.dtd">
 <ipe version="70218" creator="Ipe 7.2.18">
-<info created="D:20201031210332" modified="D:20201031211828"/>
+<info created="D:20201031210332" modified="D:20201031223928"/>
 <ipestyle name="basic">
 <symbol name="arrow/arc(spx)">
 <path stroke="sym-stroke" fill="sym-stroke" pen="sym-pen">
@@ -278,13 +278,13 @@ h
 <dashstyle name="dash dotted" value="[4 2 1 2] 0"/>
 <dashstyle name="dash dot dotted" value="[4 2 1 2 1 2] 0"/>
 <textsize name="large" value="\large"/>
+<textsize name="small" value="\small"/>
+<textsize name="tiny" value="\tiny"/>
 <textsize name="Large" value="\Large"/>
 <textsize name="LARGE" value="\LARGE"/>
 <textsize name="huge" value="\huge"/>
 <textsize name="Huge" value="\Huge"/>
-<textsize name="small" value="\small"/>
 <textsize name="footnote" value="\footnotesize"/>
-<textsize name="tiny" value="\tiny"/>
 <textstyle name="center" begin="\begin{center}" end="\end{center}"/>
 <textstyle name="itemize" begin="\begin{itemize}" end="\end{itemize}"/>
 <textstyle name="item" begin="\begin{itemize}\item{}" end="\end{itemize}"/>
@@ -326,49 +326,17 @@ h
 <layer name="stack_layout"/>
 <view layers="vertices queue_layout" active="queue_layout"/>
 <view layers="vertices stack_layout" active="stack_layout"/>
-<path layer="stack_layout" matrix="1 0 0 1 63.701 1.182" stroke="brew4" dash="dashed" pen="fat">
+<path layer="stack_layout" matrix="-1 0 0 1 432 -0" stroke="brew4" dash="dashed" pen="fat">
 176 512 m
 181.429 534.656
 208 512 c
 </path>
-<path matrix="1 0 0 1 63.701 1.182" stroke="brew4" dash="dashed" pen="fat">
+<path matrix="-1 0 0 1 432 -0" stroke="brew4" dash="dashed" pen="fat">
 160 512 m
 177.255 553.001
 224 512 c
 </path>
-<path matrix="1 0 0 1 63.701 1.182" stroke="brew4" dash="dashed" pen="fat">
-144 512 m
-174.399 575.631
-240 512
-240 512 c
-</path>
-<path matrix="1 0 0 1 127.701 1.182" stroke="brew4" pen="fat">
-176 512 m
-181.429 534.656
-208 512 c
-</path>
-<path matrix="1 0 0 1 127.701 1.182" stroke="brew4" pen="fat">
-160 512 m
-177.255 553.001
-224 512 c
-</path>
-<path matrix="1 0 0 1 127.701 1.182" stroke="brew4" pen="fat">
-144 512 m
-174.399 575.631
-240 512
-240 512 c
-</path>
-<path stroke="brew4" pen="fat">
-176 512 m
-181.429 534.656
-208 512 c
-</path>
-<path stroke="brew4" pen="fat">
-160 512 m
-177.255 553.001
-224 512 c
-</path>
-<path stroke="brew4" pen="fat">
+<path matrix="-1 0 0 1 432 -0" stroke="brew4" dash="dashed" pen="fat">
 144 512 m
 174.399 575.631
 240 512
@@ -394,30 +362,67 @@ h
 184 528
 192 512 c
 </path>
-<path matrix="1 0 0 1 128 0" stroke="brew3" pen="fat">
-128 512 m
-184 576
-240 512 c
-</path>
-<path matrix="1 0 0 1 128 0" stroke="brew3" pen="fat">
+<path stroke="brew4" pen="fat">
 144 512 m
-184 560
-224 512 c
-</path>
-<path matrix="1 0 0 1 128 0" stroke="brew3" pen="fat">
-160 512 m
-184 544
-208 512 c
-</path>
-<path matrix="1 0 0 1 128 0" stroke="brew3" pen="fat">
-176 512 m
-184 528
-192 512 c
+174.399 575.631
+240 512
+240 512 c
 </path>
 <path stroke="brew3" pen="fat">
 128 512 m
 184 576
 240 512 c
+</path>
+<path matrix="1 0 0 1 96 0" stroke="brew1" pen="fat">
+128 512 m
+136 520
+144 512 c
+</path>
+<path matrix="1 0 0 1 127.701 1.182" stroke="brew4" pen="fat">
+176 512 m
+181.429 534.656
+208 512 c
+</path>
+<path matrix="1 0 0 1 127.701 1.182" stroke="brew4" pen="fat">
+160 512 m
+177.255 553.001
+224 512 c
+</path>
+<path matrix="1 0 0 1 127.701 1.182" stroke="brew4" pen="fat">
+144 512 m
+174.399 575.631
+240 512
+240 512 c
+</path>
+<path stroke="brew4" pen="fat">
+176 512 m
+181.429 534.656
+208 512 c
+</path>
+<path stroke="brew4" pen="fat">
+160 512 m
+177.255 553.001
+224 512 c
+</path>
+<path matrix="1 0 0 1 128 0" stroke="brew3" pen="fat">
+128 512 m
+184 576
+240 512 c
+</path>
+<path matrix="1 0 0 1 128 0" stroke="brew3" pen="fat">
+144 512 m
+184 560
+224 512 c
+</path>
+<path matrix="1 0 0 1 128 0" stroke="brew3" pen="fat">
+160 512 m
+184 544
+208 512 c
+</path>
+<path matrix="1 0 0 1 128 0" stroke="brew3" pen="fat">
+176 512 m
+184 528
+192 512 c
 </path>
 <path stroke="brew3" pen="fat">
 144 512 m
@@ -445,11 +450,6 @@ h
 144 512 c
 </path>
 <path stroke="brew1" pen="fat">
-128 512 m
-136 520
-144 512 c
-</path>
-<path matrix="1 0 0 1 96 0" stroke="brew1" pen="fat">
 128 512 m
 136 520
 144 512 c
