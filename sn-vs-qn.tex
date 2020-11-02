@@ -85,14 +85,19 @@ Stacks and queues are fundamental data structures in computer science, but which
 
 If stack-number is bounded by queue-number but queue-number is not bounded by stack-number, then stacks would be considered to be more powerful than queues. Similarly, if the converse holds, then queues would be considered to be more powerful than stacks. Despite extensive research on stack- and queue-numbers, these fundamental questions have remained unsolved.
 
-We now formally define stack- and queue-number.
-Let $G$ be a graph and let $\prec$ be a total order on $V(G)$.  Two disjoint edges $vw,xy\in E(G)$ with $v\prec w$ and $x\prec y$ \emph{cross} with respect to $\prec$ if $v\prec x\prec w\prec y$ or $x\prec v\prec y\prec w$, and \emph{nest} with respect to $\prec$ if $v\prec x\prec y\prec w$ or $x\prec v\prec w\prec y$.
 %A set of $k$ pairwise nested edges is called a \emph{$k$-rainbow} and a set of $k$ pairwise crossing edges is called a \emph{$k$-twist}. A set of $k$ edges, no pair of which nest and no pair of which cross is called a \emph{hopper}.
-Let $\varphi:E(G)\to\{1,\ldots,k\}$ for some integer $k\ge 1$.
 
-Then $(\prec,\varphi)$ is a \emph{$k$-stack layout} of $G$ if $vw$ and $xy$ do not cross for all edges $vw,xy\in E(G)$ with $\varphi(vw) = \varphi(xy)$. Similarly, $(\prec,\varphi)$ is a \emph{$k$-queue layout} of $G$ if $vw$ and $xy$ do not nest for all edges $vw,xy\in E(G)$ with  $\varphi(vw)=\varphi(xy)$. The smallest integer $s$ for which $G$ has an $s$-stack layout is called the \emph{stack-number} of $G$, denoted  $\sn(G)$. The smallest integer $q$ for which $G$ has a $q$-queue layout is called the \emph{queue-number} of $G$, denoted $\qn(G)$.
+We now formally define stack- and queue-number. Let $G$ be a graph and let $\prec$ be a total order on $V(G)$.  Two disjoint edges $vw,xy\in E(G)$ with $v\prec w$ and $x\prec y$ \emph{cross} with respect to $\prec$ if $v\prec x\prec w\prec y$ or $x\prec v\prec y\prec w$, and \emph{nest} with respect to $\prec$ if $v\prec x\prec y\prec w$ or $x\prec v\prec w\prec y$. Let $\varphi:E(G)\to\{1,\ldots,k\}$ for some integer $k\ge 1$. Then $(\prec,\varphi)$ is a \emph{$k$-stack layout} of $G$ if $vw$ and $xy$ do not cross for all edges $vw,xy\in E(G)$ with $\varphi(vw) = \varphi(xy)$. Similarly, $(\prec,\varphi)$ is a \emph{$k$-queue layout} of $G$ if $vw$ and $xy$ do not nest for all edges $vw,xy\in E(G)$ with  $\varphi(vw)=\varphi(xy)$. See \cref{layouts} for examples. The smallest integer $s$ for which $G$ has an $s$-stack layout is called the \emph{stack-number} of $G$, denoted  $\sn(G)$. The smallest integer $q$ for which $G$ has a $q$-queue layout is called the \emph{queue-number} of $G$, denoted $\qn(G)$.
 
-\todo{Do we want a figure showing an example of a stack layout and a queue layout here? $H_4$ would be a good example. }
+\begin{figure}[H]
+	\centering
+	\includegraphics{figs/layouts-1.pdf} \\[2ex]
+	\includegraphics{figs/layouts-2.pdf}
+	\caption{A $2$-queue layout and a $2$-stack layout of the triangulated grid graph $H_4$ defined below. Edges drawn above the vertices are assigned to the first queue/stack and edges drawn below the vertices are assigned to the second queue/stack.}
+	\label{layouts}
+\end{figure}
+
+\todo{DW: I suggest in the 2-queue layout, we draw the gray and red edges above the line and the cyan edges below the line.}
 
 Given a $k$-stack layout $(\prec,\varphi)$ of a graph $G$, for each $i\in\{1,\dots,k\}$, the set $\varphi^{-1}(i)$ behaves like a stack, in the sense that each edge $vw \in \varphi^{-1}(i)$ with $v\prec w$ corresponds to an element in a sequence of stack operations, such that if we traverse the vertices in the order of $\prec$, then $vw$ is pushed onto the stack at $v$ and popped off the stack at $w$. Similarly, each set $\varphi^{-1}(i)$ in a queue layout  behaves like a queue. In this way, the stack-number and queue-number  respectively measure the power of stacks and queues to represent graphs.
 
@@ -146,13 +151,6 @@ E(H_n) & :=  \{(x,y)(x+1,y):x\in\{1,\ldots,n-1\},\,y\in\{1,\ldots,n\}\} \\
 	\label{graph}
 \end{figure}
 
-\begin{figure}[H]
-	\centering
-	\includegraphics{figs/layouts-1.pdf} \\[2ex]
-	\includegraphics{figs/layouts-2.pdf}
-	\caption{A $2$-queue layout and a $2$-stack layout of $H_4$. Edges drawn above vertices are assigned to the first queue/stack and edges drawn below vertices are assigned to the second queue/stack.}
-	\label{layouts}
-\end{figure}
 
 We prove the following:
 
@@ -163,7 +161,7 @@ For every $s\in\N$, if $b$ and $n$ are sufficiently large compared to $s$, then 
 
 %Note that the Hex graph corresponds to the board used in the game \textit{Hex} which was invented by the  Peit Hein in 1942. In this paper, we prove \Cref{family} with the graph $G:= S_b \square H_n$ where $b$ and $n$ are large compared to $s$.
 
-We now show that $\qn(S_b\CartProd H_n)\leq 4$, which with \cref{Main} implies \cref{family}. We need the following definition due to \citet{Wood-Queue-DMTCS05}. A queue layout $(\varphi,\prec)$ is \emph{strict} if for every vertex $u\in V(G)$ and for all neighbours $v,w\in N_G(u)$, if $u\prec v,w$ or $v,w \prec u$, then $\varphi(uv)\neq \varphi(uw)$. Let $\sqn(G)$ be the minimum integer $k$ such that $G$ has a strict $k$-queue layout. To see that $\sqn(H_n) \leq 3$, order the vertices row-by-row and then left-to-right within a row, with vertical edges in one queue, horizontal edges in one queue, and diagonal edges in another queue (see \cref{layouts}). \citet{Wood-Queue-DMTCS05} proved that for all graphs $G_1$ and $G_2$,
+We now show that $\qn(S_b\CartProd H_n)\leq 4$, which with \cref{Main} implies \cref{family}. We need the following definition due to \citet{Wood-Queue-DMTCS05}. A queue layout $(\varphi,\prec)$ is \emph{strict} if for every vertex $u\in V(G)$ and for all neighbours $v,w\in N_G(u)$, if $u\prec v,w$ or $v,w \prec u$, then $\varphi(uv)\neq \varphi(uw)$. Let $\sqn(G)$ be the minimum integer $k$ such that $G$ has a strict $k$-queue layout. To see that $\sqn(H_n) \leq 3$, order the vertices row-by-row and then left-to-right within a row, with vertical edges in one queue, horizontal edges in one queue, and diagonal edges in another queue (this construction puts the edges below the vertices in \cref{layouts} into two queues). \citet{Wood-Queue-DMTCS05} proved that for all graphs $G_1$ and $G_2$,
 \begin{equation}
 \label{QueueProduct}
 \qn(G_1 \CartProd G_2) \leq \qn(G_1) + \sqn(G_2).
@@ -298,6 +296,7 @@ $X$ contains a set of at least $\min\{\lfloor d/2^{n}\rfloor,\lceil n/2\rceil\}$
 		\caption{The two cases in the proof of \cref{twister}.}
 		\figlabel{median}
 	\end{figure}
+\todo{DW: I would delete the ``1'' and ``2' in the above figure.}
 	Since, by (C1), $d'\ge d/2^{n-1}$, either case results in a set of pairwise-crossing edges of size at least $\min\{\lfloor d/2^n\rfloor,\lceil n/2\rceil\}$, as claimed.
 
     All that remains is to define the sets $A_1\supseteq\cdots\supseteq A_n$ that satisfy (C1) and (C2).  Let $A_1$ be the set of all the leaves of $S_d$.  For each $i\in\{2,\ldots,n\}$, the set $A_i$ is defined as follows:  Let $Z_1,\ldots,Z_{|A_{i-1}|}$ denote the sets $Z_{i-1, v}$ for each $v\in A_{i-1}$ ordered so that $Z_1\prec\cdots\prec Z_{|A_{i-1}|}$. By Property (C2), this is always possible.	Label the vertices of $A_{i-1}$ as $v_1,\ldots,v_{|A_{i-1}|}$ so that $(v_1,p_{i-1})\prec\cdots\prec (v_r,p_{i-1})$.   (This is equivalent to naming them so that $(v_j,p_{i-1})\in Z_j$ for each $j\in\{1,\ldots,|A_{i-1}|\}$.)  Define the set $A_i:=\{v_{2k+1}:k\in\{0,\ldots,\lfloor(|A_{i-1}|-1)/2\rfloor\}\}=\{v_{j}\in A_{i-1}:\text{$j$ is odd}\}$.  This completes the definition of $A_1,\ldots,A_n$.
@@ -348,12 +347,9 @@ $d\ge c^{1/2^{n^2-1}} \ge (s+1)2^n$. By \cref{twister}, the graph $X$, which is 
 
 \section{Open Problems}
 
-Recall that every 1-queue graph has a 2-stack layout \citep{HLR92} and we proved that there are 4-queue graphs with unbounded stack-number. The following questions remain open: Do 2-queue graphs have bounded stack-number? Do 3-queue graphs have bounded stack-number? \todo[inline]{Do we want to make a conjecture here? I would say ``no'' for both questions.}
-%DW: In fact, here is a possible graph. Let $G:= S_b\CartProd H_n$ and let $G'$ be the 5-subdivision of $G$. Since $\qn(G)\leq 4$ by a result of \citet{DujWoo05}, we have $\qn(G')\leq 2$. I suspect that $\sn(G')$ is still unbounded. A closer look at the proof of \citet{DujWoo05} might mean we don't have to subdivide so much???
+Recall that every 1-queue graph has a 2-stack layout \citep{HLR92} and we proved that there are 4-queue graphs with unbounded stack-number. The following questions remain open: Do 2-queue graphs have bounded stack-number? Do 3-queue graphs have bounded stack-number? \todo{DW: Do we want to make a conjecture here? I would say ``no'' for both questions.}
 
-
-Given the role of cartesian products in our proof, it is natural to ask when is $\sn(G_1\CartProd G_2)$ bounded? Note that $H_n$ is a subgraph of a planar Hamiltonian graph (namely, $H_{2n}$), so $\sn(H_n) \leq 2$. So $\sn(G_1\CartProd G_2)$ can be unbounded even when $G_1$ is a star and $\sn(G_2)\leq 2$.
-Since $\sn(G_2)\leq 1$ if and only if $G_2$ is outerplanar, the following questions naturally arise: Is $\sn(S \CartProd H)$ bounded for every star $S$ and outerplanar graph $H$ with bounded degree? Is $\sn(T \CartProd H)$ bounded for every tree $T$ and outerplanar graph $H$ with bounded degree? The assumption that $H$ has bounded degree is needed since $S_n \CartProd S_n$ contains the 1-subdivision of $K_{n,n}$, which has unbounded stack-number~\citep{Blankenship-PhD03}.
+Given the role of cartesian products in our proof, it is natural to ask when is $\sn(G_1\CartProd G_2)$ bounded? As illustrated in \cref{layouts}, $\sn(H_n) \leq 2$. So $\sn(G_1\CartProd G_2)$ can be unbounded even when $G_1$ is a star and $\sn(G_2)\leq 2$. Since $\sn(G_2)\leq 1$ if and only if $G_2$ is outerplanar, the following questions naturally arise: Is $\sn(S \CartProd H)$ bounded for every star $S$ and outerplanar graph $H$ with bounded degree? Is $\sn(T \CartProd H)$ bounded for every tree $T$ and outerplanar graph $H$ with bounded degree? The assumption that $H$ has bounded degree is needed since $S_n \CartProd S_n$ contains the 1-subdivision of $K_{n,n}$, which has unbounded stack-number~\citep{Blankenship-PhD03}.
 
 Since $H_n\subseteq P \boxtimes P$ where $P$ is the $n$-vertex path, \cref{family} implies that $\sn(S\boxtimes P\boxtimes P)$ is unbounded for stars $S$ and paths $P$. It is easily seen that $\sn(S\boxtimes P)$ is bounded~\citep{Pupyrev20}. The following question naturally arises (independently asked by \citet{Pupyrev20}):
 Is $\sn(T \boxtimes P)$ bounded for every tree $T$ and path $P$? We conjecture the answer is ``no''.
@@ -362,15 +358,15 @@ Is $\sn(T \boxtimes P)$ bounded for every tree $T$ and path $P$? We conjecture t
 \let\endoldthebibliography=\endthebibliography
 \renewenvironment{thebibliography}[1]{%
 \begin{oldthebibliography}{#1}%
-\setlength{\parskip}{0ex}%
-\setlength{\itemsep}{0ex}%
+\setlength{\parskip}{-0.1ex}%
+\setlength{\itemsep}{-0.1ex}%
 }{\end{oldthebibliography}}
 
-\input{sn-vs-qn.bbl}
+%\input{sn-vs-qn.bbl}
 
 % OR
 
-%\bibliographystyle{DavidNatbibStyle}
-%\bibliography{../../BibTeX/myBibliography}
+\bibliographystyle{DavidNatbibStyle}
+\bibliography{../../BibTeX/myBibliography}
 
 \end{document}
