@@ -97,8 +97,6 @@ We now formally define stack- and queue-number. Let $G$ be a graph and let $\pre
 	\label{layouts}
 \end{figure}
 
-\todo{DW: I suggest in the 2-queue layout, we draw the gray and red edges above the line and the cyan edges below the line.}
-
 Given a $k$-stack layout $(\prec,\varphi)$ of a graph $G$, for each $i\in\{1,\dots,k\}$, the set $\varphi^{-1}(i)$ behaves like a stack, in the sense that each edge $vw \in \varphi^{-1}(i)$ with $v\prec w$ corresponds to an element in a sequence of stack operations, such that if we traverse the vertices in the order of $\prec$, then $vw$ is pushed onto the stack at $v$ and popped off the stack at $w$. Similarly, each set $\varphi^{-1}(i)$ in a queue layout  behaves like a queue. In this way, the stack-number and queue-number  respectively measure the power of stacks and queues to represent graphs.
 
 Note that stack layouts are equivalent to book embeddings (first defined by \citet{Ollmann73} in 1973), and stack-number is also known as \emph{page-number}, \emph{book-thickness} or \emph{fixed outer-thickness}. Stack and queue layouts have other applications including computational complexity~\citep{GKS89,DSW16,Bourgain09,BY13},  RNA folding~\citep{HS99}, graph drawing in two~\citep{BB04,ADFPR12,SSSV-WG94} and three dimensions~\citep{DMW05,Wood-GD01,DMW17,DPW04},

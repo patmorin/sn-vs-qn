@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE ipe SYSTEM "ipe.dtd">
 <ipe version="70218" creator="Ipe 7.2.18">
-<info created="D:20201031210332" modified="D:20201101192553"/>
+<info created="D:20201031210332" modified="D:20201101222311"/>
 <ipestyle name="basic">
 <symbol name="arrow/arc(spx)">
 <path stroke="sym-stroke" fill="sym-stroke" pen="sym-pen">
@@ -494,122 +494,122 @@ h
 136 520
 144 512 c
 </path>
-<path layer="queue_layout" matrix="1 0 0 -1 160 1024" stroke="brew4" pen="fat">
+<path layer="queue_layout" matrix="1 0 0 1 160 0" stroke="brew4" pen="fat">
 144 512 m
 168 560
 192 512 c
 </path>
-<path matrix="1 0 0 -1 144 1024" stroke="brew4" pen="fat">
+<path matrix="1 0 0 1 144 0" stroke="brew4" pen="fat">
 144 512 m
 168 560
 192 512 c
 </path>
-<path matrix="1 0 0 -1 128 1024" stroke="brew4" pen="fat">
+<path matrix="1 0 0 1 128 0" stroke="brew4" pen="fat">
 144 512 m
 168 560
 192 512 c
 </path>
-<path matrix="1 0 0 -1 96 1024" stroke="brew4" pen="fat">
+<path matrix="1 0 0 1 96 0" stroke="brew4" pen="fat">
 144 512 m
 168 560
 192 512 c
 </path>
-<path matrix="1 0 0 -1 80 1024" stroke="brew4" pen="fat">
+<path matrix="1 0 0 1 80 0" stroke="brew4" pen="fat">
 144 512 m
 168 560
 192 512 c
 </path>
-<path matrix="1 0 0 -1 64 1024" stroke="brew4" pen="fat">
+<path matrix="1 0 0 1 64 0" stroke="brew4" pen="fat">
 144 512 m
 168 560
 192 512 c
 </path>
-<path matrix="1 0 0 -1 32 1024" stroke="brew4" pen="fat">
+<path matrix="1 0 0 1 32 0" stroke="brew4" pen="fat">
 144 512 m
 168 560
 192 512 c
 </path>
-<path matrix="1 0 0 -1 16 1024" stroke="brew4" pen="fat">
+<path matrix="1 0 0 1 16 0" stroke="brew4" pen="fat">
 144 512 m
 168 560
 192 512 c
 </path>
-<path matrix="1 0 0 -1 0 1024" stroke="brew4" pen="fat">
+<path stroke="brew4" pen="fat">
 144 512 m
 168 560
 192 512 c
 </path>
-<path matrix="1 0 0 -1 176 1024" stroke="brew3" pen="fat">
+<path matrix="1 0 0 1 176 0" stroke="brew3" pen="fat">
 128 512 m
 160 544
 192 512 c
 </path>
-<path matrix="1 0 0 -1 160 1024" stroke="brew3" pen="fat">
+<path matrix="1 0 0 1 160 0" stroke="brew3" pen="fat">
 128 512 m
 160 544
 192 512 c
 </path>
-<path matrix="1 0 0 -1 144 1024" stroke="brew3" pen="fat">
+<path matrix="1 0 0 1 144 0" stroke="brew3" pen="fat">
 128 512 m
 160 544
 192 512 c
 </path>
-<path matrix="1 0 0 -1 128 1024" stroke="brew3" pen="fat">
+<path matrix="1 0 0 1 128 0" stroke="brew3" pen="fat">
 128 512 m
 160 544
 192 512 c
 </path>
-<path matrix="1 0 0 -1 112 1024" stroke="brew3" pen="fat">
+<path matrix="1 0 0 1 112 0" stroke="brew3" pen="fat">
 128 512 m
 160 544
 192 512 c
 </path>
-<path matrix="1 0 0 -1 96 1024" stroke="brew3" pen="fat">
+<path matrix="1 0 0 1 96 0" stroke="brew3" pen="fat">
 128 512 m
 160 544
 192 512 c
 </path>
-<path matrix="1 0 0 -1 80 1024" stroke="brew3" pen="fat">
+<path matrix="1 0 0 1 80 0" stroke="brew3" pen="fat">
 128 512 m
 160 544
 192 512 c
 </path>
-<path matrix="1 0 0 -1 64 1024" stroke="brew3" pen="fat">
+<path matrix="1 0 0 1 64 0" stroke="brew3" pen="fat">
 128 512 m
 160 544
 192 512 c
 </path>
-<path matrix="1 0 0 -1 48 1024" stroke="brew3" pen="fat">
+<path matrix="1 0 0 1 48 0" stroke="brew3" pen="fat">
 128 512 m
 160 544
 192 512 c
 </path>
-<path matrix="1 0 0 -1 32 1024" stroke="brew3" pen="fat">
+<path matrix="1 0 0 1 32 0" stroke="brew3" pen="fat">
 128 512 m
 160 544
 192 512 c
 </path>
-<path matrix="1 0 0 -1 16 1024" stroke="brew3" pen="fat">
+<path matrix="1 0 0 1 16 0" stroke="brew3" pen="fat">
 128 512 m
 160 544
 192 512 c
 </path>
-<path matrix="1 0 0 -1 0 1024" stroke="brew3" pen="fat">
+<path stroke="brew3" pen="fat">
 128 512 m
 160 544
 192 512 c
 </path>
-<path matrix="1 0 0 1 32 0" stroke="brew1" pen="fat">
+<path matrix="1 0 0 -1 32 1024" stroke="brew1" pen="fat">
 128 512 m
 136 520
 144 512 c
 </path>
-<path matrix="1 0 0 1 16 0" stroke="brew1" pen="fat">
+<path matrix="1 0 0 -1 16 1024" stroke="brew1" pen="fat">
 128 512 m
 136 520
 144 512 c
 </path>
-<path stroke="brew1" pen="fat">
+<path matrix="1 0 0 -1 0 1024" stroke="brew1" pen="fat">
 128 512 m
 136 520
 144 512 c
@@ -618,17 +618,17 @@ h
 <use name="mark/disk(sx)" pos="144 512" size="normal" stroke="black"/>
 <use name="mark/disk(sx)" pos="160 512" size="normal" stroke="black"/>
 <use name="mark/disk(sx)" pos="176 512" size="normal" stroke="black"/>
-<path layer="queue_layout" matrix="1 0 0 1 96 0" stroke="brew1" pen="fat">
+<path layer="queue_layout" matrix="1 0 0 -1 96 1024" stroke="brew1" pen="fat">
 128 512 m
 136 520
 144 512 c
 </path>
-<path matrix="1 0 0 1 80 0" stroke="brew1" pen="fat">
+<path matrix="1 0 0 -1 80 1024" stroke="brew1" pen="fat">
 128 512 m
 136 520
 144 512 c
 </path>
-<path matrix="1 0 0 1 64 0" stroke="brew1" pen="fat">
+<path matrix="1 0 0 -1 64 1024" stroke="brew1" pen="fat">
 128 512 m
 136 520
 144 512 c
@@ -637,17 +637,17 @@ h
 <use matrix="1 0 0 1 64 0" name="mark/disk(sx)" pos="144 512" size="normal" stroke="black"/>
 <use matrix="1 0 0 1 64 0" name="mark/disk(sx)" pos="160 512" size="normal" stroke="black"/>
 <use matrix="1 0 0 1 64 0" name="mark/disk(sx)" pos="176 512" size="normal" stroke="black"/>
-<path layer="queue_layout" matrix="1 0 0 1 160 0" stroke="brew1" pen="fat">
+<path layer="queue_layout" matrix="1 0 0 -1 160 1024" stroke="brew1" pen="fat">
 128 512 m
 136 520
 144 512 c
 </path>
-<path matrix="1 0 0 1 144 0" stroke="brew1" pen="fat">
+<path matrix="1 0 0 -1 144 1024" stroke="brew1" pen="fat">
 128 512 m
 136 520
 144 512 c
 </path>
-<path matrix="1 0 0 1 128 0" stroke="brew1" pen="fat">
+<path matrix="1 0 0 -1 128 1024" stroke="brew1" pen="fat">
 128 512 m
 136 520
 144 512 c
@@ -656,17 +656,17 @@ h
 <use matrix="1 0 0 1 128 0" name="mark/disk(sx)" pos="144 512" size="normal" stroke="black"/>
 <use matrix="1 0 0 1 128 0" name="mark/disk(sx)" pos="160 512" size="normal" stroke="black"/>
 <use matrix="1 0 0 1 128 0" name="mark/disk(sx)" pos="176 512" size="normal" stroke="black"/>
-<path layer="queue_layout" matrix="1 0 0 1 224 0" stroke="brew1" pen="fat">
+<path layer="queue_layout" matrix="1 0 0 -1 224 1024" stroke="brew1" pen="fat">
 128 512 m
 136 520
 144 512 c
 </path>
-<path matrix="1 0 0 1 208 0" stroke="brew1" pen="fat">
+<path matrix="1 0 0 -1 208 1024" stroke="brew1" pen="fat">
 128 512 m
 136 520
 144 512 c
 </path>
-<path matrix="1 0 0 1 192 0" stroke="brew1" pen="fat">
+<path matrix="1 0 0 -1 192 1024" stroke="brew1" pen="fat">
 128 512 m
 136 520
 144 512 c
