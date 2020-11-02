@@ -91,7 +91,7 @@ We now formally define stack- and queue-number. Let $G$ be a graph and let $\pre
 
 \begin{figure}[H]
 	\centering
-	\includegraphics{figs/layouts-1.pdf} \\[2ex]
+	\includegraphics{figs/layouts-1.pdf}
 	\includegraphics{figs/layouts-2.pdf}
 	\caption{A $2$-queue layout and a $2$-stack layout of the triangulated grid graph $H_4$ defined below. Edges drawn above the vertices are assigned to the first queue/stack and edges drawn below the vertices are assigned to the second queue/stack.}
 	\label{layouts}
@@ -186,7 +186,7 @@ There exists a function $f$ such that for every graph $G$ and integer $k$, if $G
 
 \citet{DujWoo05} established a connection between this conjecture and the question of whether stack-number is bounded by queue-number. In particular, they showed that if
 \cref{B_conj} were true, then stack-number would be bounded by queue-number. Since \cref{family} shows that stack-number is not bounded by queue-number, \cref{B_conj} is false. The proof of \citet{DujWoo05} is based on the following key lemma: every graph $G$ has a $3$-stack subdivision with $1+2 \ceil{\log_2\qn(G)}$ division vertices per edge. Applying this result to the graph $G=S_b\CartProd H_n$ in \cref{family},
-the $5$-subdivision of $S_b\CartProd H_n$ has a $3$-stack layout. If \cref{B_conj} were true, then  $\sn(S_b\CartProd H_n) \leq f( 3,5)$, contradicting \cref{family}.
+the $5$-subdivision of $S_b\CartProd H_n$ has a $3$-stack layout. If \cref{B_conj} were true, then  $\sn(S_b\CartProd H_n)$ would be at most $f( 3,5)$, contradicting \cref{family}.
 
 %Specifically,
 %\[
@@ -344,7 +344,7 @@ $d\ge c^{1/2^{n^2-1}} \ge (s+1)2^n$. By \cref{twister}, the graph $X$, which is 
 
 \section{Open Problems}
 
-Recall that every 1-queue graph has a 2-stack layout \citep{HLR92} and we proved that there are 4-queue graphs with unbounded stack-number. The following questions remain open: Do 2-queue graphs have bounded stack-number? Do 3-queue graphs have bounded stack-number? \todo{DW: Do we want to make a conjecture here? I would say ``no'' for both questions. PM: I wouldn't want to bet on either question.}
+Recall that every 1-queue graph has a 2-stack layout \citep{HLR92} and we proved that there are 4-queue graphs with unbounded stack-number. The following questions remain open: Do 2-queue graphs have bounded stack-number? Do 3-queue graphs have bounded stack-number? 
 
 Given the role of cartesian products in our proof, it is natural to ask when is $\sn(G_1\CartProd G_2)$ bounded? As illustrated in \cref{layouts}, $\sn(H_n) \leq 2$. So $\sn(G_1\CartProd G_2)$ can be unbounded even when $G_1$ is a star and $\sn(G_2)\leq 2$. Since $\sn(G_2)\leq 1$ if and only if $G_2$ is outerplanar, the following questions naturally arise: Is $\sn(S \CartProd H)$ bounded for every star $S$ and outerplanar graph $H$ with bounded degree? Is $\sn(T \CartProd H)$ bounded for every tree $T$ and outerplanar graph $H$ with bounded degree? The assumption that $H$ has bounded degree is needed since $S_n \CartProd S_n$ contains the 1-subdivision of $K_{n,n}$, which has unbounded stack-number~\citep{Blankenship-PhD03}.
 
