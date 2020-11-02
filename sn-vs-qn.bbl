@@ -8,7 +8,7 @@
   L#1\relax\rlap{\raise.5\dimen7\hbox{\kern.7ex
   \char'47}}#1\relax\else\message{accent \string\soft \space #1 not
   defined!}#1\relax\fi\fi\fi\fi\fi\fi}
-\begin{thebibliography}{35}
+\begin{thebibliography}{40}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\msn}[1]{MR:\,\href{http://www.ams.org/mathscinet-getitem?mr=MR{#1}}{#1}}
 \providecommand{\ZBL}[1]{Zbl:\,\href{https://www.zentralblatt-math.org/zmath/en/search/?q=an:#1}{#1}}
@@ -139,6 +139,15 @@
   geometric thickness parameters}.
 \newblock \emph{Discrete Comput. Geom.}, 37(4):641--670, 2007.
 
+\bibitem[{Dvo{\v{r}}{\'a}k et~al.(pear)Dvo{\v{r}}{\'a}k, Huynh, Joret, Liu, and
+  Wood}]{DHJLW20}
+\textsc{Zden{\v{e}}k Dvo{\v{r}}{\'a}k, Tony Huynh, Gwena\"el Joret, Chun-Hung
+  Liu, and David~R. Wood}.
+\newblock \href{http://arxiv.org/abs/2001.08860}{Notes on graph product
+  structure theory}.
+\newblock In \emph{2019-20 MATRIX Annals}. Springer, to appear.
+\newblock arXiv:2001.08860.
+
 \bibitem[{Erd\H{o}s and Szekeres(1935)}]{ES35}
 \textsc{Paul Erd\H{o}s and George Szekeres}.
 \newblock \href{http://www.numdam.org/item?id=CM_1935__2__463_0}{A
@@ -184,6 +193,26 @@
   \href{https://journals.carleton.ca/jocg/index.php/jocg/article/view/504}{Four
   pages are indeed necessary for planar graphs}.
 \newblock \emph{J. Comput. Geom.}, 11(1):332--353, 2020.
+
+\bibitem[{Malitz(1994)}]{Malitz94a}
+\textsc{Seth~M. Malitz}.
+\newblock \href{https://doi.org/10.1006/jagm.1994.1027}{Graphs with ${E}$ edges
+  have pagenumber ${O}(\sqrt {E})$}.
+\newblock \emph{J. Algorithms}, 17(1):71--84, 1994.
+
+\bibitem[{Ne{\v{s}}et{\v{r}}il and Ossona~de Mendez(2012)}]{Sparsity}
+\textsc{Jaroslav Ne{\v{s}}et{\v{r}}il and Patrice Ossona~de Mendez}.
+\newblock \href{https://doi.org/10.1007/978-3-642-27875-4}{Sparsity}, vol.~28
+  of \emph{Algorithms and Combinatorics}.
+\newblock Springer, 2012.
+
+\bibitem[{Ne{\v{s}}et{\v{r}}il et~al.(2011)Ne{\v{s}}et{\v{r}}il, {Ossona de
+  Mendez}, and Wood}]{NOW11}
+\textsc{Jaroslav Ne{\v{s}}et{\v{r}}il, Patrice {Ossona de Mendez}, and David~R.
+  Wood}.
+\newblock \href{https://doi.org/10.1016/j.ejc.2011.09.008}{Characterisations
+  and examples of graph classes with bounded expansion}.
+\newblock \emph{European J. Combin.}, 33(3):350--373, 2011.
 
 \bibitem[{Ollmann(1973)}]{Ollmann73}
 \textsc{L.~Taylor Ollmann}.
@@ -245,6 +274,13 @@
 \newblock \href{http://dmtcs.episciences.org/352}{Queue layouts of graph
   products and powers}.
 \newblock \emph{Discrete Math. Theor. Comput. Sci.}, 7(1):255--268, 2005.
+
+\bibitem[{Wood(2008)}]{Wood-QueueDegree}
+\textsc{David~R. Wood}.
+\newblock \href{http://dmtcs.episciences.org/434}{Bounded-degree graphs have
+  arbitrarily large queue-number}.
+\newblock \emph{Discrete Math. Theor. Comput. Sci.}, 10(1):27--34, 2008.
+\newblock arXiv:0601293.
 
 \bibitem[{Yannakakis(1989)}]{Yannakakis89}
 \textsc{Mihalis Yannakakis}.

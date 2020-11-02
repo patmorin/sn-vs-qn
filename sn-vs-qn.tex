@@ -18,7 +18,7 @@
 \crefformat{equation}{(#2#1#3)}
 \Crefformat{equation}{Equation #2(#1)#3}
 
-\usepackage[numbers,sort&compress]{natbib}
+\usepackage[numbers,sort&compress,longnamesfirst]{natbib}
 %\usepackage{hypernat}
 %\makeatletter
 %\def\NAT@spacechar{~}
@@ -212,6 +212,17 @@ the $5$-subdivision of $S_b\CartProd H_n$ has a $3$-stack layout. If \cref{B_con
 
 It remains open whether queues are more powerful than stacks; that is, whether queue-number is bounded by stack-number. Several reults are known about this problem. \citet{HLR92} showed that every 1-stack graph has a 2-queue layout. \citet{DJMMUW20} showed that planar graphs have bounded queue-number. (Note that graph products also feature heavily in this proof.)\ Since 2-stack graphs are planar, this implies that 2-stack graphs have bounded queue-number. It is open whether 3-stack graphs have bounded queue-number. In fact, the case of three stacks is as hard as the general question. \citet{DujWoo05} proved that queue-number is bounded by stack-number if and only if 3-stack graphs have bounded queue-number. Moreover, if this is true then queue-number is bounded by a polynomial function of stack-number.
 
+\subsection*{Other Connections}
+
+To conclude this introduction, we mentions some other properties of the graph $S_b\CartProd H_n$. \citet{NOW11} proved that graph classes with bounded stack-number or bounded queue-number have bounded expansion (see \citep{Sparsity} for background on bounded expansion classes). The converse is not true, since cubic gaphs (for example) have bounded expansion and unbounded stack-number~\citep{Malitz94a} and unbounded queue-number~\citep{Wood-QueueDegree}. However, prior to the present work it was open whether graph classes with polynomial expansion have bounded stack-number or bounded queue-number. It follows from the work of \citet[Theorem~19]{DHJLW20} that $\{ S_b \CartProd H_n : b,n\in\N \}$ has polynomial expansion. So \cref{Main} implies there is a class of graphs with polynomial expansion and with unbounded stack-number. It remains open whether graph classes with polynomial expansion have bounded queue-number. 
+
+
+\todo{Add connection to twin-width}
+
+\todo{Should the above two subsections go to Section~3?}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Proof of \cref{Main}}
 
 We now turn to the proof of our main result, the lower bound on $\sn(G)$, where $G:= S_b\CartProd H_n$. Consider a hypothetical $s$-stack layout $(\varphi,\prec)$ of $G$ where $n$ and $b$ are chosen sufficiently large compared to $s$ as detailed below. We begin with three lemmata that, for sufficiently large $b$, provide a large subgraph $S_d$ of $S_b$ for which the induced stack layout of $S_d\CartProd H_n$ is highly structured.
