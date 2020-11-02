@@ -19,10 +19,10 @@
 \Crefformat{equation}{Equation #2(#1)#3}
 
 \usepackage[numbers,sort&compress]{natbib}
-\usepackage{hypernat}
-\makeatletter
-\def\NAT@spacechar{~}
-\makeatother
+%\usepackage{hypernat}
+%\makeatletter
+%\def\NAT@spacechar{~}
+%\makeatother
 
 \setlength{\parskip}{1ex}
 \setlength{\parindent}{0ex}
@@ -53,6 +53,9 @@
 	\thanks{School of Computer Science and Electrical Engineering,
 		University of Ottawa, Ottawa, Canada (\texttt{vida.dujmovic@uottawa.ca}).
 		Research supported by NSERC.}
+	\,\,
+	David Eppstein,\!\!%
+	\thanks{Department of Computer Science, University of California, Irvine, California, USA (\texttt{eppstein@uci.edu}).}
 	\,\,
 	Robert Hickingbotham,\!\!%
 	\thanks{School of Mathematics, Monash University, Melbourne, Australia (\texttt{robert.hickingbotham@monash.edu}).}
@@ -89,7 +92,7 @@ Let $\varphi:E(G)\to\{1,\ldots,k\}$ for some integer $k\ge 1$.
 
 Then $(\prec,\varphi)$ is a \emph{$k$-stack layout} of $G$ if $vw$ and $xy$ do not cross for all edges $vw,xy\in E(G)$ with $\varphi(vw) = \varphi(xy)$. Similarly, $(\prec,\varphi)$ is a \emph{$k$-queue layout} of $G$ if $vw$ and $xy$ do not nest for all edges $vw,xy\in E(G)$ with  $\varphi(vw)=\varphi(xy)$. The smallest integer $s$ for which $G$ has an $s$-stack layout is called the \emph{stack-number} of $G$, denoted  $\sn(G)$. The smallest integer $q$ for which $G$ has a $q$-queue layout is called the \emph{queue-number} of $G$, denoted $\qn(G)$.
 
-\todo{Do we want a figure showing an example of a stack layout and a queue layout here? $H_4$ would be a good example. Then we could refer to it when we show $\sqn(H_n)\leq 3$. }
+\todo{Do we want a figure showing an example of a stack layout and a queue layout here? $H_4$ would be a good example. }
 
 Given a $k$-stack layout $(\prec,\varphi)$ of a graph $G$, for each $i\in\{1,\dots,k\}$, the set $\varphi^{-1}(i)$ behaves like a stack, in the sense that each edge $vw \in \varphi^{-1}(i)$ with $v\prec w$ corresponds to an element in a sequence of stack operations, such that if we traverse the vertices in the order of $\prec$, then $vw$ is pushed onto the stack at $v$ and popped off the stack at $w$. Similarly, each set $\varphi^{-1}(i)$ in a queue layout  behaves like a queue. In this way, the stack-number and queue-number  respectively measure the power of stacks and queues to represent graphs.
 
@@ -186,8 +189,8 @@ There exists a function $f$ such that for every graph $G$ and integer $k$, if $G
 \end{conj}
 
 \citet{DujWoo05} established a connection between this conjecture and the question of whether stack-number is bounded by queue-number. In particular, they showed that if
-\cref{B_conj} is true, then stack-number is bounded by queue-number. Since \cref{family} shows that stack-number is not bounded by queue-number, \cref{B_conj} is false. The proof of \citet{DujWoo05} is based on the following key lemma: every graph $G$ has a $3$-stack subdivision with $1+2 \ceil{\log_2\qn(G)}$ division vertices per edge. Applying this result to the graph $G=S_b\CartProd H_n$ in \cref{family},
-the $5$-subdivision of $S_b\CartProd H_n$ has a $3$-stack layout. If \cref{B_conj} was true, then $\sn(S_b\CartProd H_n) \leq f( 3,5)$, contradicting \cref{family}.
+\cref{B_conj} were true, then stack-number would be bounded by queue-number. Since \cref{family} shows that stack-number is not bounded by queue-number, \cref{B_conj} is false. The proof of \citet{DujWoo05} is based on the following key lemma: every graph $G$ has a $3$-stack subdivision with $1+2 \ceil{\log_2\qn(G)}$ division vertices per edge. Applying this result to the graph $G=S_b\CartProd H_n$ in \cref{family},
+the $5$-subdivision of $S_b\CartProd H_n$ has a $3$-stack layout. If \cref{B_conj} were true, then  $\sn(S_b\CartProd H_n) \leq f( 3,5)$, contradicting \cref{family}.
 
 %Specifically,
 %\[
@@ -345,10 +348,12 @@ $d\ge c^{1/2^{n^2-1}} \ge (s+1)2^n$. By \cref{twister}, the graph $X$, which is 
 
 \section{Open Problems}
 
-Recall that every 1-queue graph has a 2-stack layout \citep{HLR92} and we proved that there are 4-queue graphs with unbounded stack-number. The following questions remain open: Do 2-queue graphs have bounded stack-number? Do 3-queue graphs have bounded stack-number?
+Recall that every 1-queue graph has a 2-stack layout \citep{HLR92} and we proved that there are 4-queue graphs with unbounded stack-number. The following questions remain open: Do 2-queue graphs have bounded stack-number? Do 3-queue graphs have bounded stack-number? \todo[inline]{Do we want to make a conjecture here? I would say ``no'' for both questions.}
+%DW: In fact, here is a possible graph. Let $G:= S_b\CartProd H_n$ and let $G'$ be the 5-subdivision of $G$. Since $\qn(G)\leq 4$ by a result of \citet{DujWoo05}, we have $\qn(G')\leq 2$. I suspect that $\sn(G')$ is still unbounded. A closer look at the proof of \citet{DujWoo05} might mean we don't have to subdivide so much???
+
 
 Given the role of cartesian products in our proof, it is natural to ask when is $\sn(G_1\CartProd G_2)$ bounded? Note that $H_n$ is a subgraph of a planar Hamiltonian graph (namely, $H_{2n}$), so $\sn(H_n) \leq 2$. So $\sn(G_1\CartProd G_2)$ can be unbounded even when $G_1$ is a star and $\sn(G_2)\leq 2$.
-Since $\sn(G_2)\leq 1$ if and only if $G_2$ is outerplanar, the following question naturally arises: Is $\sn(S \CartProd H)$ bounded for every star $S$ and outerplanar graph $H$ with bounded degree? Is $\sn(T \CartProd H)$ bounded for every tree $T$ and outerplanar graph $H$ with bounded degree? The assumption that $H$ has bounded degree is needed since $S_n \CartProd S_n$ contain the 1-subdivision of $K_{n,n}$, which has unbounded stack-number~\citep{Blankenship-PhD03}.
+Since $\sn(G_2)\leq 1$ if and only if $G_2$ is outerplanar, the following questions naturally arise: Is $\sn(S \CartProd H)$ bounded for every star $S$ and outerplanar graph $H$ with bounded degree? Is $\sn(T \CartProd H)$ bounded for every tree $T$ and outerplanar graph $H$ with bounded degree? The assumption that $H$ has bounded degree is needed since $S_n \CartProd S_n$ contains the 1-subdivision of $K_{n,n}$, which has unbounded stack-number~\citep{Blankenship-PhD03}.
 
 Since $H_n\subseteq P \boxtimes P$ where $P$ is the $n$-vertex path, \cref{family} implies that $\sn(S\boxtimes P\boxtimes P)$ is unbounded for stars $S$ and paths $P$. It is easily seen that $\sn(S\boxtimes P)$ is bounded~\citep{Pupyrev20}. The following question naturally arises (independently asked by \citet{Pupyrev20}):
 Is $\sn(T \boxtimes P)$ bounded for every tree $T$ and path $P$? We conjecture the answer is ``no''.
@@ -357,15 +362,15 @@ Is $\sn(T \boxtimes P)$ bounded for every tree $T$ and path $P$? We conjecture t
 \let\endoldthebibliography=\endthebibliography
 \renewenvironment{thebibliography}[1]{%
 \begin{oldthebibliography}{#1}%
-\setlength{\parskip}{0.3ex}%
-\setlength{\itemsep}{0.3ex}%
+\setlength{\parskip}{0ex}%
+\setlength{\itemsep}{0ex}%
 }{\end{oldthebibliography}}
 
-%\input{sn-vs-qn.bbl}
+\input{sn-vs-qn.bbl}
 
 % OR
 
-\bibliographystyle{DavidNatbibStyle}
-\bibliography{../../BibTeX/myBibliography}
+%\bibliographystyle{DavidNatbibStyle}
+%\bibliography{../../BibTeX/myBibliography}
 
 \end{document}
