@@ -1,6 +1,6 @@
 \documentclass[kpfonts]{patmorin}
 \usepackage{pat}
-\usepackage{paralist,graphicx,float}
+\usepackage{paralist,graphicx,float,anyfontsize}
 \usepackage{array,longtable}
 
 \usepackage[utf8]{inputenc}
@@ -38,6 +38,7 @@
 \DeclareMathOperator{\tw}{tw}
 
 \renewcommand{\SS}{\mathcal{S}}
+
 
 \renewcommand{\le}{\leqslant}
 \renewcommand{\leq}{\leqslant}
@@ -214,10 +215,10 @@ It remains open whether queues are more powerful than stacks; that is, whether q
 
 \subsection*{Other Connections}
 
-To conclude this introduction, we mentions some other properties of the graph $S_b\CartProd H_n$. \citet{NOW11} proved that graph classes with bounded stack-number or bounded queue-number have bounded expansion (see \citep{Sparsity} for background on bounded expansion classes). The converse is not true, since cubic gaphs (for example) have bounded expansion and unbounded stack-number~\citep{Malitz94a} and unbounded queue-number~\citep{Wood-QueueDegree}. However, prior to the present work it was open whether graph classes with polynomial expansion have bounded stack-number or bounded queue-number. It follows from the work of \citet[Theorem~19]{DHJLW20} that $\{ S_b \CartProd H_n : b,n\in\N \}$ has polynomial expansion. So \cref{Main} implies there is a class of graphs with polynomial expansion and with unbounded stack-number. It remains open whether graph classes with polynomial expansion have bounded queue-number. See \citep{DJMMUW20,DMW} for several examples of graph classes with polynomial expansion and bounded queue-number.
+To conclude this introduction, we mentions some other properties of the graph $S_b\CartProd H_n$. \citet{NOW11} proved that graph classes with bounded stack-number or bounded queue-number have bounded expansion (see \citep{Sparsity} for background on bounded expansion classes). The converse is not true, since cubic graphs (for example) have bounded expansion, unbounded stack-number~\citep{Malitz94a} and unbounded queue-number~\citep{Wood-QueueDegree}. However, prior to the present work it was open whether graph classes with polynomial expansion have bounded stack-number or bounded queue-number. It follows from the work of \citet[Theorem~19]{DHJLW20} that $\{ S_b \CartProd H_n : b,n\in\N \}$ has polynomial expansion. So \cref{Main} implies there is a class of graphs with polynomial expansion and with unbounded stack-number. It remains open whether graph classes with polynomial expansion have bounded queue-number. See \citep{DJMMUW20,DMW} for several examples of graph classes with polynomial expansion and bounded queue-number.
 
+Another consequence of our result is that it resolves a question of \citet{BGKTWb} concerning the graph parameter \emph{twin-width} (see \citep{BKTW,BGKTWa,BGKTWb} for the definition and background on twin-width). A graph class $\mathcal{C}$ is called \textit{hereditary} if for every graph $G$ in $\mathcal{C}$, every induced subgraph of $G$ is also contained in $\mathcal{C}$. A hereditary class of graphs $\mathcal{C}$ with bounded twin-width has \textit{bounded sparse twin-width} if there exists $t\in\N$ such that no graph in $\mathcal{C}$ contains $K_{t,t}$ as a subgraph. \citet{BGKTWb}  proved that any class of graphs with bounded stack-number has bounded sparse twin-width. \citet{BGKTWb}  write that they ``believe that the inclusion is strict''; that is, there exists a hereditary class of graphs with bounded sparse twin-width and unbounded stack-number. \Cref{Main} confirms this intuition. To see this, first note that every tree has bounded twin-width \citep{BKTW} \todo{what bound? Is it 1?}. If $G$ and $H$ are graphs with bounded twin-width where $H$ also has bounded maximum degree, then $G\boxtimes H$ also has bounded twin-width~\citep[Theorem~9]{BGKTWb}. In particular, for all $b,n\in\N$, the graph $G^{(b,n)}:= S_b \boxtimes P_n \boxtimes P_n$ \todo{Why consider $P_n \boxtimes P_n$ here? Why not just consider $H_n$, which has bounded twin-width since it is planar?} has bounded twin-width. Note also that $G^{(b,n)}$ does not contain $K_{10,10}$ as a subgraph. Let $\mathcal{C}$ be the class of graphs that consists of $G^{(b,n)}$ and every induced subgraph of $G^{(b,n)}$ for all integers $b,n$. Then $\mathcal{C}$ is a hereditary class with bounded sparse twin-width~\citep[Theorem~10]{BGKTWb}. Since $G^{(b,n)}$ contains $S_b \CartProd H_n$ as a subgraph it follows by \cref{Main} that $G^{(b,n)}$ has unbounded stack-number. This confirms that the class of graphs with bounded sparse twin-width does not coincide with the class of graphs with bounded stack-number, as suspected by \citet{BGKTWb}. It remains open whether bounded sparse twin-width coincides with bounded queue-number.
 
-\todo{Add connection to twin-width}
 
 \todo{Should the above two subsections go to Section~3?}
 
@@ -362,12 +363,15 @@ Given the role of cartesian products in our proof, it is natural to ask when is 
 Since $H_n\subseteq P \boxtimes P$ where $P$ is the $n$-vertex path, \cref{family} implies that $\sn(S\boxtimes P\boxtimes P)$ is unbounded for stars $S$ and paths $P$. It is easily seen that $\sn(S\boxtimes P)$ is bounded~\citep{Pupyrev20}. The following question naturally arises (independently asked by \citet{Pupyrev20}):
 Is $\sn(T \boxtimes P)$ bounded for every tree $T$ and path $P$? We conjecture the answer is ``no''.
 
+\fontsize{10}{11} 
+\selectfont 
+
 \let\oldthebibliography=\thebibliography
 \let\endoldthebibliography=\endthebibliography
 \renewenvironment{thebibliography}[1]{%
 \begin{oldthebibliography}{#1}%
-\setlength{\parskip}{-0.1ex}%
-\setlength{\itemsep}{-0.1ex}%
+\setlength{\parskip}{0.3ex}%
+\setlength{\itemsep}{0.3ex}%
 }{\end{oldthebibliography}}
 
 %\input{sn-vs-qn.bbl}

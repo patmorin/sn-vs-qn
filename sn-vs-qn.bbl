@@ -8,7 +8,7 @@
   L#1\relax\rlap{\raise.5\dimen7\hbox{\kern.7ex
   \char'47}}#1\relax\else\message{accent \string\soft \space #1 not
   defined!}#1\relax\fi\fi\fi\fi\fi\fi}
-\begin{thebibliography}{41}
+\begin{thebibliography}{44}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\msn}[1]{MR:\,\href{http://www.ams.org/mathscinet-getitem?mr=MR{#1}}{#1}}
 \providecommand{\ZBL}[1]{Zbl:\,\href{https://www.zentralblatt-math.org/zmath/en/search/?q=an:#1}{#1}}
@@ -65,6 +65,34 @@
   subdivisions of complete and complete bipartite graphs on books}.
 \newblock Tech. Rep. 1999-4, Department of Mathematics, Louisiana State
   University, U.S.A., 1999.
+
+\bibitem[{Bonnet et~al.(2020{\natexlab{a}})Bonnet, Geniet, Kim, Thomass\'e, and
+  Watrigant}]{BGKTWb}
+\textsc{\'Edouard Bonnet, Colin Geniet, Eun~Jung Kim, St\'ephan Thomass\'e, and
+  R\'emi Watrigant}.
+\newblock \href{http://arxiv.org/abs/2006.09877}{Twin-width {II}: small
+  classes}.
+\newblock In \emph{Proc. Annual ACM-SIAM Symp. on Discrete Algorithms (SODA
+  '21)}. 2020{\natexlab{a}}.
+\newblock arXiv:2006.09877.
+
+\bibitem[{Bonnet et~al.(2020{\natexlab{b}})Bonnet, Geniet, Kim, Thomass\'e, and
+  Watrigant}]{BGKTWa}
+\textsc{\'Edouard Bonnet, Colin Geniet, Eun~Jung Kim, St\'ephan Thomass\'e, and
+  R\'emi Watrigant}.
+\newblock \href{http://arxiv.org/abs/2007.14161}{Twin-width {III}: Max
+  independent set and coloring}.
+\newblock 2020{\natexlab{b}}, arXiv:2007.14161.
+
+\bibitem[{Bonnet et~al.(2020{\natexlab{c}})Bonnet, Kim, Thomass\'e, and
+  Watrigant}]{BKTW}
+\textsc{\'Edouard Bonnet, Eun~Jung Kim, St\'ephan Thomass\'e, and R\'emi
+  Watrigant}.
+\newblock \href{http://arxiv.org/abs/2004.14789}{Twin-width {I}: tractable {FO}
+  model checking}.
+\newblock In \emph{Proc. 61st IEEE Symp. on Foundations of Comput. Sci. (FOCS
+  '20)}. 2020{\natexlab{c}}.
+\newblock arXiv:2004.14789.
 
 \bibitem[{Bourgain(2009)}]{Bourgain09}
 \textsc{Jean Bourgain}.
