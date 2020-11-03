@@ -39,6 +39,7 @@
 
 \renewcommand{\SS}{\mathcal{S}}
 
+
 \renewcommand{\le}{\leqslant}
 \renewcommand{\leq}{\leqslant}
 \renewcommand{\ge}{\geqslant}
@@ -214,10 +215,12 @@ It remains open whether queues are more powerful than stacks; that is, whether q
 
 \subsection*{Other Connections}
 
-To conclude this introduction, we mentions some other properties of the graph $S_b\CartProd H_n$. \citet{NOW11} proved that graph classes with bounded stack-number or bounded queue-number have bounded expansion (see \citep{Sparsity} for background on bounded expansion classes). The converse is not true, since cubic gaphs (for example) have bounded expansion and unbounded stack-number~\citep{Malitz94a} and unbounded queue-number~\citep{Wood-QueueDegree}. However, prior to the present work it was open whether graph classes with polynomial expansion have bounded stack-number or bounded queue-number. It follows from the work of \citet[Theorem~19]{DHJLW20} that $\{ S_b \CartProd H_n : b,n\in\N \}$ has polynomial expansion. So \cref{Main} implies there is a class of graphs with polynomial expansion and with unbounded stack-number. It remains open whether graph classes with polynomial expansion have bounded queue-number. 
+To conclude this introduction, we mentions some other properties of the graph $S_b\CartProd H_n$. \citet{NOW11} proved that graph classes with bounded stack-number or bounded queue-number have bounded expansion (see \citep{Sparsity} for background on bounded expansion classes). The converse is not true, since cubic graphs (for example) have bounded expansion and unbounded stack-number~\citep{Malitz94a} and unbounded queue-number~\citep{Wood-QueueDegree}. However, prior to the present work it was open whether graph classes with polynomial expansion have bounded stack-number or bounded queue-number. It follows from the work of \citet[Theorem~19]{DHJLW20} that $\{ S_b \CartProd H_n : b,n\in\N \}$ has polynomial expansion. So \cref{Main} implies there is a class of graphs with polynomial expansion and with unbounded stack-number. It remains open whether graph classes with polynomial expansion have bounded queue-number. 
 
+Another consequence of our result is that it resolves a question of twinwidthIIpaper concerning the novel graph parameter \emph{twin-width} (see twinwidthIpaper for definition and background on twin-width). A graph class $\mathcal{C}$ is called \textit{hereditary} if for every graph $G$ in $\mathcal{C}$, every induced subgraph of $G$ is also contained in $\mathcal{C}$. A hereditary class of graphs $\mathcal{C}$ with bounded twin-width has \textit{bounded sparse twin-width} if there exists an integer $t$ such that no graphs in $\mathcal{C}$ contains $K_{t,t}$ as a subgraph. twinwidthIIpaper proved that graphs with bounded stack-number have bounded sparse twin-width. They conjecture that the inclusion is strict; that is, there exists a hereditary class of graphs with bounded sparse twin-width and unbounded stack-number. We prove that this is so.
 
-\todo{Add connection to twin-width}
+We first note that every tree has bounded twin-width (twinwidthIpaper). Let $G$ and $H$ be graphs with bounded twin-width where $H$ also has bounded maximum degree. Then the strong product of $G$ and $H$ also has bounded twin-width (twinwidthIIpaper).\footnote{Define strong product here} In particular, it follows that for all integers $b,n$, the graph $G^{(b,n)}:= S_b \boxtimes P_n \boxtimes P_n$ has bounded twin-width. One can also check that $G^{(b,n)}$ does not contain $K_{10,10}$ as a subgraph. Let $\mathcal{C}$ be the class of graphs that consists of $G^{(b,n)}$ and every induced subgraph of $G^{(b,n)}$ for all integers $b,n$. Then $\mathcal{C}$ is a hereditary class of graphs with bounded sparse twin-width. By \Cref{family}, since $S_b \CartProd H_n \in C$, it follows that $\mathcal{C}$ has unbounded stack-number. So \Cref{family} confirms that bounded sparse twin-width does not coincide with bounded stack-number. It remains open whether bounded sparse twin-width coincides with bounded queue-number.
+
 
 \todo{Should the above two subsections go to Section~3?}
 
