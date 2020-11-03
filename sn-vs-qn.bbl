@@ -8,7 +8,7 @@
   L#1\relax\rlap{\raise.5\dimen7\hbox{\kern.7ex
   \char'47}}#1\relax\else\message{accent \string\soft \space #1 not
   defined!}#1\relax\fi\fi\fi\fi\fi\fi}
-\begin{thebibliography}{40}
+\begin{thebibliography}{41}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\msn}[1]{MR:\,\href{http://www.ams.org/mathscinet-getitem?mr=MR{#1}}{#1}}
 \providecommand{\ZBL}[1]{Zbl:\,\href{https://www.zentralblatt-math.org/zmath/en/search/?q=an:#1}{#1}}
@@ -109,6 +109,12 @@
 \newblock \href{https://doi.org/10.1016/j.jctb.2017.05.006}{Layered separators
   in minor-closed graph classes with applications}.
 \newblock \emph{J. Combin. Theory Ser. B}, 127:111--147, 2017.
+
+\bibitem[{Dujmovi{\'c} et~al.(2019)Dujmovi{\'c}, Morin, and Wood}]{DMW}
+\textsc{Vida Dujmovi{\'c}, Pat Morin, and David~R. Wood}.
+\newblock \href{http://arxiv.org/abs/1907.05168}{Graph product structure for
+  non-minor-closed classes}.
+\newblock 2019, arXiv:1907.05168.
 
 \bibitem[{Dujmovi{\'c} et~al.(2004)Dujmovi{\'c}, P\'or, and Wood}]{DPW04}
 \textsc{Vida Dujmovi{\'c}, Attila P\'or, and David~R. Wood}.
