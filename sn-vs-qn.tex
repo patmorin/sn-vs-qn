@@ -373,7 +373,7 @@ Is $\sn(T \boxtimes P)$ bounded for every tree $T$ and path $P$? We conjecture t
 \fontsize{10}{11} 
 \selectfont 
 
-\let\oldthebibliography=\thebibliography
+{\let\oldthebibliography=\thebibliography
 \let\endoldthebibliography=\endthebibliography
 \renewenvironment{thebibliography}[1]{%
 \begin{oldthebibliography}{#1}%
@@ -387,5 +387,38 @@ Is $\sn(T \boxtimes P)$ bounded for every tree $T$ and path $P$? We conjecture t
 
 %\bibliographystyle{DavidNatbibStyle}
 %\bibliography{../../BibTeX/myBibliography}
+}
+
+\appendix
+\section{Degeneracy of Graph Products -- NOT TO KEEP}
+
+
+\begin{lem}
+Let $G_i$ be $d_i$-degenerate graph for $i\in\{1,2\}$. 
+Then $G_1\square G_2$  is $(d_1+d_2)$-degenerate.
+\end{lem}
+
+\begin{proof}
+Let $Z$ be a subgraph of $G_1\square G_2$. 
+Our goal is to show that $Z$ has minimum degree at most $d_1+d_2$. 
+Let $X$ be the projection of $Z$ in $G_1$. 
+That is, $X$ is the subgraph of $G_1$ induced by the set of vertices $v_1\in V(G_1)$ such that $(v_1,v_2)\in V(Z)$ for some $v_2\in V(G_2)$. 
+Since $G_1$ is $d_1$-degenerate, there is a vertex $v_1$ in $X$ with $\deg_X(v_1)\leq d_1$. 
+Let $Y$ be the subgraph of $G_2$ induced by the set of vertices $v_2$ in $G_2$ such that $(v_1,v_2)\in V(X)$. 
+By construction, $Y$ is not empty. 
+Since $G_2$ is $d_2$-degenerate, there is a vertex $v_2$ in $Y$ with $\deg_Y(v_2)\leq d_2$. 
+By construction, the vertex $(v_1,v_2)$ of $G_1\square G_2$ is in $Z$. 
+The neighbourhood of $(v_1,v_2)$ in $Z$ is a subset of 
+$\{ (x,v_2): v_1x\in E(X)\} \cup \{(v_1,y): v_2y\in E(Y)\}$. 
+Now $|\{ (x,v_2): v_1x\in E(X)\}| = \deg_X(v_1) \leq d_1$ and
+$|\{(v_1,y): v_2y\in E(Y)\} | =  \deg_Y(v_2) \leq d_2$. 
+Thus $(v_1,v_2)$ has degree at most $d_1+d_2$ in $Z$. 
+Hence $G_1\square G_2$ is $(d_1+d_2)$-degenerate.	
+\end{proof}
+
+
+
+%Is it true that $G_1\boxtimes G_2$ is $((d_1+1)(d_2+1)-1)$-degenerate?
+
 
 \end{document}
