@@ -213,34 +213,6 @@ the $5$-subdivision of $S_b\CartProd H_n$ has a $3$-stack layout. If \cref{B_con
 
 It remains open whether queues are more powerful than stacks; that is, whether queue-number is bounded by stack-number. Several results are known about this problem. \citet{HLR92} showed that every 1-stack graph has a 2-queue layout. \citet{DJMMUW20} showed that planar graphs have bounded queue-number. (Note that graph products also feature heavily in this proof.)\ Since 2-stack graphs are planar, this implies that 2-stack graphs have bounded queue-number. It is open whether 3-stack graphs have bounded queue-number. In fact, the case of three stacks is as hard as the general question. \citet{DujWoo05} proved that queue-number is bounded by stack-number if and only if 3-stack graphs have bounded queue-number. Moreover, if this is true then queue-number is bounded by a polynomial function of stack-number.
 
-\subsection*{Other Connections}
-
-To conclude this introduction, we mentions some other properties of the graph $S_b\CartProd H_n$. \citet{NOW11} proved that graph classes with bounded stack-number or bounded queue-number have bounded expansion (see \citep{Sparsity} for background on bounded expansion classes). The converse is not true, since cubic graphs (for example) have bounded expansion, unbounded stack-number~\citep{Malitz94a} and unbounded queue-number~\citep{Wood-QueueDegree}. However, prior to the present work it was open whether graph classes with polynomial expansion have bounded stack-number or bounded queue-number. It follows from the work of \citet[Theorem~19]{DHJLW20} that $\{ S_b \CartProd H_n : b,n\in\N \}$ has polynomial expansion. So \cref{Main} implies there is a class of graphs with polynomial expansion and with unbounded stack-number. It remains open whether graph classes with polynomial expansion have bounded queue-number. See \citep{DJMMUW20,DMW} for several examples of graph classes with polynomial expansion and bounded queue-number.
-
-Another consequence of our result is that it resolves a question of \citet{BGKTWb} concerning the graph parameter \emph{twin-width} (see \citep{BKTW,BGKTWa,BGKTWb} for the definition and background on twin-width). A graph class $\mathcal{C}$ is called \textit{hereditary} if for every graph $G$ in $\mathcal{C}$, every induced subgraph of $G$ is also in $\mathcal{C}$. A hereditary class of graphs $\mathcal{C}$ with bounded twin-width has \textit{bounded sparse twin-width} if there exists $t\in\N$ such that no graph in $\mathcal{C}$ contains $K_{t,t}$ as a subgraph. \citet{BGKTWb}  proved that any hereditary class of graphs with bounded stack-number has bounded sparse twin-width. \citet{BGKTWb}  write that they ``believe that the inclusion is strict''; that is, there exists a hereditary class of graphs with bounded sparse twin-width and unbounded stack-number. \Cref{Main} confirms this intuition. To see this, first note that every star $S_k$ has twin-width $0$ and that every planar graph has bounded twin-width \citep{BKTW}. Note also that $S_b \boxtimes H_n$ does not contain $K_{8,8}$ as a subgraph as it is $7$-degenerate. By \citep[Theorem~10]{BGKTWb}, it follows that $S_b \CartProd H_n$ has bounded twin-width. Let $\mathcal{G}$ be the class of graphs that consists of $S_b \CartProd H_n$ and every induced subgraph of it. Since $S_b \CartProd H_n$ does not contain $K_{5,5}$ as a subgraph since it is $4$-degenerate, it follows that $\mathcal{G}$ is a hereditary class of graphs with bounded sparse twin-width~\citep[Theorem~10]{BGKTWb} and unbounded stack-number. This confirms that the class of graphs with bounded sparse twin-width does not coincide with the class of graphs with bounded stack-number, as suspected by \citet{BGKTWb}. It remains open whether bounded sparse twin-width coincides with bounded queue-number.
-
- %Moreover, if $G$ and $H$ are graphs with bounded twin-width where $H$ also has bounded maximum degree, then $G\boxtimes H$ has bounded twin-width~\citep[Theorem~9]{BGKTWb}. In particular, for all $b,n\in\N$, the graph $G^{(b,n)}:= S_b \boxtimes H_n$ has bounded twin-width. Note also that $G^{(b,n)}$ does not contain $K_{10,10}$ as a subgraph. \todo[inline]{DE: Does not contain $K_{10,10}$: does this need an explicit proof? I guess it is that if both sides of the bipartition contain vertices of the form (leaf,x,y), then all vertices must either use that same leaf or the hub of the star, and you really have only $G^{1,n}$, which is 9-degenerate. And if otherwise, then any vertex of the form (leaf,x,y) can only be adjacent to vertices of the form (hub,x',y') and it has at most nine neighbours of that form.}
-
-
-\todo[inline]{DW: We definitely need some explanation about the excluded $K_{t,t}$. }
-\todo[inline]{RH: Need to include a further explanation that the graphs do not contain $K_{t,t}$ as a subgraph due to degeneracy.}
-
-
-Attempted rewrite of the above ...
-
-Another consequence of our result is that it resolves a question of \citet{BGKTWb} concerning the graph parameter \emph{sparse twin-width}; see \citep{BKTW,BGKTWa,BGKTWb} for the definition and background on (sparse) twin-width. \citet{BGKTWb}  proved that graphs with bounded stack-number have bounded sparse twin-width, and they write that they ``believe that the inclusion is strict''; that is, there exists a class of graphs with bounded sparse twin-width and unbounded stack-number. \Cref{Main} confirms this intuition, since it follows from \citep[Theorem~10]{BGKTWb} that $\{S_b\CartProd H_n: b,n\in\N\}$ has bounded sparse twin-width\footnote{For graph classes $\mathcal{G}$ and $\mathcal{H}$, let $\mathcal{G}\boxtimes \mathcal{H} := \{ G\boxtimes H: G \in \mathcal{G}, H\in \mathcal{H}\}$. If $\mathcal{G}$ and $\mathcal{H}$ both have bounded twin-width, $\mathcal{H}$ has bounded maximum degree, and no graph in $\mathcal{G}\boxtimes \mathcal{H}$ contains a $K_{t,t}$ subgraph for some constant $t$, then \citet[Theorem~10]{BGKTWb} proved that the class of all subgraphs of graphs in $\mathcal{G}\boxtimes \mathcal{H}$ has bounded sparse twin-width. Now apply this result with $\mathcal{G}:= \{S_b:b\in \N\}$ and $\mathcal{H}:= \{H_n: n\in\N\}$. Every star graph has twin-width $0$ and planar graphs have bounded twin-width~\citep{BKTW}. Note that $S_b \boxtimes H_n$ contains no $K_{8,8}$ subgraph, since it is $7$-degenerate (explain). Thus the class of all subgraphs of graphs in $\mathcal{G}\boxtimes \mathcal{H}$ has bounded sparse twin-width. In particular, $\{S_b \CartProd H_n : b,n\in \N\}$ has bounded sparse twin-width.}. This confirms that the class of graphs with bounded sparse twin-width does not coincide with the class of graphs with bounded stack-number, as suspected by \citet{BGKTWb}. It remains open whether bounded sparse twin-width coincides with bounded queue-number.
-
-
-
-
-
-
-
-
-
-
-
-\todo{Should the above two subsections go to Section~3?}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -374,14 +346,29 @@ Let $G := S_b \CartProd H_n$, where $n :=2s+1$ and $b := (n^2)!\, s^{3n^2}\, ((s
 $d\ge c^{1/2^{n^2-1}} \ge (s+1)2^n$. By \cref{twister}, the graph $X$, which is a subgraph of $G$, contains $\min\{\lfloor d/2^{n}\rfloor,\lceil n/2\rceil\}=s+1$ pairwise crossing edges with respect to $\prec$. This contradictions shows that $\sn(G)> s$.
 \end{proof}
 
-\section{Open Problems}
+\section{Reflections}
 
-Recall that every 1-queue graph has a 2-stack layout \citep{HLR92} and we proved that there are 4-queue graphs with unbounded stack-number. The following questions remain open: Do 2-queue graphs have bounded stack-number? Do 3-queue graphs have bounded stack-number? 
+We now mention some other properties of the graph $S_b\CartProd H_n$. \citet{NOW11} proved that graph classes with bounded stack-number or bounded queue-number have bounded expansion (see \citep{Sparsity} for background on bounded expansion classes). The converse is not true, since cubic graphs (for example) have bounded expansion, unbounded stack-number~\citep{Malitz94a} and unbounded queue-number~\citep{Wood-QueueDegree}. However, prior to the present work it was open whether graph classes with polynomial expansion have bounded stack-number or bounded queue-number. It follows from the work of \citet[Theorem~19]{DHJLW20} that $(S_b \CartProd H_n)_{b,n\in\N}$ has polynomial expansion. So \cref{Main} implies there is a class of graphs with polynomial expansion and with unbounded stack-number. It remains open whether graph classes with polynomial expansion have bounded queue-number. See \citep{DJMMUW20,DMW} for several examples of graph classes with polynomial expansion and bounded queue-number.
 
-Given the role of cartesian products in our proof, it is natural to ask when is $\sn(G_1\CartProd G_2)$ bounded? As illustrated in \cref{layouts}, $\sn(H_n) \leq 2$. So $\sn(G_1\CartProd G_2)$ can be unbounded even when $G_1$ is a star and $\sn(G_2)\leq 2$. Since $\sn(G_2)\leq 1$ if and only if $G_2$ is outerplanar, the following questions naturally arise: Is $\sn(S \CartProd H)$ bounded for every star $S$ and outerplanar graph $H$ with bounded degree? Is $\sn(T \CartProd H)$ bounded for every tree $T$ and outerplanar graph $H$ with bounded degree? The assumption that $H$ has bounded degree is needed since $S_n \CartProd S_n$ contains the 1-subdivision of $K_{n,n}$, which has unbounded stack-number~\citep{Blankenship-PhD03}.
+%Another consequence of our result is that it resolves a question of \citet{BGKTWb} concerning the graph parameter \emph{twin-width} (see \citep{BKTW,BGKTWa,BGKTWb} for the definition and background on twin-width). A graph class $\mathcal{C}$ is called \textit{hereditary} if for every graph $G$ in $\mathcal{C}$, every induced subgraph of $G$ is also in $\mathcal{C}$. A hereditary class of graphs $\mathcal{C}$ with bounded twin-width has \textit{bounded sparse twin-width} if there exists $t\in\N$ such that no graph in $\mathcal{C}$ contains $K_{t,t}$ as a subgraph. \citet{BGKTWb}  proved that any hereditary class of graphs with bounded stack-number has bounded sparse twin-width. \citet{BGKTWb}  write that they ``believe that the inclusion is strict''; that is, there exists a hereditary class of graphs with bounded sparse twin-width and unbounded stack-number. \Cref{Main} confirms this intuition. To see this, first note that every star $S_k$ has twin-width $0$ and that every planar graph has bounded twin-width \citep{BKTW}. Note also that $S_b \boxtimes H_n$ does not contain $K_{8,8}$ as a subgraph as it is $7$-degenerate. By \citep[Theorem~10]{BGKTWb}, it follows that $S_b \CartProd H_n$ has bounded twin-width. Let $\mathcal{G}$ be the class of graphs that consists of $S_b \CartProd H_n$ and every induced subgraph of it. Since $S_b \CartProd H_n$ does not contain $K_{5,5}$ as a subgraph since it is $4$-degenerate, it follows that $\mathcal{G}$ is a hereditary class of graphs with bounded sparse twin-width~\citep[Theorem~10]{BGKTWb} and unbounded stack-number. This confirms that the class of graphs with bounded sparse twin-width does not coincide with the class of graphs with bounded stack-number, as suspected by \citet{BGKTWb}. It remains open whether bounded sparse twin-width coincides with bounded queue-number.
 
-Since $H_n\subseteq P \boxtimes P$ where $P$ is the $n$-vertex path, \cref{family} implies that $\sn(S\boxtimes P\boxtimes P)$ is unbounded for stars $S$ and paths $P$. It is easily seen that $\sn(S\boxtimes P)$ is bounded~\citep{Pupyrev20}. The following question naturally arises (independently asked by \citet{Pupyrev20}):
-Is $\sn(T \boxtimes P)$ bounded for every tree $T$ and path $P$? We conjecture the answer is ``no''.
+%Moreover, if $G$ and $H$ are graphs with bounded twin-width where $H$ also has bounded maximum degree, then $G\boxtimes H$ has bounded twin-width~\citep[Theorem~9]{BGKTWb}. In particular, for all $b,n\in\N$, the graph $G^{(b,n)}:= S_b \boxtimes H_n$ has bounded twin-width. Note also that $G^{(b,n)}$ does not contain $K_{10,10}$ as a subgraph. \todo[inline]{DE: Does not contain $K_{10,10}$: does this need an explicit proof? I guess it is that if both sides of the bipartition contain vertices of the form (leaf,x,y), then all vertices must either use that same leaf or the hub of the star, and you really have only $G^{1,n}$, which is 9-degenerate. And if otherwise, then any vertex of the form (leaf,x,y) can only be adjacent to vertices of the form (hub,x',y') and it has at most nine neighbours of that form.}
+
+
+
+%rewrite of the above ...
+Another consequence of our main result is that it resolves a question of \citet{BGKTWb} concerning \emph{sparse twin-width}; see \citep{BKTW,BGKTWa,BGKTWb} for the definition and background on (sparse) twin-width. \citet{BGKTWb} proved that graphs with bounded stack-number have bounded sparse twin-width, and they write that they ``believe that the inclusion is strict''; that is, there exists a class of graphs with bounded sparse twin-width and unbounded stack-number. \Cref{Main} confirms this intuition, since it follows from \citep[Theorem~10]{BGKTWb} that the class of all subgraphs of $(S_b \CartProd H_n)_{b,n\in\N}$ has bounded sparse twin-width\footnote{For graph classes $\mathcal{G}$ and $\mathcal{H}$, let $\mathcal{G}\boxtimes \mathcal{H} := \{ G\boxtimes H: G \in \mathcal{G}, H\in \mathcal{H}\}$. If $\mathcal{G}$ and $\mathcal{H}$ both have bounded twin-width, $\mathcal{H}$ has bounded maximum degree, and no graph in $\mathcal{G}\boxtimes \mathcal{H}$ contains a $K_{t,t}$ subgraph for some constant $t$, then \citet[Theorem~10]{BGKTWb} proved that the class of all subgraphs of graphs in $\mathcal{G}\boxtimes \mathcal{H}$ has bounded sparse twin-width. Now apply this result with $\mathcal{G}:= (S_b)_{b\in \N}$ and $\mathcal{H}:= (H_n)_{n\in\N}$. Every star graph has twin-width $0$ and planar graphs have bounded twin-width~\citep{BKTW}. Note that $S_b \boxtimes H_n$ contains no $K_{8,8}$ subgraph \textcolor{red}{[explain]}. Thus the class of all subgraphs of graphs in $\mathcal{G} \boxtimes \mathcal{H}$ has bounded sparse twin-width. In particular, the class of all subgraphs of $(S_b \CartProd H_n)_{b,n\in\N}$ has bounded sparse twin-width.}. This confirms that the class of graphs with bounded sparse twin-width does not coincide with the class of graphs with bounded stack-number, as suspected by \citet{BGKTWb}. It remains open whether bounded sparse twin-width coincides with bounded queue-number.
+
+Finally, we mention some open problems: 
+
+\begin{compactitem}
+\item Recall that every 1-queue graph has a 2-stack layout \citep{HLR92} and we proved that there are 4-queue graphs with unbounded stack-number. The following questions remain open: Do 2-queue graphs have bounded stack-number? Do 3-queue graphs have bounded stack-number? 
+
+\item Given the role of cartesian products in our proof, it is natural to ask when is $\sn(G_1\CartProd G_2)$ bounded? As illustrated in \cref{layouts}, $\sn(H_n) \leq 2$. So $\sn(G_1\CartProd G_2)$ can be unbounded even when $G_1$ is a star and $\sn(G_2)\leq 2$. Since $\sn(G_2)\leq 1$ if and only if $G_2$ is outerplanar, the following questions naturally arise: Is $\sn(S \CartProd H)$ bounded for every star $S$ and outerplanar graph $H$ with bounded degree? Is $\sn(T \CartProd H)$ bounded for every tree $T$ and outerplanar graph $H$ with bounded degree? The assumption that $H$ has bounded degree is needed since $S_n \CartProd S_n$ contains the 1-subdivision of $K_{n,n}$, which has unbounded stack-number~\citep{Blankenship-PhD03}.
+
+\item Since $H_n\subseteq P \boxtimes P$ where $P$ is the $n$-vertex path, \cref{family} implies that $\sn(S\boxtimes P\boxtimes P)$ is unbounded for all stars $S$ and paths $P$. It is easily seen that $\sn(S\boxtimes P)$ is bounded~\citep{Pupyrev20}. The following question naturally arises (independently asked by \citet{Pupyrev20}): Is $\sn(T \boxtimes P)$ bounded for all trees $T$ and paths $P$? We conjecture the answer is ``no''.
+
+\end{compactitem}
 
 \fontsize{10}{11} 
 \selectfont 
@@ -432,11 +419,11 @@ Hence $G_1\CartProd G_2$ is $(d_1+d_2)$-degenerate.
 
 
 \begin{cor}
-	Let $G_i$ be a $d_i$-degenerate graph for $i\in\{1,2\}$.
-	Then $G_1\CartProd G_2$  contains no $K_{d_1+d_2+1,d_1+d_2+1}$.
+Let $G_i$ be a $d_i$-degenerate graph for $i\in\{1,2\}$.
+Then $G_1\CartProd G_2$  contains no $K_{d_1+d_2+1,d_1+d_2+1}$.
 \end{cor}
 
-\todo[inline]{Can we charcaterise when $K_{s,t}$ is in $G_1\CartProd G_2$?}
+\todo[inline]{Can we characterise when $K_{s,t}$ is in $G_1\CartProd G_2$?}
 
 \todo[inline]{
 If $K_{s_1,t_1} \subseteq G_1$ and 	$K_{s_2,t_2} \subseteq G_2$, then 
