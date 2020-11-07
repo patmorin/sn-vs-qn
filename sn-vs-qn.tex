@@ -357,9 +357,10 @@ We now mention some other properties of the graph $S_b\CartProd H_n$. \citet{NOW
 
 
 %rewrite of the above ...
-Another consequence of our main result is that it resolves a question of \citet{BGKTWb} concerning \emph{sparse twin-width}; see \citep{BKTW,BGKTWa,BGKTWb} for the definition and background on (sparse) twin-width. \citet{BGKTWb} proved that graphs with bounded stack-number have bounded sparse twin-width, and they write that they ``believe that the inclusion is strict''; that is, there exists a class of graphs with bounded sparse twin-width and unbounded stack-number. \Cref{Main} confirms this intuition, since it follows from \citep[Theorem~10]{BGKTWb} that the class of all subgraphs of $(S_b \CartProd H_n)_{b,n\in\N}$ has bounded sparse twin-width\footnote{For graph classes $\mathcal{G}$ and $\mathcal{H}$, let $\mathcal{G}\boxtimes \mathcal{H} := \{ G\boxtimes H: G \in \mathcal{G}, H\in \mathcal{H}\}$. If $\mathcal{G}$ and $\mathcal{H}$ both have bounded twin-width, $\mathcal{H}$ has bounded maximum degree, and no graph in $\mathcal{G}\boxtimes \mathcal{H}$ contains a $K_{t,t}$ subgraph for some constant $t$, then \citet[Theorem~10]{BGKTWb} proved that the class of all subgraphs of graphs in $\mathcal{G}\boxtimes \mathcal{H}$ has bounded sparse twin-width. Now apply this result with $\mathcal{G}:= (S_b)_{b\in \N}$ and $\mathcal{H}:= (H_n)_{n\in\N}$. Every star graph has twin-width $0$ and planar graphs have bounded twin-width~\citep{BKTW}. Note that $S_b \boxtimes H_n$ contains no $K_{8,8}$ subgraph \textcolor{red}{[explain]}. Thus the class of all subgraphs of graphs in $\mathcal{G} \boxtimes \mathcal{H}$ has bounded sparse twin-width. In particular, the class of all subgraphs of $(S_b \CartProd H_n)_{b,n\in\N}$ has bounded sparse twin-width.}. This confirms that the class of graphs with bounded sparse twin-width does not coincide with the class of graphs with bounded stack-number, as suspected by \citet{BGKTWb}. It remains open whether bounded sparse twin-width coincides with bounded queue-number.
+Another consequence of our main result is that it resolves a question of \citet{BGKTWb} concerning \emph{sparse twin-width}; see \citep{BKTW,BGKTWa,BGKTWb} for the definition and background on (sparse) twin-width. \citet{BGKTWb} proved that graphs with bounded stack-number have bounded sparse twin-width, and they write that they ``believe that the inclusion is strict''; that is, there exists a class of graphs with bounded sparse twin-width and unbounded stack-number. \Cref{Main} confirms this intuition, since it follows from \citep[Theorem~10]{BGKTWb} that the class of all subgraphs of $(S_b \CartProd H_n)_{b,n\in\N}$ has bounded sparse twin-width\footnote{For graph classes $\mathcal{G}$ and $\mathcal{H}$, let $\mathcal{G}\boxtimes \mathcal{H} := \{ G\boxtimes H: G \in \mathcal{G}, H\in \mathcal{H}\}$. If $\mathcal{G}$ and $\mathcal{H}$ both have bounded twin-width, $\mathcal{H}$ has bounded maximum degree, and no graph in $\mathcal{G}\boxtimes \mathcal{H}$ contains a $K_{t,t}$ subgraph for some constant $t$, then \citet[Theorem~10]{BGKTWb} proved that the class of all subgraphs of graphs in $\mathcal{G}\boxtimes \mathcal{H}$ has bounded sparse twin-width. Apply this result with $\mathcal{G}:= (S_b)_{b\in \N}$ and $\mathcal{H}:= (H_n)_{n\in\N}$. Every star graph has twin-width $0$ and planar graphs have bounded twin-width~\citep{BKTW}. It is easily seen that $S_b \boxtimes H_n$ contains no $K_{8,8}$ subgraph. Thus the class of all subgraphs of graphs in $\mathcal{G} \boxtimes \mathcal{H}$ has bounded sparse twin-width. In particular, the class of all subgraphs of $(S_b \CartProd H_n)_{b,n\in\N}$ has bounded sparse twin-width.}. This confirms the belief of 
+\citet{BGKTWb} that the class of graphs with bounded sparse twin-width does not coincide with the class of graphs with bounded stack-number. It remains open whether bounded sparse twin-width coincides with bounded queue-number.
 
-Finally, we mention some open problems: 
+Finally, we mention some more open problems: 
 
 \begin{compactitem}
 \item Recall that every 1-queue graph has a 2-stack layout \citep{HLR92} and we proved that there are 4-queue graphs with unbounded stack-number. The following questions remain open: Do 2-queue graphs have bounded stack-number? Do 3-queue graphs have bounded stack-number? 
@@ -370,10 +371,10 @@ Finally, we mention some open problems:
 
 \end{compactitem}
 
+{
 \fontsize{10}{11} 
 \selectfont 
 
-{
 \let\oldthebibliography=\thebibliography
 \let\endoldthebibliography=\endthebibliography
 \renewenvironment{thebibliography}[1]{%
@@ -389,49 +390,5 @@ Finally, we mention some open problems:
 %\bibliographystyle{DavidNatbibStyle}
 %\bibliography{../../BibTeX/myBibliography}
 }
-
-\appendix
-\section{Properties of Graph Products -- PROBABLY NOT KEEP}
-
-
-\begin{lem}
-Let $G_i$ be a $d_i$-degenerate graph for $i\in\{1,2\}$. 
-Then $G_1\CartProd G_2$  is $(d_1+d_2)$-degenerate.
-\end{lem}
-
-\begin{proof}
-Let $Z$ be a subgraph of $G_1\CartProd G_2$. 
-Our goal is to show that $Z$ has minimum degree at most $d_1+d_2$. 
-Let $X$ be the projection of $Z$ in $G_1$. 
-That is, $X$ is the subgraph of $G_1$ induced by the set of vertices $v_1\in V(G_1)$ such that $(v_1,v_2)\in V(Z)$ for some $v_2\in V(G_2)$. 
-Since $G_1$ is $d_1$-degenerate, there is a vertex $v_1$ in $X$ with $\deg_X(v_1)\leq d_1$. 
-Let $Y$ be the subgraph of $G_2$ induced by the set of vertices $v_2$ in $G_2$ such that $(v_1,v_2)\in V(X)$. 
-By construction, $Y$ is not empty. 
-Since $G_2$ is $d_2$-degenerate, there is a vertex $v_2$ in $Y$ with $\deg_Y(v_2)\leq d_2$. 
-By construction, the vertex $(v_1,v_2)$ of $G_1\CartProd G_2$ is in $Z$. 
-The neighbourhood of $(v_1,v_2)$ in $Z$ is a subset of 
-$\{ (x,v_2): v_1x\in E(X)\} \cup \{(v_1,y): v_2y\in E(Y)\}$. 
-Now $|\{ (x,v_2): v_1x\in E(X)\}| = \deg_X(v_1) \leq d_1$ and
-$|\{(v_1,y): v_2y\in E(Y)\} | =  \deg_Y(v_2) \leq d_2$. 
-Thus $(v_1,v_2)$ has degree at most $d_1+d_2$ in $Z$. 
-Hence $G_1\CartProd G_2$ is $(d_1+d_2)$-degenerate.	
-\end{proof}
-
-
-\begin{cor}
-Let $G_i$ be a $d_i$-degenerate graph for $i\in\{1,2\}$.
-Then $G_1\CartProd G_2$  contains no $K_{d_1+d_2+1,d_1+d_2+1}$.
-\end{cor}
-
-\todo[inline]{Can we characterise when $K_{s,t}$ is in $G_1\CartProd G_2$?}
-
-\todo[inline]{
-If $K_{s_1,t_1} \subseteq G_1$ and 	$K_{s_2,t_2} \subseteq G_2$, then 
-$K_{s_1t_2,s_2t_1} \subseteq G_1 \boxtimes G_2$. 
-Is it true that if $K_{p,q} \subseteq G_1 \boxtimes G_2$, 
-then $K_{s_1,t_1} \subseteq G_1$ and 	$K_{s_2,t_2} \subseteq G_2$, for some $s_1,t_1,s_2,t_2$ with $s_1t_2=p$ and $s_2t_1=q$?}
-
-
-
 
 \end{document}
