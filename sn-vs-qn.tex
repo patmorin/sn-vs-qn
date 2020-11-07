@@ -172,7 +172,7 @@ Of course, $S_b$ has a 1-queue layout (since no two edges are nested for any ver
 \label{StackProduct}
 \sn(G_1 \CartProd G_2) \leq \sn(G_1) + \dsn(G_2).
 \end{equation}
-The key difference between \cref{QueueProduct} and \cref{StackProduct} is that $G_2$ is assumed to be bipartite in \cref{StackProduct}. \cref{Main} says that this assumption is essential, since it is easily seen that $\dsn(H_n)$ is bounded, but $\sn(S_b \CartProd H_n)$ is unbounded by \cref{Main}.
+The key difference between \cref{QueueProduct} and \cref{StackProduct} is that $G_2$ is assumed to be bipartite in \cref{StackProduct}. \cref{Main} says that this assumption is essential, since it is easily seen that $\dsn(H_n)$ is bounded, but the stack number of $(S_b \CartProd H_n)_{b,n\in\N}$ is unbounded by \cref{Main}.
 
 %\todo{are there any results of \citet{Pupyrev20} worth mentioning here?}
 
@@ -186,8 +186,8 @@ There exists a function $f$ such that for every graph $G$ and integer $k$, if $G
 \end{conj}
 
 \citet{DujWoo05} established a connection between this conjecture and the question of whether stack-number is bounded by queue-number. In particular, they showed that if
-\cref{B_conj} were true, then stack-number would be bounded by queue-number. Since \cref{family} shows that stack-number is not bounded by queue-number, \cref{B_conj} is false. The proof of \citet{DujWoo05} is based on the following key lemma: every graph $G$ has a $3$-stack subdivision with $1+2 \ceil{\log_2\qn(G)}$ division vertices per edge. Applying this result to the graph $G=S_b\CartProd H_n$ in \cref{family},
-the $5$-subdivision of $S_b\CartProd H_n$ has a $3$-stack layout. If \cref{B_conj} were true, then  $\sn(S_b\CartProd H_n)$ would be at most $f( 3,5)$, contradicting \cref{family}.
+\cref{B_conj} was true, then stack-number would be bounded by queue-number. Since \cref{family} shows that stack-number is not bounded by queue-number, \cref{B_conj} is false. The proof of \citet{DujWoo05} is based on the following key lemma: every graph $G$ has a $3$-stack subdivision with $1+2 \ceil{\log_2\qn(G)}$ division vertices per edge. Applying this result to the graph $G=S_b\CartProd H_n$ in \cref{family},
+the $5$-subdivision of $S_b\CartProd H_n$ has a $3$-stack layout. If \cref{B_conj} was true, then  $\sn(S_b\CartProd H_n)$ would be at most $f( 3,5)$, contradicting \cref{family}.
 
 %Specifically,
 %\[
@@ -379,8 +379,8 @@ Finally, we mention some more open problems:
 \let\endoldthebibliography=\endthebibliography
 \renewenvironment{thebibliography}[1]{%
 \begin{oldthebibliography}{#1}%
-\setlength{\parskip}{0.3ex}%
-\setlength{\itemsep}{0.3ex}%
+\setlength{\parskip}{0.5ex}%
+\setlength{\itemsep}{0.5ex}%
 }{\end{oldthebibliography}}
 
 \input{sn-vs-qn.bbl}
