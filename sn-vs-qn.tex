@@ -78,17 +78,17 @@ We describe a family of graphs with queue-number at most 4 but unbounded stack-n
 
 \section{Introduction}
 
-Stacks and queues are fundamental data structures in computer science, but which is more powerful? In 1992, Heath, Leighton and Rosenberg~\cite{HLR92,HR92} introduced an approach for answering this question by defining the graph parameters \textit{stack-number} and \textit{queue-number} (defined below), which respectively measure the power of stacks and queues for representing graphs. The following fundamental problems, implicit in \citep{HLR92,HR92}, were made explicit by \citet{DujWoo05}\footnote{A \emph{graph parameter} is a function $\alpha$ such that $\alpha(G)\in\mathbb{R}$ for every graph $G$ and such that $\alpha(G_1)=\alpha(G_2)$ for all isomorphic graphs $G_1$ and $G_2$. A graph parameter $\alpha$ is \textit{bounded} by a graph parameter $\beta$ if there exists a function $f$ such that $\alpha(G) \leq f(\beta(G))$ for every graph $G$.}:
+Stacks and queues are fundamental data structures in computer science, but which is more powerful? In 1992, Heath, Leighton and Rosenberg~\cite{HLR92,HR92} introduced an approach for answering this question by defining the graph parameters \textit{stack-number} and \textit{queue-number} (defined below), which respectively measure the power of stacks and queues for representing graphs. The following fundamental questions, implicit in \citep{HLR92,HR92}, were made explicit by \citet{DujWoo05}\footnote{A \emph{graph parameter} is a function $\alpha$ such that $\alpha(G)\in\mathbb{R}$ for every graph $G$ and such that $\alpha(G_1)=\alpha(G_2)$ for all isomorphic graphs $G_1$ and $G_2$. A graph parameter $\alpha$ is \textit{bounded} by a graph parameter $\beta$ if there exists a function $f$ such that $\alpha(G) \leq f(\beta(G))$ for every graph $G$.}:
 \begin{compactitem}
 	\item Is stack-number bounded by queue-number?
 	\item Is queue-number bounded by stack-number?
 \end{compactitem}
 
-If stack-number is bounded by queue-number but queue-number is not bounded by stack-number, then stacks would be considered to be more powerful than queues. Similarly, if the converse holds, then queues would be considered to be more powerful than stacks. Despite extensive research on stack- and queue-numbers, these fundamental questions have remained unsolved.
+If stack-number is bounded by queue-number but queue-number is not bounded by stack-number, then stacks would be considered to be more powerful than queues. Similarly, if the converse holds, then queues would be considered to be more powerful than stacks. Despite extensive research on stack- and queue-numbers, these questions have remained unsolved.
 
 %A set of $k$ pairwise nested edges is called a \emph{$k$-rainbow} and a set of $k$ pairwise crossing edges is called a \emph{$k$-twist}. A set of $k$ edges, no pair of which nest and no pair of which cross is called a \emph{hopper}.
 
-We now formally define stack- and queue-number. Let $G$ be a graph and let $\prec$ be a total order on $V(G)$.  Two disjoint edges $vw,xy\in E(G)$ with $v\prec w$ and $x\prec y$ \emph{cross} with respect to $\prec$ if $v\prec x\prec w\prec y$ or $x\prec v\prec y\prec w$, and \emph{nest} with respect to $\prec$ if $v\prec x\prec y\prec w$ or $x\prec v\prec w\prec y$. Let $\varphi:E(G)\to\{1,\ldots,k\}$ for some integer $k\ge 1$. Then $(\prec,\varphi)$ is a \emph{$k$-stack layout} of $G$ if $vw$ and $xy$ do not cross for all edges $vw,xy\in E(G)$ with $\varphi(vw) = \varphi(xy)$. Similarly, $(\prec,\varphi)$ is a \emph{$k$-queue layout} of $G$ if $vw$ and $xy$ do not nest for all edges $vw,xy\in E(G)$ with  $\varphi(vw)=\varphi(xy)$. See \cref{layouts} for examples. The smallest integer $s$ for which $G$ has an $s$-stack layout is called the \emph{stack-number} of $G$, denoted  $\sn(G)$. The smallest integer $q$ for which $G$ has a $q$-queue layout is called the \emph{queue-number} of $G$, denoted $\qn(G)$.
+We now formally define stack- and queue-number. Let $G$ be a graph and let $\prec$ be a total order on $V(G)$.  Two disjoint edges $vw,xy\in E(G)$ with $v\prec w$ and $x\prec y$ \emph{cross} with respect to $\prec$ if $v\prec x\prec w\prec y$ or $x\prec v\prec y\prec w$, and \emph{nest} with respect to $\prec$ if $v\prec x\prec y\prec w$ or $x\prec v\prec w\prec y$. Consider a function $\varphi:E(G)\to\{1,\ldots,k\}$ for some $k\in\N$. Then $(\prec,\varphi)$ is a \emph{$k$-stack layout} of $G$ if $vw$ and $xy$ do not cross for all edges $vw,xy\in E(G)$ with $\varphi(vw) = \varphi(xy)$. Similarly, $(\prec,\varphi)$ is a \emph{$k$-queue layout} of $G$ if $vw$ and $xy$ do not nest for all edges $vw,xy\in E(G)$ with  $\varphi(vw)=\varphi(xy)$. See \cref{layouts} for examples. The smallest integer $s$ for which $G$ has an $s$-stack layout is called the \emph{stack-number} of $G$, denoted  $\sn(G)$. The smallest integer $q$ for which $G$ has a $q$-queue layout is called the \emph{queue-number} of $G$, denoted $\qn(G)$.
 
 \begin{figure}[H]
 	\centering
@@ -167,12 +167,12 @@ We now show that $\qn(S_b\CartProd H_n)\leq 4$, which with \cref{Main} implies \
 \end{equation}
 Of course, $S_b$ has a 1-queue layout (since no two edges are nested for any vertex-ordering). Thus $\qn(S_b \CartProd H_n)\leq 4$.
 
-\citet{BK79} implicitly proved a result similar to \cref{QueueProduct} for stack layouts. Let $\dsn(G)$ be the minimum integer $k$ such that $G$ has a $k$-stack layout $(\prec,\varphi)$ where $\varphi$ is a proper edge-colouring of $G$; that is, $\varphi(vx)\neq\varphi(vy)$ for any two edges $vx,vy$ with a common endpoint. Then for every graph $G_1$ and every bipartite graph $G_2$,
+\citet{BK79} implicitly proved a result similar to \cref{QueueProduct} for stack layouts. Let $\dsn(G)$ be the minimum integer $k$ such that $G$ has a $k$-stack layout $(\prec,\varphi)$ where $\varphi$ is a proper edge-colouring of $G$; that is, $\varphi(vx)\neq\varphi(vy)$ for any two edges $vx,vy\in E(G)$ with a common endpoint. Then for every graph $G_1$ and every bipartite graph $G_2$,
 \begin{equation}
 \label{StackProduct}
 \sn(G_1 \CartProd G_2) \leq \sn(G_1) + \dsn(G_2).
 \end{equation}
-The key difference between \cref{QueueProduct} and \cref{StackProduct} is that $G_2$ is assumed to be bipartite in \cref{StackProduct}. \cref{Main} says that this assumption is essential, since it is easily seen that $\dsn(H_n)$ is bounded, but the stack number of $(S_b \CartProd H_n)_{b,n\in\N}$ is unbounded by \cref{Main}.
+The key difference between \cref{QueueProduct} and \cref{StackProduct} is that $G_2$ is assumed to be bipartite in \cref{StackProduct}. \cref{Main} says that this assumption is essential, since it is easily seen that $(\dsn(H_n))_{n\in\N}$ is bounded, but the stack number of $(S_b \CartProd H_n)_{b,n\in\N}$ is unbounded by \cref{Main}. The key property of $H_n$ is that it satisfies the Hex Lemma (\cref{hex_lemma} below), which quantifies the intuition that $H_n$ is far from being bipartite. 
 
 %\todo{are there any results of \citet{Pupyrev20} worth mentioning here?}
 
@@ -218,7 +218,7 @@ It remains open whether queues are more powerful than stacks; that is, whether q
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Proof of \cref{Main}}
 
-We now turn to the proof of our main result, the lower bound on $\sn(G)$, where $G:= S_b\CartProd H_n$. Consider a hypothetical $s$-stack layout $(\varphi,\prec)$ of $G$ where $n$ and $b$ are chosen sufficiently large compared to $s$ as detailed below. We begin with three lemmata that, for sufficiently large $b$, provide a large subgraph $S_d$ of $S_b$ for which the induced stack layout of $S_d\CartProd H_n$ is highly structured.
+We now turn to the proof of our main result, the lower bound on $\sn(G)$, where $G:= S_b\CartProd H_n$. Consider a hypothetical $s$-stack layout $(\varphi,\prec)$ of $G$ where $n$ and $b$ are chosen sufficiently large compared to $s$ as detailed below. We begin with three lemmas that, for sufficiently large $b$, provide a large subgraph $S_d$ of $S_b$ for which the induced stack layout of $S_d\CartProd H_n$ is highly structured.
 
 For each node $v$ of $S_b$, define $\pi_v$ as the permutation of $\{1,\ldots,n\}^2$ in which $(x_1,y_1)$ appears before $(x_2,y_2)$ if and only if $(v,(x_1,y_1))\prec (v,(x_2,y_2))$. The following lemma is an immediate consequence of the Pigeonhole Principle:
 
@@ -236,7 +236,7 @@ For each leaf $v$ in $L_1$, let $\varphi_v$ be the edge colouring of $H_n$ defin
 \end{lem}
 
 
-Let $S_{c}$ be the subgraph of $S_b$ induced by $L_2\cup\{r\}$. The preceding two lemmata ensure that, for distinct leaves $v$ and $w$ of $S_{c}$, the stack layouts of the isomorphic graphs $G[\{(v,p):p\in V(H_n)\}]$ and $G[\{(w,p):p\in V(H_n)\}]$ are identical. The next lemma is a statement about the relationships between the stack layouts of $G[\{(v,p):v\in V(S_{c})\}]$ and $G[\{(v,q):v\in V(S_{c})\}]$ for  distinct $p,q\in V(H_n)$.  It does not assert that these two layouts are identical but it does state that they fall into one of two categories.
+Let $S_{c}$ be the subgraph of $S_b$ induced by $L_2\cup\{r\}$. The preceding two lemmas ensure that, for distinct leaves $v$ and $w$ of $S_{c}$, the stack layouts of the isomorphic graphs $G[\{(v,p):p\in V(H_n)\}]$ and $G[\{(w,p):p\in V(H_n)\}]$ are identical. The next lemma is a statement about the relationships between the stack layouts of $G[\{(v,p):v\in V(S_{c})\}]$ and $G[\{(v,q):v\in V(S_{c})\}]$ for  distinct $p,q\in V(H_n)$.  It does not assert that these two layouts are identical but it does state that they fall into one of two categories.
 
 \begin{lem}\label{forward_or_backward}
     There exists a sequence $u_1,\ldots,u_{d}\in L_2$ of length $d\ge c^{1/2^{n^2-1}}$ such that, for each $p\in V(H_n)$, either  $(u_1,p)\prec (u_2,p)\prec\cdots\prec (u_{d},p)$ or $(u_1,p)\succ (u_2,p)\succ\cdots\succ (u_{d},p)$.
@@ -302,7 +302,7 @@ $X$ contains a set of at least $\min\{\lfloor d/2^{n}\rfloor,\lceil n/2\rceil\}$
 
     All that remains is to define the sets $A_1\supseteq\cdots\supseteq A_n$ that satisfy (C1) and (C2).  Let $A_1$ be the set of all the leaves of $S_d$.  For each $i\in\{2,\ldots,n\}$, the set $A_i$ is defined as follows:  Let $Z_1,\ldots,Z_{|A_{i-1}|}$ denote the sets $Z_{i-1, v}$ for each $v\in A_{i-1}$ ordered so that $Z_1\prec\cdots\prec Z_{|A_{i-1}|}$. By Property (C2), this is always possible.	Label the vertices of $A_{i-1}$ as $v_1,\ldots,v_{|A_{i-1}|}$ so that $(v_1,p_{i-1})\prec\cdots\prec (v_r,p_{i-1})$.   (This is equivalent to naming them so that $(v_j,p_{i-1})\in Z_j$ for each $j\in\{1,\ldots,|A_{i-1}|\}$.)  Define the set $A_i:=\{v_{2k+1}:k\in\{0,\ldots,\lfloor(|A_{i-1}|-1)/2\rfloor\}\}=\{v_{j}\in A_{i-1}:\text{$j$ is odd}\}$.  This completes the definition of $A_1,\ldots,A_n$.
 
-	All that remains is to verify that $A_i$ satisfies (C1) and (C2) for each $i\in\{1,\ldots,n\}$.  We do this by induction on $i$. The base case $i=1$ is trivial so we assume from this point on that $i\in\{2,\ldots,n\}$.   To see that $A_i$ satisfies (C1) just observe that $|A_i|=\lceil |A_{i-1}|/2\rceil \ge |A_{i-1}|/2\ge d/2^{i-1}$, where the final inequality follows by applying the inductive hypothesis $|A_{i-1}|\ge d/2^{i-2}$.  Now all that remains is to show that $A_i$ satisfies (C2).
+	All that remains is to verify that $A_i$ satisfies (C1) and (C2) for each $i\in\{1,\ldots,n\}$.  We do this by induction on $i$. The base case $i=1$ is trivial, so now assume that $i\in\{2,\ldots,n\}$.   To see that $A_i$ satisfies (C1) observe that $|A_i|=\lceil |A_{i-1}|/2\rceil \ge |A_{i-1}|/2\ge d/2^{i-1}$, where the final inequality follows by applying the inductive hypothesis $|A_{i-1}|\ge d/2^{i-2}$.  Now all that remains is to show that $A_i$ satisfies (C2).
 
     Recall that, for each $v\in A_{i-1}$, the edge $e_v:=(v,p_{i-1})(v,p_i)$ is in $X$.  We have the following properties:
     \begin{compactenum}[(P1)]
@@ -365,14 +365,12 @@ Finally, we mention some more open problems:
 \begin{compactitem}
 \item Recall that every 1-queue graph has a 2-stack layout \citep{HLR92} and we proved that there are 4-queue graphs with unbounded stack-number. The following questions remain open: Do 2-queue graphs have bounded stack-number? Do 3-queue graphs have bounded stack-number? 
 
-\item Given the role of cartesian products in our proof, it is natural to ask when is $\sn(G_1\CartProd G_2)$ bounded? As illustrated in \cref{layouts}, $\sn(H_n) \leq 2$. So $\sn(G_1\CartProd G_2)$ can be unbounded even when $G_1$ is a star and $\sn(G_2)\leq 2$. Since $\sn(G_2)\leq 1$ if and only if $G_2$ is outerplanar, the following questions naturally arise: Is $\sn(S \CartProd H)$ bounded for every star $S$ and outerplanar graph $H$ with bounded degree? Is $\sn(T \CartProd H)$ bounded for every tree $T$ and outerplanar graph $H$ with bounded degree? The assumption that $H$ has bounded degree is needed since $S_n \CartProd S_n$ contains the 1-subdivision of $K_{n,n}$, which has unbounded stack-number~\citep{Blankenship-PhD03}.
-
 \item Since $H_n\subseteq P \boxtimes P$ where $P$ is the $n$-vertex path, \cref{family} implies that $\sn(S\boxtimes P\boxtimes P)$ is unbounded for all stars $S$ and paths $P$. It is easily seen that $\sn(S\boxtimes P)$ is bounded~\citep{Pupyrev20}. The following question naturally arises (independently asked by \citet{Pupyrev20}): Is $\sn(T \boxtimes P)$ bounded for all trees $T$ and paths $P$? We conjecture the answer is ``no''.
 
 \end{compactitem}
 
 {
-\fontsize{11}{12} 
+\fontsize{11.5}{12.5} 
 \selectfont 
 
 \let\oldthebibliography=\thebibliography
@@ -384,9 +382,7 @@ Finally, we mention some more open problems:
 }{\end{oldthebibliography}}
 
 \input{sn-vs-qn.bbl}
-
 % OR
-
 %\bibliographystyle{DavidNatbibStyle}
 %\bibliography{../../BibTeX/myBibliography}
 }
