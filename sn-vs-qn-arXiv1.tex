@@ -1,0 +1,651 @@
+\documentclass[kpfonts]{patmorin}
+\usepackage{pat}
+\usepackage{paralist,graphicx,float,anyfontsize}
+\usepackage{array,longtable}
+
+\usepackage[utf8]{inputenc}
+\usepackage{todonotes}
+
+\usepackage[noabbrev,capitalise]{cleveref}
+\crefname{lem}{Lemma}{Lemmas}
+\crefname{thm}{Theorem}{Theorems}
+\crefname{cor}{Corollary}{Corollaries}
+\crefname{prop}{Proposition}{Propositions}
+\crefname{conj}{Conjecture}{Conjectures}
+\crefname{open}{Open Problem}{Open Problems}
+\crefname{obs}{Observation}{Observations}
+
+\crefformat{equation}{(#2#1#3)}
+\Crefformat{equation}{Equation #2(#1)#3}
+
+\usepackage[numbers,sort&compress,longnamesfirst]{natbib}
+
+\setlength{\parskip}{1ex}
+\setlength{\parindent}{0ex}
+
+\newtheorem{property}{Property}
+\newcommand{\plabel}[1]{\label{prop:#1}}
+\newcommand{\pref}[1]{Property~\ref{prop:#1}}
+
+\DeclareMathOperator{\sn}{sn}
+\DeclareMathOperator{\qn}{qn}
+\DeclareMathOperator{\sqn}{sqn}
+\DeclareMathOperator{\dsn}{dsn}
+\DeclareMathOperator{\tw}{tw}
+
+\renewcommand{\SS}{\mathcal{S}}
+
+
+\renewcommand{\le}{\leqslant}
+\renewcommand{\leq}{\leqslant}
+\renewcommand{\ge}{\geqslant}
+\renewcommand{\geq}{\geqslant}
+
+\newcommand{\CartProd}{\mathbin{\square}}
+
+\title{\MakeUppercase{Stack-Number is not Bounded by Queue-Number}}
+
+\author{%
+	Vida Dujmovi\'c,\!\!%
+	\thanks{School of Computer Science and Electrical Engineering,
+		University of Ottawa, Ottawa, Canada (\texttt{vida.dujmovic@uottawa.ca}).
+		Research supported by NSERC.}
+	\,\,
+	David Eppstein,\!\!%
+	\thanks{Department of Computer Science, University of California, Irvine, California, USA (\texttt{eppstein@uci.edu}).}
+	\,\,
+	Robert Hickingbotham,\!\!%
+	\thanks{School of Mathematics, Monash University, Melbourne, Australia (\texttt{robert.hickingbotham@monash.edu}).}
+	\,\,
+	Pat Morin,\!\!%
+	\thanks{School of Computer Science, Carleton University, Ottawa, Canada (\texttt{morin@scs.carleton.ca}). Research  supported by NSERC.}
+	\,\,
+	David R. Wood\thanks{School of Mathematics, Monash University, Melbourne, Australia (\texttt{david.wood@monash.edu}). Research supported by the Australian Research Council.}
+}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We describe a family of graphs with queue-number at most 4 but unbounded stack-number. This resolves open problems of Heath, Leighton and Rosenberg (1992) and Blankenship and Oporowski (1999).
+\end{abstract}
+
+\bigskip
+
+\section{Introduction}
+
+Stacks and queues are fundamental data structures in computer science, but which is more powerful? In 1992, Heath, Leighton and Rosenberg~\cite{HLR92,HR92} introduced an approach for answering this question by defining the graph parameters \textit{stack-number} and \textit{queue-number} (defined below), which respectively measure the power of stacks and queues for representing graphs. The following fundamental questions, implicit in \citep{HLR92,HR92}, were made explicit by \citet{DujWoo05}\footnote{A \emph{graph parameter} is a function $\alpha$ such that $\alpha(G)\in\mathbb{R}$ for every graph $G$ and such that $\alpha(G_1)=\alpha(G_2)$ for all isomorphic graphs $G_1$ and $G_2$. A graph parameter $\alpha$ is \textit{bounded} by a graph parameter $\beta$ if there exists a function $f$ such that $\alpha(G) \leq f(\beta(G))$ for every graph $G$.}:
+\begin{compactitem}
+	\item Is stack-number bounded by queue-number?
+	\item Is queue-number bounded by stack-number?
+\end{compactitem}
+
+If stack-number is bounded by queue-number but queue-number is not bounded by stack-number, then stacks would be considered to be more powerful than queues. Similarly, if the converse holds, then queues would be considered to be more powerful than stacks. Despite extensive research on stack- and queue-numbers, these questions have remained unsolved.
+
+We now formally define stack- and queue-number. Let $G$ be a graph and let $\prec$ be a total order on $V(G)$.  Two disjoint edges $vw,xy\in E(G)$ with $v\prec w$ and $x\prec y$ \emph{cross} with respect to $\prec$ if $v\prec x\prec w\prec y$ or $x\prec v\prec y\prec w$, and \emph{nest} with respect to $\prec$ if $v\prec x\prec y\prec w$ or $x\prec v\prec w\prec y$. Consider a function $\varphi:E(G)\to\{1,\ldots,k\}$ for some $k\in\N$. Then $(\prec,\varphi)$ is a \emph{$k$-stack layout} of $G$ if $vw$ and $xy$ do not cross for all edges $vw,xy\in E(G)$ with $\varphi(vw) = \varphi(xy)$. Similarly, $(\prec,\varphi)$ is a \emph{$k$-queue layout} of $G$ if $vw$ and $xy$ do not nest for all edges $vw,xy\in E(G)$ with  $\varphi(vw)=\varphi(xy)$. See \cref{layouts} for examples. The smallest integer $s$ for which $G$ has an $s$-stack layout is called the \emph{stack-number} of $G$, denoted  $\sn(G)$. The smallest integer $q$ for which $G$ has a $q$-queue layout is called the \emph{queue-number} of $G$, denoted $\qn(G)$.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics{figs/layouts-1.pdf}
+	\includegraphics{figs/layouts-2.pdf}
+	\caption{A $2$-queue layout and a $2$-stack layout of the triangulated grid graph $H_4$ defined below. Edges drawn above the vertices are assigned to the first queue/stack and edges drawn below the vertices are assigned to the second queue/stack.}
+	\label{layouts}
+\end{figure}
+
+Given a $k$-stack layout $(\prec,\varphi)$ of a graph $G$, for each $i\in\{1,\dots,k\}$, the set $\varphi^{-1}(i)$ behaves like a stack, in the sense that each edge $vw \in \varphi^{-1}(i)$ with $v\prec w$ corresponds to an element in a sequence of stack operations, such that if we traverse the vertices in the order of $\prec$, then $vw$ is pushed onto the stack at $v$ and popped off the stack at $w$. Similarly, each set $\varphi^{-1}(i)$ in a queue layout  behaves like a queue. In this way, the stack-number and queue-number  respectively measure the power of stacks and queues to represent graphs.
+
+Note that stack layouts are equivalent to book embeddings (first defined by \citet{Ollmann73} in 1973), and stack-number is also known as \emph{page-number}, \emph{book-thickness} or \emph{fixed outer-thickness}. Stack and queue layouts have other applications including computational complexity~\citep{GKS89,DSW16,Bourgain09,BY13},  RNA folding~\citep{HS99}, graph drawing in two~\citep{BB04,ADFPR12,SSSV-WG94} and three dimensions~\citep{DMW05,Wood-GD01,DMW17,DPW04},
+and fault-tolerant multiprocessing~\citep{CLR87,Rosenberg83a,Rosenberg86a,Rosenberg86}.
+%, stack sorting~\citep{CLR87}, and traffic light control~\citep{Kainen90}.
+See \citep{BK79,Blankenship-PhD03,DujWoo04,DujWoo-DCG07,DJMMUW20,DFP13,BFGMMRU19,Yannakakis89,Yann20,MBKPRU20} for bounds on the stack- and queue-number for various graph classes.
+
+\subsection*{Is Stack-Number Bounded by Queue-Number?}
+
+This paper considers the first of the above questions. In a positive direction, \citet{HLR92}  showed that every 1-queue graph has a $2$-stack layout. On the other hand, they described graphs that need exponentially more stacks than queues. In particular, $n$-vertex ternary hypercubes have queue-number $O(\log n)$ and stack-number $\Omega(n^{1/9-\epsilon})$ for any $\epsilon>0$.
+
+Our key contribution is the following theorem, which shows that stack-number is not bounded by queue-number.
+
+\begin{thm}\label{family}
+	%  There exists a family $\mathcal{F}$ of graphs for which $\qn(G)\le 4$ for every $G\in\mathcal{F}$, and for every $s\in\N$, there exists $G\in\mathcal{F}$ for which $\sn(G)>s$.
+	For every $s\in \N$ there exists a graph $G$ with $\qn(G)\le 4$ and $\sn(G)>s$.
+\end{thm}
+
+This demonstrates that stacks are not more powerful than queues for representing graphs.
+
+\subsection*{Cartesian Products}
+
+As illustrated in \cref{graph}, the graph $G$ in \cref{family} is the cartesian product\footnote{For graphs $G_1$ and $G_2$, the \emph{cartesian product} $G_1\CartProd G_2$ is the graph with vertex set $\{(v_1,v_2): v_1 \in V(G_1), v_2 \in V(G_2)\}$, where $(v_1,v_2)(w_1,w_2)\in E(G_1\CartProd G_2)$ if $v_1=w_1$ and $v_2w_2\in E(G_2)$, or $v_1w_1\in E(G_1)$ and $v_2=w_2$. The \emph{strong product} $G_1\boxtimes G_2$ is the graph obtained from $G_1\CartProd G_2$ by adding the edge $(v_1,v_2)(w_1,w_2)$ whenever $v_1w_1\in E(G_1)$ and $v_2w_2\in E(G_2)$. Note that \citet{Pupyrev20} independently suggested using graph products to show that stack-number is not bounded by queue-number.} $S_b\CartProd H_n$, where $S_b$ is the star graph with root $r$ and $b$ leaves, and $H_n$ is the dual of the hexagonal grid, defined by
+\begin{align*}
+V(H_n)  :=\{1,\ldots,n\}^2 \quad \text{ and } \quad
+E(H_n) & :=  \{(x,y)(x+1,y):x\in\{1,\ldots,n-1\},\,y\in\{1,\ldots,n\}\} \\
+& \qquad \cup \{(x,y)(x,y+1):x\in\{1,\ldots,n\},\,y\in\{1,\ldots,n-1\}\} \\
+& \qquad \cup \{(x,y)(x+1,y+1):x,y\in\{1,\ldots,n-1\}\} \enspace .
+\end{align*}
+
+\begin{figure}[H]
+	\centering
+	\begin{tabular}{m{.3\textwidth}m{2ex}m{.2\textwidth}m{2ex}m{.3\textwidth}}
+		\includegraphics[width=.3\textwidth]{figs/s} & $\CartProd$ & \includegraphics[width=.2\textwidth]{figs/q} & $=$
+		& \includegraphics[width=.3\textwidth]{figs/product}
+	\end{tabular}
+	\caption{$S_9 \CartProd H_4$.}
+	\label{graph}
+\end{figure}
+
+
+We prove the following:
+
+\begin{thm}
+\label{Main}
+For every $s\in\N$, if $b$ and $n$ are sufficiently large compared to $s$, then $$\sn(S_b\CartProd H_n) > s.$$
+\end{thm}
+
+We now show that $\qn(S_b\CartProd H_n)\leq 4$, which with \cref{Main} implies \cref{family}. We need the following definition due to \citet{Wood-Queue-DMTCS05}. A queue layout $(\varphi,\prec)$ is \emph{strict} if for every vertex $u\in V(G)$ and for all neighbours $v,w\in N_G(u)$, if $u\prec v,w$ or $v,w \prec u$, then $\varphi(uv)\neq \varphi(uw)$. Let $\sqn(G)$ be the minimum integer $k$ such that $G$ has a strict $k$-queue layout. To see that $\sqn(H_n) \leq 3$, order the vertices row-by-row and then left-to-right within a row, with vertical edges in one queue, horizontal edges in one queue, and diagonal edges in another queue (this construction puts the edges below the vertices in \cref{layouts} into two queues). \citet{Wood-Queue-DMTCS05} proved that for all graphs $G_1$ and $G_2$,
+\begin{equation}
+\label{QueueProduct}
+\qn(G_1 \CartProd G_2) \leq \qn(G_1) + \sqn(G_2).
+\end{equation}
+Of course, $S_b$ has a 1-queue layout (since no two edges are nested for any vertex-ordering). Thus $\qn(S_b \CartProd H_n)\leq 4$.
+
+\citet{BK79} implicitly proved a result similar to \cref{QueueProduct} for stack layouts. Let $\dsn(G)$ be the minimum integer $k$ such that $G$ has a $k$-stack layout $(\prec,\varphi)$ where $\varphi$ is a proper edge-colouring of $G$; that is, $\varphi(vx)\neq\varphi(vy)$ for any two edges $vx,vy\in E(G)$ with a common endpoint. Then for every graph $G_1$ and every bipartite graph $G_2$,
+\begin{equation}
+\label{StackProduct}
+\sn(G_1 \CartProd G_2) \leq \sn(G_1) + \dsn(G_2).
+\end{equation}
+The key difference between \cref{QueueProduct} and \cref{StackProduct} is that $G_2$ is assumed to be bipartite in \cref{StackProduct}. \cref{Main} says that this assumption is essential, since it is easily seen that $(\dsn(H_n))_{n\in\N}$ is bounded, but the stack number of $(S_b \CartProd H_n)_{b,n\in\N}$ is unbounded by \cref{Main}. The key property of $H_n$ is that it satisfies the Hex Lemma (\cref{hex_lemma} below), which quantifies the intuition that $H_n$ is far from being bipartite. 
+
+\subsection*{Subdivisions}
+
+A noteworthy consequence of \Cref{family} is that it resolves a conjecture of \citet{BO99}. A graph $G'$ is a \textit{subdivision} of a graph $G$ if $G'$ can be obtained from $G$ by replacing the edges $vw$ of $G$ by internally disjoint paths $P_{vw}$ with endpoints $v$ and $w$. If each $P_{vw}$ has exactly $k$ internal vertices, then $G'$ is the \emph{$k$-subdivision} of $G$. If each $P_{vw}$ has at most $k$ internal vertices, then $G'$ is a \emph{$(\leq k)$-subdivision} of $G$. \citet{BO99} conjectured that the stack-number of $(\leq k)$-subdivisions ($k$ fixed)  is not much less than the stack-number of the original graph. More precisely:
+
+\begin{conj}[\citep{BO99}]
+\label{B_conj}
+There exists a function $f$ such that for every graph $G$ and integer $k$, if $G'$ is any $(\leq k)$-subdivision of $G$, then $\sn(G) \leq f(\sn(G’),k)$.
+\end{conj}
+
+\citet{DujWoo05} established a connection between this conjecture and the question of whether stack-number is bounded by queue-number. In particular, they showed that if
+\cref{B_conj} was true, then stack-number would be bounded by queue-number. Since \cref{family} shows that stack-number is not bounded by queue-number, \cref{B_conj} is false. The proof of \citet{DujWoo05} is based on the following key lemma: every graph $G$ has a $3$-stack subdivision with $1+2 \ceil{\log_2\qn(G)}$ division vertices per edge. Applying this result to the graph $G=S_b\CartProd H_n$ in \cref{family},
+the $5$-subdivision of $S_b\CartProd H_n$ has a $3$-stack layout. If \cref{B_conj} was true, then  $\sn(S_b\CartProd H_n)$ would be at most $f( 3,5)$, contradicting \cref{family}.
+
+
+\subsection*{Is Queue-Number Bounded by Stack-Number? }
+
+It remains open whether queues are more powerful than stacks; that is, whether queue-number is bounded by stack-number. Several results are known about this problem. \citet{HLR92} showed that every 1-stack graph has a 2-queue layout. \citet{DJMMUW20} showed that planar graphs have bounded queue-number. (Note that graph products also feature heavily in this proof.)\ Since 2-stack graphs are planar, this implies that 2-stack graphs have bounded queue-number. It is open whether 3-stack graphs have bounded queue-number. In fact, the case of three stacks is as hard as the general question. \citet{DujWoo05} proved that queue-number is bounded by stack-number if and only if 3-stack graphs have bounded queue-number. Moreover, if this is true then queue-number is bounded by a polynomial function of stack-number.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Proof of \cref{Main}}
+
+We now turn to the proof of our main result, the lower bound on $\sn(G)$, where $G:= S_b\CartProd H_n$. Consider a hypothetical $s$-stack layout $(\varphi,\prec)$ of $G$ where $n$ and $b$ are chosen sufficiently large compared to $s$ as detailed below. We begin with three lemmas that, for sufficiently large $b$, provide a large subgraph $S_d$ of $S_b$ for which the induced stack layout of $S_d\CartProd H_n$ is highly structured.
+
+For each node $v$ of $S_b$, define $\pi_v$ as the permutation of $\{1,\ldots,n\}^2$ in which $(x_1,y_1)$ appears before $(x_2,y_2)$ if and only if $(v,(x_1,y_1))\prec (v,(x_2,y_2))$. The following lemma is an immediate consequence of the Pigeonhole Principle:
+
+\begin{lem}\label{uniform_order}
+    There exists a permutation $\pi$ of $\{1,\ldots,n\}^2$ and a set $L_1$ of leaves of $S_b$ of size $a\ge b/(n^2)!$ such that $\pi_{v}=\pi$ for each $v\in L_1$.
+\end{lem}
+
+For each leaf $v$ in $L_1$, let $\varphi_v$ be the edge colouring of $H_n$ defined by $\varphi_v(xy):=\varphi((v,x)(v,y))$ for each $xy\in E(H_n)$. Since $H_n$ has maximum degree $6$ and is not 6-regular, it has fewer than $3n^2$ edges.  Therefore there are fewer than $s^{3n^2}$ edge colourings of $H_n$ using $s$ colours.  Another application of the Pigeonhole Principle proves the following:
+
+\begin{lem}\label{uniform_colour}
+    There exists a subset $L_2\subseteq L_1$ of size $c\ge a/s^{3n^2}$
+    and an edge colouring $\phi:E(H_n)\to\{1,\ldots,s\}$ such that $\varphi_v=\phi$ for each $v\in L_2$.
+\end{lem}
+
+
+Let $S_{c}$ be the subgraph of $S_b$ induced by $L_2\cup\{r\}$. The preceding two lemmas ensure that, for distinct leaves $v$ and $w$ of $S_{c}$, the stack layouts of the isomorphic graphs $G[\{(v,p):p\in V(H_n)\}]$ and $G[\{(w,p):p\in V(H_n)\}]$ are identical. The next lemma is a statement about the relationships between the stack layouts of $G[\{(v,p):v\in V(S_{c})\}]$ and $G[\{(v,q):v\in V(S_{c})\}]$ for  distinct $p,q\in V(H_n)$.  It does not assert that these two layouts are identical but it does state that they fall into one of two categories.
+
+\begin{lem}\label{forward_or_backward}
+    There exists a sequence $u_1,\ldots,u_{d}\in L_2$ of length $d\ge c^{1/2^{n^2-1}}$ such that, for each $p\in V(H_n)$, either  $(u_1,p)\prec (u_2,p)\prec\cdots\prec (u_{d},p)$ or $(u_1,p)\succ (u_2,p)\succ\cdots\succ (u_{d},p)$.
+\end{lem}
+
+\begin{proof}
+    Let $p_1,\ldots,p_{n^2}$ denote the vertices of $H_n$ in any order.
+    Begin with the sequence $S_1:=v_{1,1},\ldots,v_{1,c}$ that contains all $c$ elements of $L_2$ ordered so that $(v_{1,1},p_1)\prec\cdots\prec(v_{1,c},p_1)$.  For each $i\in\{2,\ldots,n^2\}$, the Erd\H{o}s-Szekeres Theorem~\citep{ES35} implies that $S_{i-1}$ contains a subsequence $S_i:=v_{i,1},\ldots,v_{i,|S_i|}$ of length $|S_i|\ge \sqrt{|S_{i-1}|}$ such that $(v_{i,1},p_i)\prec\cdots\prec(v_{i,|S_i|},p_i)$ or $(v_{i,1},p_i)\succ\cdots\succ(v_{i,|S_i|},p_i)$.  It is straightforward to verify by induction on $i$ that $|S_i| \ge c^{1/2^{i-1}}$ resulting in a final sequence $S_{n^2}=:L_3$ of length at least $c^{1/2^{n^2-1}}$.
+\end{proof}
+
+
+For the rest of the proof we work with the star $S_d$ whose leaves are $u_1,\ldots,u_d$ described in \cref{forward_or_backward}.  Consider the (improper) colouring of $H_n$ obtained by colouring each vertex $p\in V(H_n)$ \emph{red} if $(u_1,p)\prec\cdots\prec (u_d,p)$ and colouring $p$ \emph{blue} if $(u_1,p)\succ\cdots\succ(u_d,p)$. We need the following famous Hex Lemma~\citep{Gale79}.
+
+\begin{lem}[\citep{Gale79}] \label{hex_lemma}
+%Every red--blue vertex colouring of the graph $H_n$	contains an $n$-vertex path $R$ consisting entirely of red vertices or entirely of blue vertices.
+Every vertex 2-colouring of $H_n$ contains a monochromatic path on $n$ vertices.
+\end{lem}
+
+Apply \cref{hex_lemma} with the above-defined colouring of $H_n$. We obtain a path $R:=p_1,\ldots,p_n$ in $H_n$ that, without loss of generality, consists entirely of red vertices;
+thus $(u_1,p_j)\prec\cdots\prec (u_d,p_j)$ for each $j\in\{1,\ldots,n\}$.  Let $X$ be the subgraph $S_d \CartProd R$ of $G$.
+
+\begin{lem}\label{twister}
+$X$ contains a set of at least $\min\{\lfloor d/2^{n}\rfloor,\lceil n/2\rceil\}$ pairwise crossing edges with respect to $\prec$.
+\end{lem}
+
+\begin{proof}
+	Extend the total order $\prec$ to a partial order over subsets of $V(G)$, where for all $V,W\subseteq V(G)$, we have $V\prec W$ if and only if $v\prec w$ for each $v\in V$ and each $w\in W$.  We abuse notation slightly by using $\prec$ to compare elements of $V(G)$ and subsets of $V(G)$ so that, for $v\in V(G)$ and $V\subseteq V(G)$, $v\prec V$ denotes $\{v\}\prec V$.
+    We will define sets $A_1\supseteq \cdots\supseteq A_{n}$ of leaves of $S_d$ so that each $A_i$ satisifies the following conditions:
+    \begin{compactenum}[(C1)]
+        \item $A_i$ contains $d_i\ge d/2^{i-1}$ leaves of $S_d$.
+        \item Each leaf $v\in A_i$ defines an $i$-element vertex set $Z_{i,v}:=\{(v,p_j):j\in\{1,\ldots,i\}\}$.  For any distinct $v,w\in A_i$, the sets $Z_{i,v}$ and $Z_{i,w}$ are \emph{separated} with respect to $\prec$; that is, $Z_{i,v}\prec Z_{i,w}$ or $Z_{i,v}\succ Z_{i,w}$.
+    \end{compactenum}
+
+    Before defining $A_1,\ldots,A_n$ we first show how the existence of the set $A_n$ implies the lemma.  To avoid triple-subscripts, let $d':=d_n\ge d/2^{n-1}$.   The set $A_n$ defines vertex sets $Z_{n,v_1}\prec\cdots\prec Z_{n,v_{d'}}$ (see \cref{fig_twister}). Recall that $r$ is the root of $S_b$ so it is adjacent to each of $v_{1},\ldots,v_{d'}$ in $S_d$.  Therefore, for each $j\in\{1,\ldots,n\}$ and each $i\in\{1,\ldots,d'\}$, the edge $(r,p_j)(v_i,p_j)$ is in $X$. Therefore, $(r,p_j)$ is adjacent to an element of each of $Z_{n,v_1},\ldots,Z_{n,v_{d'}}$.
+	\begin{figure}[!h]
+		\centering\includegraphics{figs/twister}
+		\caption{The sets $Z_{n,v_1},\ldots,Z_{n,v_{d'}}$ where $n=4$ and $d'=5$.}
+		\label{fig_twister}
+	\end{figure}
+
+    Since $Z_{n,v_1},\ldots,Z_{n,v_{d'}}$ are separated with respect to $\prec$, when viewed from afar, this situation looks like a complete bipartite graph $K_{n,d'}$ with the root vertices $L:=\{(r,p_j):j\in\{1,\ldots,n\}\}$ in one part and the groups $R:=Z_{n,v_1}\cup\cdots\cup Z_{n,v_{d'}}$ in the other part.  Any linear ordering of $K_{n,d'}$ has a large set of pairwise crossing edges so, intuitively, the induced subgraph $X[L\cup R]$ should also have a large set of pairwise crossing edges. We can formalize this as follows: Label the vertices in $L$ as $r_1,\ldots,r_n$ so that $r_1\prec \cdots\prec r_{n}$.  Then at least one of the following two cases applies (see \figref{median}):
+    \begin{enumerate}
+        \item $Z_{n,\lfloor d'/2\rfloor}\prec r_{\lceil n/2\rceil}$ in which case the graph between $r_{\lceil n/2\rceil},\ldots,r_{n}$ and $Z_{n,1},\ldots,Z_{n,\lfloor d'/2\rfloor}$ has a set of at least $\min\{\lfloor d'/2\rfloor,\lceil n/2\rceil\}$ pairwise-crossing edges.
+        \item $r_{\lceil n/2\rceil}\prec Z_{\lceil d'/2\rceil+1}$ in which case the graph between $r_1,\ldots,r_{\lceil n/2\rceil}$ and $Z_{\lceil d'/2\rceil+1},\ldots,Z_{d'}$ has a set of $\min\{\lfloor d'/2\rfloor,\lceil n/2\rceil\}$ pairwise-crossing edges.
+    \end{enumerate}
+	\begin{figure}[!h]
+		\centering
+			\includegraphics{figs/median-1} \\[2em]
+			\includegraphics{figs/median-2}
+		\caption{The two cases in the proof of \cref{twister}.}
+		\figlabel{median}
+	\end{figure}
+	Since, by (C1), $d'\ge d/2^{n-1}$, either case results in a set of pairwise-crossing edges of size at least $\min\{\lfloor d/2^n\rfloor,\lceil n/2\rceil\}$, as claimed.
+
+    All that remains is to define the sets $A_1\supseteq\cdots\supseteq A_n$ that satisfy (C1) and (C2).  Let $A_1$ be the set of all the leaves of $S_d$.  For each $i\in\{2,\ldots,n\}$, the set $A_i$ is defined as follows:  Let $Z_1,\ldots,Z_{|A_{i-1}|}$ denote the sets $Z_{i-1, v}$ for each $v\in A_{i-1}$ ordered so that $Z_1\prec\cdots\prec Z_{|A_{i-1}|}$. By Property (C2), this is always possible.	Label the vertices of $A_{i-1}$ as $v_1,\ldots,v_{|A_{i-1}|}$ so that $(v_1,p_{i-1})\prec\cdots\prec (v_r,p_{i-1})$.   (This is equivalent to naming them so that $(v_j,p_{i-1})\in Z_j$ for each $j\in\{1,\ldots,|A_{i-1}|\}$.)  Define the set $A_i:=\{v_{2k+1}:k\in\{0,\ldots,\lfloor(|A_{i-1}|-1)/2\rfloor\}\}=\{v_{j}\in A_{i-1}:\text{$j$ is odd}\}$.  This completes the definition of $A_1,\ldots,A_n$.
+
+	All that remains is to verify that $A_i$ satisfies (C1) and (C2) for each $i\in\{1,\ldots,n\}$.  We do this by induction on $i$. The base case $i=1$ is trivial, so now assume that $i\in\{2,\ldots,n\}$.   To see that $A_i$ satisfies (C1) observe that $|A_i|=\lceil |A_{i-1}|/2\rceil \ge |A_{i-1}|/2\ge d/2^{i-1}$, where the final inequality follows by applying the inductive hypothesis $|A_{i-1}|\ge d/2^{i-2}$.  Now all that remains is to show that $A_i$ satisfies (C2).
+
+    Recall that, for each $v\in A_{i-1}$, the edge $e_v:=(v,p_{i-1})(v,p_i)$ is in $X$.  We have the following properties:
+    \begin{compactenum}[(P1)]
+        \item By \cref{uniform_colour}, $\varphi(e_v)=\phi(p_{i-1}p_i)$ for each $v\in A_{i-1}$.
+        \item Since $p_{i-1}$ and $p_i$ are both red, $(v,p_{i-1})\prec (w,p_{i-1})$ if and only if $(v,p_{i})\prec (w,p_{i})$ for each $v,w\in A_{i-1}$.
+        \item By \cref{uniform_order}, $(v,p_{i-1})\prec (v,p_i)$ for every $v\in A_{i-1}$ or $(v,p_{i-1})\succ (v,p_i)$ for every $v\in A_{i-1}$.
+    \end{compactenum}
+    We claim that these three conditions imply that the vertex sets $\{(v,p_{i-1}):v\in A_{i-1}\}$ and $\{(v,p_i):v\in A_{i-1}\}$ interleave perfectly with respect to $\prec$. More precisely:
+	\begin{clm}\clmlabel{interleave} $(v_1,p_{i-1+t})\prec (v_1,p_{i-t}) \prec (v_2,p_{i-1+t}) \prec (v_2,p_{i-t}) \cdots \prec (v_r,p_{i-1+t}) \prec (v_r,p_{i-t})$ for some $t\in\{0,1\}$.
+	\end{clm}
+	\begin{proof}[Proof of \clmref{interleave}]
+		By (P3) we may assume, without loss of generality, that $(v,p_{i-1})\prec (v,p_i)$ for each $v\in A_{i-1}$, in which case we are trying to prove the claim for $t=0$.  Therefore, it is sufficient to show that $(v_j,p_i)\prec (v_{j+1},p_{i-1})$ for each $j\in\{1,\ldots,r-1\}$.  For the sake of contradiction, suppose $(v_j,p_{i})\succ (v_{j+1},p_{i-1})$ for some $j\in\{1,\ldots,r-1\}$. By the labelling of $A_{i-1}$,  $(v_j,p_{i-1})\prec (v_{j+1},p_{i-1})$ so, by (P2),  $(v_{j},p_i) \prec (v_{j+1},p_i)$.  Therefore
+		\[
+			(v_j,p_{i-1})\prec (v_{j+1},p_{i-1})\prec(v_{j},p_i) \prec
+		   (v_{j+1}, p_i) \enspace .
+	   	\]
+		Therefore the edges $e_{v_j}=(v_j,p_{i-1})(v_j,p_{i})$ and $e_{v_{j+1}}=(v_{j+1},p_{i-1})(v_{j+1},p_i)$ cross with respect to $\prec$.  But this is a contradiction since, by (P1),  $\varphi(e_{v_j}) =\varphi(e_{v_{j+1}})=\phi(p_{i-1}p_i)$.
+		This contradiction completes the proof of \clmref{interleave}.
+	\end{proof}
+
+% \todo{DW: Why are these $\prec$'s red?  PM: Just me keeping track of which one was the assumption, they don't need to be red.}
+
+We now complete the proof that $A_i$ satisfies (C2). Apply \clmref{interleave} and assume without loss of generality that $t=0$, so that
+	\[
+		(v_1,p_{i-1})\prec (v_1,p_{i}) \prec (v_2,p_{i-1}) \prec (v_2,p_{i}) \cdots \prec (v_r,p_{i-1}) \prec (v_r,p_{i}) \enspace .
+	\]
+
+    For each $j\in\{1,\ldots,r-2\}$, we have $(v_{j+1},p_{i-1})\in Z_{j+1}\prec Z_{j+2}$, so  $(v_j,p_i)\prec (v_{j+1},p_{i-1}) \prec Z_{j+2}$.  Therefore $Z_j\cup\{(v_j,p_i)\} \prec Z_{j+2}$.  By a symmetric argument, $Z_j\cup\{(v_j,p_i)\} \succ Z_{j-2}$ for each  $j\in\{3,\ldots,r\}$.  Finally, since $(v_{j},p_i)\prec (v_{j+2},p_i)$ for each odd $i\in\{1,\ldots,r\}$, we have $Z_{j}\cup\{(v_j,p_i)\} \prec Z_{j+2}\cup\{(v_{j+2},p_i)\}$ for each odd $j\in\{1,\ldots,r-2\}$.  Thus $A_i$ satisfies (C2) since the sets $Z_1\cup\{(v_1,p_i)\},Z_3\cup\{(v_3,p_i)\},\ldots,Z_{2\lfloor (r-1)/2\rfloor+1} \cup (v_{2\lfloor (r-1)/2\rfloor+1},p_i)$ are precisely the sets $Z_{i,1},\ldots,Z_{i,d_i}$ determined by our choice of $A_i$.
+\end{proof}
+
+
+\begin{proof}[Proof of \cref{Main}]
+Let $G := S_b \CartProd H_n$, where $n :=2s+1$ and $b := (n^2)!\, s^{3n^2}\, ((s+1)2^n)^{2^{n^2-1}} $. Suppose that $G$ has an $s$-stack layout  $(\varphi,\prec)$. In particular, there are no $s+1$ pairwise crossing edges in $G$ with respect to $\prec$. By \cref{uniform_colour,uniform_order,forward_or_backward}, we have $a\ge b/(n^2)! = s^{3n^2}\, ((s+1)2^n)^{2^{n^2-1}}$ and $c\ge a/s^{3n^2} \geq ((s+1)2^n)^{2^{n^2-1}}$ and
+$d\ge c^{1/2^{n^2-1}} \ge (s+1)2^n$. By \cref{twister}, the graph $X$, which is a subgraph of $G$, contains $\min\{\lfloor d/2^{n}\rfloor,\lceil n/2\rceil\}=s+1$ pairwise crossing edges with respect to $\prec$. This contradictions shows that $\sn(G)> s$.
+\end{proof}
+
+\section{Reflections}
+
+We now mention some further consequences of our main result. 
+
+\citet{NOW11} proved that graph classes with bounded stack-number or bounded queue-number have bounded expansion; see \citep{Sparsity} for background on bounded expansion classes. The converse is not true, since cubic graphs (for example) have bounded expansion, unbounded stack-number~\citep{Malitz94a} and unbounded queue-number~\citep{Wood-QueueDegree}. However, prior to the present work it was open whether graph classes with polynomial expansion have bounded stack-number or bounded queue-number. It follows from the work of \citet[Theorem~19]{DHJLW20} that $(S_b \CartProd H_n)_{b,n\in\N}$ has polynomial expansion. So \cref{Main} implies there is a class of graphs with polynomial expansion and with unbounded stack-number. It remains open whether graph classes with polynomial expansion have bounded queue-number. See \citep{DJMMUW20,DMW} for several examples of graph classes with polynomial expansion and bounded queue-number.
+
+Our main result also resolves a question of \citet{BGKTWb} concerning \emph{sparse twin-width}; see \citep{BKTW,BGKTWa,BGKTWb} for the definition and background on (sparse) twin-width. \citet{BGKTWb} proved that graphs with bounded stack-number have bounded sparse twin-width, and they write that they ``believe that the inclusion is strict''; that is, there exists a class of graphs with bounded sparse twin-width and unbounded stack-number. \Cref{Main} confirms this intuition, since it follows from \citep[Theorem~10]{BGKTWb} that the class of all subgraphs of $(S_b \CartProd H_n)_{b,n\in\N}$ has bounded sparse twin-width\footnote{For graph classes $\mathcal{G}$ and $\mathcal{H}$, let $\mathcal{G}\boxtimes \mathcal{H} := \{ G\boxtimes H: G \in \mathcal{G}, H\in \mathcal{H}\}$. If $\mathcal{G}$ and $\mathcal{H}$ both have bounded twin-width, $\mathcal{H}$ has bounded maximum degree, and no graph in $\mathcal{G}\boxtimes \mathcal{H}$ contains a $K_{t,t}$ subgraph for some constant $t$, then \citet[Theorem~10]{BGKTWb} proved that the class of all subgraphs of graphs in $\mathcal{G}\boxtimes \mathcal{H}$ has bounded sparse twin-width. Apply this result with $\mathcal{G}:= (S_b)_{b\in \N}$ and $\mathcal{H}:= (H_n)_{n\in\N}$. Every star graph has twin-width $0$ and planar graphs have bounded twin-width~\citep{BKTW}. Since $S_b \boxtimes H_n$ is 7-degenerate, it contains no $K_{8,8}$ subgraph. Thus the class of all subgraphs of graphs in $\mathcal{G} \boxtimes \mathcal{H}$ has bounded sparse twin-width. In particular, the class of all subgraphs of $(S_b \CartProd H_n)_{b,n\in\N}$ has bounded sparse twin-width.}. It remains open whether bounded sparse twin-width coincides with bounded queue-number.
+
+Finally, we mention some more open problems: 
+
+\begin{compactitem}
+\item Recall that every 1-queue graph has a 2-stack layout \citep{HLR92} and we proved that there are 4-queue graphs with unbounded stack-number. The following questions remain open: Do 2-queue graphs have bounded stack-number? Do 3-queue graphs have bounded stack-number? 
+
+\item Since $H_n\subseteq P \boxtimes P$ where $P$ is the $n$-vertex path, \cref{family} implies that $\sn(S\boxtimes P\boxtimes P)$ is unbounded for all stars $S$ and paths $P$. It is easily seen that $\sn(S\boxtimes P)$ is bounded~\citep{Pupyrev20}. The following question naturally arises (independently asked by \citet{Pupyrev20}): Is $\sn(T \boxtimes P)$ bounded for all trees $T$ and paths $P$? We conjecture the answer is ``no''.
+
+\end{compactitem}
+
+{
+\fontsize{11.5}{12.5} 
+\selectfont 
+
+\let\oldthebibliography=\thebibliography
+\let\endoldthebibliography=\endthebibliography
+\renewenvironment{thebibliography}[1]{%
+\begin{oldthebibliography}{#1}%
+\setlength{\parskip}{0.2ex}%
+\setlength{\itemsep}{0.2ex}%
+}{\end{oldthebibliography}}
+
+\def\soft#1{\leavevmode\setbox0=\hbox{h}\dimen7=\ht0\advance \dimen7
+	by-1ex\relax\if t#1\relax\rlap{\raise.6\dimen7
+		\hbox{\kern.3ex\char'47}}#1\relax\else\if T#1\relax
+	\rlap{\raise.5\dimen7\hbox{\kern1.3ex\char'47}}#1\relax \else\if
+	d#1\relax\rlap{\raise.5\dimen7\hbox{\kern.9ex \char'47}}#1\relax\else\if
+	D#1\relax\rlap{\raise.5\dimen7 \hbox{\kern1.4ex\char'47}}#1\relax\else\if
+	l#1\relax \rlap{\raise.5\dimen7\hbox{\kern.4ex\char'47}}#1\relax \else\if
+	L#1\relax\rlap{\raise.5\dimen7\hbox{\kern.7ex
+			\char'47}}#1\relax\else\message{accent \string\soft \space #1 not
+		defined!}#1\relax\fi\fi\fi\fi\fi\fi}
+\begin{thebibliography}{44}
+	\providecommand{\natexlab}[1]{#1}
+	\providecommand{\msn}[1]{MR:\,\href{http://www.ams.org/mathscinet-getitem?mr=MR{#1}}{#1}}
+	\providecommand{\ZBL}[1]{Zbl:\,\href{https://www.zentralblatt-math.org/zmath/en/search/?q=an:#1}{#1}}
+	\providecommand{\url}[1]{\texttt{#1}}
+	\providecommand{\urlprefix}{}
+	\expandafter\ifx\csname urlstyle\endcsname\relax
+	\providecommand{\doi}[1]{doi:\discretionary{}{}{}#1}\else
+	\providecommand{\doi}{doi:\discretionary{}{}{}\begingroup
+		\urlstyle{rm}\Url}\fi
+	
+	\bibitem[{Angelini et~al.(2012)Angelini, Battista, Frati, Patrignani, and
+		Rutter}]{ADFPR12}
+	\textsc{Patrizio Angelini, Giuseppe~Di Battista, Fabrizio Frati, Maurizio
+		Patrignani, and Ignaz Rutter}.
+	\newblock \href{https://doi.org/10.1016/j.jda.2011.12.015}{Testing the
+		simultaneous embeddability of two graphs whose intersection is a biconnected
+		or a connected graph}.
+	\newblock \emph{J. Discrete Algorithms}, 14:150--172, 2012.
+	
+	\bibitem[{Baur and Brandes(2004)}]{BB04}
+	\textsc{Michael Baur and Ulrik Brandes}.
+	\newblock \href{https://doi.org/10.1007/978-3-540-30559-0\_28}{Crossing
+		reduction in circular layouts}.
+	\newblock In \emph{Proc. 30th International Workshop on Graph-Theoretic
+		Concepts in Computer Science (WG '04)}, vol. 3353 of \emph{Lecture Notes in
+		Computer Science}, pp. 332--343. Springer, 2004.
+	
+	\bibitem[{Bekos et~al.(2019)Bekos, F{\"{o}}rster, Gronemann, Mchedlidze,
+		Montecchiani, Raftopoulou, and Ueckerdt}]{BFGMMRU19}
+	\textsc{Michael~A. Bekos, Henry F{\"{o}}rster, Martin Gronemann, Tamara
+		Mchedlidze, Fabrizio Montecchiani, Chrysanthi~N. Raftopoulou, and Torsten
+		Ueckerdt}.
+	\newblock \href{https://doi.org/10.1137/19M125340X}{Planar graphs of bounded
+		degree have bounded queue number}.
+	\newblock \emph{SIAM J. Comput.}, 48(5):1487--1502, 2019.
+	
+	\bibitem[{Bernhart and Kainen(1979)}]{BK79}
+	\textsc{Frank~R. Bernhart and Paul~C. Kainen}.
+	\newblock \href{https://doi.org/10.1016/0095-8956(79)90021-2}{The book
+		thickness of a graph}.
+	\newblock \emph{J. Combin. Theory Ser. B}, 27(3):320--331, 1979.
+	
+	\bibitem[{Blankenship(2003)}]{Blankenship-PhD03}
+	\textsc{Robin Blankenship}.
+	\newblock
+	\href{http://etd.lsu.edu/docs/available/etd-0709103-163907/unrestricted/Blankenship_dis.pdf}{Book
+		embeddings of graphs}.
+	\newblock Ph.D. thesis, Department of Mathematics, Louisiana State University,
+	U.S.A., 2003.
+	
+	\bibitem[{Blankenship and Oporowski(1999)}]{BO99}
+	\textsc{Robin Blankenship and Bogdan Oporowski}.
+	\newblock \href{http://www.math.lsu.edu/~preprint/1999/rbbo991.ps}{Drawing
+		subdivisions of complete and complete bipartite graphs on books}.
+	\newblock Tech. Rep. 1999-4, Department of Mathematics, Louisiana State
+	University, U.S.A., 1999.
+	
+	\bibitem[{Bonnet et~al.(2020{\natexlab{a}})Bonnet, Geniet, Kim, Thomass\'e, and
+		Watrigant}]{BGKTWb}
+	\textsc{\'Edouard Bonnet, Colin Geniet, Eun~Jung Kim, St\'ephan Thomass\'e, and
+		R\'emi Watrigant}.
+	\newblock \href{http://arxiv.org/abs/2006.09877}{Twin-width {II}: small
+		classes}.
+	\newblock In \emph{Proc. Annual ACM-SIAM Symp. on Discrete Algorithms (SODA
+		'21)}. 2020{\natexlab{a}}.
+	\newblock arXiv:2006.09877.
+	
+	\bibitem[{Bonnet et~al.(2020{\natexlab{b}})Bonnet, Geniet, Kim, Thomass\'e, and
+		Watrigant}]{BGKTWa}
+	\textsc{\'Edouard Bonnet, Colin Geniet, Eun~Jung Kim, St\'ephan Thomass\'e, and
+		R\'emi Watrigant}.
+	\newblock \href{http://arxiv.org/abs/2007.14161}{Twin-width {III}: Max
+		independent set and coloring}.
+	\newblock 2020{\natexlab{b}}, arXiv:2007.14161.
+	
+	\bibitem[{Bonnet et~al.(2020{\natexlab{c}})Bonnet, Kim, Thomass\'e, and
+		Watrigant}]{BKTW}
+	\textsc{\'Edouard Bonnet, Eun~Jung Kim, St\'ephan Thomass\'e, and R\'emi
+		Watrigant}.
+	\newblock \href{http://arxiv.org/abs/2004.14789}{Twin-width {I}: tractable {FO}
+		model checking}.
+	\newblock In \emph{Proc. 61st IEEE Symp. on Foundations of Comput. Sci. (FOCS
+		'20)}. 2020{\natexlab{c}}.
+	\newblock arXiv:2004.14789.
+	
+	\bibitem[{Bourgain(2009)}]{Bourgain09}
+	\textsc{Jean Bourgain}.
+	\newblock \href{https://doi.org/10.1016/j.crma.2009.02.009}{Expanders and
+		dimensional expansion}.
+	\newblock \emph{C. R. Math. Acad. Sci. Paris}, 347(7-8):357--362, 2009.
+	
+	\bibitem[{Bourgain and Yehudayoff(2013)}]{BY13}
+	\textsc{Jean Bourgain and Amir Yehudayoff}.
+	\newblock \href{https://doi.org/10.1007/s00039-012-0200-9}{Expansion in
+		{SL$_2(\mathbb{R})$} and monotone expansion}.
+	\newblock \emph{Geometric and Functional Analysis}, 23(1):1--41, 2013.
+	
+	\bibitem[{Chung et~al.(1987)Chung, Leighton, and Rosenberg}]{CLR87}
+	\textsc{Fan R.~K. Chung, F.~Thomson Leighton, and Arnold~L. Rosenberg}.
+	\newblock \href{https://doi.org/10.1137/0608002}{Embedding graphs in books: a
+		layout problem with applications to {V}{L}{S}{I} design}.
+	\newblock \emph{SIAM J. Algebraic Discrete Methods}, 8(1):33--58, 1987.
+	
+	\bibitem[{{Di Battista} et~al.(2013){Di Battista}, Frati, and Pach}]{DFP13}
+	\textsc{Giuseppe {Di Battista}, Fabrizio Frati, and J\'anos Pach}.
+	\newblock \href{https://doi.org/10.1137/130908051}{On the queue number of
+		planar graphs}.
+	\newblock \emph{SIAM J. Comput.}, 42(6):2243--2285, 2013.
+	
+	\bibitem[{Dujmovi{\'c} et~al.(2020)Dujmovi{\'c}, Joret, Micek, Morin, Ueckerdt,
+		and Wood}]{DJMMUW20}
+	\textsc{Vida Dujmovi{\'c}, Gwena\"{e}l Joret, Piotr Micek, Pat Morin, Torsten
+		Ueckerdt, and David~R. Wood}.
+	\newblock \href{https://doi.org/10.1145/3385731}{Planar graphs have bounded
+		queue-number}.
+	\newblock \emph{J. ACM}, 67(4):22, 2020.
+	
+	\bibitem[{Dujmovi{\'c} et~al.(2005)Dujmovi{\'c}, Morin, and Wood}]{DMW05}
+	\textsc{Vida Dujmovi{\'c}, Pat Morin, and David~R. Wood}.
+	\newblock \href{https://doi.org/10.1137/S0097539702416141}{Layout of graphs
+		with bounded tree-width}.
+	\newblock \emph{SIAM J. Comput.}, 34(3):553--579, 2005.
+	
+	\bibitem[{Dujmovi{\'c} et~al.(2017)Dujmovi{\'c}, Morin, and Wood}]{DMW17}
+	\textsc{Vida Dujmovi{\'c}, Pat Morin, and David~R. Wood}.
+	\newblock \href{https://doi.org/10.1016/j.jctb.2017.05.006}{Layered separators
+		in minor-closed graph classes with applications}.
+	\newblock \emph{J. Combin. Theory Ser. B}, 127:111--147, 2017.
+	
+	\bibitem[{Dujmovi{\'c} et~al.(2019)Dujmovi{\'c}, Morin, and Wood}]{DMW}
+	\textsc{Vida Dujmovi{\'c}, Pat Morin, and David~R. Wood}.
+	\newblock \href{http://arxiv.org/abs/1907.05168}{Graph product structure for
+		non-minor-closed classes}.
+	\newblock 2019, arXiv:1907.05168.
+	
+	\bibitem[{Dujmovi{\'c} et~al.(2004)Dujmovi{\'c}, P\'or, and Wood}]{DPW04}
+	\textsc{Vida Dujmovi{\'c}, Attila P\'or, and David~R. Wood}.
+	\newblock \href{http://dmtcs.episciences.org/315}{Track layouts of graphs}.
+	\newblock \emph{Discrete Math. Theor. Comput. Sci.}, 6(2):497--522, 2004.
+	
+	\bibitem[{Dujmovi{\'c} et~al.(2016)Dujmovi{\'c}, Sidiropoulos, and
+		Wood}]{DSW16}
+	\textsc{Vida Dujmovi{\'c}, Anastasios Sidiropoulos, and David~R. Wood}.
+	\newblock \href{https://doi.org/10.4086/cjtcs.2016.001}{Layouts of expander
+		graphs}.
+	\newblock \emph{Chicago J. Theoret. Comput. Sci.}, 2016(1), 2016.
+	
+	\bibitem[{Dujmovi{\'c} and Wood(2004)}]{DujWoo04}
+	\textsc{Vida Dujmovi{\'c} and David~R. Wood}.
+	\newblock \href{http://dmtcs.episciences.org/317}{On linear layouts of graphs}.
+	\newblock \emph{Discrete Math. Theor. Comput. Sci.}, 6(2):339--358, 2004.
+	
+	\bibitem[{Dujmovi{\'c} and Wood(2005)}]{DujWoo05}
+	\textsc{Vida Dujmovi{\'c} and David~R. Wood}.
+	\newblock \href{http://dmtcs.episciences.org/346}{Stacks, queues and tracks:
+		Layouts of graph subdivisions}.
+	\newblock \emph{Discrete Math. Theor. Comput. Sci.}, 7:155--202, 2005.
+	
+	\bibitem[{Dujmovi{\'c} and Wood(2007)}]{DujWoo-DCG07}
+	\textsc{Vida Dujmovi{\'c} and David~R. Wood}.
+	\newblock \href{https://doi.org/10.1007/s00454-007-1318-7}{Graph treewidth and
+		geometric thickness parameters}.
+	\newblock \emph{Discrete Comput. Geom.}, 37(4):641--670, 2007.
+	
+	\bibitem[{Dvo{\v{r}}{\'a}k et~al.(pear)Dvo{\v{r}}{\'a}k, Huynh, Joret, Liu, and
+		Wood}]{DHJLW20}
+	\textsc{Zden{\v{e}}k Dvo{\v{r}}{\'a}k, Tony Huynh, Gwena\"el Joret, Chun-Hung
+		Liu, and David~R. Wood}.
+	\newblock \href{http://arxiv.org/abs/2001.08860}{Notes on graph product
+		structure theory}.
+	\newblock In \emph{2019-20 MATRIX Annals}. Springer, to appear.
+	\newblock arXiv:2001.08860.
+	
+	\bibitem[{Erd\H{o}s and Szekeres(1935)}]{ES35}
+	\textsc{Paul Erd\H{o}s and George Szekeres}.
+	\newblock \href{http://www.numdam.org/item?id=CM_1935__2__463_0}{A
+		combinatorial problem in geometry}.
+	\newblock \emph{Compositio Math.}, 2:463--470, 1935.
+	
+	\bibitem[{Gale(1979)}]{Gale79}
+	\textsc{David Gale}.
+	\newblock \href{https://doi.org/10.2307/2320146}{The game of {H}ex and the
+		{B}rouwer fixed-point theorem}.
+	\newblock \emph{Amer. Math. Monthly}, 86(10):818--827, 1979.
+	
+	\bibitem[{Galil et~al.(1989)Galil, Kannan, and Szemer\'{e}di}]{GKS89}
+	\textsc{Zvi Galil, Ravi Kannan, and Endre Szemer\'{e}di}.
+	\newblock \href{https://doi.org/10.1007/BF02122679}{On $3$-pushdown graphs with
+		large separators}.
+	\newblock \emph{Combinatorica}, 9(1):9--19, 1989.
+	
+	\bibitem[{Haslinger and Stadler(1999)}]{HS99}
+	\textsc{Christian Haslinger and Peter~F. Stadler}.
+	\newblock \href{https://doi.org/10.1006/bulm.1998.0085}{{RNA} structures with
+		pseudo-knots: {G}raph-theoretical, combinatorial, and statistical
+		properties}.
+	\newblock \emph{Bull. Math. Biology}, 61(3):437--467, 1999.
+	
+	\bibitem[{Heath et~al.(1992)Heath, Leighton, and Rosenberg}]{HLR92}
+	\textsc{Lenwood~S. Heath, F.~Thomson Leighton, and Arnold~L. Rosenberg}.
+	\newblock \href{https://doi.org/10.1137/0405031}{Comparing queues and stacks as
+		mechanisms for laying out graphs}.
+	\newblock \emph{SIAM J. Discrete Math.}, 5(3):398--412, 1992.
+	
+	\bibitem[{Heath and Rosenberg(1992)}]{HR92}
+	\textsc{Lenwood~S. Heath and Arnold~L. Rosenberg}.
+	\newblock \href{https://doi.org/10.1137/0221055}{Laying out graphs using
+		queues}.
+	\newblock \emph{SIAM J. Comput.}, 21(5):927--958, 1992.
+	
+	\bibitem[{Kaufmann et~al.(2020)Kaufmann, Bekos, Klute, Pupyrev, Raftopoulou,
+		and Ueckerdt}]{MBKPRU20}
+	\textsc{Michael Kaufmann, Michael~A. Bekos, Fabian Klute, Sergey Pupyrev,
+		Chrysanthi~N. Raftopoulou, and Torsten Ueckerdt}.
+	\newblock
+	\href{https://journals.carleton.ca/jocg/index.php/jocg/article/view/504}{Four
+		pages are indeed necessary for planar graphs}.
+	\newblock \emph{J. Comput. Geom.}, 11(1):332--353, 2020.
+	
+	\bibitem[{Malitz(1994)}]{Malitz94a}
+	\textsc{Seth~M. Malitz}.
+	\newblock \href{https://doi.org/10.1006/jagm.1994.1027}{Graphs with ${E}$ edges
+		have pagenumber ${O}(\sqrt {E})$}.
+	\newblock \emph{J. Algorithms}, 17(1):71--84, 1994.
+	
+	\bibitem[{Ne{\v{s}}et{\v{r}}il and Ossona~de Mendez(2012)}]{Sparsity}
+	\textsc{Jaroslav Ne{\v{s}}et{\v{r}}il and Patrice Ossona~de Mendez}.
+	\newblock \href{https://doi.org/10.1007/978-3-642-27875-4}{Sparsity}, vol.~28
+	of \emph{Algorithms and Combinatorics}.
+	\newblock Springer, 2012.
+	
+	\bibitem[{Ne{\v{s}}et{\v{r}}il et~al.(2011)Ne{\v{s}}et{\v{r}}il, {Ossona de
+			Mendez}, and Wood}]{NOW11}
+	\textsc{Jaroslav Ne{\v{s}}et{\v{r}}il, Patrice {Ossona de Mendez}, and David~R.
+		Wood}.
+	\newblock \href{https://doi.org/10.1016/j.ejc.2011.09.008}{Characterisations
+		and examples of graph classes with bounded expansion}.
+	\newblock \emph{European J. Combin.}, 33(3):350--373, 2011.
+	
+	\bibitem[{Ollmann(1973)}]{Ollmann73}
+	\textsc{L.~Taylor Ollmann}.
+	\newblock On the book thicknesses of various graphs.
+	\newblock In \textsc{Frederick Hoffman, Roy~B. Levow, and Robert S.~D. Thomas},
+	eds., \emph{Proc. 4th {S}outheastern {C}onference on {C}ombinatorics, {G}raph
+		{T}heory and {C}omputing}, vol. VIII of \emph{Congr. Numer.}, p. 459.
+	Utilitas Math., 1973.
+	
+	\bibitem[{Pupyrev(2020)}]{Pupyrev20}
+	\textsc{Sergey Pupyrev}.
+	\newblock \href{http://arxiv.org/abs/2007.15102}{Book embeddings of graph
+		products}.
+	\newblock 2020, arXiv:2007.15102.
+	
+	\bibitem[{Rosenberg(1983)}]{Rosenberg83a}
+	\textsc{Arnold~L. Rosenberg}.
+	\newblock The {DIOGENES} approach to testable fault-tolerant arrays of
+	processors.
+	\newblock \emph{IEEE Trans. Comput.}, C-32:902--910, 1983.
+	
+	\bibitem[{Rosenberg(1986{\natexlab{a}})}]{Rosenberg86}
+	\textsc{Arnold~L. Rosenberg}.
+	\newblock Book embeddings and wafer-scale integration.
+	\newblock In \emph{Proc. 17th Southeastern International Conf. on
+		Combinatorics, Graph Theory, and Computing}, vol.~54 of \emph{Congr. Numer.},
+	pp. 217--224. 1986{\natexlab{a}}.
+	
+	\bibitem[{Rosenberg(1986{\natexlab{b}})}]{Rosenberg86a}
+	\textsc{Arnold~L. Rosenberg}.
+	\newblock \href{https://doi.org/10.1007/3-540-16766-8_9}{{DIOGENES}, circa
+		1986}.
+	\newblock In \emph{Proc. {VLSI} Algorithms and Architectures}, vol. 227 of
+	\emph{Lecture Notes in Comput. Sci.}, pp. 96--107. Springer,
+	1986{\natexlab{b}}.
+	
+	\bibitem[{Shahrokhi et~al.(1994)Shahrokhi, S{\'y}kora, Sz{\'e}kely, and
+		V{\v{r}}{\soft{t}}o}]{SSSV-WG94}
+	\textsc{Farhad Shahrokhi, Ondrej S{\'y}kora, L{\'a}szl{\'o}~A. Sz{\'e}kely, and
+		Imrich V{\v{r}}{\soft{t}}o}.
+	\newblock \href{https://doi.org/10.1007/3-540-59071-4\_53}{Book embeddings and
+		crossing numbers}.
+	\newblock In \textsc{Ernst~W. Mayr, Gunther Schmidt, and Gottfried Tinhofer},
+	eds., \emph{Proc. 20th International Workshop on Graph-Theoretic Concepts in
+		Computer Science (WG '94)}, vol. 903 of \emph{Lecture Notes in Comput. Sci.},
+	pp. 256--268. Springer, 1994.
+	
+	\bibitem[{Wood(2001)}]{Wood-GD01}
+	\textsc{David~R. Wood}.
+	\newblock \href{https://doi.org/10.1007/3-540-45848-4\_25}{Bounded degree book
+		embeddings and three-dimensional orthogonal graph drawing}.
+	\newblock In \textsc{Petra Mutzel, Michael J{\"{u}}nger, and Sebastian
+		Leipert}, eds., \emph{Proc. 9th International Symposium on Graph Drawing (GD
+		'01)}, vol. 2265 of \emph{Lecture Notes in Computer Science}, pp. 312--327.
+	Springer, 2001.
+	
+	\bibitem[{Wood(2005)}]{Wood-Queue-DMTCS05}
+	\textsc{David~R. Wood}.
+	\newblock \href{http://dmtcs.episciences.org/352}{Queue layouts of graph
+		products and powers}.
+	\newblock \emph{Discrete Math. Theor. Comput. Sci.}, 7(1):255--268, 2005.
+	
+	\bibitem[{Wood(2008)}]{Wood-QueueDegree}
+	\textsc{David~R. Wood}.
+	\newblock \href{http://dmtcs.episciences.org/434}{Bounded-degree graphs have
+		arbitrarily large queue-number}.
+	\newblock \emph{Discrete Math. Theor. Comput. Sci.}, 10(1):27--34, 2008.
+	
+	\bibitem[{Yannakakis(1989)}]{Yannakakis89}
+	\textsc{Mihalis Yannakakis}.
+	\newblock \href{https://doi.org/10.1016/0022-0000(89)90032-9}{Embedding planar
+		graphs in four pages}.
+	\newblock \emph{J. Comput. System Sci.}, 38(1):36--67, 1989.
+	
+	\bibitem[{Yannakakis(2020)}]{Yann20}
+	\textsc{Mihalis Yannakakis}.
+	\newblock \href{https://doi.org/10.1016/j.jctb.2020.05.008}{Planar graphs that
+		need four pages}.
+	\newblock \emph{J. Combin. Theory Ser. B}, 145:241--263, 2020.
+	
+\end{thebibliography}
+}
+
+\end{document}
