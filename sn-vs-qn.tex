@@ -100,7 +100,7 @@ We now formally define stack- and queue-number. Let $G$ be a graph and let $\pre
 
 Given a $k$-stack layout $(\prec,\varphi)$ of a graph $G$, for each $i\in\{1,\dots,k\}$, the set $\varphi^{-1}(i)$ behaves like a stack, in the sense that each edge $vw \in \varphi^{-1}(i)$ with $v\prec w$ corresponds to an element in a sequence of stack operations, such that if we traverse the vertices in the order of $\prec$, then $vw$ is pushed onto the stack at $v$ and popped off the stack at $w$. Similarly, each set $\varphi^{-1}(i)$ in a queue layout  behaves like a queue. In this way, the stack-number and queue-number  respectively measure the power of stacks and queues to represent graphs.
 
-Note that stack layouts are equivalent to book embeddings (first defined by \citet{Ollmann73} in 1973), and stack-number is also known as \emph{page-number}, \emph{book-thickness} or \emph{fixed outer-thickness}. Stack and queue layouts have other applications including computational complexity~\citep{GKS89,DSW16,Bourgain09,BY13},  RNA folding~\citep{HS99}, graph drawing in two~\citep{BB04,ADFPR12,SSSV-WG94} and three dimensions~\citep{DMW05,Wood-GD01,DMW17,DPW04},
+Note that stack layouts are equivalent to book embeddings (first defined by \citet{Ollmann73} in 1973), and stack-number is also known as \emph{page-number}, \emph{book-thickness} or \emph{fixed outer-thickness}. Stack and queue layouts have other applications including computational complexity~\citep{GKS89,DSW16,Bourgain09,BY13},  RNA folding~\citep{HS99}, graph drawing in two~\citep{BB04,ADFPR12,SSSV-JGT96} and three dimensions~\citep{DMW05,Wood-GD01,DMW17,DPW04},
 and fault-tolerant multiprocessing~\citep{CLR87,Rosenberg83a,Rosenberg86a,Rosenberg86}.
 %, stack sorting~\citep{CLR87}, and traffic light control~\citep{Kainen90}.
 See \citep{BK79,Blankenship-PhD03,DujWoo04,DujWoo-DCG07,DJMMUW20,DFP13,BFGMMRU19,Yannakakis89,Yann20,MBKPRU20} for bounds on the stack- and queue-number for various graph classes.
@@ -350,7 +350,7 @@ $d\ge c^{1/2^{n^2-1}} \ge (s+1)2^n$. By \cref{twister}, the graph $X$, which is 
 
 We now mention some further consequences of our main result. 
 
-\citet{NOW11} proved that graph classes with bounded stack-number or bounded queue-number have bounded expansion; see \citep{Sparsity} for background on bounded expansion classes. The converse is not true, since cubic graphs (for example) have bounded expansion, unbounded stack-number~\citep{Malitz94a} and unbounded queue-number~\citep{Wood-QueueDegree}. However, prior to the present work it was open whether graph classes with polynomial expansion have bounded stack-number or bounded queue-number. It follows from the work of \citet[Theorem~19]{DHJLW20} that $(S_b \CartProd H_n)_{b,n\in\N}$ has polynomial expansion. So \cref{Main} implies there is a class of graphs with polynomial expansion and with unbounded stack-number. It remains open whether graph classes with polynomial expansion have bounded queue-number. See \citep{DJMMUW20,DMW} for several examples of graph classes with polynomial expansion and bounded queue-number.
+\citet{NOW11} proved that graph classes with bounded stack-number or bounded queue-number have bounded expansion; see \citep{Sparsity} for background on bounded expansion classes. The converse is not true, since cubic graphs (for example) have bounded expansion, unbounded stack-number~\citep{Malitz94a} and unbounded queue-number~\citep{Wood-QueueDegree}. However, prior to the present work it was open whether graph classes with polynomial expansion have bounded stack-number or bounded queue-number. It follows from the work of \citet[Theorem~19]{DHJLW21} that $(S_b \CartProd H_n)_{b,n\in\N}$ has polynomial expansion. So \cref{Main} implies there is a class of graphs with polynomial expansion and with unbounded stack-number. It remains open whether graph classes with polynomial expansion have bounded queue-number. See \citep{DJMMUW20,DMW} for several examples of graph classes with polynomial expansion and bounded queue-number.
 
 %Another consequence of our result is that it resolves a question of \citet{BGKTWb} concerning the graph parameter \emph{twin-width} (see \citep{BKTW,BGKTWa,BGKTWb} for the definition and background on twin-width). A graph class $\mathcal{C}$ is called \textit{hereditary} if for every graph $G$ in $\mathcal{C}$, every induced subgraph of $G$ is also in $\mathcal{C}$. A hereditary class of graphs $\mathcal{C}$ with bounded twin-width has \textit{bounded sparse twin-width} if there exists $t\in\N$ such that no graph in $\mathcal{C}$ contains $K_{t,t}$ as a subgraph. \citet{BGKTWb}  proved that any hereditary class of graphs with bounded stack-number has bounded sparse twin-width. \citet{BGKTWb}  write that they ``believe that the inclusion is strict''; that is, there exists a hereditary class of graphs with bounded sparse twin-width and unbounded stack-number. \Cref{Main} confirms this intuition. To see this, first note that every star $S_k$ has twin-width $0$ and that every planar graph has bounded twin-width \citep{BKTW}. Note also that $S_b \boxtimes H_n$ does not contain $K_{8,8}$ as a subgraph as it is $7$-degenerate. By \citep[Theorem~10]{BGKTWb}, it follows that $S_b \CartProd H_n$ has bounded twin-width. Let $\mathcal{G}$ be the class of graphs that consists of $S_b \CartProd H_n$ and every induced subgraph of it. Since $S_b \CartProd H_n$ does not contain $K_{5,5}$ as a subgraph since it is $4$-degenerate, it follows that $\mathcal{G}$ is a hereditary class of graphs with bounded sparse twin-width~\citep[Theorem~10]{BGKTWb} and unbounded stack-number. This confirms that the class of graphs with bounded sparse twin-width does not coincide with the class of graphs with bounded stack-number, as suspected by \citet{BGKTWb}. It remains open whether bounded sparse twin-width coincides with bounded queue-number.
 
@@ -381,10 +381,10 @@ Finally, we mention some more open problems:
 \setlength{\itemsep}{0.2ex}%
 }{\end{oldthebibliography}}
 
-\input{sn-vs-qn.bbl}
+%\input{sn-vs-qn.bbl}
 % OR
-%\bibliographystyle{DavidNatbibStyle}
-%\bibliography{../../BibTeX/myBibliography}
+\bibliographystyle{DavidNatbibStyle}
+\bibliography{../../BibTeX/myBibliography}
 }
 
 \end{document}

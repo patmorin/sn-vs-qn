@@ -6,42 +6,42 @@ Database file #1: ../../BibTeX/myBibliography.bib
 Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
 You've used 44 entries,
             3240 wiz_defined-function locations,
-            1081 strings with 14083 characters,
-and the built_in function-call counts, 26794 in all, are:
-= -- 2110
-> -- 1085
-< -- 39
-+ -- 403
-- -- 348
-* -- 2241
-:= -- 4035
-add.period$ -- 144
+            1082 strings with 14069 characters,
+and the built_in function-call counts, 26803 in all, are:
+= -- 2117
+> -- 1088
+< -- 38
++ -- 406
+- -- 349
+* -- 2244
+:= -- 4043
+add.period$ -- 143
 call.type$ -- 44
-change.case$ -- 351
+change.case$ -- 349
 chr.to.int$ -- 41
 cite$ -- 44
-duplicate$ -- 1911
-empty$ -- 2120
-format.name$ -- 477
-if$ -- 5273
+duplicate$ -- 1901
+empty$ -- 2113
+format.name$ -- 478
+if$ -- 5270
 int.to.chr$ -- 4
 int.to.str$ -- 1
-missing$ -- 389
+missing$ -- 387
 newline$ -- 235
 num.names$ -- 182
-pop$ -- 752
+pop$ -- 739
 preamble$ -- 2
 purify$ -- 333
 quote$ -- 0
-skip$ -- 596
+skip$ -- 593
 stack$ -- 0
-substring$ -- 1328
-swap$ -- 1101
-text.length$ -- 14
+substring$ -- 1355
+swap$ -- 1099
+text.length$ -- 13
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 393
 warning$ -- 0
-while$ -- 201
+while$ -- 203
 width$ -- 0
-write$ -- 597
+write$ -- 596

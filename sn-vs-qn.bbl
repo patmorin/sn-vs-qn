@@ -173,13 +173,14 @@
   geometric thickness parameters}.
 \newblock \emph{Discrete Comput. Geom.}, 37(4):641--670, 2007.
 
-\bibitem[{Dvo{\v{r}}{\'a}k et~al.(pear)Dvo{\v{r}}{\'a}k, Huynh, Joret, Liu, and
-  Wood}]{DHJLW20}
+\bibitem[{Dvo{\v{r}}{\'a}k et~al.(2021)Dvo{\v{r}}{\'a}k, Huynh, Joret, Liu, and
+  Wood}]{DHJLW21}
 \textsc{Zden{\v{e}}k Dvo{\v{r}}{\'a}k, Tony Huynh, Gwena\"el Joret, Chun-Hung
   Liu, and David~R. Wood}.
-\newblock \href{http://arxiv.org/abs/2001.08860}{Notes on graph product
-  structure theory}.
-\newblock In \emph{2019-20 MATRIX Annals}. Springer, to appear.
+\newblock \href{https://doi.org/10.1007/978-3-030-62497-2_32}{Notes on graph
+  product structure theory}.
+\newblock In \textsc{David~R. Wood, Jan de~Gier, Cheryl~E. Praeger, and Terence
+  Tao}, eds., \emph{2019-20 MATRIX Annals}, pp. 513--533. Springer, 2021.
 \newblock arXiv:2001.08860.
 
 \bibitem[{Erd\H{o}s and Szekeres(1935)}]{ES35}
@@ -283,16 +284,14 @@
   \emph{Lecture Notes in Comput. Sci.}, pp. 96--107. Springer,
   1986{\natexlab{b}}.
 
-\bibitem[{Shahrokhi et~al.(1994)Shahrokhi, S{\'y}kora, Sz{\'e}kely, and
-  V{\v{r}}{\soft{t}}o}]{SSSV-WG94}
+\bibitem[{Shahrokhi et~al.(1996)Shahrokhi, S{\'y}kora, Sz{\'e}kely, and
+  V{\v{r}}{\soft{t}}o}]{SSSV-JGT96}
 \textsc{Farhad Shahrokhi, Ondrej S{\'y}kora, L{\'a}szl{\'o}~A. Sz{\'e}kely, and
   Imrich V{\v{r}}{\soft{t}}o}.
-\newblock \href{https://doi.org/10.1007/3-540-59071-4\_53}{Book embeddings and
-  crossing numbers}.
-\newblock In \textsc{Ernst~W. Mayr, Gunther Schmidt, and Gottfried Tinhofer},
-  eds., \emph{Proc. 20th International Workshop on Graph-Theoretic Concepts in
-  Computer Science (WG '94)}, vol. 903 of \emph{Lecture Notes in Comput. Sci.},
-  pp. 256--268. Springer, 1994.
+\newblock
+  \href{https://doi.org/10.1002/(SICI)1097-0118(199604)21:4<413::AID-JGT7>3.0.CO;2-S}{The
+  book crossing number of a graph}.
+\newblock \emph{J. Graph Theory}, 21(4):413--424, 1996.
 
 \bibitem[{Wood(2001)}]{Wood-GD01}
 \textsc{David~R. Wood}.
