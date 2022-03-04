@@ -1,0 +1,337 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,enumitem,graphicx,float,calc,microtype,mathtools,thmtools,underscore,anyfontsize,todonotes}
+
+\usepackage[lmargin=30mm,rmargin=30mm,tmargin=30mm,bmargin=30mm]{geometry}
+\renewcommand{\baselinestretch}{1.1}
+\setlength{\footnotesep}{\baselinestretch\footnotesep}
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{1.5ex}
+\allowdisplaybreaks
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{xcolor}
+
+\usepackage[numbers,sort&compress,longnamesfirst]{natbib}
+\usepackage{hypernat}
+\makeatletter
+\def\NAT@spacechar{~}
+\makeatother
+
+
+\usepackage[pdftitle={??},
+pdfauthor={Hickingbotham -- Wood},
+colorlinks =true,
+linkcolor={black},
+urlcolor={blue!80!black},
+filecolor={blue!80!black},
+citecolor={black},
+anchorcolor=blue,
+filecolor=blue, 
+menucolor=blue]{hyperref}
+
+\usepackage[noabbrev,capitalise]{cleveref}
+\crefname{lem}{Lemma}{Lemmas}
+\crefname{thm}{Theorem}{Theorems}
+\crefname{cor}{Corollary}{Corollaries}
+\crefname{prop}{Proposition}{Propositions}
+\crefname{conj}{Conjecture}{Conjectures}
+\crefname{open}{Open Problem}{Open Problems}
+\crefname{obs}{Observation}{Observations}
+
+\crefformat{equation}{(#2#1#3)}
+\Crefformat{equation}{Equation #2(#1)#3}
+
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{claim}{Claim}
+\theoremstyle{definition}
+\newtheorem{open}[thm]{Open Problem}
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem{ques}[thm]{Question}
+
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+
+\DeclareMathOperator{\sn}{sn}
+\DeclareMathOperator{\qn}{qn}
+\DeclareMathOperator{\sqn}{sqn}
+\DeclareMathOperator{\dsn}{dsn}
+\DeclareMathOperator{\tw}{tw}
+\DeclareMathOperator{\degen}{degen}
+
+\newcommand{\N}{\mathbb{N}}
+
+\renewcommand{\le}{\leqslant}
+\renewcommand{\leq}{\leqslant}
+\renewcommand{\ge}{\geqslant}
+\renewcommand{\geq}{\geqslant}
+
+\newcommand{\CartProd}{\mathbin{\square}}
+
+\title{\bf Some Properties of Graph Products\thanks{School of Mathematics, Monash University, Melbourne, Australia (\texttt{robert.hickingbotham,david.wood@monash.edu}). Research supported by the Australian Research Council.}}
+
+\author{Robert Hickingbotham	\quad 	David R. Wood}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\end{abstract}
+
+\bigskip
+
+\section{Introduction}
+
+Numerous graph parameters and properties have been determined for graph products:
+
+chromatic number of Cartesian products \citep{Sabidussi57} and of direct products \citep{???},
+
+connectivity of Cartesian products \citep{???} 
+
+etc
+
+
+
+\section{Degeneracy}
+
+A graph $G$ is \emph{$d$-degenerate} if every subgraph of $G$ has minimum degree at most $d$. The \emph{degeneracy} of $G$ is the minimum integer $d$ such that $G$ is $d$-degenerate. Equivalently, the \emph{degeneracy} of $G$ is the maximum, taken over all subgraphs $H$ of $G$, of the minimum degree of $H$. 
+
+\begin{thm}
+	For all graphs $G_1$ and $G_2$, $$\degen(G_1\square G_2)=\degen(G_1)+\degen(G_2).$$
+\end{thm}
+
+\begin{proof}
+	Let $d_i := \degen(G_i)$. 
+	First we prove the lower bound. By definition, each $G_i$ has a subgraph $H_i$ with minimum degree $d_i$. Thus $H_1\square H_2$ is a subgraph of $G_1\square G_2$ with minimum degree $d_1+d_2$. Hence $\degen(G_1\square G_2) \geq d_1+d_2$. 
+	
+	Now we prove the upper bound. 
+	Let $Z$ be a subgraph of $G_1\CartProd G_2$. 
+	Our goal is to show that $Z$ has minimum degree at most $d_1+d_2$. 
+	Let $X$ be the projection of $Z$ in $G_1$. 
+	That is, $X$ is the subgraph of $G_1$ induced by the set of vertices $v_1\in V(G_1)$ such that $(v_1,v_2)\in V(Z)$ for some $v_2\in V(G_2)$. 
+	Since $G_1$ is $d_1$-degenerate, there is a vertex $v_1$ in $X$ with $\deg_X(v_1)\leq d_1$. 
+	Let $Y$ be the subgraph of $G_2$ induced by the set of vertices $v_2$ in $G_2$ such that $(v_1,v_2)\in V(X)$. 
+	By construction, $Y$ is not empty. 
+	Since $G_2$ is $d_2$-degenerate, there is a vertex $v_2$ in $Y$ with $\deg_Y(v_2)\leq d_2$. 
+	By construction, the vertex $(v_1,v_2)$ of $G_1\CartProd G_2$ is in $Z$. 
+	The neighbourhood of $(v_1,v_2)$ in $Z$ is a subset of 
+	$\{ (x,v_2): v_1x\in E(X)\} \cup \{(v_1,y): v_2y\in E(Y)\}$. 
+	Now $|\{ (x,v_2): v_1x\in E(X)\}| = \deg_X(v_1) \leq d_1$ and
+	$|\{(v_1,y): v_2y\in E(Y)\} | =  \deg_Y(v_2) \leq d_2$. 
+	Thus $(v_1,v_2)$ has degree at most $d_1+d_2$ in $Z$. 
+	Hence $G_1\CartProd G_2$ is $(d_1+d_2)$-degenerate, and $\degen(G_1\CartProd G_2)\leq d_1+d_2$. 
+\end{proof}
+
+
+
+
+\begin{thm}
+	Let $G_i$ be a $d_i$-degenerate graph with maximum degree $\Delta_i$ for $i\in\{1,2\}$. Then:\\
+	(2) $G_1 \times G_2$ is $(\min{\{d_1\Delta_2,d_2\Delta_1\}})$-degenerate.\\
+	(3) $G_1 \boxtimes G_2$ is $(d_1+d_2+\min{\{d_1\Delta_2,d_2\Delta_1\}})$-degenerate.
+\end{thm}
+
+
+These bounds are tight: For (2), the product of two complete bipartite graphs realise the bound. For (3), the product of two complete graphs realizes the bound. 
+
+Is $\degen( G_1 \times G_2 ) = \min\{ \degen(G_1) \Delta(G_2),\,\degen(G_2)\Delta(G_1)\}$?
+
+
+Question: Does there exist graphs $G_1$ and $G_2$ where $G_1 \boxtimes G_2$ is $(d_1+d_2+\min{\{d_1\Delta_2,d_2\Delta_1\}})$-degenerate $d_i \neq  \Delta_i$ for $i \in \{1,2\}$?
+
+%%%%%%%%%%%%%%%%%%%%%
+\section{Complete Bipartite Subgraphs}
+
+%\begin{cor}
+%	Let $G_i$ be a $d_i$-degenerate graph for $i\in\{1,2\}$.
+%	Then $G_1\CartProd G_2$  contains no $K_{d_1+d_2+1,d_1+d_2+1}$.
+%\end{cor}
+
+\begin{thm} 
+	For all graphs $G_1$ and $G_2$ and for all integers $s,t\in\N$, we have $K_{s,t}\subseteq  G_1\times G_2$ if and only if $K_{a,b} \subseteq G_1$ and $K_{p,q}\subseteq G_2$ for some integers $a,b,p,q\geq 1$ with $s=ap$ and $t=bq$. 
+\end{thm}	
+
+\begin{proof}
+	finish this
+\end{proof}
+
+
+\begin{thm} 
+	For all graphs $G_1$ and $G_2$ with $E(G_1)\neq\emptyset$ and $E(G_2)\neq\emptyset$ and for all integers $s,t\in\N$, we have $K_{s,t}\subseteq  G_1\CartProd G_2$ if and only if $K_{s,t} \subseteq G_1$ or $K_{s,t}\subseteq G_2$, or $s,t\leq 2$. 
+\end{thm}	
+
+\begin{proof} 
+	WRITE THIS
+	If $K_{2,3} \subseteq G_2 \square G_2$ then $K_{2,3} \subseteq G_1$ or $K_{2,3}\subseteq G_2$. 
+\end{proof}
+
+
+
+%\begin{lem}
+%If $K_{s_1,t_1} \subseteq G_1$ and 	$K_{s_2,t_2} \subseteq G_2$, then 
+%$K_{s_1t_2,s_2t_1} \subseteq G_1 \boxtimes G_2$. 
+%\end{lem}
+
+The next two lemmas characterise complete bipartite subgraphs in strong products. Let $K_{a,b,\overline{c}}$ be the graph obtained from the complete 3-partite graph $K_{a,b,c}$ by adding an edge between each pair of vertices in the part of size $c$. More formally, $V(K_{a,b,\overline{c}})=A\cup B\cup C$, where $A,B,C$ are pairwise disjoint sets with $|A|=a$, $|B|=b$ and $|C|=c$, such that $uv,vw,wu\in E(K_{a,b,\overline{c}})$ for all $u\in A$, $v\in B$, $w\in C$, and $w_1w_2\in E(K_{a,b,\overline{c}})$ for all distinct $w_1,w_2\in C$. 
+
+
+\begin{lem}
+	\label{CompleteBipartiteStrongProductLowerBound}
+	If $K_{a,b,\overline{c}}\subseteq G_1$ and $K_{p,q,\overline{r}}\subseteq G_2$, then 
+	$K_{ap+ar+cp, bq+br+cq,\overline{cr}} \subseteq  G_1\boxtimes G_2$. 
+\end{lem}
+
+\begin{proof}
+	Let $A,B,C$ be the subsets of $V(G_1)$ defining a $K_{a,b,\overline{c}}$ subgraph of $G_1$. 
+	Let $P,Q,R$ be the subsets of $V(G_2)$ defining a $K_{p,q,\overline{r}}$ subgraph of $G_2$. 
+	Then $(A\times P)\cup(A\times R)\cup(C\times P),(B\times Q)\cup(B\times R)\cup(C\times Q),(C\times R)$ define a $K_{ap+ar+cp, bq+br+cq,\overline{cr}}$ subgraph in $G_1\boxtimes G_2$. 	
+\end{proof}
+
+
+\begin{lem}
+\label{CompleteBipartiteStrongProductUpperBound}
+If $K_{s,t} \subseteq G_1\boxtimes G_2$ then $K_{a,b,\overline{c}}\subseteq G_1$ and $K_{p,q,\overline{r}}\subseteq G_2$ for some integers $a,b,c,p,q,r,x,y\geq 0$ with $s\leq ap+ar+cp +x$ and $t\leq bq+br+cq+y$ and $x+y\leq cr$. 
+\end{lem}
+
+
+\begin{proof}
+	Let $\{S,T\}$ be the  bipartition of a $K_{s,t}$ subgraph in $G_1\boxtimes G_2$. 
+	Let $S_i$ be the projection of $S$ in $G_i$, and let $T_i$ be the projection of $T$ in $G_i$. 
+	Then $\{S_i\setminus T_i,T_i\setminus S_i,S_i\cap T_i\}$ are the colour classes of a complete 3-partite subgraph of $G_i$. 
+	Let $a:=|S_1\setminus T_1|$ and $b:= |T_1\setminus S_1|$ and $c:= |S_1\cap T_1|$. 
+	Let $p:=|S_2\setminus T_2|$ and $q:= |T_2\setminus S_2|$ and $r:= |S_2\cap T_2|$. 
+	Thus $K_{a,b,c}\subseteq G_1$, and $K_{p,q,r}\subseteq G_2$. 
+	Consider distinct vertices $u_1,v_1\in S_1\cap T_1$. Thus there are vertices $(u_1,u_2)\in S$ and $(v_1,v_2)\in T$, implying that $u_1v_1\in E(G_1)$. Similarly, distinct vertices in $S_2\cap T_2$ are adjacent in $G_2$. 
+	Hence $K_{a,b,\overline{c}}\subseteq G_1$, and $K_{p,q,\overline{r}}\subseteq G_2$. 
+	Let $Z:= (S_1\cap T_1) \times (S_2\cap T_2)$ and $x:=|Z \cap S|$ and $y:= |Z\cap T|$. 
+	Thus $x+y \leq |Z| = cr$. 
+	Since $S\subseteq ( (S_1\setminus T_1 )\times S_2) \cup ( (S_1\cap T_1) \times (S_2\setminus T_2) ) \cup (Z\cap S)$, we have 
+	$s\leq a(p+r) +cp +x$. 
+	Since $T\subseteq ( (T_1\setminus S_1 )\times T_2 )\cup ( (S_2\cap T_2) \times (T_2\setminus S_2)) \cup (Z\cap T)$, we have 
+	$t\leq b(q+r) +cq+y$
+\end{proof}
+
+\begin{thm}
+	For all graphs $G_1$ and $G_2$, we have $K_{s,t} \subseteq G_1\boxtimes G_2$ if and only if 
+	$K_{a,b,\overline{c}}\subseteq G_1$ and $K_{p,q,\overline{r}}\subseteq G_2$ for some integers $a,b,c,p,q,r,x,y\geq 0$ with $s\leq ap+ar+cp+x$ and $t\leq bq+br+cq+y$ and $x+y\leq cr$. 
+\end{thm}
+
+\begin{proof}
+The $(\Longrightarrow$) direction is 
+\cref{CompleteBipartiteStrongProductUpperBound}.
+
+	$(\Longleftarrow$) Suppose that $K_{a,b,\overline{c}}\subseteq G_1$ and $K_{p,q,\overline{r}}\subseteq G_2$ for some integers $a,b,c,p,q,r\geq 0$ with $s\leq ap+ar+cp+x$ and $t\leq bq+br+cq+y$ and $x+y\leq cr$. 	By \cref{CompleteBipartiteStrongProductLowerBound}, we have 
+	$K_{ap+ar+cp, bq+br+cq,\overline{cr}} \subseteq  G_1\boxtimes G_2$. 
+	Splitting the colour class of size $cr$ into two sets of size $x$ and $y$, and combining these sets with the first and second colour classes, we obtain a
+	$K_{ap+ar+cp+x, bq+br+cq+y}$ subgraph in $G_1\boxtimes G_2$. 
+Since $ap+ar+cp+x\geq s$ and $bq+br+cq+y\geq y$, we have 
+	 $K_{s,t} \subseteq G_1\boxtimes G_2$.
+\end{proof}
+
+
+\begin{cor}
+	$S_\ell \boxtimes H_n$ contains no $K_{8,8}$.
+\end{cor}
+
+\begin{proof}
+	Suppose that $S_\ell \boxtimes H_n$ contains $K_{8,8}$. 
+	By \cref{CompleteBipartiteStrongProductUpperBound}, 
+	$K_{a,b,\overline{c}}\subseteq S$ and $K_{p,q,\overline{r}}\subseteq H_n$, 
+	where  $8\leq ap+ar +cp +x$ and $8\leq bq+br+cq+y$ and $x+y\leq cr$. 
+	%
+	If $p+q+r\geq 8$, then $H_n$ would contain a complete bipartite subgraph on 8 vertices, which is not possible since  $H_n$ contains no $K_{1,7}$, no $K_{2,6}$ and no $K_{3,3}$. Thus $p+q+r\leq 7$. 	
+	%
+	Without loss of generality, $a\leq b$. Since $S_\ell$ contains no triangle, $c\leq 2$. 
+	
+	Case. $c=0$: Thus $x=y=0$. 
+	Since $S_\ell$ contains no 4-cycle, $a\leq 1$ and $8\leq p+r$, which is a contradiction.  
+	
+	Case. $c=1$: 
+	Since $S_\ell$ contains no triangle, $a=0$. 
+	Thus $8\leq p +x \leq p+x+y\leq p+r$, which is a contradiction. 
+	
+	Case. $c=2$: 
+	Since $S_\ell$ contains no triangle, $a=b=0$. 
+	Thus $8\leq 2p +x$ and $8\leq 2q+y$, implying
+	$16\leq 2p + 2q +x+y \leq 2p+2q + 2r$ and $8\leq p+q+r$, which is a contradiction. 
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%\begin{lem}
+%$S \boxtimes H_n$ contains no $K_{8,8}$.
+%\end{lem}
+%
+%\begin{proof}
+%Suppose that $S \boxtimes H_n$ contains $K_{8,8}$.
+%Then $K_{a,b,\overline{c}}\subseteq S$ and $K_{p,q,\overline{r}}\subseteq H_n$, where $8\leq (a+c)(p+r)$ and $8\leq (b+c)(q+r)$.
+%
+%Since $H_n$ has maximum degree 6, we have $p,q\leq 6$. Since $H_n$ contains no $K_4$, we have $r\leq 3$ and if $r=3$ then $p=q=0$. 
+%
+%Without loss of generality, $a\leq b$. 
+%
+%%Since $S$ contains no triangle and no 4-cycle, $a=0$ or $c=0$. 
+%%$(a,b,c)\in \{ (0,1,c),(1,b,0)\}$. 
+%
+%First suppose that $c=0$. 
+%Since $S$ contains no 4-cycle, $a\leq 1$. 
+%Thus $K_{p,r}$ is a subgraph of $H_n$ where $p+r\geq 8$. 
+%This is a contradiction since $H_n$ contains no $K_{4,4}$, no $K_{3,5}$, no $K_{2,6}$ and no $K_{1,7}$. 
+%
+%Now assume that $c\geq 1$. 
+%Since $S$ contains no triangle, $a=0$ and $c\leq 2$. 
+%
+%Suppose that $c=2$. 
+%Since $S$ contains no triangle, $b=0$. 
+%Thus $8\leq (b+c)(q+r) = 2(q+r)$ and $q+r\geq 4$. 
+%If $r=3$ then $q=0$, which is a contradiction. 
+%If $r=2$ and $q=2$ and $p=0$ SOLUTION
+%
+%
+%
+%
+%
+%
+%
+%	
+%\end{proof}
+
+\section{Complete Multipartite Subgraphs}
+
+\fontsize{10}{11} 
+\selectfont 
+
+\let\oldthebibliography=\thebibliography
+\let\endoldthebibliography=\endthebibliography
+\renewenvironment{thebibliography}[1]{%
+\begin{oldthebibliography}{#1}%
+\setlength{\parskip}{0.3ex}%
+\setlength{\itemsep}{0.3ex}%
+}{\end{oldthebibliography}}
+
+%\input{PropertiesGraphProducts.bbl}
+
+% OR
+
+\bibliographystyle{DavidNatbibStyle}
+\bibliography{../../BibTeX/myBibliography}
+
+\end{document}
